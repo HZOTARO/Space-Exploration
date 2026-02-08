@@ -14,6 +14,8 @@ public class CodeEditor : MonoBehaviour
 
     RectTransform contentRect;
 
+    PythonExecutor pythonExecutor;
+
     void Awake()
     {
         if (!inputField)
@@ -31,6 +33,8 @@ public class CodeEditor : MonoBehaviour
     {
         Canvas.ForceUpdateCanvases();
         Resize();
+
+        pythonExecutor = FindAnyObjectByType<PythonExecutor>();
     }
     void Resize()
     {
@@ -41,5 +45,9 @@ public class CodeEditor : MonoBehaviour
 
         float finalHeight = Mathf.Max(textHeight, minHeight);
         contentRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, finalHeight);
+    }
+    public void Play()
+    {
+        pythonExecutor.Exec("print('Hello from Python!')");
     }
 }

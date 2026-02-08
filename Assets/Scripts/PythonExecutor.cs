@@ -1,21 +1,29 @@
-using UnityEngine;
 using Python.Runtime;
+using UnityEngine;
 
 public class PythonExecutor : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    static void InitPython()
+    {
+        Runtime.PythonDLL =
+            Application.dataPath + "/Streaming Assets/python-3.13.11-embed-amd64/python313.dll";
+
+        PythonEngine.Initialize();
+    }
+
     void Start()
     {
-        Runtime.PythonDLL = Application.dataPath + "/Streaming Assets/python-3.13.11-embed-amd64/python313.dll";
-        PythonEngine.Initialize();
+        SetupLogger();
+    }
 
-        // Create a Python class that redirects writes to Unity Debug.Log
+    void SetupLogger()
+    {
         string logger = @"
 import sys
-import clr
 from UnityEngine import Debug
 
-class UnityLogger(object):
+class UnityLogger:
     def __init__(self):
         self.buffer = ''
 
@@ -30,19 +38,21 @@ class UnityLogger(object):
         if self.buffer.strip():
             Debug.Log(self.buffer)
         self.buffer = ''
-
-logger = UnityLogger()
-sys.stdout = logger
-sys.stderr = logger
+        
+sys.stdout = UnityLogger()
+sys.stderr = sys.stdout
 ";
-
         PythonEngine.Exec(logger);
-        PythonEngine.Exec("print('Hello from Python!')");
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Exec(string code)
     {
-        
+        PythonEngine.Exec(code);
+    }
+
+    void OnDestroy()
+    {
+        if (PythonEngine.IsInitialized)
+            PythonEngine.Shutdown();
     }
 }
