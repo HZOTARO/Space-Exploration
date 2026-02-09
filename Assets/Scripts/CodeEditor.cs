@@ -17,4 +17,9 @@ public class CodeEditor : MonoBehaviour
     {
         pythonExecutor.Exec(inputField.text);
     }
+
+    public void Step()
+    {
+        pythonExecutor.Step(inputField.text);
+    }
 }
