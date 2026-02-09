@@ -17,9 +17,12 @@ public class PythonExecutor : MonoBehaviour
         SetupLogger();
     }
 
+    /// <summary>
+    /// Setup for converting print() to Debug.Log()
+    /// </summary>
     void SetupLogger()
     {
-        string logger = @"
+        PythonEngine.Exec(@"
 import sys
 from UnityEngine import Debug
 
@@ -41,8 +44,8 @@ class UnityLogger:
         
 sys.stdout = UnityLogger()
 sys.stderr = sys.stdout
-";
-        PythonEngine.Exec(logger);
+"
+        );
     }
 
     public void Exec(string code)
