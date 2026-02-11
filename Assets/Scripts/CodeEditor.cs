@@ -15,11 +15,13 @@ public class CodeEditor : MonoBehaviour
 
     public void Play()
     {
+        pythonExecutor.continuous = true;
         pythonExecutor.Exec(inputField.text);
     }
 
     public void Step()
     {
-        pythonExecutor.Step(inputField.text);
+        pythonExecutor.continuous = false;
+        pythonExecutor.Exec(inputField.text);
     }
 }

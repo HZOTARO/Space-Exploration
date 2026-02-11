@@ -7,6 +7,7 @@ public class PythonExecutor : MonoBehaviour
     PyModule pyScope;
     dynamic pyStepFunc;
     string currentCode;
+    public bool continuous = false;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     static void InitPython()
@@ -71,6 +72,8 @@ def step():
     global current
 
     if current >= len(nodes):
+        print('Program complete.')
+        current = 0
         return ""DONE""
 
     node = nodes[current]
@@ -89,11 +92,6 @@ def step():
 
     public void Exec(string code)
     {
-        PythonEngine.Exec(code);
-    }
-
-    public void Step(string code)
-    {
         // only rebuild parse state when the code changed
         if (currentCode == null || !String.Equals(currentCode, code))
         {
@@ -111,11 +109,24 @@ current = 0              # which line we are on
                 );
             }
         }
+        Step();
+    }
 
-        // Acquire the GIL when calling into Python
+    void Step()
+    {
         using (Py.GIL())
         {
-            pyStepFunc();
+            var result = pyStepFunc().ToString();
+
+            if (result == "DONE")
+            {
+                continuous = false;
+            }
+        }
+
+        if (continuous)
+        {
+            Invoke("Step", 0.1f);
         }
     }
 
