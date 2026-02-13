@@ -103,8 +103,8 @@ def step():
                 pyScope.Exec(@"
 tree = ast.parse(code)
 nodes = tree.body        # list of statements
-env = { }                # variables live here
-current = 0              # which line we are on
+env = { }                # variables
+current = 0              # current line
 "
                 );
             }
