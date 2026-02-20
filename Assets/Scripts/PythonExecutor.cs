@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class PythonExecutor : MonoBehaviour
 {
+    public GameObject cube;
+
     PyModule pyScope;
     dynamic pyPrepareFunc;
     dynamic pyStepFunc;
+    dynamic pyUpdateFunc;
     string currentCode;
     public bool continuous = false;
 
@@ -59,11 +62,38 @@ sys.stderr = sys.stdout
         }
     }
 
+    private void Update()
+    {
+        if (pyUpdateFunc != null)
+        {
+            using (Py.GIL())
+            {
+                pyUpdateFunc(Time.deltaTime);
+            }
+        }
+    }
+
     void SetupStep()
     {
         using (Py.GIL())
         {
             pyScope = Py.CreateScope();
+            pyScope.Set("gameObject", cube.ToPython());
+            pyScope.Exec(@"
+import math
+from UnityEngine import Vector3
+
+t = 0
+def update(dt):
+    global t
+    t += dt
+    # Move object in a circle
+    x = math.cos(t) * 5
+    z = math.sin(t) * 5
+    gameObject.transform.position = Vector3(x, 0, z)
+"
+            );
+            pyUpdateFunc = pyScope.Get("update");
 
             pyScope.Exec(@"
 import ast
@@ -90,7 +120,6 @@ class YieldInserter(ast.NodeTransformer):
 
     def visit_Return(self, node):
         self.generic_visit(node)
-        # Yield BEFORE returning so we can pause and see the final state
         return [
             ast.Expr(value=ast.Yield(value=ast.Constant(value=None))),
             node
@@ -109,27 +138,20 @@ class YieldInserter(ast.NodeTransformer):
         return self.insert_yield(node)
 
     def visit_Call(self, node):
-        # 1. Visit children first (arguments might be nested calls!)
         self.generic_visit(node)
         
-        # 2. Wrap all function calls in: __wrap_call__(func, *args, **kwargs)
         wrapper = ast.Name(id='__wrap_call__', ctx=ast.Load())
         new_args = [node.func] + node.args
         new_call = ast.Call(func=wrapper, args=new_args, keywords=node.keywords)
         
-        # 3. Return as a yield from expression to bubble the steps up
         return ast.YieldFrom(value=new_call)
 
 def __wrap_call__(func, *args, **kwargs):
-    # Execute the function
     res = func(*args, **kwargs)
     
-    # If the function was modified by us, it will be a generator.
-    # We 'yield from' it so the main runner can pull its internal steps.
     if isinstance(res, types.GeneratorType):
         return (yield from res)
         
-    # If it's a native/built-in function (like print), just return the result immediately.
     return res
 
 def prepare(code):
@@ -138,9 +160,8 @@ def prepare(code):
     tree = ast.parse(code)
 
     transformer = YieldInserter()
-    tree = transformer.visit(tree) # generic_visit handles body list processing dynamically
+    tree = transformer.visit(tree)
 
-    # Wrap inside generator function
     func_def = ast.FunctionDef(
         name=""__runner__"",
         args=ast.arguments(
@@ -156,7 +177,6 @@ def prepare(code):
 
     compiled = compile(module, ""<player_code>"", ""exec"")
 
-    # Pass our wrapper into the execution environment so wrapped calls can find it
     env = {'__wrap_call__': __wrap_call__}
     exec(compiled, env)
 
