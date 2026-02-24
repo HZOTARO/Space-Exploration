@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PythonExecutor : MonoBehaviour
 {
+    GameManager gameManager;
     public GameObject cube;
 
     PyModule pyScope;
@@ -11,7 +12,9 @@ public class PythonExecutor : MonoBehaviour
     dynamic pyStepFunc;
     dynamic pyUpdateFunc;
     string currentCode;
+
     public bool continuous = false;
+    bool lockDelay = false;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     static void InitPython()
@@ -24,6 +27,7 @@ public class PythonExecutor : MonoBehaviour
 
     void Start()
     {
+        gameManager = FindFirstObjectByType<GameManager>();
         SetupLogger();
         SetupStep();
     }
@@ -62,23 +66,15 @@ sys.stderr = sys.stdout
         }
     }
 
-    private void Update()
-    {
-        if (pyUpdateFunc != null)
-        {
-            using (Py.GIL())
-            {
-                pyUpdateFunc(Time.deltaTime);
-            }
-        }
-    }
-
     void SetupStep()
     {
         using (Py.GIL())
         {
             pyScope = Py.CreateScope();
             pyScope.Set("gameObject", cube.ToPython());
+
+            pyScope.Set("move", (Action<string>)Move);
+
             pyScope.Exec(@"
 import math
 from UnityEngine import Vector3
@@ -185,16 +181,14 @@ def prepare(code):
     try:
         tree = ast.parse(code)
 
-        # 1. Find all top-level variables before making changes
         collector = GlobalCollector()
         collector.visit(tree)
 
-        # 2. Insert the yields
         transformer = YieldInserter()
         tree = transformer.visit(tree)
 
         body = tree.body
-        # 3. Inject the 'global' declarations at the start of __runner__
+
         if collector.global_names:
             body.insert(0, ast.Global(names=list(collector.global_names)))
 
@@ -213,20 +207,19 @@ def prepare(code):
 
         compiled = compile(module, ""<player_code>"", ""exec"")
 
-        env = {'__wrap_call__': __wrap_call__}
+        env = globals().copy() 
+        env['__wrap_call__'] = __wrap_call__
         exec(compiled, env)
 
         __gen__ = env[""__runner__""]()
         
     except Exception as e:
-        # Catches SyntaxError, IndentationError, etc. during parsing
         print(f""{type(e).__name__}: {e}"")
         __gen__ = None
 
 def step():
     global __gen__
     
-    # If prepare() failed, __gen__ will be None. Prevent crashing.
     if __gen__ is None:
         return ""ERROR""
 
@@ -237,7 +230,6 @@ def step():
         print(""Program complete."")
         return ""DONE""
     except Exception as e:
-        # Catches runtime errors like TypeError, NameError, etc.
         print(f""{type(e).__name__}: {e}"")
         return ""ERROR""
 "
@@ -249,7 +241,6 @@ def step():
 
     public void Exec(string code)
     {
-        // only rebuild parse state when the code changed
         if (currentCode == null || !String.Equals(currentCode, code))
         {
             currentCode = code;
@@ -263,6 +254,9 @@ def step():
 
     void Step()
     {
+        if (gameManager.InAction())
+            return;
+
         using (Py.GIL())
         {
             var result = pyStepFunc().ToString();
@@ -274,9 +268,28 @@ def step():
             }
         }
 
-        if (continuous)
+        lockDelay = true;
+        Invoke("UnlockDelay", 0.1f);
+    }
+
+    void UnlockDelay()
+    {
+        lockDelay = false;
+    }
+
+    private void Update()
+    {
+        if (continuous && !lockDelay && !gameManager.InAction())
         {
-            Invoke("Step", 0.1f);
+            Step();
+        }
+
+        if (pyUpdateFunc != null)
+        {
+            using (Py.GIL())
+            {
+                pyUpdateFunc(Time.deltaTime);
+            }
         }
     }
 
@@ -289,6 +302,8 @@ def step():
         {
             if (pyScope != null)
             {
+                pyScope.Set("move", null);
+
                 pyScope.Dispose();
                 pyScope = null;
             }
@@ -296,4 +311,6 @@ def step():
 
         PythonEngine.Shutdown();
     }
+
+    void Move(string dir) { gameManager.Move(dir); }
 }
