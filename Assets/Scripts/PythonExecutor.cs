@@ -99,6 +99,29 @@ def update(dt):
 import ast
 import types
 
+class GlobalCollector(ast.NodeVisitor):
+    def __init__(self):
+        self.global_names = set()
+        
+    def visit_Name(self, node):
+        if isinstance(node.ctx, ast.Store):
+            self.global_names.add(node.id)
+            
+    def visit_FunctionDef(self, node):
+        self.global_names.add(node.name)
+        
+    def visit_ClassDef(self, node):
+        self.global_names.add(node.name)
+        
+    def visit_Import(self, node):
+        for alias in node.names:
+            name = alias.asname or alias.name
+            self.global_names.add(name.split('.')[0])
+            
+    def visit_ImportFrom(self, node):
+        for alias in node.names:
+            self.global_names.add(alias.asname or alias.name)
+
 class YieldInserter(ast.NodeTransformer):
     def insert_yield(self, node):
         return [
@@ -154,36 +177,58 @@ def __wrap_call__(func, *args, **kwargs):
         
     return res
 
+__gen__ = None
+
 def prepare(code):
     global __gen__
+    
+    try:
+        tree = ast.parse(code)
 
-    tree = ast.parse(code)
+        # 1. Find all top-level variables before making changes
+        collector = GlobalCollector()
+        collector.visit(tree)
 
-    transformer = YieldInserter()
-    tree = transformer.visit(tree)
+        # 2. Insert the yields
+        transformer = YieldInserter()
+        tree = transformer.visit(tree)
 
-    func_def = ast.FunctionDef(
-        name=""__runner__"",
-        args=ast.arguments(
-            posonlyargs=[], args=[], kwonlyargs=[],
-            kw_defaults=[], defaults=[]
-        ),
-        body=tree.body,
-        decorator_list=[]
-    )
+        body = tree.body
+        # 3. Inject the 'global' declarations at the start of __runner__
+        if collector.global_names:
+            body.insert(0, ast.Global(names=list(collector.global_names)))
 
-    module = ast.Module(body=[func_def], type_ignores=[])
-    ast.fix_missing_locations(module)
+        func_def = ast.FunctionDef(
+            name=""__runner__"",
+            args=ast.arguments(
+                posonlyargs=[], args=[], kwonlyargs=[],
+                kw_defaults=[], defaults=[]
+            ),
+            body=body,
+            decorator_list=[]
+        )
 
-    compiled = compile(module, ""<player_code>"", ""exec"")
+        module = ast.Module(body=[func_def], type_ignores=[])
+        ast.fix_missing_locations(module)
 
-    env = {'__wrap_call__': __wrap_call__}
-    exec(compiled, env)
+        compiled = compile(module, ""<player_code>"", ""exec"")
 
-    __gen__ = env[""__runner__""]()
+        env = {'__wrap_call__': __wrap_call__}
+        exec(compiled, env)
+
+        __gen__ = env[""__runner__""]()
+        
+    except Exception as e:
+        # Catches SyntaxError, IndentationError, etc. during parsing
+        print(f""{type(e).__name__}: {e}"")
+        __gen__ = None
 
 def step():
     global __gen__
+    
+    # If prepare() failed, __gen__ will be None. Prevent crashing.
+    if __gen__ is None:
+        return ""ERROR""
 
     try:
         next(__gen__)
@@ -192,7 +237,8 @@ def step():
         print(""Program complete."")
         return ""DONE""
     except Exception as e:
-        print(f""Error: {e}"")
+        # Catches runtime errors like TypeError, NameError, etc.
+        print(f""{type(e).__name__}: {e}"")
         return ""ERROR""
 "
             );
