@@ -13,7 +13,8 @@ public class Player : MonoBehaviour
 {
     [Header("Movement")]
     public float moveDistance = 2f;
-    public float moveSpeed = 5f;
+    public float baseMoveSpeed = 5f;
+    private float moveSpeed = 0f;
 
     private Vector3 targetPosition;
     private bool isMoving = false;
@@ -63,18 +64,22 @@ public class Player : MonoBehaviour
             case Direction.Forward:
                 movementVector = Vector3.forward;
                 moveAnimName = "Walk";
+                moveSpeed = baseMoveSpeed;
                 break;
             case Direction.Backward:
                 movementVector = Vector3.back;
                 moveAnimName = "Walk_Back";
+                moveSpeed = baseMoveSpeed;
                 break;
             case Direction.Left:
                 movementVector = Vector3.left;
                 moveAnimName = "Walk_Left";
+                moveSpeed = baseMoveSpeed/2;
                 break;
             case Direction.Right:
                 movementVector = Vector3.right;
                 moveAnimName = "Walk_Right";
+                moveSpeed = baseMoveSpeed/2;
                 break;
         }
         
@@ -102,7 +107,6 @@ public class Player : MonoBehaviour
             isMoving = false;
             inAction = false;
 
-            ChangeAnimation(idleAnimations[Random.Range(0, idleAnimations.Length)]);
             idleCoroutine = StartCoroutine(IdleRandomize());
         }
     }
@@ -111,15 +115,13 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
 
+        yield return new WaitForSeconds(0.1f);
+
         float length = animator.GetCurrentAnimatorStateInfo(0).length;
+        string nextIdle = idleAnimations[Random.Range(0, idleAnimations.Length)];
+        ChangeAnimation(nextIdle);
 
         yield return new WaitForSeconds(length);
-
-        string nextIdle = idleAnimations[Random.Range(0, idleAnimations.Length)];
-
-        //Debug.Log(nextIdle);
-
-        ChangeAnimation(nextIdle);
 
         idleCoroutine = StartCoroutine(IdleRandomize());
     }

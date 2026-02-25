@@ -1,16 +1,16 @@
 using Python.Runtime;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PythonExecutor : MonoBehaviour
 {
     GameManager gameManager;
-    public GameObject cube;
 
     PyModule pyScope;
     dynamic pyPrepareFunc;
     dynamic pyStepFunc;
-    dynamic pyUpdateFunc;
+    private Dictionary<string, Delegate> pythonFunctions;
     string currentCode;
 
     public bool continuous = false;
@@ -19,8 +19,7 @@ public class PythonExecutor : MonoBehaviour
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     static void InitPython()
     {
-        Runtime.PythonDLL =
-            Application.dataPath + "/Streaming Assets/python-3.13.11-embed-amd64/python313.dll";
+        Runtime.PythonDLL = System.IO.Path.Combine(Application.streamingAssetsPath, "python-3.13.11-embed-amd64", "python313.dll"); ;
 
         PythonEngine.Initialize();
     }
@@ -28,6 +27,20 @@ public class PythonExecutor : MonoBehaviour
     void Start()
     {
         gameManager = FindFirstObjectByType<GameManager>();
+
+        pythonFunctions = new Dictionary<string, Delegate>()
+        {
+            { "move_up", new Action(() => Move("N")) },
+            { "move_down", new Action(() => Move("S")) },
+            { "move_left", new Action(() => Move("W")) },
+            { "move_right", new Action(() => Move("E")) }
+        };
+
+        using (Py.GIL())
+        {
+            pyScope = Py.CreateScope();
+        }
+
         SetupLogger();
         SetupStep();
     }
@@ -39,9 +52,9 @@ public class PythonExecutor : MonoBehaviour
     {
         using (Py.GIL())
         {
-            PythonEngine.Exec(@"
+            pyScope.Set("unity_log", new Action<string>(LogFromPython));
+            pyScope.Exec(@"
 import sys
-from UnityEngine import Debug
 
 class UnityLogger:
     def __init__(self):
@@ -52,11 +65,11 @@ class UnityLogger:
         if '\n' in self.buffer:
             line, self.buffer = self.buffer.split('\n', 1)
             if line.strip():
-                Debug.Log(line)
+                unity_log(line)
 
     def flush(self):
         if self.buffer.strip():
-            Debug.Log(self.buffer)
+            unity_log(self.buffer)
         self.buffer = ''
         
 sys.stdout = UnityLogger()
@@ -70,26 +83,10 @@ sys.stderr = sys.stdout
     {
         using (Py.GIL())
         {
-            pyScope = Py.CreateScope();
-            pyScope.Set("gameObject", cube.ToPython());
-
-            pyScope.Set("move", (Action<string>)Move);
-
-            pyScope.Exec(@"
-import math
-from UnityEngine import Vector3
-
-t = 0
-def update(dt):
-    global t
-    t += dt
-    # Move object in a circle
-    x = math.cos(t) * 5
-    z = math.sin(t) * 5
-    gameObject.transform.position = Vector3(x, 0, z)
-"
-            );
-            pyUpdateFunc = pyScope.Get("update");
+            foreach (var function in pythonFunctions)
+            {
+                pyScope.Set(function.Key, function.Value);
+            }
 
             pyScope.Exec(@"
 import ast
@@ -227,7 +224,6 @@ def step():
         next(__gen__)
         return ""STEP""
     except StopIteration:
-        print(""Program complete."")
         return ""DONE""
     except Exception as e:
         print(f""{type(e).__name__}: {e}"")
@@ -283,13 +279,14 @@ def step():
         {
             Step();
         }
+    }
+    void LogFromPython(string message)
+    {
+        Debug.Log(message);
 
-        if (pyUpdateFunc != null)
+        if (gameManager != null)
         {
-            using (Py.GIL())
-            {
-                pyUpdateFunc(Time.deltaTime);
-            }
+            gameManager.PrintToDisplay(message);
         }
     }
 
@@ -302,13 +299,15 @@ def step():
         {
             if (pyScope != null)
             {
-                pyScope.Set("move", null);
+                foreach (var function in pythonFunctions)
+                    pyScope.Set(function.Key, null);
+                pyScope.Set("unity_log", null);
 
                 pyScope.Dispose();
                 pyScope = null;
             }
+            PythonEngine.Exec("import gc; gc.collect()");
         }
-
         PythonEngine.Shutdown();
     }
 

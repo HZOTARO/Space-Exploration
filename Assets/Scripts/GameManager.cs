@@ -1,12 +1,30 @@
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("UI Elements")]
+    public TextMeshProUGUI terminalText;
+    private int maxLines = 10;
+
     public Player player;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
         player = FindFirstObjectByType<Player>();
+    }
+
+    public void PrintToDisplay(string message)
+    {
+        if (terminalText == null) return;
+
+        terminalText.text += "> " + message + "\n";
+
+        string[] lines = terminalText.text.Split('\n');
+        if (lines.Length > maxLines)
+        {
+            terminalText.text = string.Join("\n", lines, 1, Mathf.Min(lines.Length - 1, 10));
+        }
     }
 
     public bool InAction()
