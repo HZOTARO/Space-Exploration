@@ -371,7 +371,7 @@ MonoBehaviour:
   - type: 1
     tileObject: {fileID: 5246869377959146670, guid: 0c072067696c19e41bd63e7251d67fba, type: 3}
   - type: 2
-    tileObject: {fileID: 6571735418174377130, guid: 914139de134736c4ab6801397fa513e1, type: 3}
+    tileObject: {fileID: 5246869377959146670, guid: 56e56faadd93596409e1c182555ec3cd, type: 3}
 --- !u!4 &362615791
 Transform:
   m_ObjectHideFlags: 0
