@@ -33,7 +33,8 @@ public class PythonExecutor : MonoBehaviour
             { "move_up", new Action(() => Move("N")) },
             { "move_down", new Action(() => Move("S")) },
             { "move_left", new Action(() => Move("W")) },
-            { "move_right", new Action(() => Move("E")) }
+            { "move_right", new Action(() => Move("E")) },
+            { "scan", new Func<TileType>(() => gameManager.Scan()) }
         };
 
         using (Py.GIL())

@@ -8,10 +8,13 @@ public class GameManager : MonoBehaviour
     private int maxLines = 10;
 
     public Player player;
+    private TileManager tileManager;
+    Vector2Int playerGridLoc = new();
 
     void Start()
     {
-        player = FindFirstObjectByType<Player>();
+        if (!player) player = FindFirstObjectByType<Player>();
+        if (!tileManager) tileManager = FindFirstObjectByType<TileManager>();
     }
 
     public void PrintToDisplay(string message)
@@ -36,20 +39,36 @@ public class GameManager : MonoBehaviour
         switch (dir)
         {
             case "N":
-                player.Move(Direction.Forward);
+                if (playerGridLoc.y < tileManager.length - 1)
+                {
+                    player.Move(Direction.Forward);
+                    playerGridLoc.y ++;
+                }
                 break;
             case "S":
-                player.Move(Direction.Backward);
+                if (playerGridLoc.y > 0)
+                {
+                    player.Move(Direction.Backward);
+                    playerGridLoc.y --;
+                }
                 break;
             case "E":
-                player.Move(Direction.Right);
+                if (playerGridLoc.x < tileManager.width - 1)
+                {
+                    player.Move(Direction.Right);
+                    playerGridLoc.x ++;
+                }
                 break;
             case "W":
-                player.Move(Direction.Left);
-                break;
-            default:
-                Debug.LogWarning($"Unknown direction: {dir}");
+                if (playerGridLoc.x > 0)
+                {
+                    player.Move(Direction.Left);
+                    playerGridLoc.x --;
+                }
                 break;
         }
+    }
+    public TileType Scan() {
+        return tileManager.gridArray[playerGridLoc.y,playerGridLoc.x].type;
     }
 }

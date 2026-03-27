@@ -27,7 +27,8 @@ public class TileManager : MonoBehaviour
     public GameObject grid;
     public List<TileData> tileData = new List<TileData>();
 
-    private TileData[,] gridArray;
+    [HideInInspector]
+    public TileData[,] gridArray;
 
     void Start()
     {
