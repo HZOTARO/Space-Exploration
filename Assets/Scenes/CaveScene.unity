@@ -163,6 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 366d27ce7a21f8642a630ac190f5ea66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PythonExecutor
+  currentCode: 
   continuous: 0
 --- !u!1 &202872234
 GameObject:
@@ -1062,6 +1063,22 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8244421826585282722, guid: 8babe53297bdc9d48906d641441331a5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9211183558904683873, guid: 8babe53297bdc9d48906d641441331a5, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9211183558904683873, guid: 8babe53297bdc9d48906d641441331a5, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9211183558904683873, guid: 8babe53297bdc9d48906d641441331a5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9211183558904683873, guid: 8babe53297bdc9d48906d641441331a5, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}

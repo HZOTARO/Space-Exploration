@@ -302,15 +302,37 @@ def step():
         {
             if (pyScope != null)
             {
+                pyScope.Exec(@"
+import sys
+# Restore the original system console to drop the UnityLogger C# delegate
+if hasattr(sys, '__stdout__'):
+    sys.stdout = sys.__stdout__
+    sys.stderr = sys.__stderr__
+
+# Destroy the paused generator and its environment frame
+global __gen__
+__gen__ = None
+");
+
                 foreach (var function in pythonFunctions)
                     pyScope.Set(function.Key, null);
+
                 pyScope.Set("unity_log", null);
+
+                if (pyPrepareFunc is IDisposable p) p.Dispose();
+                if (pyStepFunc is IDisposable s) s.Dispose();
+
+                pyPrepareFunc = null;
+                pyStepFunc = null;
 
                 pyScope.Dispose();
                 pyScope = null;
             }
             PythonEngine.Exec("import gc; gc.collect()");
         }
+        System.GC.Collect();
+        System.GC.WaitForPendingFinalizers();
+
         PythonEngine.Shutdown();
     }
 

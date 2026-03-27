@@ -47,12 +47,12 @@ public class TileManager : MonoBehaviour
 
         float resourcePercentage = Random.Range(15f, 25f);
         int resourceCount = Mathf.RoundToInt(resourcePercentage / 100 * width * length);
-        Debug.Log($"Resource Percentage: {resourcePercentage / 100}%, Resource Count: {resourceCount}");
+        //Debug.Log($"Resource Percentage: {resourcePercentage / 100}%, Resource Count: {resourceCount}");
         float orePercentage = Random.Range(40f, 60f);
         int oreCount = Mathf.RoundToInt(orePercentage / 100 * resourceCount);
-        Debug.Log($"Ore Percentage: {orePercentage / 100}%, Ore Count: {oreCount}");
+        //Debug.Log($"Ore Percentage: {orePercentage / 100}%, Ore Count: {oreCount}");
         int mineralCount = resourceCount - oreCount;
-        Debug.Log($"Mineral Count: {mineralCount}");
+        //Debug.Log($"Mineral Count: {mineralCount}");
 
         gridArray = new TileData[length, width];
 
@@ -62,7 +62,7 @@ public class TileManager : MonoBehaviour
         int segmentWidth = Mathf.RoundToInt(width/segmentSize);
         int segmentWidthRemainder = width % segmentSize;
         int segmentCount = segmentLength * segmentWidth;
-        Debug.Log($"Segment Size: {segmentSize}, Segment Length: {segmentLength}, Segment Length Remainder: {segmentLengthRemainder}, Segment Width: {segmentWidth}, Segment Width Remainder: {segmentWidthRemainder}, Segment Count: {segmentCount}");
+        //Debug.Log($"Segment Size: {segmentSize}, Segment Length: {segmentLength}, Segment Length Remainder: {segmentLengthRemainder}, Segment Width: {segmentWidth}, Segment Width Remainder: {segmentWidthRemainder}, Segment Count: {segmentCount}");
 
         int randZ, randX;
         for (int z = 0; z < segmentLength; z++)
