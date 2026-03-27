@@ -11,7 +11,9 @@ public class PythonExecutor : MonoBehaviour
     dynamic pyPrepareFunc;
     dynamic pyStepFunc;
     private Dictionary<string, Delegate> pythonFunctions;
-    string currentCode;
+
+    [HideInInspector]
+    public string currentCode;
 
     public bool continuous = false;
     bool lockDelay = false;
