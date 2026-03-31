@@ -6,6 +6,8 @@ using UnityEngine;
 public class PythonExecutor : MonoBehaviour
 {
     GameManager gameManager;
+    [HideInInspector]
+    public CodeEditor codeEditor;
 
     PyModule pyScope;
     dynamic pyPrepareFunc;
@@ -264,6 +266,9 @@ def step():
             {
                 continuous = false;
                 currentCode = null;
+
+                codeEditor.isPlaying = true;
+                codeEditor.PlayAbort();
             }
         }
 

@@ -16,19 +16,21 @@ public class CodeEditor : MonoBehaviour
     TextMeshProUGUI stepButtonText;
 
     [Header("State")]
-    bool isPlaying = false;
+    [HideInInspector]
+    public bool isPlaying = false;
     bool isPaused = false;
 
     void Start()
     {
         if (!pythonExecutor) pythonExecutor = FindAnyObjectByType<PythonExecutor>();
+        if (pythonExecutor) pythonExecutor.codeEditor = this;
 
         if (playButton)
-        {
-            playButtonText = playButton.GetComponentInChildren<TextMeshProUGUI>();
-            playButtonText.text = "Play";
-            playButton.onClick.AddListener(PlayAbort);
-        }
+            {
+                playButtonText = playButton.GetComponentInChildren<TextMeshProUGUI>();
+                playButtonText.text = "Play";
+                playButton.onClick.AddListener(PlayAbort);
+            }
         if (pauseButton)
         {
             pauseButtonText = pauseButton.GetComponentInChildren<TextMeshProUGUI>();
@@ -42,7 +44,9 @@ public class CodeEditor : MonoBehaviour
             stepButton.onClick.AddListener(Step);
         }
     }
-    void PlayAbort()
+
+    [HideInInspector]
+    public void PlayAbort()
     {
         if (!isPlaying)
         {

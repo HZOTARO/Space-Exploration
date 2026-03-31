@@ -74,18 +74,18 @@ public class Player : MonoBehaviour
             case Direction.Left:
                 movementVector = Vector3.left;
                 moveAnimName = "Walk_Left";
-                moveSpeed = baseMoveSpeed/2.5f;
+                moveSpeed = baseMoveSpeed/1.25f;
                 break;
             case Direction.Right:
                 movementVector = Vector3.right;
                 moveAnimName = "Walk_Right";
-                moveSpeed = baseMoveSpeed/2.5f;
+                moveSpeed = baseMoveSpeed/1.25f;
                 break;
         }
         
         if (movementVector != Vector3.zero)
         {
-            movementVector.z *= 2.5f;
+            movementVector.z *= 1.25f;
 
             StopAnimationCoroutine();
 

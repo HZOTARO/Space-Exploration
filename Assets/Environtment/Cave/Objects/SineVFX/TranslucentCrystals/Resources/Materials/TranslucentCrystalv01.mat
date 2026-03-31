@@ -131,7 +131,7 @@ Material:
     - _RampEnabled: 0
     - _RampInverted: 0
     - _ReceiveShadows: 1
-    - _Smoothness: 1
+    - _Smoothness: 0.75
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
