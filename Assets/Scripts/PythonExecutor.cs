@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class PythonExecutor : MonoBehaviour
 {
-    GameManager gameManager;
+    [HideInInspector]
+    public GameManager gameManager;
     [HideInInspector]
     public CodeEditor codeEditor;
 

@@ -6,14 +6,12 @@ public class CaveTileManager : TileManager
     {
         base.GenerateMap();
 
-        float resourcePercentage = Random.Range(15f, 25f);
-        int resourceCount = Mathf.RoundToInt(resourcePercentage / 100 * width * length);
-        //Debug.Log($"Resource Percentage: {resourcePercentage / 100}%, Resource Count: {resourceCount}");
-        float orePercentage = Random.Range(40f, 60f);
-        int oreCount = Mathf.RoundToInt(orePercentage / 100 * resourceCount);
-        //Debug.Log($"Ore Percentage: {orePercentage / 100}%, Ore Count: {oreCount}");
-        int mineralCount = resourceCount - oreCount;
-        //Debug.Log($"Mineral Count: {mineralCount}");
+        int resourceCount = Mathf.RoundToInt(Random.Range(15f, 25f) / 100 * width * length);
+        int whiteOreCount = Mathf.RoundToInt(Random.Range(30f, 40f) / 100 * resourceCount);
+        resourceCount -= whiteOreCount;
+        int blackOreCount = Mathf.RoundToInt(Random.Range(30f, 40f) / 100 * resourceCount);
+        resourceCount -= blackOreCount;
+        int veinCount = resourceCount;
 
         int segmentSize = 5;
         int segmentLength = Mathf.RoundToInt(length / segmentSize);
@@ -21,21 +19,23 @@ public class CaveTileManager : TileManager
         int segmentWidth = Mathf.RoundToInt(width / segmentSize);
         int segmentWidthRemainder = width % segmentSize;
         int segmentCount = segmentLength * segmentWidth;
-        //Debug.Log($"Segment Size: {segmentSize}, Segment Length: {segmentLength}, Segment Length Remainder: {segmentLengthRemainder}, Segment Width: {segmentWidth}, Segment Width Remainder: {segmentWidthRemainder}, Segment Count: {segmentCount}");
 
         int randZ, randX;
         for (int z = 0; z < segmentLength; z++)
         {
             for (int x = 0; x < segmentWidth; x++)
             {
-                int segmentMineralCount = Mathf.RoundToInt((float)mineralCount / segmentCount);
-                mineralCount -= segmentMineralCount;
+                int segmentWhiteOreCount = Mathf.RoundToInt((float)whiteOreCount / segmentCount);
+                whiteOreCount -= segmentWhiteOreCount;
 
-                int segmentOreCount = Mathf.RoundToInt((float)oreCount / segmentCount);
-                oreCount -= segmentOreCount;
+                int segmentBlackOreCount = Mathf.RoundToInt((float)blackOreCount / segmentCount);
+                blackOreCount -= segmentBlackOreCount;
+
+                int segmentVeinCount = Mathf.RoundToInt((float)veinCount / segmentCount);
+                veinCount -= segmentVeinCount;
 
                 currentTilePrefab = FindTilePrefab(TileType.PurpleVein);
-                while (segmentMineralCount > 0)
+                while (segmentVeinCount > 0)
                 {
                     randZ = Random.Range(0, z == 0 ? segmentSize + segmentLengthRemainder : segmentSize) + z * segmentSize;
                     randX = Random.Range(0, x == 0 ? segmentSize + segmentWidthRemainder : segmentSize) + x * segmentSize;
@@ -44,12 +44,12 @@ public class CaveTileManager : TileManager
                     {
                         gridArray[randZ, randX].type = TileType.PurpleVein;
                         gridArray[randZ, randX].tileInstance = SpawnTileVisual(randZ, randX, currentTilePrefab);
-                        segmentMineralCount--;
+                        segmentVeinCount--;
                     }
                 }
 
                 currentTilePrefab = FindTilePrefab(TileType.WhiteOre);
-                while (segmentOreCount > 0)
+                while (segmentWhiteOreCount > 0)
                 {
                     randZ = Random.Range(0, z == 0 ? segmentSize + segmentLengthRemainder : segmentSize) + z * segmentSize;
                     randX = Random.Range(0, x == 0 ? segmentSize + segmentWidthRemainder : segmentSize) + x * segmentSize;
@@ -58,7 +58,20 @@ public class CaveTileManager : TileManager
                     {
                         gridArray[randZ, randX].type = TileType.WhiteOre;
                         gridArray[randZ, randX].tileInstance = SpawnTileVisual(randZ, randX, currentTilePrefab);
-                        segmentOreCount--;
+                        segmentWhiteOreCount--;
+                    }
+                }
+
+                currentTilePrefab = FindTilePrefab(TileType.BlackOre);
+                while (segmentBlackOreCount > 0)
+                {
+                    randZ = Random.Range(0, z == 0 ? segmentSize + segmentLengthRemainder : segmentSize) + z * segmentSize;
+                    randX = Random.Range(0, x == 0 ? segmentSize + segmentWidthRemainder : segmentSize) + x * segmentSize;
+                    if (gridArray[randZ, randX].type == TileType.Default)
+                    {
+                        gridArray[randZ, randX].type = TileType.BlackOre;
+                        gridArray[randZ, randX].tileInstance = SpawnTileVisual(randZ, randX, currentTilePrefab);
+                        segmentBlackOreCount--;
                     }
                 }
 

@@ -46,7 +46,7 @@ public class TileManager : MonoBehaviour
             {
                 if (gridArray[z, x].type == TileType.Default || !gridArray[z, x].tileInstance.haveTile)
                 {
-                    gridArray[z, x].tileInstance = SpawnTileVisual(z, x, currentTilePrefab);
+                    SpawnTileVisual(z, x, currentTilePrefab);
                 }
             }
         }
@@ -67,6 +67,7 @@ public class TileManager : MonoBehaviour
         if (tilePrefab)
         {
             BaseTile spawnedTile = Instantiate(tilePrefab, new Vector3(x, 0, z), Quaternion.identity);
+            spawnedTile.transform.localScale = Vector3.one;
             spawnedTile.transform.SetParent(container.transform, false);
             spawnedTile.name = $"{tilePrefab.name}_{z}_{x}";
             spawnedTile.z = z;

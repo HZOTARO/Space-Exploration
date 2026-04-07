@@ -85,10 +85,17 @@ public class GameManager : MonoBehaviour
         TileObject currentTile = GetCurrentTile();
         if (currentTile.type == TileType.WhiteOre)
         {
+            CaveTile_WhiteOre ore = currentTile.tileInstance as CaveTile_WhiteOre;
+            ore.Mine();
         }
         else if (currentTile.type == TileType.BlackOre)
         {
-            
+            CaveTile_BlackOre ore = currentTile.tileInstance as CaveTile_BlackOre;
+            ore.Mine();
+        }
+        else
+        {
+            Debug.Log("No mineable resource at current location.");
         }
     }
     public void Collect()
@@ -98,22 +105,54 @@ public class GameManager : MonoBehaviour
     }
     public void Purify()
     {
-        // Placeholder for purifying action, can be expanded based on game design
-        PrintToDisplay("Purifying action performed at location: " + playerGridLoc);
+        TileObject currentTile = GetCurrentTile();
+        if (currentTile.type == TileType.BlackOre)
+        {
+            CaveTile_BlackOre ore = currentTile.tileInstance as CaveTile_BlackOre;
+            ore.Purify();
+        }
+        else
+        {
+            Debug.Log("No purifable resource at current location.");
+        }
     }
     public void Drill()
     {
-        // Placeholder for drilling action, can be expanded based on game design
-        PrintToDisplay("Drilling action performed at location: " + playerGridLoc);
+        TileObject currentTile = GetCurrentTile();
+        if (currentTile.type == TileType.PurpleVein)
+        {
+            CaveTile_PurpleVein vein = currentTile.tileInstance as CaveTile_PurpleVein;
+            vein.Drill();
+        }
+        else
+        {
+            Debug.Log("No drillable resource at current location.");
+        }
     }
     public void Pump()
     {
-        // Placeholder for pumping action, can be expanded based on game design
-        PrintToDisplay("Pumping action performed at location: " + playerGridLoc);
+        TileObject currentTile = GetCurrentTile();
+        if (currentTile.type == TileType.PurpleVein)
+        {
+            CaveTile_PurpleVein vein = currentTile.tileInstance as CaveTile_PurpleVein;
+            vein.Pump();
+        }
+        else
+        {
+            Debug.Log("No pumpable resource at current location.");
+        }
     }
     public void Measure()
     {
-        // Placeholder for measuring action, can be expanded based on game design
-        PrintToDisplay("Measuring action performed at location: " + playerGridLoc);
+        IMeasureable measureableTile = GetCurrentTile().tileInstance as IMeasureable;
+        if (measureableTile != null)
+        {
+            int measurement = measureableTile.Measured();
+            Debug.Log("Measurement result: " + measurement);
+        }
+        else
+        {
+            Debug.Log("Current tile is not measurable.");
+        }
     }
 }

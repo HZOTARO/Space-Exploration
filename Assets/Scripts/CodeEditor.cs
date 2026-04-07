@@ -20,6 +20,8 @@ public class CodeEditor : MonoBehaviour
     public bool isPlaying = false;
     bool isPaused = false;
 
+    private bool aborting = false;
+
     void Start()
     {
         if (!pythonExecutor) pythonExecutor = FindAnyObjectByType<PythonExecutor>();
@@ -58,6 +60,12 @@ public class CodeEditor : MonoBehaviour
         {
             Abort();
             isPlaying = false;
+            if (pythonExecutor.gameManager.InAction()) 
+            { 
+                aborting = true;
+                return;
+            }
+
             playButtonText.text = "Play";
 
             if (isPaused)
@@ -111,6 +119,21 @@ public class CodeEditor : MonoBehaviour
         {
             pythonExecutor.continuous = false;
             pythonExecutor.Exec(inputField.text);
+        }
+    }
+
+    private void Update()
+    {
+        if (aborting && !pythonExecutor.gameManager.InAction())
+        {
+            aborting = false;
+            playButtonText.text = "Play";
+
+            if (isPaused)
+            {
+                isPaused = false;
+                pauseButtonText.text = "Pause";
+            }
         }
     }
 }
