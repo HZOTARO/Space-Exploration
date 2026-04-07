@@ -38,7 +38,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c77bc876771c5e94aa99715226d71908, type: 3}
       propertyPath: m_Name
-      value: Tile
+      value: CaveTile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

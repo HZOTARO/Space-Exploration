@@ -30,9 +30,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// In Animation or Moving
+    /// </summary>
     public bool InAction()
     {
         return player != null && player.inAction;
+    }
+    public TileObject GetCurrentTile()
+    {
+        return tileManager.gridArray[playerGridLoc.y, playerGridLoc.x];
     }
     public void Move(string dir)
     {
@@ -42,33 +49,71 @@ public class GameManager : MonoBehaviour
                 if (playerGridLoc.y < tileManager.length - 1)
                 {
                     player.Move(Direction.Forward);
-                    playerGridLoc.y ++;
+                    playerGridLoc.y++;
                 }
                 break;
             case "S":
                 if (playerGridLoc.y > 0)
                 {
                     player.Move(Direction.Backward);
-                    playerGridLoc.y --;
+                    playerGridLoc.y--;
                 }
                 break;
             case "E":
                 if (playerGridLoc.x < tileManager.width - 1)
                 {
                     player.Move(Direction.Right);
-                    playerGridLoc.x ++;
+                    playerGridLoc.x++;
                 }
                 break;
             case "W":
                 if (playerGridLoc.x > 0)
                 {
                     player.Move(Direction.Left);
-                    playerGridLoc.x --;
+                    playerGridLoc.x--;
                 }
                 break;
         }
     }
-    public TileType Scan() {
-        return tileManager.gridArray[playerGridLoc.y,playerGridLoc.x].type;
+    public void Scan()
+    {
+        Debug.Log($"Current Tile: {GetCurrentTile().tileInstance.name}");
+    }
+
+    public void Mine()
+    {
+        TileObject currentTile = GetCurrentTile();
+        if (currentTile.type == TileType.WhiteOre)
+        {
+        }
+        else if (currentTile.type == TileType.BlackOre)
+        {
+            
+        }
+    }
+    public void Collect()
+    {
+        // Placeholder for collecting action, can be expanded based on game design
+        PrintToDisplay("Collecting action performed at location: " + playerGridLoc);
+    }
+    public void Purify()
+    {
+        // Placeholder for purifying action, can be expanded based on game design
+        PrintToDisplay("Purifying action performed at location: " + playerGridLoc);
+    }
+    public void Drill()
+    {
+        // Placeholder for drilling action, can be expanded based on game design
+        PrintToDisplay("Drilling action performed at location: " + playerGridLoc);
+    }
+    public void Pump()
+    {
+        // Placeholder for pumping action, can be expanded based on game design
+        PrintToDisplay("Pumping action performed at location: " + playerGridLoc);
+    }
+    public void Measure()
+    {
+        // Placeholder for measuring action, can be expanded based on game design
+        PrintToDisplay("Measuring action performed at location: " + playerGridLoc);
     }
 }

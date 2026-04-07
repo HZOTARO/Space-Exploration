@@ -66,7 +66,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6571735418174377130, guid: 914139de134736c4ab6801397fa513e1, type: 3}
       propertyPath: m_Name
-      value: Tile_Cave_Ore
+      value: CaveTile_WhiteOre
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -74,13 +74,36 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5798576006198679056, guid: 914139de134736c4ab6801397fa513e1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7233251820989869656}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6571735418174377130, guid: 914139de134736c4ab6801397fa513e1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4845830423287990041}
   m_SourcePrefab: {fileID: 100100000, guid: 914139de134736c4ab6801397fa513e1, type: 3}
 --- !u!4 &4871574605112897044 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5798576006198679056, guid: 914139de134736c4ab6801397fa513e1, type: 3}
   m_PrefabInstance: {fileID: 1433236965339314180}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5246869377959146670 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6571735418174377130, guid: 914139de134736c4ab6801397fa513e1, type: 3}
+  m_PrefabInstance: {fileID: 1433236965339314180}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4845830423287990041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5246869377959146670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd19e30f045b6eb418ed44a37def4ef7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: TileScriptIWrite::CaveTile_WhiteOre
+  haveTile: 0
+  z: 0
+  x: 0
 --- !u!1001 &7236899777064793758
 PrefabInstance:
   m_ObjectHideFlags: 0

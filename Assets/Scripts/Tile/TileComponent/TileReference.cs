@@ -1,0 +1,12 @@
+using UnityEngine;
+public struct TileObject
+{
+    public TileType type;
+    public BaseTile tileInstance;
+}
+[System.Serializable]
+public struct TileReference
+{
+    public TileType type;
+    public BaseTile tilePrefab;
+}

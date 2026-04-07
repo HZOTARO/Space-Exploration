@@ -38,7 +38,15 @@ public class PythonExecutor : MonoBehaviour
             { "move_down", new Action(() => Move("S")) },
             { "move_left", new Action(() => Move("W")) },
             { "move_right", new Action(() => Move("E")) },
-            { "scan", new Func<TileType>(() => gameManager.Scan()) }
+
+            { "mine", new Action(() => gameManager.Mine()) },
+            { "collect", new Action(() => gameManager.Collect()) },
+            { "purify", new Action(() => gameManager.Purify()) },
+            { "drill", new Action(() => gameManager.Drill()) },
+            { "pump", new Action(() => gameManager.Pump()) },
+
+            { "scan", new Action(() => gameManager.Scan()) },
+            { "measure", new Action(() => gameManager.Measure()) }
         };
 
         using (Py.GIL())
