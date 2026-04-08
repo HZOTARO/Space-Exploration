@@ -232,6 +232,9 @@ MonoBehaviour:
   haveTile: 0
   z: 0
   x: 0
+  isMined: 0
+  isCollected: 0
+  isPurified: 0
   normalOre: {fileID: 3468593839345182855}
   destroyedOre: {fileID: 7814217362098960561}
   collectableOre: {fileID: 2020392785958225326}
@@ -1468,7 +1471,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 12
   m_Type: 2
-  m_Color: {r: 0.50735295, g: 0.73619545, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.057864446, b: 0, a: 1}
   m_Intensity: 2
   m_Range: 10
   m_SpotAngle: 30

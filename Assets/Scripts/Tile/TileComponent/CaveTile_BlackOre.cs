@@ -1,3 +1,4 @@
+using CodiceApp;
 using UnityEngine;
 
 public class CaveTile_BlackOre : BaseTile, IMeasureable
@@ -34,6 +35,10 @@ public class CaveTile_BlackOre : BaseTile, IMeasureable
         if (!isMined && !isPurified)
         {
             isPurified = true;
+            if (pointLight.TryGetComponent<Light>(out Light myLight))
+            {
+                myLight.color = new Color(0.5073529f, 0.7361954f, 1f);
+            }
             Debug.Log("You purified a Black Ore into a Purple Vein!");
         }
         else
