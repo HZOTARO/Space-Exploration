@@ -15,3 +15,12 @@ public enum TileType
     PurpleVein,
     BlackOre,
 }
+
+public enum PlayerAction
+{
+    Mine,
+    Collect,
+    Purify,
+    Drill,
+    Pump
+}

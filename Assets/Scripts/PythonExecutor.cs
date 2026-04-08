@@ -46,7 +46,7 @@ public class PythonExecutor : MonoBehaviour
             { "drill", new Action(() => gameManager.Drill()) },
             { "pump", new Action(() => gameManager.Pump()) },
 
-            { "scan", new Action(() => gameManager.Scan()) },
+            { "scan", new Func<string>(() => gameManager.Scan()) },
             { "measure", new Action(() => gameManager.Measure()) }
         };
 

@@ -81,5 +81,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c993141121d33f8498520201ec96b690, type: 3}
   m_Name: 
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_PurpleVein
+  haveTile: 0
   z: 0
   x: 0
+  matRenderer: {fileID: 6039436597383828859}
+  drilledMat: {fileID: 2100000, guid: d69688a0edaa9044886caed8aa08b77b, type: 2}
+  pumpedMat: {fileID: 2100000, guid: 39c43ddb8a69089489531d87cb597983, type: 2}
+--- !u!23 &6039436597383828859 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 4626185258407865727, guid: 914139de134736c4ab6801397fa513e1, type: 3}
+  m_PrefabInstance: {fileID: 1433236965339314180}
+  m_PrefabAsset: {fileID: 0}

@@ -2,30 +2,61 @@ using UnityEngine;
 
 public class CaveTile_WhiteOre : BaseTile, IMeasureable
 {
-    bool mined = false;
+    [HideInInspector]
+    public bool isMined = false;
+    [HideInInspector]
+    public bool isCollected = false;
     int value;
 
     [Header("References")]
+    public GameObject normalOre;
     public GameObject destroyedOre;
-    void Start() { value = Random.Range(5, 11); }
+    public GameObject collectableOre;
+    public GameObject pointLight;
+
+    [Header("Floating Settings")]
+    public float floatSpeed = 2f;
+    public float floatHeight = 0.5f;
+    private Vector3 startPos;
+
+    void Start()
+    {
+        value = Random.Range(5, 11);
+        startPos = collectableOre.transform.position;
+    }
     int IMeasureable.Measured()
     {
         return value;
     }
     public void Mine()
     {
-        if (!mined)
+        if (!isMined)
         {
-            mined = true;
-            if (destroyedOre)
-            {
-                Destroy(destroyedOre);
-            }
+            isMined = true;
+            if (normalOre) normalOre.SetActive(false);
+            if (destroyedOre) destroyedOre.SetActive(true);
+            if (collectableOre) collectableOre.SetActive(true);
             Debug.Log("You mined a White Ore!");
         }
-        else
+    }
+    public void Collect()
+    {
+        if (isMined && !isCollected)
         {
-            Debug.Log("This White Ore has already been mined.");
+            isCollected = true;
+            Debug.Log("You collected a White Ore!");
+            if (collectableOre) collectableOre.SetActive(false);
+            if (pointLight) pointLight.SetActive(false);
+        }
+    }
+    void Update()
+    {
+        if (!isCollected && isMined)
+        {
+            float shiftedSin = (Mathf.Sin(Time.time * floatSpeed) + 1f) / 2f;
+            float newY = startPos.y + (shiftedSin * floatHeight);
+
+            collectableOre.transform.position = new Vector3(startPos.x, newY, startPos.z);
         }
     }
 }

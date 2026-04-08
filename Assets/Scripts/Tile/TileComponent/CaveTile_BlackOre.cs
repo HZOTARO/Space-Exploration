@@ -2,22 +2,38 @@ using UnityEngine;
 
 public class CaveTile_BlackOre : BaseTile, IMeasureable
 {
-    bool mined = false;
-    bool purified = false;
+    [HideInInspector]
+    public bool isMined = false;
+    [HideInInspector]
+    public bool isCollected = false;
+    [HideInInspector]
+    public bool isPurified = false;
     int value;
 
     [Header("References")]
+    public GameObject normalOre;
     public GameObject destroyedOre;
-    void Start() { value = Random.Range(5, 11); }
+    public GameObject collectableOre;
+    public GameObject pointLight;
+
+    [Header("Floating Settings")]
+    public float floatSpeed = 2f;
+    public float floatHeight = 0.5f;
+    private Vector3 startPos;
+
+    void Start() { 
+        value = Random.Range(5, 11); 
+        startPos = collectableOre.transform.position;
+    }
     int IMeasureable.Measured()
     {
         return value;
     }
     public void Purify()
     {
-        if (!mined && !purified)
+        if (!isMined && !isPurified)
         {
-            purified = true;
+            isPurified = true;
             Debug.Log("You purified a Black Ore into a Purple Vein!");
         }
         else
@@ -28,10 +44,11 @@ public class CaveTile_BlackOre : BaseTile, IMeasureable
 
     public void Mine()
     {
-        if (!mined)
+        if (!isMined)
         {
-            mined = true;
-            if (purified)
+            isMined = true;
+
+            if (isPurified)
             {
                 Debug.Log("You mined a Black Ore!");
             }
@@ -40,14 +57,44 @@ public class CaveTile_BlackOre : BaseTile, IMeasureable
                 Debug.Log("Ore exploded");
             }
 
-            if (destroyedOre)
-            {
-                Destroy(destroyedOre);
-            }
+            if (normalOre) normalOre.SetActive(false);
+            if (destroyedOre) destroyedOre.SetActive(true);
+            if (collectableOre) collectableOre.SetActive(true);
         }
         else
         {
             Debug.Log("This Black Ore has already been mined.");
+        }
+    }
+    public void Collect()
+    {
+        if (isMined)
+        {
+            if (!isCollected)
+            {
+                isCollected = true;
+                Debug.Log("You collected a Black Ore!");
+                if (collectableOre) collectableOre.SetActive(false);
+                if (pointLight) pointLight.SetActive(false);
+            }
+            else
+            {
+                Debug.Log("This White Ore has already been collected.");
+            }
+        }
+        else
+        {
+            Debug.Log("You need to mine the Black Ore before collecting.");
+        }
+    }
+    public void Update()
+    {
+        if (!isCollected && isMined)
+        {
+            float shiftedSin = (Mathf.Sin(Time.time * floatSpeed) + 1f) / 2f;
+            float newY = startPos.y + (shiftedSin * floatHeight);
+
+            collectableOre.transform.position = new Vector3(startPos.x, newY, startPos.z);
         }
     }
 }

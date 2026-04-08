@@ -1,5 +1,14 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+
+[System.Serializable]
+public struct AnimationMapping
+{
+    public PlayerAction action;
+    public string animatorStateName;
+}
 
 public class Player : MonoBehaviour
 {
@@ -18,6 +27,33 @@ public class Player : MonoBehaviour
     public string[] idleAnimations = { "Idle_Aggro", "Idle_Aggro", "Idle_Breaker" };
     private Coroutine idleCoroutine;
 
+    public AnimationMapping[] animationSetup;
+    private Dictionary<PlayerAction, string> animationDict = new Dictionary<PlayerAction, string>();
+
+    void Awake()
+    {
+        //animationSetup = new AnimationMapping[]
+        //{
+        //    new AnimationMapping { action = PlayerAction.Mine, animatorStateName = "Mine" },
+        //    new AnimationMapping { action = PlayerAction.Collect, animatorStateName = "Collect" },
+        //    new AnimationMapping { action = PlayerAction.Purify, animatorStateName = "Purify" },
+        //    new AnimationMapping { action = PlayerAction.Drill, animatorStateName = "Drill" },
+        //    new AnimationMapping { action = PlayerAction.Pump, animatorStateName = "Pump" }
+        //};
+
+        foreach (AnimationMapping map in animationSetup)
+        {
+            if (!animationDict.ContainsKey(map.action))
+            {
+                animationDict.Add(map.action, map.animatorStateName);
+            }
+            else
+            {
+                Debug.LogWarning($"You have assigned the action {map.action} in your Player Inspector!");
+            }
+        }
+    }
+
     void Start()
     {
         if (animator == null) animator = GetComponent<Animator>();
@@ -34,10 +70,19 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void ChangeAnimation(string newState, float transitionTime = 0.1f)
+    public void ChangeAnimation(string newState, float transitionTime = 0.1f, bool forceRestart = false)
     {
-        if (currentAnimation == newState) return;
-        animator.CrossFade(newState, transitionTime);
+        if (currentAnimation == newState && !forceRestart) return;
+
+        if (forceRestart)
+        {
+            animator.CrossFade(newState, transitionTime, 0, 0f);
+        }
+        else
+        {
+            animator.CrossFade(newState, transitionTime);
+        }
+
         currentAnimation = newState;
     }
     
@@ -110,10 +155,53 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
 
         float length = animator.GetCurrentAnimatorStateInfo(0).length;
-        string nextIdle = idleAnimations[Random.Range(0, idleAnimations.Length)];
+        string nextIdle = idleAnimations[UnityEngine.Random.Range(0, idleAnimations.Length)];
         ChangeAnimation(nextIdle);
 
         yield return new WaitForSeconds(length);
+
+        idleCoroutine = StartCoroutine(IdleRandomize());
+    }
+
+    /// <summary>
+    /// Plays animation, waits for it to finish, then executes action.
+    /// </summary>
+    public void PerformAction(PlayerAction actionKey, Action onAnimationComplete)
+    {
+        if (animationDict.TryGetValue(actionKey, out string actualAnimatorState))
+        {
+            StartCoroutine(ActionRoutine(actualAnimatorState, onAnimationComplete));
+        }
+        else
+        {
+            Debug.LogError($"The action {actionKey} is missing from the Player's Animation Setup in the Inspector!");
+            onAnimationComplete?.Invoke();
+        }
+    }
+
+    private IEnumerator ActionRoutine(string animName, Action onAnimationComplete)
+    {
+        StopAnimationCoroutine();
+        inAction = true;
+
+        ChangeAnimation(animName, 0.1f, true);
+
+        float timeout = 0.5f;
+
+        while (!animator.GetCurrentAnimatorStateInfo(0).IsName(animName) && timeout > 0)
+        {
+            timeout -= Time.deltaTime;
+            yield return null;
+        }
+
+        float length = animator.GetCurrentAnimatorStateInfo(0).length;
+        yield return new WaitForSeconds(length);
+
+        onAnimationComplete?.Invoke();
+
+        inAction = false;
+
+        currentAnimation = "";
 
         idleCoroutine = StartCoroutine(IdleRandomize());
     }

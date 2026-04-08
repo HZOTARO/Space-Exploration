@@ -2415,6 +2415,17 @@ MonoBehaviour:
   - Idle_Aggro
   - Idle_Aggro
   - Idle_Breaker
+  animationSetup:
+  - action: 0
+    animatorStateName: Action
+  - action: 1
+    animatorStateName: Action
+  - action: 2
+    animatorStateName: Action
+  - action: 3
+    animatorStateName: Action
+  - action: 4
+    animatorStateName: Action
 --- !u!1 &7343216831179619095
 GameObject:
   m_ObjectHideFlags: 0

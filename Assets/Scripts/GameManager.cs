@@ -75,9 +75,15 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
-    public void Scan()
+    public string Scan()
     {
-        Debug.Log($"Current Tile: {GetCurrentTile().tileInstance.name}");
+        TileObject currentTile = GetCurrentTile();
+
+        string tileTypeName = currentTile.type.ToString();
+
+        Debug.Log($"Player scanned the tile: {tileTypeName}");
+
+        return tileTypeName;
     }
 
     public void Mine()
@@ -86,22 +92,32 @@ public class GameManager : MonoBehaviour
         if (currentTile.type == TileType.WhiteOre)
         {
             CaveTile_WhiteOre ore = currentTile.tileInstance as CaveTile_WhiteOre;
-            ore.Mine();
+
+            if (!ore.isMined)
+            {
+                player.PerformAction(PlayerAction.Mine, () => ore.Mine());
+            }
+            else
+            {
+                Debug.Log("This White Ore has already been mined.");
+            }
         }
         else if (currentTile.type == TileType.BlackOre)
         {
             CaveTile_BlackOre ore = currentTile.tileInstance as CaveTile_BlackOre;
-            ore.Mine();
+            if (!ore.isMined)
+            {
+                player.PerformAction(PlayerAction.Mine, () => ore.Mine());
+            }
+            else
+            {
+                Debug.Log("This Black Ore has already been mined.");
+            }
         }
         else
         {
             Debug.Log("No mineable resource at current location.");
         }
-    }
-    public void Collect()
-    {
-        // Placeholder for collecting action, can be expanded based on game design
-        PrintToDisplay("Collecting action performed at location: " + playerGridLoc);
     }
     public void Purify()
     {
@@ -109,37 +125,96 @@ public class GameManager : MonoBehaviour
         if (currentTile.type == TileType.BlackOre)
         {
             CaveTile_BlackOre ore = currentTile.tileInstance as CaveTile_BlackOre;
-            ore.Purify();
+
+            if (!ore.isPurified)
+            {
+                player.PerformAction(PlayerAction.Purify, () => ore.Purify());
+            }
+            else
+            {
+                Debug.Log("This Black Ore has already been purified.");
+            }
         }
         else
         {
             Debug.Log("No purifable resource at current location.");
         }
     }
+
     public void Drill()
     {
         TileObject currentTile = GetCurrentTile();
         if (currentTile.type == TileType.PurpleVein)
         {
             CaveTile_PurpleVein vein = currentTile.tileInstance as CaveTile_PurpleVein;
-            vein.Drill();
+
+            if (!vein.isDrilled)
+            {
+                player.PerformAction(PlayerAction.Drill, () => vein.Drill());
+            }
+            else
+            {
+                Debug.Log("This Purple Vein has already been drilled.");
+            }
         }
         else
         {
             Debug.Log("No drillable resource at current location.");
         }
     }
+
     public void Pump()
     {
         TileObject currentTile = GetCurrentTile();
         if (currentTile.type == TileType.PurpleVein)
         {
             CaveTile_PurpleVein vein = currentTile.tileInstance as CaveTile_PurpleVein;
-            vein.Pump();
+
+            if (vein.isDrilled && !vein.isPumped)
+            {
+                player.PerformAction(PlayerAction.Pump, () => vein.Pump());
+            }
+            else
+            {
+                Debug.Log("Cannot pump! It is either not drilled yet, or already empty.");
+            }
         }
         else
         {
             Debug.Log("No pumpable resource at current location.");
+        }
+    }
+
+    public void Collect()
+    {
+        TileObject currentTile = GetCurrentTile();
+        if (currentTile.type == TileType.WhiteOre)
+        {
+            CaveTile_WhiteOre ore = currentTile.tileInstance as CaveTile_WhiteOre;
+            if (ore.isMined && !ore.isCollected)
+            {
+                player.PerformAction(PlayerAction.Collect, () => ore.Collect());
+            }
+            else
+            {
+                Debug.Log("Cannot collect! It is either not mined, or already collected.");
+            }
+        }
+        else if (currentTile.type == TileType.BlackOre)
+        {
+            CaveTile_BlackOre ore = currentTile.tileInstance as CaveTile_BlackOre;
+            if (ore.isMined && !ore.isCollected)
+            {
+                player.PerformAction(PlayerAction.Collect, () => ore.Collect());
+            }
+            else
+            {
+                Debug.Log("Cannot collect! It is either not mined, or already collected.");
+            }
+        }
+        else
+        {
+            Debug.Log("No collectable resource at current location.");
         }
     }
     public void Measure()
