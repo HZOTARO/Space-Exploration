@@ -1,44 +1,120 @@
 using Python.Runtime;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PythonExecutor : MonoBehaviour
 {
-    [HideInInspector]
-    public GameManager gameManager;
-    [HideInInspector]
-    public CodeEditor codeEditor;
+    public static PythonExecutor instance;
+
+    [HideInInspector] public GameManager gameManager;
+    [HideInInspector] public CodeEditor codeEditor;
 
     PyModule pyScope;
     dynamic pyPrepareFunc;
     dynamic pyStepFunc;
     private Dictionary<string, Delegate> pythonFunctions;
 
-    [HideInInspector]
-    public string currentCode;
-
+    [HideInInspector] public string currentCode;
     public bool continuous = false;
     bool lockDelay = false;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     static void InitPython()
     {
-        Runtime.PythonDLL = System.IO.Path.Combine(Application.streamingAssetsPath, "python-3.13.11-embed-amd64", "python313.dll"); ;
+        if (!PythonEngine.IsInitialized)
+        {
+            Runtime.PythonDLL = System.IO.Path.Combine(Application.streamingAssetsPath, "python-3.13.11-embed-amd64", "python313.dll");
+            PythonEngine.Initialize();
 
-        PythonEngine.Initialize();
+            Application.quitting += ShutDownPythonEngine;
+        }
+
+        if (instance == null)
+        {
+            GameObject prefab = Resources.Load<GameObject>("PythonExecutor");
+
+            if (prefab != null)
+            {
+                Instantiate(prefab);
+            }
+            else
+            {
+                Debug.LogError("Could not find 'PythonExecutor' prefab in a Resources folder!");
+            }
+        }
     }
+    static void ShutDownPythonEngine()
+    {
+        if (instance != null)
+        {
+            instance.CleanupPythonEnvironment();
+        }
 
+        if (PythonEngine.IsInitialized)
+        {
+            PythonEngine.Shutdown();
+            Debug.Log("Python Engine Shutdown");
+        }
+    }
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+
+            using (Py.GIL())
+            {
+                pyScope = Py.CreateScope();
+            }
+
+            SetupLogger();
+            SetupStep();
+
+            SceneManager.sceneLoaded += OnLevelLoaded;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     void Start()
     {
+        if (instance == this)
+        {
+            BindLevelFunctions();
+        }
+    }
+
+    void OnLevelLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (instance == this)
+        {
+            StopRunningCode();
+
+            BindLevelFunctions();
+        }
+    }
+
+    /// <summary>
+    /// Finds the new managers and overwrites the function in pyScope
+    /// </summary>
+    void BindLevelFunctions()
+    {
         gameManager = FindFirstObjectByType<GameManager>();
+        codeEditor = FindFirstObjectByType<CodeEditor>();
+
+        if (gameManager == null) return;
 
         pythonFunctions = new Dictionary<string, Delegate>()
         {
-            { "move_up", new Action(() => Move("N")) },
-            { "move_down", new Action(() => Move("S")) },
-            { "move_left", new Action(() => Move("W")) },
-            { "move_right", new Action(() => Move("E")) },
+            { "move_up", new Action(() => gameManager.Move("N")) },
+            { "move_down", new Action(() => gameManager.Move("S")) },
+            { "move_left", new Action(() => gameManager.Move("W")) },
+            { "move_right", new Action(() => gameManager.Move("E")) },
 
             { "mine", new Action(() => gameManager.Mine()) },
             { "collect", new Action(() => gameManager.Collect()) },
@@ -52,11 +128,32 @@ public class PythonExecutor : MonoBehaviour
 
         using (Py.GIL())
         {
-            pyScope = Py.CreateScope();
+            foreach (var function in pythonFunctions)
+            {
+                pyScope.Set(function.Key, function.Value);
+            }
         }
+    }
 
-        SetupLogger();
-        SetupStep();
+    /// <summary>
+    /// Stop python running, and clear for next scene
+    /// </summary>
+    public void StopRunningCode()
+    {
+        continuous = false;
+        currentCode = null;
+
+        using (Py.GIL())
+        {
+            if (pyScope != null)
+            {
+                pyScope.Exec(@"
+global __gen__
+__gen__ = None
+"
+                );
+            }
+        }
     }
 
     /// <summary>
@@ -64,188 +161,43 @@ public class PythonExecutor : MonoBehaviour
     /// </summary>
     void SetupLogger()
     {
-        using (Py.GIL())
+        string filePath = Path.Combine(Application.streamingAssetsPath, "PythonSystem", "logger_setup.py");
+
+        if (File.Exists(filePath))
         {
-            pyScope.Set("unity_log", new Action<string>(LogFromPython));
-            pyScope.Exec(@"
-import sys
+            string scriptCode = File.ReadAllText(filePath);
 
-class UnityLogger:
-    def __init__(self):
-        self.buffer = ''
-
-    def write(self, message):
-        self.buffer += message
-        if '\n' in self.buffer:
-            line, self.buffer = self.buffer.split('\n', 1)
-            if line.strip():
-                unity_log(line)
-
-    def flush(self):
-        if self.buffer.strip():
-            unity_log(self.buffer)
-        self.buffer = ''
-        
-sys.stdout = UnityLogger()
-sys.stderr = sys.stdout
-"
-            );
+            using (Py.GIL())
+            {
+                pyScope.Set("unity_log", new Action<string>(LogFromPython));
+                pyScope.Exec(scriptCode);
+            }
+        }
+        else
+        {
+            Debug.LogError("Could not find logger_setup.py in StreamingAssets!");
         }
     }
 
     void SetupStep()
     {
-        using (Py.GIL())
+        string filePath = Path.Combine(Application.streamingAssetsPath, "PythonSystem", "ast_setup.py");
+
+        if (File.Exists(filePath))
         {
-            foreach (var function in pythonFunctions)
+            string scriptCode = File.ReadAllText(filePath);
+
+            using (Py.GIL())
             {
-                pyScope.Set(function.Key, function.Value);
+                pyScope.Exec(scriptCode);
+
+                pyPrepareFunc = pyScope.Get("prepare");
+                pyStepFunc = pyScope.Get("step");
             }
-
-            pyScope.Exec(@"
-import ast
-import types
-
-class GlobalCollector(ast.NodeVisitor):
-    def __init__(self):
-        self.global_names = set()
-        
-    def visit_Name(self, node):
-        if isinstance(node.ctx, ast.Store):
-            self.global_names.add(node.id)
-            
-    def visit_FunctionDef(self, node):
-        self.global_names.add(node.name)
-        
-    def visit_ClassDef(self, node):
-        self.global_names.add(node.name)
-        
-    def visit_Import(self, node):
-        for alias in node.names:
-            name = alias.asname or alias.name
-            self.global_names.add(name.split('.')[0])
-            
-    def visit_ImportFrom(self, node):
-        for alias in node.names:
-            self.global_names.add(alias.asname or alias.name)
-
-class YieldInserter(ast.NodeTransformer):
-    def insert_yield(self, node):
-        return [
-            node,
-            ast.Expr(value=ast.Yield(value=ast.Constant(value=None)))
-        ]
-
-    def visit_Expr(self, node):
-        self.generic_visit(node)
-        return self.insert_yield(node)
-
-    def visit_Assign(self, node):
-        self.generic_visit(node)
-        return self.insert_yield(node)
-
-    def visit_AugAssign(self, node):
-        self.generic_visit(node)
-        return self.insert_yield(node)
-
-    def visit_Return(self, node):
-        self.generic_visit(node)
-        return [
-            ast.Expr(value=ast.Yield(value=ast.Constant(value=None))),
-            node
-        ]
-
-    def visit_If(self, node):
-        self.generic_visit(node)
-        return self.insert_yield(node)
-
-    def visit_For(self, node):
-        self.generic_visit(node)
-        return self.insert_yield(node)
-
-    def visit_While(self, node):
-        self.generic_visit(node)
-        return self.insert_yield(node)
-
-    def visit_Call(self, node):
-        self.generic_visit(node)
-        
-        wrapper = ast.Name(id='__wrap_call__', ctx=ast.Load())
-        new_args = [node.func] + node.args
-        new_call = ast.Call(func=wrapper, args=new_args, keywords=node.keywords)
-        
-        return ast.YieldFrom(value=new_call)
-
-def __wrap_call__(func, *args, **kwargs):
-    res = func(*args, **kwargs)
-    
-    if isinstance(res, types.GeneratorType):
-        return (yield from res)
-        
-    return res
-
-__gen__ = None
-
-def prepare(code):
-    global __gen__
-    
-    try:
-        tree = ast.parse(code)
-
-        collector = GlobalCollector()
-        collector.visit(tree)
-
-        transformer = YieldInserter()
-        tree = transformer.visit(tree)
-
-        body = tree.body
-
-        if collector.global_names:
-            body.insert(0, ast.Global(names=list(collector.global_names)))
-
-        func_def = ast.FunctionDef(
-            name=""__runner__"",
-            args=ast.arguments(
-                posonlyargs=[], args=[], kwonlyargs=[],
-                kw_defaults=[], defaults=[]
-            ),
-            body=body,
-            decorator_list=[]
-        )
-
-        module = ast.Module(body=[func_def], type_ignores=[])
-        ast.fix_missing_locations(module)
-
-        compiled = compile(module, ""<player_code>"", ""exec"")
-
-        env = globals().copy() 
-        env['__wrap_call__'] = __wrap_call__
-        exec(compiled, env)
-
-        __gen__ = env[""__runner__""]()
-        
-    except Exception as e:
-        print(f""{type(e).__name__}: {e}"")
-        __gen__ = None
-
-def step():
-    global __gen__
-    
-    if __gen__ is None:
-        return ""ERROR""
-
-    try:
-        next(__gen__)
-        return ""STEP""
-    except StopIteration:
-        return ""DONE""
-    except Exception as e:
-        print(f""{type(e).__name__}: {e}"")
-        return ""ERROR""
-"
-            );
-            pyPrepareFunc = pyScope.Get("prepare");
-            pyStepFunc = pyScope.Get("step");
+        }
+        else
+        {
+            Debug.LogError("Could not find ast_setup.py in StreamingAssets!");
         }
     }
 
@@ -309,8 +261,16 @@ def step():
 
     void OnDestroy()
     {
-        if (!PythonEngine.IsInitialized)
-            return;
+        if (instance != this) return;
+
+        SceneManager.sceneLoaded -= OnLevelLoaded;
+
+        CleanupPythonEnvironment();
+    }
+
+    public void CleanupPythonEnvironment()
+    {
+        if (!PythonEngine.IsInitialized) return;
 
         using (Py.GIL())
         {
@@ -318,18 +278,21 @@ def step():
             {
                 pyScope.Exec(@"
 import sys
-# Restore the original system console to drop the UnityLogger C# delegate
 if hasattr(sys, '__stdout__'):
     sys.stdout = sys.__stdout__
     sys.stderr = sys.__stderr__
 
-# Destroy the paused generator and its environment frame
 global __gen__
 __gen__ = None
 ");
 
-                foreach (var function in pythonFunctions)
-                    pyScope.Set(function.Key, null);
+                if (pythonFunctions != null)
+                {
+                    foreach (var function in pythonFunctions)
+                    {
+                        pyScope.Set(function.Key, null);
+                    }
+                }
 
                 pyScope.Set("unity_log", null);
 
@@ -342,13 +305,11 @@ __gen__ = None
                 pyScope.Dispose();
                 pyScope = null;
             }
+
             PythonEngine.Exec("import gc; gc.collect()");
         }
+
         System.GC.Collect();
         System.GC.WaitForPendingFinalizers();
-
-        PythonEngine.Shutdown();
     }
-
-    void Move(string dir) { gameManager.Move(dir); }
 }
