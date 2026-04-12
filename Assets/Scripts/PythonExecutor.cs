@@ -21,31 +21,6 @@ public class PythonExecutor : MonoBehaviour
     public bool continuous = false;
     bool lockDelay = false;
 
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-    static void InitPython()
-    {
-        if (!PythonEngine.IsInitialized)
-        {
-            Runtime.PythonDLL = System.IO.Path.Combine(Application.streamingAssetsPath, "python-3.13.11-embed-amd64", "python313.dll");
-            PythonEngine.Initialize();
-
-            Application.quitting += ShutDownPythonEngine;
-        }
-
-        if (instance == null)
-        {
-            GameObject prefab = Resources.Load<GameObject>("PythonExecutor");
-
-            if (prefab != null)
-            {
-                Instantiate(prefab);
-            }
-            else
-            {
-                Debug.LogError("Could not find 'PythonExecutor' prefab in a Resources folder!");
-            }
-        }
-    }
     static void ShutDownPythonEngine()
     {
         if (instance != null)
