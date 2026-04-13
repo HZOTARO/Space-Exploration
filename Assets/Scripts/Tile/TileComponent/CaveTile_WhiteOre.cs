@@ -39,7 +39,7 @@ public class CaveTile_WhiteOre : BaseTile, IMeasureable
             Debug.Log("You mined a White Ore!");
         }
     }
-    public void Collect()
+    public int Collect()
     {
         if (isMined && !isCollected)
         {
@@ -47,7 +47,9 @@ public class CaveTile_WhiteOre : BaseTile, IMeasureable
             Debug.Log("You collected a White Ore!");
             if (collectableOre) collectableOre.SetActive(false);
             if (pointLight) pointLight.SetActive(false);
+            return value;
         }
+        return -1;
     }
     void Update()
     {

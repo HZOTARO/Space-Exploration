@@ -12,10 +12,22 @@ public class GameManager : MonoBehaviour
     private TileManager tileManager;
     Vector2Int playerGridLoc = new();
 
+    [Header("Resources")]
+    public TextMeshProUGUI whiteOreText;
+    int whiteOreCount = 0;
+    public TextMeshProUGUI purpleLiquidText;
+    int purpleLiquidCount = 0;
+    public TextMeshProUGUI blackOreText;
+    int blackOreCount = 0;
+
     void Start()
     {
         if (!player) player = FindFirstObjectByType<Player>();
         if (!tileManager) tileManager = FindFirstObjectByType<TileManager>();
+
+        if (whiteOreText) whiteOreText.text = $"{whiteOreCount}";
+        if (purpleLiquidText) purpleLiquidText.text = $"{purpleLiquidCount}";
+        if (blackOreText) blackOreText.text = $"{blackOreCount}";
 
         PythonExecutor.instance.RegisterPythonFunction("move_up", new Action(() => Move("N")));
         PythonExecutor.instance.RegisterPythonFunction("move_down", new Action(() => Move("S")));
@@ -40,6 +52,19 @@ public class GameManager : MonoBehaviour
         if (PythonExecutor.instance != null)
         {
             PythonExecutor.instance.OnPythonPrint -= PrintToDisplay;
+        }
+
+        if (SaveManager.instance != null)
+        {
+            SaveManager.saveData.whiteOre += whiteOreCount;
+            SaveManager.saveData.purpleLiquid += purpleLiquidCount;
+            SaveManager.saveData.blackOre += blackOreCount;
+
+            SaveManager.instance.SaveGame(1);
+        }
+        else
+        {
+            Debug.LogWarning("SaveManager was already destroyed! Could not auto-save.");
         }
     }
 
@@ -198,7 +223,16 @@ public class GameManager : MonoBehaviour
 
             if (vein.isDrilled && !vein.isPumped)
             {
-                player.PerformAction(PlayerAction.Pump, () => vein.Pump());
+                player.PerformAction(PlayerAction.Pump, () =>
+                {
+                    int amountPumped = vein.Pump();
+                    if (amountPumped > 0)
+                    {
+                        purpleLiquidCount += amountPumped;
+                        purpleLiquidText.text = $"{purpleLiquidCount}";
+                        Debug.Log($"<color=purple>Collected {amountPumped} Purple Liquid.</color>");
+                    }
+                });
             }
             else
             {
@@ -219,7 +253,16 @@ public class GameManager : MonoBehaviour
             CaveTile_WhiteOre ore = currentTile.tileInstance as CaveTile_WhiteOre;
             if (ore.isMined && !ore.isCollected)
             {
-                player.PerformAction(PlayerAction.Collect, () => ore.Collect());
+                player.PerformAction(PlayerAction.Collect, () =>
+                {
+                    int amountCollected = ore.Collect();
+                    if (amountCollected > 0)
+                    {
+                        whiteOreCount += amountCollected;
+                        whiteOreText.text = $"{whiteOreCount}";
+                        Debug.Log($"<color=white>Collected {amountCollected} White Ore.</color>");
+                    }
+                });
             }
             else
             {
@@ -231,7 +274,16 @@ public class GameManager : MonoBehaviour
             CaveTile_BlackOre ore = currentTile.tileInstance as CaveTile_BlackOre;
             if (ore.isMined && !ore.isCollected)
             {
-                player.PerformAction(PlayerAction.Collect, () => ore.Collect());
+                player.PerformAction(PlayerAction.Collect, () =>
+                {
+                    int amountCollected = ore.Collect();
+                    if (amountCollected > 0)
+                    {
+                        blackOreCount += amountCollected;
+                        blackOreText.text = $"{blackOreCount}";
+                        Debug.Log($"<color=black>Collected {amountCollected} Black Ore.</color>");
+                    }
+                });
             }
             else
             {

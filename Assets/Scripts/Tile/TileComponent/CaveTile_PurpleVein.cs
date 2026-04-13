@@ -34,7 +34,7 @@ public class CaveTile_PurpleVein : BaseTile, IMeasureable
             Debug.Log("This Purple Vein has already been drilled.");
         }
     }
-    public void Pump()
+    public int Pump()
     {
         if (!isPumped)
         {
@@ -45,6 +45,7 @@ public class CaveTile_PurpleVein : BaseTile, IMeasureable
                 if (matRenderer && pumpedMat)
                 {
                     matRenderer.material = pumpedMat;
+                    return value;
                 }
             }
             else
@@ -56,5 +57,6 @@ public class CaveTile_PurpleVein : BaseTile, IMeasureable
         {
             Debug.Log("Cannot pump.");
         }
+        return -1;
     }
 }

@@ -76,7 +76,7 @@ public class Player : MonoBehaviour
 
         if (forceRestart)
         {
-            animator.CrossFade(newState, transitionTime, 0, 0f);
+            animator.Play(newState, 0, 0f);
         }
         else
         {
@@ -150,17 +150,19 @@ public class Player : MonoBehaviour
 
     IEnumerator IdleRandomize()
     {
-        yield return new WaitForEndOfFrame();
+        while (true)
+        {
+            yield return new WaitForEndOfFrame();
+            yield return new WaitForSeconds(0.1f);
 
-        yield return new WaitForSeconds(0.1f);
+            string nextIdle = idleAnimations[UnityEngine.Random.Range(0, idleAnimations.Length)];
+            ChangeAnimation(nextIdle);
 
-        float length = animator.GetCurrentAnimatorStateInfo(0).length;
-        string nextIdle = idleAnimations[UnityEngine.Random.Range(0, idleAnimations.Length)];
-        ChangeAnimation(nextIdle);
+            yield return null;
 
-        yield return new WaitForSeconds(length);
-
-        idleCoroutine = StartCoroutine(IdleRandomize());
+            float length = animator.GetCurrentAnimatorStateInfo(0).length;
+            yield return new WaitForSeconds(length);
+        }
     }
 
     /// <summary>
@@ -186,21 +188,41 @@ public class Player : MonoBehaviour
 
         ChangeAnimation(animName, 0.1f, true);
 
+        yield return null;
+
         float timeout = 0.5f;
 
-        while (!animator.GetCurrentAnimatorStateInfo(0).IsName(animName) && timeout > 0)
+        while (timeout > 0)
         {
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName(animName) ||
+                animator.GetNextAnimatorStateInfo(0).IsName(animName))
+            {
+                break;
+            }
             timeout -= Time.deltaTime;
             yield return null;
         }
 
-        float length = animator.GetCurrentAnimatorStateInfo(0).length;
-        yield return new WaitForSeconds(length);
+        while (true)
+        {
+            AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+
+            if (stateInfo.IsName(animName) && stateInfo.normalizedTime >= 0.95f)
+            {
+                break;
+            }
+
+            if (!stateInfo.IsName(animName) && !animator.GetNextAnimatorStateInfo(0).IsName(animName) && timeout <= 0)
+            {
+                break;
+            }
+
+            yield return null;
+        }
 
         onAnimationComplete?.Invoke();
 
         inAction = false;
-
         currentAnimation = "";
 
         idleCoroutine = StartCoroutine(IdleRandomize());
