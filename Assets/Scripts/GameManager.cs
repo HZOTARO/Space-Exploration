@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,6 +16,31 @@ public class GameManager : MonoBehaviour
     {
         if (!player) player = FindFirstObjectByType<Player>();
         if (!tileManager) tileManager = FindFirstObjectByType<TileManager>();
+
+        PythonExecutor.instance.RegisterPythonFunction("move_up", new Action(() => Move("N")));
+        PythonExecutor.instance.RegisterPythonFunction("move_down", new Action(() => Move("S")));
+        PythonExecutor.instance.RegisterPythonFunction("move_left", new Action(() => Move("W")));
+        PythonExecutor.instance.RegisterPythonFunction("move_right", new Action(() => Move("E")));
+
+        PythonExecutor.instance.RegisterPythonFunction("mine", new Action(() => Mine()));
+        PythonExecutor.instance.RegisterPythonFunction("collect", new Action(() => Collect()));
+        PythonExecutor.instance.RegisterPythonFunction("purify", new Action(() => Purify()));
+        PythonExecutor.instance.RegisterPythonFunction("drill", new Action(() => Drill()));
+        PythonExecutor.instance.RegisterPythonFunction("pump", new Action(() => Pump()));
+
+        PythonExecutor.instance.RegisterPythonFunction("scan", new Func<string>(() => Scan()));
+        PythonExecutor.instance.RegisterPythonFunction("measure", new Action(() => Measure())); 
+
+        PythonExecutor.instance.CanStepCode = () => !InAction();
+        PythonExecutor.instance.OnPythonPrint += PrintToDisplay;
+    }
+
+    void OnDestroy()
+    {
+        if (PythonExecutor.instance != null)
+        {
+            PythonExecutor.instance.OnPythonPrint -= PrintToDisplay;
+        }
     }
 
     public void PrintToDisplay(string message)

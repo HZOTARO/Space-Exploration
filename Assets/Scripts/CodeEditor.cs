@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class CodeEditor : MonoBehaviour
 {
-    PythonExecutor pythonExecutor;
+    GameManager gameManager;
 
     [Header("References")]
     public TMP_InputField inputField;
@@ -24,8 +24,7 @@ public class CodeEditor : MonoBehaviour
 
     void Start()
     {
-        if (!pythonExecutor) pythonExecutor = FindAnyObjectByType<PythonExecutor>();
-        if (pythonExecutor) pythonExecutor.codeEditor = this;
+        gameManager = FindFirstObjectByType<GameManager>();
 
         if (playButton)
             {
@@ -45,6 +44,21 @@ public class CodeEditor : MonoBehaviour
             stepButtonText.text = "Step";
             stepButton.onClick.AddListener(Step);
         }
+
+        PythonExecutor.instance.OnExecutionFinished += OnPythonFinished;
+    }
+
+    void OnDestroy()
+    {
+        if (PythonExecutor.instance != null)
+        {
+            PythonExecutor.instance.OnExecutionFinished -= OnPythonFinished;
+        }
+    }
+    void OnPythonFinished()
+    {
+        isPlaying = true;
+        PlayAbort();
     }
 
     [HideInInspector]
@@ -60,7 +74,7 @@ public class CodeEditor : MonoBehaviour
         {
             Abort();
             isPlaying = false;
-            if (pythonExecutor.gameManager.InAction()) 
+            if (gameManager.InAction()) 
             { 
                 aborting = true;
                 return;
@@ -77,15 +91,15 @@ public class CodeEditor : MonoBehaviour
     }
     void Play()
     {
-        pythonExecutor.currentCode = null;
-        pythonExecutor.continuous = true;
-        pythonExecutor.Exec(inputField.text);
+        PythonExecutor.instance.currentCode = null;
+        PythonExecutor.instance.continuous = true;
+        PythonExecutor.instance.Exec(inputField.text);
     }
 
     void Abort()
     {
-        pythonExecutor.currentCode = null;
-        pythonExecutor.continuous = false;
+        PythonExecutor.instance.currentCode = null;
+        PythonExecutor.instance.continuous = false;
     }
     void PauseContinue()
     {
@@ -106,25 +120,25 @@ public class CodeEditor : MonoBehaviour
     }
     void Pause()
     {
-        pythonExecutor.continuous = false;
+        PythonExecutor.instance.continuous = false;
     }
 
     void Continue()
     {
-        pythonExecutor.continuous = true;
+        PythonExecutor.instance.continuous = true;
     }
     void Step()
     {
         if (!isPlaying)
         {
-            pythonExecutor.continuous = false;
-            pythonExecutor.Exec(inputField.text);
+            PythonExecutor.instance.continuous = false;
+            PythonExecutor.instance.Exec(inputField.text);
         }
     }
 
     private void Update()
     {
-        if (aborting && !pythonExecutor.gameManager.InAction())
+        if (aborting && !gameManager.InAction())
         {
             aborting = false;
             playButtonText.text = "Play";

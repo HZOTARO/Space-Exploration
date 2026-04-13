@@ -9,31 +9,19 @@ public class PythonExecutor : MonoBehaviour
 {
     public static PythonExecutor instance;
 
-    [HideInInspector] public GameManager gameManager;
-    [HideInInspector] public CodeEditor codeEditor;
-
     PyModule pyScope;
     dynamic pyPrepareFunc;
     dynamic pyStepFunc;
-    private Dictionary<string, Delegate> pythonFunctions;
+    private List<string> registeredFunctionNames = new List<string>();
 
     [HideInInspector] public string currentCode;
     public bool continuous = false;
     bool lockDelay = false;
 
-    static void ShutDownPythonEngine()
-    {
-        if (instance != null)
-        {
-            instance.CleanupPythonEnvironment();
-        }
+    public event Action OnExecutionFinished;
+    public event Action<string> OnPythonPrint;
+    public Func<bool> CanStepCode;
 
-        if (PythonEngine.IsInitialized)
-        {
-            PythonEngine.Shutdown();
-            Debug.Log("Python Engine Shutdown");
-        }
-    }
     void Awake()
     {
         if (instance == null)
@@ -50,17 +38,11 @@ public class PythonExecutor : MonoBehaviour
             SetupStep();
 
             SceneManager.sceneLoaded += OnLevelLoaded;
+            SceneManager.sceneUnloaded += OnLevelExited;
         }
         else
         {
             Destroy(gameObject);
-        }
-    }
-    void Start()
-    {
-        if (instance == this)
-        {
-            BindLevelFunctions();
         }
     }
 
@@ -70,42 +52,42 @@ public class PythonExecutor : MonoBehaviour
         {
             StopRunningCode();
 
-            BindLevelFunctions();
+            OnExecutionFinished = null;
+            OnPythonPrint = null;
+            CanStepCode = null;
         }
     }
 
-    /// <summary>
-    /// Finds the new managers and overwrites the function in pyScope
-    /// </summary>
-    void BindLevelFunctions()
+    void OnLevelExited(Scene unloadedScene)
     {
-        gameManager = FindFirstObjectByType<GameManager>();
-        codeEditor = FindFirstObjectByType<CodeEditor>();
-
-        if (gameManager == null) return;
-
-        pythonFunctions = new Dictionary<string, Delegate>()
-        {
-            { "move_up", new Action(() => gameManager.Move("N")) },
-            { "move_down", new Action(() => gameManager.Move("S")) },
-            { "move_left", new Action(() => gameManager.Move("W")) },
-            { "move_right", new Action(() => gameManager.Move("E")) },
-
-            { "mine", new Action(() => gameManager.Mine()) },
-            { "collect", new Action(() => gameManager.Collect()) },
-            { "purify", new Action(() => gameManager.Purify()) },
-            { "drill", new Action(() => gameManager.Drill()) },
-            { "pump", new Action(() => gameManager.Pump()) },
-
-            { "scan", new Func<string>(() => gameManager.Scan()) },
-            { "measure", new Action(() => gameManager.Measure()) }
-        };
+        if (!PythonEngine.IsInitialized || pyScope == null) return;
 
         using (Py.GIL())
         {
-            foreach (var function in pythonFunctions)
+            if (registeredFunctionNames != null)
             {
-                pyScope.Set(function.Key, function.Value);
+                foreach (string funcName in registeredFunctionNames)
+                {
+                    pyScope.Set(funcName, null);
+                }
+                registeredFunctionNames.Clear();
+            }
+        }
+
+        Debug.Log($"Cleaned up Python functions from {unloadedScene.name}");
+    }
+
+    public void RegisterPythonFunction(string pythonName, Delegate csharpFunction)
+    {
+        if (!PythonEngine.IsInitialized || pyScope == null) return;
+
+        using (Py.GIL())
+        {
+            pyScope.Set(pythonName, csharpFunction);
+
+            if (!registeredFunctionNames.Contains(pythonName))
+            {
+                registeredFunctionNames.Add(pythonName);
             }
         }
     }
@@ -122,11 +104,7 @@ public class PythonExecutor : MonoBehaviour
         {
             if (pyScope != null)
             {
-                pyScope.Exec(@"
-global __gen__
-__gen__ = None
-"
-                );
+                pyScope.Exec("global __gen__\n__gen__ = None");
             }
         }
     }
@@ -137,42 +115,27 @@ __gen__ = None
     void SetupLogger()
     {
         string filePath = Path.Combine(Application.streamingAssetsPath, "PythonSystem", "logger_setup.py");
-
         if (File.Exists(filePath))
         {
-            string scriptCode = File.ReadAllText(filePath);
-
             using (Py.GIL())
             {
                 pyScope.Set("unity_log", new Action<string>(LogFromPython));
-                pyScope.Exec(scriptCode);
+                pyScope.Exec(File.ReadAllText(filePath));
             }
-        }
-        else
-        {
-            Debug.LogError("Could not find logger_setup.py in StreamingAssets!");
         }
     }
 
     void SetupStep()
     {
         string filePath = Path.Combine(Application.streamingAssetsPath, "PythonSystem", "ast_setup.py");
-
         if (File.Exists(filePath))
         {
-            string scriptCode = File.ReadAllText(filePath);
-
             using (Py.GIL())
             {
-                pyScope.Exec(scriptCode);
-
+                pyScope.Exec(File.ReadAllText(filePath));
                 pyPrepareFunc = pyScope.Get("prepare");
                 pyStepFunc = pyScope.Get("step");
             }
-        }
-        else
-        {
-            Debug.LogError("Could not find ast_setup.py in StreamingAssets!");
         }
     }
 
@@ -191,7 +154,7 @@ __gen__ = None
 
     void Step()
     {
-        if (gameManager.InAction())
+        if (CanStepCode != null && !CanStepCode.Invoke())
             return;
 
         using (Py.GIL())
@@ -203,8 +166,7 @@ __gen__ = None
                 continuous = false;
                 currentCode = null;
 
-                codeEditor.isPlaying = true;
-                codeEditor.PlayAbort();
+                OnExecutionFinished?.Invoke();
             }
         }
 
@@ -219,7 +181,8 @@ __gen__ = None
 
     private void Update()
     {
-        if (continuous && !lockDelay && !gameManager.InAction())
+        bool canStep = CanStepCode == null || CanStepCode.Invoke();
+        if (continuous && !lockDelay && canStep)
         {
             Step();
         }
@@ -228,18 +191,13 @@ __gen__ = None
     {
         Debug.Log(message);
 
-        if (gameManager != null)
-        {
-            gameManager.PrintToDisplay(message);
-        }
+        OnPythonPrint?.Invoke(message);
     }
 
     void OnDestroy()
     {
         if (instance != this) return;
-
         SceneManager.sceneLoaded -= OnLevelLoaded;
-
         CleanupPythonEnvironment();
     }
 
@@ -260,14 +218,6 @@ if hasattr(sys, '__stdout__'):
 global __gen__
 __gen__ = None
 ");
-
-                if (pythonFunctions != null)
-                {
-                    foreach (var function in pythonFunctions)
-                    {
-                        pyScope.Set(function.Key, null);
-                    }
-                }
 
                 pyScope.Set("unity_log", null);
 
