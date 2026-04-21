@@ -2,7 +2,8 @@
     "name": "UIScriptIWrite",
     "rootNamespace": "",
     "references": [
-        "GUID:6055be8ebefd69e48b49212b09b47b2f"
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:efa93cdabc8f8cf469919647def57d5f"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

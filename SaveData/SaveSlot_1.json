@@ -1,6 +1,9 @@
 {
-    "lastSavedTime": "13-04-2026 19:36",
-    "whiteOre": 0,
-    "purpleLiquid": 0,
-    "blackOre": 0
+    "lastSavedTime": "21-04-2026 19:44",
+    "whiteOre": 300,
+    "purpleLiquid": 200,
+    "blackOre": 100,
+    "partsA": 0,
+    "partsB": 0,
+    "partsC": 0
 }

@@ -2,7 +2,8 @@
     "name": "GlobalManagerScriptIWrite",
     "rootNamespace": "",
     "references": [
-        "GUID:6055be8ebefd69e48b49212b09b47b2f"
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:a1655ca6f6c705243a5703a89b655e35"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

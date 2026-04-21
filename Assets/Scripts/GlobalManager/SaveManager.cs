@@ -1,5 +1,8 @@
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class SaveData
@@ -10,23 +13,57 @@ public class SaveData
     public int whiteOre;
     public int purpleLiquid;
     public int blackOre;
+    public int partsA;
+    public int partsB;
+    public int partsC;
+    //public Dictionary<item, int> item
+    //public Dictionary<upgrade, bool> upgrade
+}
+public interface IResourceUpdatable
+{
+    void UpdateResource(SaveData saveData);
 }
 
 public class SaveManager : MonoBehaviour
 {
     public static SaveManager instance;
     public static SaveData saveData = new SaveData();
+
+    private IResourceUpdatable[] resourceUpdateables;
     void Awake()
     {
         if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            SceneManager.sceneLoaded += OnLevelLoaded;
+#if UNITY_EDITOR
+            if (SceneManager.GetActiveScene().name != "Main Menu")
+            {
+                SaveManager.instance.LoadGame(1);
+            }
+#else
+#endif
         }
         else if (instance != this)
         {
             Debug.LogWarning("Duplicate SaveManager destroyed!");
             Destroy(gameObject);
+        }
+    }
+
+    void OnLevelLoaded(Scene scene, LoadSceneMode mode)
+    {
+        resourceUpdateables = FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None)
+                                        .OfType<IResourceUpdatable>()
+                                        .ToArray();
+    }
+
+    public void UpdateAllUI()
+    {
+        foreach (IResourceUpdatable updatable in resourceUpdateables)
+        {
+            updatable.UpdateResource(SaveManager.saveData);
         }
     }
 

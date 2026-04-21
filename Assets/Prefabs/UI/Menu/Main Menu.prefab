@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7450357214522099596}
   - component: {fileID: 4453036799556606802}
   - component: {fileID: 114666579095691452}
-  - component: {fileID: 1599266838928827836}
+  - component: {fileID: 3867168707309180299}
   m_Layer: 5
   m_Name: Main Menu
   m_TagString: Untagged
@@ -103,7 +103,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &1599266838928827836
+--- !u!114 &3867168707309180299
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -114,8 +114,9 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88b92a592008fbe438ff08532adb14f1, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: ScriptIWrite::MainMenu
-  hub: Cave Scene
+  m_EditorClassIdentifier: UIScriptIWrite::GeneralUIScript
+  enableEscape: 1
+  pauseUI: {fileID: 0}
 --- !u!1 &1705889685889247116
 GameObject:
   m_ObjectHideFlags: 0
@@ -129,7 +130,7 @@ GameObject:
   - component: {fileID: 5742414983787834743}
   - component: {fileID: 3436197448592098689}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Play Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -237,9 +238,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1599266838928827836}
-        m_TargetAssemblyTypeName: MainMenu, ScriptIWrite
-        m_MethodName: StartGame
+      - m_Target: {fileID: 3867168707309180299}
+        m_TargetAssemblyTypeName: GeneralUIScript, UIScriptIWrite
+        m_MethodName: PlayGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -345,7 +346,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: 0
+  m_Spacing: 100
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
@@ -366,7 +367,7 @@ GameObject:
   - component: {fileID: 991946035902605585}
   - component: {fileID: 4707460294225874639}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Quit Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -474,8 +475,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1599266838928827836}
-        m_TargetAssemblyTypeName: MainMenu, ScriptIWrite
+      - m_Target: {fileID: 3867168707309180299}
+        m_TargetAssemblyTypeName: GeneralUIScript, UIScriptIWrite
         m_MethodName: ExitGame
         m_Mode: 1
         m_Arguments:

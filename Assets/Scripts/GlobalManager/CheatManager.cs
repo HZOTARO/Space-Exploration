@@ -1,8 +1,11 @@
+using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class CheatManager : MonoBehaviour
+public class CheatManager : MonoBehaviour, IResourceUpdatable
 {
     public static CheatManager instance;
     [Header("UI References")]
@@ -34,9 +37,20 @@ public class CheatManager : MonoBehaviour
             if (cheatPanel != null)
             {
                 cheatPanel.SetActive(!cheatPanel.activeSelf);
-                UpdateSaveDataText();
+                UpdateResource(SaveManager.saveData);
             }
         }
+    }
+
+    public void UpdateResource(SaveData saveData)
+    {
+        if (saveData == null || saveDataText == null) return;
+
+        saveDataText.text = $"White Ore: {saveData.whiteOre}\n" +
+                            $"Purple Liquid: {saveData.purpleLiquid}\n" +
+                            $"Black Ore: {saveData.blackOre}\n" +
+                            $"Last Saved: {saveData.lastSavedTime}";
+
     }
 
     void SetupCheatMenu()
@@ -54,6 +68,7 @@ public class CheatManager : MonoBehaviour
             {
                 SaveManager.saveData.whiteOre += 100;
                 Debug.Log("<color=green>CHEAT: Added 100 White Ore!</color>");
+                SaveManager.instance.UpdateAllUI();
             }
         });
 
@@ -63,6 +78,7 @@ public class CheatManager : MonoBehaviour
             {
                 SaveManager.saveData.purpleLiquid += 100;
                 Debug.Log("<color=green>CHEAT: Added 100 Purple Liquid!</color>");
+                SaveManager.instance.UpdateAllUI();
             }
         });
 
@@ -72,6 +88,7 @@ public class CheatManager : MonoBehaviour
             {
                 SaveManager.saveData.blackOre += 100;
                 Debug.Log("<color=green>CHEAT: Added 100 Black Ore!</color>");
+                SaveManager.instance.UpdateAllUI();
             }
         });
 
@@ -90,6 +107,7 @@ public class CheatManager : MonoBehaviour
             {
                 SaveManager.instance.LoadGame(1);
                 Debug.Log("<color=green>CHEAT: Save Loaded.</color>");
+                SaveManager.instance.UpdateAllUI();
             }
         });
 
@@ -100,6 +118,7 @@ public class CheatManager : MonoBehaviour
                 SaveManager.instance.DeleteSave(1);
                 SaveManager.saveData = new SaveData();
                 Debug.Log("<color=red>CHEAT: Save File Deleted.</color>");
+                SaveManager.instance.UpdateAllUI();
             }
         });
     }
@@ -120,17 +139,6 @@ public class CheatManager : MonoBehaviour
             {
                 txt.text = buttonText;
             }
-        }
-    }
-
-    void UpdateSaveDataText()
-    {
-        if (saveDataText != null && SaveManager.saveData != null)
-        {
-            saveDataText.text = $"White Ore: {SaveManager.saveData.whiteOre}\n" +
-                                $"Purple Liquid: {SaveManager.saveData.purpleLiquid}\n" +
-                                $"Black Ore: {SaveManager.saveData.blackOre}\n" +
-                                $"Last Saved: {SaveManager.saveData.lastSavedTime}";
         }
     }
 
