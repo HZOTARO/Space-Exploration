@@ -3,81 +3,86 @@ using UnityEngine.EventSystems;
 
 public class CameraController : MonoBehaviour
 {
-    public float tileCount = 25f;
+    [Header("Grid Settings")]
+    public int gridWidth = 25;
+    public int gridHeight = 25;
+    public float tileWidth = 2f;
+    public float tileLength = 2.5f;
 
-    [Header("Map Boundaries (Absolute Edges)")]
-    public float mapMinX = 0f;
-    public float mapBufferX = 3f;
-    float mapMaxX;
-    public float mapMinZ = -15f;
-    public float mapBufferZ = 9f;
-    public float mapOffsetByZoomZ = 2f;
-    float mapMaxZ;
+    [Header("UI Padding")]
+    public float uiPaddingLeft = 0.0f;  
+    public float uiPaddingRight = 0.0f; 
+    public float uiPaddingBottom = 0.2f;
+    public float uiPaddingTop = 0.2f;
 
     [Header("Pan Settings")]
-    public float panSpeed = 100f;
+    public float panSpeed = 50f;
 
     [Header("Zoom Settings")]
-    public float zoomSpeed = 20f;
+    public float zoomSpeed = 10f;
     public float minZoom = 2f;
     public float maxZoom = 15f;
-    float currentZoom = 6f;
 
-    private Camera cam;
+    [Header("References")]
+    public Camera childCamera;
 
+    private float cameraPitchAngle;
     private bool isValidPanDrag = false;
 
-    public void Initialize() 
-    {
-        cam = GetComponent<Camera>();
-        // 2 per tile
-        mapMaxX = 2 * tileCount + mapMinX;
-        // 2.5 per tile
-        mapMaxZ = 2.5f * tileCount + mapMinZ;
-        // Zoom is around 1 block per zoom in screen, so 2 = 2x2
-        maxZoom = Mathf.Max(6, Mathf.Min(tileCount, 20));
+    float mapMinX, mapMaxX, mapMinZ, mapMaxZ;
+    private Vector3 dragOrigin;
+    private Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
 
-        LateUpdate();
+    public void Initialize()
+    {
+        if (childCamera == null) childCamera = GetComponentInChildren<Camera>();
+
+        mapMinX = 0;
+        mapMaxX = gridWidth * tileWidth + 2;
+
+        mapMinZ = 6;
+        mapMaxZ = gridHeight * tileLength + 10;
+
+        int lowerDimension = Mathf.Min(gridWidth, gridHeight);
+        maxZoom = lowerDimension + 2 + Mathf.Floor(lowerDimension / 10) * 1;
+
+        cameraPitchAngle = childCamera.transform.eulerAngles.x * Mathf.Deg2Rad;
     }
 
     void LateUpdate()
     {
         HandleZooming();
         HandlePanning();
+        ClampPosition();
     }
 
     private void HandleZooming()
     {
-        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
-        {
-            return;
-        }
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject()) return;
 
         float scrollData = Input.GetAxis("Mouse ScrollWheel");
-
         if (scrollData != 0f)
         {
-            float oldSize = currentZoom;
-            currentZoom = oldSize - (scrollData * zoomSpeed);
+            float targetX = childCamera.pixelRect.xMin + (childCamera.pixelWidth * uiPaddingLeft);
+            float targetY = childCamera.pixelRect.yMin + (childCamera.pixelHeight * uiPaddingBottom);
 
-            float maxAllowedZoom = CalculateMaxZoom();
-            float actualMaxZoom = Mathf.Min(maxZoom, maxAllowedZoom);
+            Vector3 zoomScreenTarget = new Vector3(targetX, targetY, 0f);
 
-            currentZoom = Mathf.Clamp(currentZoom, minZoom, actualMaxZoom);
-
-            if (currentZoom != oldSize)
+            Ray rayBefore = childCamera.ScreenPointToRay(zoomScreenTarget);
+            Vector3 worldTargetBefore = Vector3.zero;
+            if (groundPlane.Raycast(rayBefore, out float enterBefore))
             {
-                cam.orthographicSize = currentZoom;
+                worldTargetBefore = rayBefore.GetPoint(enterBefore);
+            }
 
-                float sizeDifference = currentZoom - oldSize;
+            childCamera.orthographicSize -= scrollData * zoomSpeed;
+            childCamera.orthographicSize = Mathf.Clamp(childCamera.orthographicSize, minZoom, maxZoom);
 
-                float moveZ = sizeDifference;
-                float moveX = sizeDifference * cam.aspect;
-
-                Vector3 newPos = transform.position;
-                newPos.x += moveX;
-                newPos.z += moveZ;
-                transform.position = newPos;
+            Ray rayAfter = childCamera.ScreenPointToRay(zoomScreenTarget);
+            if (groundPlane.Raycast(rayAfter, out float enterAfter))
+            {
+                Vector3 worldTargetAfter = rayAfter.GetPoint(enterAfter);
+                transform.position += (worldTargetBefore - worldTargetAfter);
             }
         }
     }
@@ -89,10 +94,14 @@ public class CameraController : MonoBehaviour
             if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
             {
                 isValidPanDrag = false;
+                return;
             }
-            else
+
+            isValidPanDrag = true;
+            Ray ray = childCamera.ScreenPointToRay(Input.mousePosition);
+            if (groundPlane.Raycast(ray, out float enter))
             {
-                isValidPanDrag = true;
+                dragOrigin = ray.GetPoint(enter);
             }
         }
 
@@ -101,42 +110,46 @@ public class CameraController : MonoBehaviour
             isValidPanDrag = false;
         }
 
-        Vector3 newPosition = transform.position;
-
         if (isValidPanDrag && Input.GetMouseButton(0))
         {
-            float currentZoomMultiplier = cam.orthographicSize / 5f;
-            float moveX = -Input.GetAxis("Mouse X") * panSpeed * currentZoomMultiplier * Time.deltaTime;
-            float moveZ = -Input.GetAxis("Mouse Y") * panSpeed * currentZoomMultiplier * Time.deltaTime;
-
-            newPosition.x += moveX;
-            newPosition.z += moveZ;
+            Ray ray = childCamera.ScreenPointToRay(Input.mousePosition);
+            if (groundPlane.Raycast(ray, out float enter))
+            {
+                Vector3 currentPoint = ray.GetPoint(enter);
+                Vector3 difference = dragOrigin - currentPoint;
+                transform.position += difference;
+            }
         }
-
-        float camHalfHeight = cam.orthographicSize;
-        float camHalfWidth = cam.orthographicSize * cam.aspect;
-
-        float limitMinX = mapMinX + camHalfWidth;
-        float limitMaxX = mapMaxX - camHalfWidth + mapBufferX;
-
-        float offsetZ = mapOffsetByZoomZ * ((maxZoom - currentZoom) / (maxZoom - minZoom));
-        float limitMinZ = mapMinZ + camHalfHeight + offsetZ;
-        float limitMaxZ = mapMaxZ - camHalfHeight + mapBufferZ - offsetZ;
-
-        newPosition.x = Mathf.Clamp(newPosition.x, limitMinX, limitMaxX);
-        newPosition.z = Mathf.Clamp(newPosition.z, limitMinZ, limitMaxZ);
-
-        transform.position = newPosition;
     }
 
-    private float CalculateMaxZoom()
+    private void ClampPosition()
     {
-        float mapWidth = mapMaxX - mapMinX + mapBufferX;
-        float mapHeight = mapMaxZ - mapMinZ + mapBufferZ;
+        Vector3 pos = transform.position;
 
-        float maxZoomVertical = mapHeight / 2f;
-        float maxZoomHorizontal = (mapWidth / 2f) / cam.aspect;
+        float viewHeight = (childCamera.orthographicSize * 2f) / Mathf.Sin(cameraPitchAngle);
+        float viewWidth = (childCamera.orthographicSize * 2f) * childCamera.aspect;
 
-        return Mathf.Min(maxZoomVertical, maxZoomHorizontal);
+        float uiWorldLeft = viewWidth * uiPaddingLeft;
+        float uiWorldRight = viewWidth * uiPaddingRight;
+        float uiWorldBottom = viewHeight * uiPaddingBottom;
+        float uiWorldTop = viewHeight * uiPaddingTop;
+
+        float minAllowedX = mapMinX + (viewWidth / 2f) - uiWorldLeft;
+        float maxAllowedX = mapMaxX - (viewWidth / 2f) + uiWorldRight;
+
+        float minAllowedZ = mapMinZ + (viewHeight / 2f) - uiWorldBottom;
+        float maxAllowedZ = mapMaxZ - (viewHeight / 2f) + uiWorldTop;
+
+        if (minAllowedX > maxAllowedX)
+            pos.x = (minAllowedX + maxAllowedX) / 2f;
+        else
+            pos.x = Mathf.Clamp(pos.x, minAllowedX, maxAllowedX);
+
+        if (minAllowedZ > maxAllowedZ)
+            pos.z = (minAllowedZ + maxAllowedZ) / 2f;
+        else
+            pos.z = Mathf.Clamp(pos.z, minAllowedZ, maxAllowedZ);
+
+        transform.position = pos;
     }
 }

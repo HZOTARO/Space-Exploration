@@ -3,6 +3,7 @@ using TMPro;
 using System;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -41,7 +42,7 @@ public class GameManager : MonoBehaviour
 
         if (!player) player = FindFirstObjectByType<Player>();
         if (!tileManager) tileManager = FindFirstObjectByType<TileManager>();
-        if (tileManager) 
+        if (tileManager)
         {
             tileManager.width = levelSize;
             tileManager.length = levelSize;
@@ -51,10 +52,36 @@ public class GameManager : MonoBehaviour
         if (!cameraController) cameraController = FindFirstObjectByType<CameraController>();
         if (cameraController)
         {
-            cameraController.tileCount = levelSize;
+            cameraController.gridHeight = levelSize;
+            cameraController.gridWidth = levelSize;
             cameraController.Initialize();
         }
 
+        StartCoroutine(SetupInventory());
+
+        PythonExecutor.instance.RegisterPythonFunction("move_up", new Action(() => Move("N")));
+        PythonExecutor.instance.RegisterPythonFunction("move_down", new Action(() => Move("S")));
+        PythonExecutor.instance.RegisterPythonFunction("move_left", new Action(() => Move("W")));
+        PythonExecutor.instance.RegisterPythonFunction("move_right", new Action(() => Move("E")));
+
+        PythonExecutor.instance.RegisterPythonFunction("mine", new Action(() => Mine()));
+        PythonExecutor.instance.RegisterPythonFunction("collect", new Action(() => Collect()));
+        PythonExecutor.instance.RegisterPythonFunction("purify", new Action(() => Purify()));
+        PythonExecutor.instance.RegisterPythonFunction("drill", new Action(() => Drill()));
+        PythonExecutor.instance.RegisterPythonFunction("pump", new Action(() => Pump()));
+
+        PythonExecutor.instance.RegisterPythonFunction("scan", new Func<string>(() => Scan()));
+        PythonExecutor.instance.RegisterPythonFunction("measure", new Action(() => Measure()));
+
+        PythonExecutor.instance.RegisterPythonFunction("go_back", new Action(() => Return()));
+
+        PythonExecutor.instance.CanStepCode = () => !InAction();
+        PythonExecutor.instance.OnPythonPrint += PrintToDisplay;
+    }
+
+    IEnumerator SetupInventory()
+    {
+        Debug.Log("Setting up inventory...");
         if (inventoryUI)
         {
             Transform template = null;
@@ -69,13 +96,13 @@ public class GameManager : MonoBehaviour
                 Image slotImage = null;
                 TextMeshProUGUI slotText = null;
 
-                foreach (Transform slotBackground in slotTransform.GetChild(0))
+                foreach (Transform slotElement in slotTransform.GetChild(0))
                 {
-                    if (slotBackground.TryGetComponent<Image>(out Image image))
+                    if (slotElement.TryGetComponent<Image>(out Image image))
                     {
                         slotImage = image;
                     }
-                    if (slotBackground.TryGetComponent<TextMeshProUGUI>(out TextMeshProUGUI text))
+                    if (slotElement.TryGetComponent<TextMeshProUGUI>(out TextMeshProUGUI text))
                     {
                         slotText = text;
                     }
@@ -87,8 +114,10 @@ public class GameManager : MonoBehaviour
                     template.gameObject.SetActive(false);
                 }
             }
+
             if (template)
             {
+                RectTransform slotRectTransform = null;
                 for (int i = 0; i < inventorySize; i++)
                 {
                     Transform newSlot = Instantiate(template, inventoryUI, false);
@@ -117,6 +146,19 @@ public class GameManager : MonoBehaviour
                     inventorySlots[i].slotImage.gameObject.SetActive(false);
                     inventorySlots[i].slotText.text = "";
                     inventorySlots[i].slotText.fontSize = 30 + 6 * ((10 - inventorySize) / 4);
+
+                    if (i == inventorySize - 1)
+                    {
+                        Transform child = newSlot.GetChild(0);
+                        slotRectTransform = child.GetComponent<RectTransform>();
+                    }
+                }
+                yield return new WaitForEndOfFrame();
+                if (slotRectTransform)
+                {
+                    float offset = slotRectTransform.offsetMax.y;
+                    RectTransform inventoryRectTransform = inventoryUI.GetComponent<RectTransform>();
+                    inventoryRectTransform.anchoredPosition += new Vector2(0f, offset);
                 }
             }
             else
@@ -125,25 +167,6 @@ public class GameManager : MonoBehaviour
                 Debug.LogWarning("Inventory is not valid because it was missing an Image or Text!");
             }
         }
-
-        PythonExecutor.instance.RegisterPythonFunction("move_up", new Action(() => Move("N")));
-        PythonExecutor.instance.RegisterPythonFunction("move_down", new Action(() => Move("S")));
-        PythonExecutor.instance.RegisterPythonFunction("move_left", new Action(() => Move("W")));
-        PythonExecutor.instance.RegisterPythonFunction("move_right", new Action(() => Move("E")));
-
-        PythonExecutor.instance.RegisterPythonFunction("mine", new Action(() => Mine()));
-        PythonExecutor.instance.RegisterPythonFunction("collect", new Action(() => Collect()));
-        PythonExecutor.instance.RegisterPythonFunction("purify", new Action(() => Purify()));
-        PythonExecutor.instance.RegisterPythonFunction("drill", new Action(() => Drill()));
-        PythonExecutor.instance.RegisterPythonFunction("pump", new Action(() => Pump()));
-
-        PythonExecutor.instance.RegisterPythonFunction("scan", new Func<string>(() => Scan()));
-        PythonExecutor.instance.RegisterPythonFunction("measure", new Action(() => Measure()));
-
-        PythonExecutor.instance.RegisterPythonFunction("go_back", new Action(() => Return()));
-
-        PythonExecutor.instance.CanStepCode = () => !InAction();
-        PythonExecutor.instance.OnPythonPrint += PrintToDisplay;
     }
 
     void OnDestroy()
