@@ -62,7 +62,7 @@ public class CodeEditor : MonoBehaviour
     }
 
     [HideInInspector]
-    public void PlayAbort()
+    void PlayAbort()
     {
         if (!isPlaying)
         {

@@ -7,31 +7,37 @@ public class CameraController : MonoBehaviour
 
     [Header("Map Boundaries (Absolute Edges)")]
     public float mapMinX = 0f;
-    public float mapMaxX = 11f;
-    public float mapMinZ = -12f;
-    public float mapMaxZ = 9f;
+    public float mapBufferX = 3f;
+    float mapMaxX;
+    public float mapMinZ = -15f;
+    public float mapBufferZ = 9f;
+    public float mapOffsetByZoomZ = 2f;
+    float mapMaxZ;
 
     [Header("Pan Settings")]
-    public float panSpeed = 20f;
+    public float panSpeed = 100f;
 
     [Header("Zoom Settings")]
     public float zoomSpeed = 20f;
     public float minZoom = 2f;
     public float maxZoom = 15f;
+    float currentZoom = 6f;
 
     private Camera cam;
 
     private bool isValidPanDrag = false;
 
-    void Start()
+    public void Initialize() 
     {
         cam = GetComponent<Camera>();
         // 2 per tile
-        mapMaxX += 2 * (tileCount - 4);
+        mapMaxX = 2 * tileCount + mapMinX;
         // 2.5 per tile
-        mapMaxZ = mapMaxZ + 2.5f * (tileCount - 3) + mapMinZ;
+        mapMaxZ = 2.5f * tileCount + mapMinZ;
         // Zoom is around 1 block per zoom in screen, so 2 = 2x2
-        maxZoom = Mathf.Max(6, Mathf.Min(tileCount / 2, 16));
+        maxZoom = Mathf.Max(6, Mathf.Min(tileCount, 20));
+
+        LateUpdate();
     }
 
     void LateUpdate()
@@ -51,19 +57,19 @@ public class CameraController : MonoBehaviour
 
         if (scrollData != 0f)
         {
-            float oldSize = cam.orthographicSize;
-            float targetSize = oldSize - (scrollData * zoomSpeed);
+            float oldSize = currentZoom;
+            currentZoom = oldSize - (scrollData * zoomSpeed);
 
             float maxAllowedZoom = CalculateMaxZoom();
             float actualMaxZoom = Mathf.Min(maxZoom, maxAllowedZoom);
 
-            float newSize = Mathf.Clamp(targetSize, minZoom, actualMaxZoom);
+            currentZoom = Mathf.Clamp(currentZoom, minZoom, actualMaxZoom);
 
-            if (newSize != oldSize)
+            if (currentZoom != oldSize)
             {
-                cam.orthographicSize = newSize;
+                cam.orthographicSize = currentZoom;
 
-                float sizeDifference = newSize - oldSize;
+                float sizeDifference = currentZoom - oldSize;
 
                 float moveZ = sizeDifference;
                 float moveX = sizeDifference * cam.aspect;
@@ -111,10 +117,11 @@ public class CameraController : MonoBehaviour
         float camHalfWidth = cam.orthographicSize * cam.aspect;
 
         float limitMinX = mapMinX + camHalfWidth;
-        float limitMaxX = mapMaxX - camHalfWidth;
+        float limitMaxX = mapMaxX - camHalfWidth + mapBufferX;
 
-        float limitMinZ = mapMinZ + camHalfHeight;
-        float limitMaxZ = mapMaxZ - camHalfHeight;
+        float offsetZ = mapOffsetByZoomZ * ((maxZoom - currentZoom) / (maxZoom - minZoom));
+        float limitMinZ = mapMinZ + camHalfHeight + offsetZ;
+        float limitMaxZ = mapMaxZ - camHalfHeight + mapBufferZ - offsetZ;
 
         newPosition.x = Mathf.Clamp(newPosition.x, limitMinX, limitMaxX);
         newPosition.z = Mathf.Clamp(newPosition.z, limitMinZ, limitMaxZ);
@@ -124,8 +131,8 @@ public class CameraController : MonoBehaviour
 
     private float CalculateMaxZoom()
     {
-        float mapWidth = mapMaxX - mapMinX;
-        float mapHeight = mapMaxZ - mapMinZ;
+        float mapWidth = mapMaxX - mapMinX + mapBufferX;
+        float mapHeight = mapMaxZ - mapMinZ + mapBufferZ;
 
         float maxZoomVertical = mapHeight / 2f;
         float maxZoomHorizontal = (mapWidth / 2f) / cam.aspect;

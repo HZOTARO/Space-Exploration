@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CaveTileManager : TileManager
 {
-    override protected void GenerateMap()
+    override public void GenerateMap()
     {
         base.GenerateMap();
 

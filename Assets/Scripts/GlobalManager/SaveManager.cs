@@ -32,18 +32,12 @@ public class SaveManager : MonoBehaviour
     private IResourceUpdatable[] resourceUpdateables;
     void Awake()
     {
+        Debug.Log("SaveManager Awake called.");
         if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
             SceneManager.sceneLoaded += OnLevelLoaded;
-#if UNITY_EDITOR
-            if (SceneManager.GetActiveScene().name != "Main Menu")
-            {
-                SaveManager.instance.LoadGame(1);
-            }
-#else
-#endif
         }
         else if (instance != this)
         {

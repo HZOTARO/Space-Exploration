@@ -1,6 +1,7 @@
-using UnityEngine;
 using Python.Runtime;
 using System.IO;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public static class GameBootstrapper
 {
@@ -22,6 +23,10 @@ public static class GameBootstrapper
 
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
         SpawnSystemPrefab("CheatManager");
+        if (SceneManager.GetActiveScene().name != "Main Menu")
+        {
+            SaveManager.instance.LoadGame(1);
+        }
 #endif
     }
 

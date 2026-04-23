@@ -13,7 +13,8 @@ public class GeneralUIScript: MonoBehaviour
     public void BackToMainMenu()
     {
         SaveManager.instance.SaveGame(1);
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu");
+        SaveManager.saveData = null;
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu Scene");
     }
     public void OpenHubScene()
     {
@@ -21,7 +22,7 @@ public class GeneralUIScript: MonoBehaviour
     }
     public void OpenResourceExplorationScene()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Cave Scene");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Resource Exploration Scene");
     }
     public void OpenPartsExplorationScene()
     {

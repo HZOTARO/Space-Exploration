@@ -4,7 +4,9 @@ using UnityEngine;
 public class TileManager : MonoBehaviour
 {
     [Header("Grid Settings")]
+    [HideInInspector]
     public int width = 5;
+    [HideInInspector]
     public int length = 5;
 
     [Header("References")]
@@ -18,16 +20,9 @@ public class TileManager : MonoBehaviour
     [HideInInspector]
     public TileObject[,] gridArray;
 
-    void Start()
+    public virtual void GenerateMap()
     {
-        if (container)
-        {
-            GenerateMap();
-        }
-    }
-
-    protected virtual void GenerateMap()
-    {
+        if (!container) return;
         GameObject spawnedGrid = Instantiate(grid, new Vector3(0, 0, -0.005f), Quaternion.identity);
         spawnedGrid.transform.SetParent(container.transform, false);
         spawnedGrid.transform.localScale = new Vector3(width, 1, length);

@@ -1,33 +1,130 @@
 using UnityEngine;
 using TMPro;
 using System;
+using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    [Header("UI Elements")]
-    public TextMeshProUGUI terminalText;
-    private int maxLines = 10;
+    [Header("Camera")]
+    public CameraController cameraController;
 
+    [Header("Player")]
     public Player player;
+    public Image playerHealthBar;
+    public TextMeshProUGUI playerHealthText;
+    int playerMaxHealth = 100;
+    int playerHealth;
+
+    [Header("Tile")]
+    int levelSize = 10;
     private TileManager tileManager;
     Vector2Int playerGridLoc = new();
 
-    [Header("Resources")]
-    public TextMeshProUGUI whiteOreText;
-    int whiteOreCount = 0;
-    public TextMeshProUGUI purpleLiquidText;
-    int purpleLiquidCount = 0;
-    public TextMeshProUGUI blackOreText;
-    int blackOreCount = 0;
+    [Header("Code Editor")]
+    public TextMeshProUGUI terminalText;
+    private int maxLines = 10;
+
+    [Header("Inventory")]
+    [Range(6, 10)]
+    public int inventorySize = 6;
+    private int currentInventoryIndex = 0;
+    public Transform inventoryUI;
+    public List<TileImage> resourceSprites = new List<TileImage>();
+    private List<(TileType resourceType, int amount)> inventory = new List<(TileType resourceType, int amount)>();
+    private List<(Image slotImage, TextMeshProUGUI slotText)> inventorySlots = new List<(Image slotImage, TextMeshProUGUI slotText)>();
 
     void Start()
     {
+        playerHealth = playerMaxHealth;
+        UpdateHealth();
+
         if (!player) player = FindFirstObjectByType<Player>();
         if (!tileManager) tileManager = FindFirstObjectByType<TileManager>();
+        if (tileManager) 
+        {
+            tileManager.width = levelSize;
+            tileManager.length = levelSize;
+            tileManager.GenerateMap();
+        }
 
-        if (whiteOreText) whiteOreText.text = $"{whiteOreCount}";
-        if (purpleLiquidText) purpleLiquidText.text = $"{purpleLiquidCount}";
-        if (blackOreText) blackOreText.text = $"{blackOreCount}";
+        if (!cameraController) cameraController = FindFirstObjectByType<CameraController>();
+        if (cameraController)
+        {
+            cameraController.tileCount = levelSize;
+            cameraController.Initialize();
+        }
+
+        if (inventoryUI)
+        {
+            Transform template = null;
+            foreach (Transform slotTransform in inventoryUI.transform)
+            {
+                if (template)
+                {
+                    Destroy(slotTransform);
+                    continue;
+                }
+
+                Image slotImage = null;
+                TextMeshProUGUI slotText = null;
+
+                foreach (Transform slotBackground in slotTransform.GetChild(0))
+                {
+                    if (slotBackground.TryGetComponent<Image>(out Image image))
+                    {
+                        slotImage = image;
+                    }
+                    if (slotBackground.TryGetComponent<TextMeshProUGUI>(out TextMeshProUGUI text))
+                    {
+                        slotText = text;
+                    }
+                }
+
+                if (slotImage && slotText)
+                {
+                    template = slotTransform;
+                    template.gameObject.SetActive(false);
+                }
+            }
+            if (template)
+            {
+                for (int i = 0; i < inventorySize; i++)
+                {
+                    Transform newSlot = Instantiate(template, inventoryUI, false);
+                    newSlot.gameObject.SetActive(true);
+                    newSlot.name = $"Slot ({i + 1})";
+
+                    Image newImage = null;
+                    TextMeshProUGUI newText = null;
+
+                    foreach (Transform newSlotBackground in newSlot.GetChild(0))
+                    {
+                        if (newSlotBackground.TryGetComponent<Image>(out Image image))
+                        {
+                            newImage = image;
+                        }
+                        if (newSlotBackground.TryGetComponent<TextMeshProUGUI>(out TextMeshProUGUI text))
+                        {
+                            newText = text;
+                        }
+                    }
+
+                    inventorySlots.Add((newImage, newText));
+                    inventory.Add((TileType.Default, 0));
+
+                    inventorySlots[i].slotImage.sprite = null;
+                    inventorySlots[i].slotImage.gameObject.SetActive(false);
+                    inventorySlots[i].slotText.text = "";
+                    inventorySlots[i].slotText.fontSize = 30 + 6 * ((10 - inventorySize) / 4);
+                }
+            }
+            else
+            {
+                inventoryUI = null;
+                Debug.LogWarning("Inventory is not valid because it was missing an Image or Text!");
+            }
+        }
 
         PythonExecutor.instance.RegisterPythonFunction("move_up", new Action(() => Move("N")));
         PythonExecutor.instance.RegisterPythonFunction("move_down", new Action(() => Move("S")));
@@ -41,7 +138,9 @@ public class GameManager : MonoBehaviour
         PythonExecutor.instance.RegisterPythonFunction("pump", new Action(() => Pump()));
 
         PythonExecutor.instance.RegisterPythonFunction("scan", new Func<string>(() => Scan()));
-        PythonExecutor.instance.RegisterPythonFunction("measure", new Action(() => Measure())); 
+        PythonExecutor.instance.RegisterPythonFunction("measure", new Action(() => Measure()));
+
+        PythonExecutor.instance.RegisterPythonFunction("go_back", new Action(() => Return()));
 
         PythonExecutor.instance.CanStepCode = () => !InAction();
         PythonExecutor.instance.OnPythonPrint += PrintToDisplay;
@@ -52,19 +151,6 @@ public class GameManager : MonoBehaviour
         if (PythonExecutor.instance != null)
         {
             PythonExecutor.instance.OnPythonPrint -= PrintToDisplay;
-        }
-
-        if (SaveManager.instance != null)
-        {
-            SaveManager.saveData.whiteOre += whiteOreCount;
-            SaveManager.saveData.purpleLiquid += purpleLiquidCount;
-            SaveManager.saveData.blackOre += blackOreCount;
-
-            SaveManager.instance.SaveGame(1);
-        }
-        else
-        {
-            Debug.LogWarning("SaveManager was already destroyed! Could not auto-save.");
         }
     }
 
@@ -158,7 +244,13 @@ public class GameManager : MonoBehaviour
             CaveTile_BlackOre ore = currentTile.tileInstance as CaveTile_BlackOre;
             if (!ore.isMined)
             {
-                player.PerformAction(PlayerAction.Mine, () => ore.Mine());
+                player.PerformAction(PlayerAction.Mine, () =>
+                {
+                    if (ore.Mine())
+                    {
+                        DamagePlayer(60);
+                    }
+                });
             }
             else
             {
@@ -228,8 +320,7 @@ public class GameManager : MonoBehaviour
                     int amountPumped = vein.Pump();
                     if (amountPumped > 0)
                     {
-                        purpleLiquidCount += amountPumped;
-                        purpleLiquidText.text = $"{purpleLiquidCount}";
+                        AddToInventory(TileType.PurpleVein, amountPumped);
                         Debug.Log($"<color=purple>Collected {amountPumped} Purple Liquid.</color>");
                     }
                 });
@@ -258,8 +349,7 @@ public class GameManager : MonoBehaviour
                     int amountCollected = ore.Collect();
                     if (amountCollected > 0)
                     {
-                        whiteOreCount += amountCollected;
-                        whiteOreText.text = $"{whiteOreCount}";
+                        AddToInventory(TileType.WhiteOre, amountCollected);
                         Debug.Log($"<color=white>Collected {amountCollected} White Ore.</color>");
                     }
                 });
@@ -279,8 +369,7 @@ public class GameManager : MonoBehaviour
                     int amountCollected = ore.Collect();
                     if (amountCollected > 0)
                     {
-                        blackOreCount += amountCollected;
-                        blackOreText.text = $"{blackOreCount}";
+                        AddToInventory(TileType.BlackOre, amountCollected);
                         Debug.Log($"<color=black>Collected {amountCollected} Black Ore.</color>");
                     }
                 });
@@ -307,5 +396,89 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Current tile is not measurable.");
         }
+    }
+
+    private void AddToInventory(TileType tileType, int amount)
+    {
+        if (currentInventoryIndex >= inventorySize)
+        {
+            Debug.Log("Inventory is full! Cannot add more items.");
+            return;
+        }
+
+        foreach (TileImage tileImage in resourceSprites)
+        {
+            if (tileImage.type == tileType)
+            {
+                inventorySlots[currentInventoryIndex].slotImage.sprite = tileImage.image;
+                inventorySlots[currentInventoryIndex].slotImage.gameObject.SetActive(true);
+                break;
+            }
+        }
+        inventorySlots[currentInventoryIndex].slotText.text = amount.ToString();
+        inventory[currentInventoryIndex] = (tileType, amount);
+        currentInventoryIndex++;
+    }
+    private void DamagePlayer(int damage)
+    {
+        Debug.Log($"<color=red>Player took {damage} damage!</color>");
+        playerHealth = Mathf.Max(playerHealth - damage, 0);
+        UpdateHealth();
+        if (playerHealth <= 0)
+        {
+            LevelGameOver();
+        }
+    }
+    private void UpdateHealth()
+    {
+        if (playerHealthBar) playerHealthBar.fillAmount = (float)playerHealth / playerMaxHealth;
+        if (playerHealthText) playerHealthText.text = $"{playerHealth} / {playerMaxHealth}";
+    }
+    private void LevelGameOver()
+    {
+        PythonExecutor.instance.continuous = false;
+        PythonExecutor.instance.currentCode = null;
+        Debug.Log("<color=red>Lose Level!</color>");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Hub Scene");
+    }
+
+    private void Return()
+    {
+        if (playerGridLoc.x == 0 && playerGridLoc.y == 0)
+        {
+            LevelComplete();
+        }
+        else
+        {
+            Debug.Log("You must be at the starting location to return!");
+        }
+    }
+
+    private void LevelComplete()
+    {
+        int whiteOreCount = 0;
+        int purpleLiquidCount = 0;
+        int blackOreCount = 0;
+        foreach ((TileType resourceType, int amount) in inventory)
+        {
+            switch (resourceType)
+            {
+                case TileType.WhiteOre:
+                    whiteOreCount += amount;
+                    break;
+                case TileType.PurpleVein:
+                    purpleLiquidCount += amount;
+                    break;
+                case TileType.BlackOre:
+                    blackOreCount += amount;
+                    break;
+            }
+        }
+        SaveManager.saveData.whiteOre += whiteOreCount;
+        SaveManager.saveData.purpleLiquid += purpleLiquidCount;
+        SaveManager.saveData.blackOre += blackOreCount;
+        SaveManager.instance.SaveGame(1);
+        Debug.Log("<color=green>Level Completed!</color>");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Hub Scene");
     }
 }

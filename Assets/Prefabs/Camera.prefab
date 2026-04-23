@@ -314,9 +314,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: CameraScriptIWrite::CameraController
   tileCount: 25
   mapMinX: 0
-  mapMaxX: 11
-  mapMinZ: -12
-  mapMaxZ: 9
+  mapBufferX: 3
+  mapMinZ: -15
+  mapBufferZ: 9
+  mapOffsetByZoomZ: 2
   panSpeed: 100
   zoomSpeed: 20
   minZoom: 2

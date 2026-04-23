@@ -47,8 +47,9 @@ public class CaveTile_BlackOre : BaseTile, IMeasureable
         }
     }
 
-    public void Mine()
+    public bool Mine()
     {
+        bool exploded = false;
         if (!isMined)
         {
             isMined = true;
@@ -61,6 +62,7 @@ public class CaveTile_BlackOre : BaseTile, IMeasureable
             {
                 value /= 2;
                 Debug.Log("Ore exploded");
+                exploded = true;
             }
 
             if (normalOre) normalOre.SetActive(false);
@@ -71,6 +73,7 @@ public class CaveTile_BlackOre : BaseTile, IMeasureable
         {
             Debug.Log("This Black Ore has already been mined.");
         }
+        return exploded;
     }
     public int Collect()
     {
@@ -87,7 +90,7 @@ public class CaveTile_BlackOre : BaseTile, IMeasureable
             }
             else
             {
-                Debug.Log("This White Ore has already been collected.");
+                Debug.Log("This Black Ore has already been collected.");
             }
         }
         else

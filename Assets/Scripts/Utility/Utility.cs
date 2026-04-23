@@ -1,4 +1,3 @@
-using UnityEditor.Overlays;
 using UnityEngine;
 
 public enum Direction
@@ -24,4 +23,11 @@ public enum PlayerAction
     Purify,
     Drill,
     Pump
+}
+
+[System.Serializable]
+public struct TileImage
+{
+    public TileType type;
+    public Sprite image;
 }
