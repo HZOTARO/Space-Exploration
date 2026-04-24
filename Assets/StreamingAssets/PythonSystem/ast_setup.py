@@ -26,9 +26,13 @@ class GlobalCollector(ast.NodeVisitor):
 
 class YieldInserter(ast.NodeTransformer):
     def insert_yield(self, node):
+        start_line = getattr(node, 'lineno', 0)
+        end_line = getattr(node, 'end_lineno', start_line)
+        val = f"{start_line},{end_line}"
+
         return [
             node,
-            ast.Expr(value=ast.Yield(value=ast.Constant(value=None)))
+            ast.Expr(value=ast.Yield(value=ast.Constant(value=val)))
         ]
 
     def visit_Expr(self, node):
@@ -45,8 +49,11 @@ class YieldInserter(ast.NodeTransformer):
 
     def visit_Return(self, node):
         self.generic_visit(node)
+        start_line = getattr(node, 'lineno', 0)
+        end_line = getattr(node, 'end_lineno', start_line)
+        val = f"{start_line},{end_line}"
         return [
-            ast.Expr(value=ast.Yield(value=ast.Constant(value=None))),
+            ast.Expr(value=ast.Yield(value=ast.Constant(value=val))),
             node
         ]
 
@@ -130,7 +137,10 @@ def step():
         return 'ERROR'
 
     try:
-        next(__gen__)
+        yielded_value = next(__gen__)
+        if yielded_value is not None:
+            return str(yielded_value)
+
         return 'STEP'
     except StopIteration:
         return 'DONE'

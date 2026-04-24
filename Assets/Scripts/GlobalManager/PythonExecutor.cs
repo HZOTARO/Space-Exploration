@@ -20,6 +20,8 @@ public class PythonExecutor : MonoBehaviour
 
     public event Action OnExecutionFinished;
     public event Action<string> OnPythonPrint;
+    public event Action<int, int> OnLineExecuted;
+
     public Func<bool> CanStepCode;
 
     void Awake()
@@ -55,6 +57,7 @@ public class PythonExecutor : MonoBehaviour
             OnExecutionFinished = null;
             OnPythonPrint = null;
             CanStepCode = null;
+            OnLineExecuted = null;
         }
     }
 
@@ -73,7 +76,6 @@ public class PythonExecutor : MonoBehaviour
                 registeredFunctionNames.Clear();
             }
         }
-
         Debug.Log($"Cleaned up Python functions from {unloadedScene.name}");
     }
 
@@ -160,6 +162,7 @@ public class PythonExecutor : MonoBehaviour
         using (Py.GIL())
         {
             var result = pyStepFunc().ToString();
+            Debug.Log("Python result: " + result);
 
             if (result == "DONE")
             {
@@ -167,6 +170,21 @@ public class PythonExecutor : MonoBehaviour
                 currentCode = null;
 
                 OnExecutionFinished?.Invoke();
+            }
+            else 
+            {
+                if (result.Contains(","))
+                {
+                    string[] parts = result.Split(',');
+                    if (int.TryParse(parts[0], out int startLine) && int.TryParse(parts[1], out int endLine))
+                    {
+                        OnLineExecuted?.Invoke(startLine, endLine);
+                    }
+                }
+                else if (int.TryParse(result, out int singleLine))
+                {
+                    OnLineExecuted?.Invoke(singleLine, singleLine);
+                }
             }
         }
 
