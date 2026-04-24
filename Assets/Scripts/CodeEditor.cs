@@ -2,7 +2,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Text;
-using System.Collections;
 
 public class CodeEditor : MonoBehaviour
 {
@@ -33,6 +32,7 @@ public class CodeEditor : MonoBehaviour
     private bool aborting = false;
 
     private string lastKnownText = "";
+    private float currentHighlightCenterY = 0f;
 
     void Start()
     {
@@ -65,12 +65,7 @@ public class CodeEditor : MonoBehaviour
         PythonExecutor.instance.OnExecutionFinished += OnPythonFinished;
         PythonExecutor.instance.OnLineExecuted += TriggerHighlight;
 
-        if (highlightImage)
-        {
-            Color c = highlightImage.color;
-            c.a = 0f;
-            highlightImage.color = c;
-        }
+        RemoveHighlight();
     }
 
     private void UpdateLineNumbers(string currentText)
@@ -117,15 +112,6 @@ public class CodeEditor : MonoBehaviour
             }
         }
 
-        //if (currentText.Length > 0)
-        //{
-        //    char lastChar = currentText[currentText.Length - 1];
-        //    if (lastChar == '\n' || lastChar == '\r')
-        //    {
-        //        numbers.AppendLine(currentLogicalLine.ToString());
-        //    }
-        //}
-
         lineNumbersText.text = numbers.ToString();
     }
 
@@ -135,31 +121,57 @@ public class CodeEditor : MonoBehaviour
 
         highlightImage.transform.SetAsFirstSibling();
 
-        inputField.textComponent.ForceMeshUpdate();
         TMP_TextInfo textInfo = inputField.textComponent.textInfo;
         string rawText = inputField.text;
 
         if (textInfo.characterCount == 0 || string.IsNullOrEmpty(rawText)) return;
 
-        int startChar = GetCharacterIndexFromLine(rawText, startLogicalLine);
-        int endChar = GetCharacterIndexFromLine(rawText, endLogicalLine + 1) - 1;
+        int currentLogicalLine = 1;
+        int visualStartLine = -1;
+        int visualEndLine = -1;
 
-        startChar = Mathf.Clamp(startChar, 0, textInfo.characterCount - 1);
-        endChar = Mathf.Clamp(endChar, 0, textInfo.characterCount - 1);
+        for (int i = 0; i < textInfo.lineCount; i++)
+        {
+            int firstCharIdx = textInfo.lineInfo[i].firstCharacterIndex;
 
-        int visualStartLine = textInfo.characterInfo[startChar].lineNumber;
-        int visualEndLine = textInfo.characterInfo[endChar].lineNumber;
+            bool isNewLogicalLine = false;
+
+            if (firstCharIdx == 0)
+            {
+                isNewLogicalLine = true;
+            }
+            else if (firstCharIdx > 0 && firstCharIdx <= rawText.Length)
+            {
+                char prevChar = rawText[firstCharIdx - 1];
+                isNewLogicalLine = (prevChar == '\n' || prevChar == '\r');
+            }
+
+            if (isNewLogicalLine)
+            {
+                if (currentLogicalLine == startLogicalLine) visualStartLine = i;
+                if (currentLogicalLine == endLogicalLine) visualEndLine = i;
+                currentLogicalLine++;
+            }
+            else
+            {
+                if (currentLogicalLine - 1 == endLogicalLine) visualEndLine = i;
+            }
+        }
+
+        if (visualStartLine == -1) visualStartLine = 0;
+        if (visualEndLine == -1) visualEndLine = textInfo.lineCount - 1;
 
         float topY = textInfo.lineInfo[visualStartLine].ascender;
         float bottomY = textInfo.lineInfo[visualEndLine].descender;
 
         float totalLineSize = topY - bottomY;
-        float localCenterY = (topY + bottomY) / 2f;
+
+        currentHighlightCenterY = (topY + bottomY) / 2f;
 
         highlightImage.rectTransform.sizeDelta = new Vector2(highlightImage.rectTransform.sizeDelta.x, totalLineSize);
         highlightImage.rectTransform.localPosition = new Vector3(
             highlightImage.rectTransform.localPosition.x,
-            inputField.textComponent.transform.localPosition.y + localCenterY,
+            inputField.textComponent.transform.localPosition.y + currentHighlightCenterY,
             0f
         );
 
@@ -276,18 +288,29 @@ public class CodeEditor : MonoBehaviour
             }
         }
 
-        if (inputField != null && lineNumbersText != null)
+        if (inputField != null)
         {
             float scrollY = inputField.textComponent.rectTransform.anchoredPosition.y;
 
-            Vector2 numberPos = lineNumbersText.rectTransform.anchoredPosition;
-            numberPos.y = scrollY;
-            lineNumbersText.rectTransform.anchoredPosition = numberPos;
+            if (lineNumbersText != null)
+            {
+                Vector2 numberPos = lineNumbersText.rectTransform.anchoredPosition;
+                numberPos.y = scrollY;
+                lineNumbersText.rectTransform.anchoredPosition = numberPos;
+            }
+
+            if (highlightImage != null && highlightImage.color.a > 0f)
+            {
+                Vector3 highlightPos = highlightImage.rectTransform.localPosition;
+                highlightPos.y = scrollY + currentHighlightCenterY;
+                highlightImage.rectTransform.localPosition = highlightPos;
+            }
         }
     }
     private void OnCodeEdited(string currentText)
     {
         UpdateLineNumbers(currentText);
+        RemoveHighlight();
 
         if (isPlaying || isPaused)
         {
@@ -308,14 +331,14 @@ public class CodeEditor : MonoBehaviour
                 isPaused = false;
                 pauseButtonText.text = "Pause";
             }
-
-            if (highlightImage != null)
-            {
-                Color c = highlightImage.color;
-                c.a = 0f;
-                highlightImage.color = c;
-            }
         }
+    }
+    void RemoveHighlight()
+    {
+        if (highlightImage == null) return;
+        Color c = highlightImage.color;
+        c.a = 0f;
+        highlightImage.color = c;
     }
     void OnDestroy()
     {

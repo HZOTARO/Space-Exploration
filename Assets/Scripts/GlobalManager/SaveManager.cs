@@ -32,7 +32,6 @@ public class SaveManager : MonoBehaviour
     private IResourceUpdatable[] resourceUpdateables;
     void Awake()
     {
-        Debug.Log("SaveManager Awake called.");
         if (instance == null)
         {
             instance = this;
