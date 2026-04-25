@@ -13,6 +13,10 @@ public class CodeEditor : MonoBehaviour
     [Header("Highlight System")]
     public Image highlightImage;
 
+    [Header("Editor Settings")]
+    [Tooltip("How many spaces should a Tab key create?")]
+    public int tabSize = 4;
+
     [Header("Line Number UI")]
     public TextMeshProUGUI lineNumbersText;
 
@@ -271,11 +275,7 @@ public class CodeEditor : MonoBehaviour
 
     private void Update()
     {
-        if (inputField != null && inputField.text != lastKnownText)
-        {
-            lastKnownText = inputField.text;
-            OnCodeEdited(lastKnownText);
-        }
+        // Halt aborting text change
         if (aborting && !gameManager.InAction())
         {
             aborting = false;
@@ -288,6 +288,28 @@ public class CodeEditor : MonoBehaviour
             }
         }
 
+        // Handle tab key replacement
+        if (inputField != null && inputField.text.Contains("\t"))
+        {
+            int caretPos = Mathf.Clamp(inputField.caretPosition, 0, inputField.text.Length);
+
+            string textBeforeCaret = inputField.text.Substring(0, caretPos);
+            int tabsBeforeCaret = textBeforeCaret.Split('\t').Length - 1;
+
+            string spaces = new string(' ', tabSize);
+            inputField.text = inputField.text.Replace("\t", spaces);
+
+            inputField.caretPosition = caretPos + (tabsBeforeCaret * (tabSize - 1));
+        }
+
+        // Detect text changes
+        if (inputField != null && inputField.text != lastKnownText)
+        {
+            lastKnownText = inputField.text;
+            OnCodeEdited(lastKnownText);
+        }
+
+        // Sync line numbers and highlight with scrolling
         if (inputField != null)
         {
             float scrollY = inputField.textComponent.rectTransform.anchoredPosition.y;
