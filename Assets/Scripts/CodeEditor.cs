@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Text;
 using System.Collections;
-using TMPro;
 using System.Text.RegularExpressions;
 
 [System.Serializable]
@@ -30,7 +29,7 @@ public class CodeEditor : MonoBehaviour
     private SyntaxGroup[] syntaxGroups;
 
     [Header("Editor Settings")]
-    public int tabSize = 4;
+    public int tabSize = 2;
 
     [Header("Line Number UI")]
     public TextMeshProUGUI lineNumbersText;
@@ -239,9 +238,11 @@ public class CodeEditor : MonoBehaviour
     {
         if (!isPlaying)
         {
-            Play();
-            isPlaying = true;
-            playButtonText.text = "Abort";
+            if (Play())
+            {
+                isPlaying = true;
+                playButtonText.text = "Abort";
+            }
         }
         else
         {
@@ -262,11 +263,22 @@ public class CodeEditor : MonoBehaviour
             }
         }
     }
-    void Play()
+    bool Play()
     {
+        PythonValidationResult result = PythonExecutor.instance.ValidateCode(inputField.text);
+
+        if (!result.is_valid)
+        {
+            isPlaying = false;
+            gameManager.PrintToDisplay($"<color=red>Error on line {result.line}: {result.error_msg}</color>");
+            TriggerHighlight(result.line, result.line);
+            return false;
+        }
+
         PythonExecutor.instance.currentCode = null;
         PythonExecutor.instance.continuous = true;
         PythonExecutor.instance.Exec(inputField.text);
+        return true;
     }
 
     void Abort()
@@ -304,6 +316,15 @@ public class CodeEditor : MonoBehaviour
     {
         if (!isPlaying)
         {
+            PythonValidationResult result = PythonExecutor.instance.ValidateCode(inputField.text);
+            if (!result.is_valid)
+            {
+                gameManager.PrintToDisplay($"<color=red>Error on line {result.line}: {result.error_msg}</color>");
+
+                TriggerHighlight(result.line, result.line);
+                return;
+            }
+
             PythonExecutor.instance.continuous = false;
             PythonExecutor.instance.Exec(inputField.text);
         }

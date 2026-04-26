@@ -35,6 +35,10 @@ public class GameManager : MonoBehaviour
     private List<(TileType resourceType, int amount)> inventory = new List<(TileType resourceType, int amount)>();
     private List<(Image slotImage, TextMeshProUGUI slotText)> inventorySlots = new List<(Image slotImage, TextMeshProUGUI slotText)>();
 
+    [Header("Level Restrictions (Python)")]
+    public List<string> bannedSyntaxNodes = new List<string>();
+    public List<string> bannedFunctions = new List<string>();
+
     void Start()
     {
         playerHealth = playerMaxHealth;
@@ -56,28 +60,47 @@ public class GameManager : MonoBehaviour
             cameraController.gridWidth = levelSize;
             cameraController.Initialize();
         }
-
+        
         StartCoroutine(SetupInventory());
 
-        PythonExecutor.instance.RegisterPythonFunction("move_up", new Action(() => Move("N")));
-        PythonExecutor.instance.RegisterPythonFunction("move_down", new Action(() => Move("S")));
-        PythonExecutor.instance.RegisterPythonFunction("move_left", new Action(() => Move("W")));
-        PythonExecutor.instance.RegisterPythonFunction("move_right", new Action(() => Move("E")));
+        bannedSyntaxNodes = new List<string> { "For", "While", "FunctionDef" };
+        bannedFunctions = new List<string> { "print", "range" };
+        PythonExecutor.instance.InitializePythonBans(bannedSyntaxNodes.ToArray(), bannedFunctions.ToArray());
 
-        PythonExecutor.instance.RegisterPythonFunction("mine", new Action(() => Mine()));
-        PythonExecutor.instance.RegisterPythonFunction("collect", new Action(() => Collect()));
-        PythonExecutor.instance.RegisterPythonFunction("purify", new Action(() => Purify()));
-        PythonExecutor.instance.RegisterPythonFunction("drill", new Action(() => Drill()));
-        PythonExecutor.instance.RegisterPythonFunction("pump", new Action(() => Pump()));
-
-        PythonExecutor.instance.RegisterPythonFunction("scan", new Func<string>(() => Scan()));
-        PythonExecutor.instance.RegisterPythonFunction("measure", new Action(() => Measure()));
-
-        PythonExecutor.instance.RegisterPythonFunction("go_back", new Action(() => Return()));
+        RegisterPythonCommands();
 
         PythonExecutor.instance.CanStepCode = () => !InAction();
         PythonExecutor.instance.OnPythonPrint += PrintToDisplay;
     }
+
+    private void RegisterPythonCommands()
+    {
+        void Bind(string pyName, Action action) => PythonExecutor.instance.RegisterPythonFunction(pyName, action);
+        void BindReturn<T>(string pyName, Func<T> func) => PythonExecutor.instance.RegisterPythonFunction(pyName, func);
+
+        Bind("move_up", () => Move("N"));
+        Bind("move_down", () => Move("S"));
+        Bind("move_left", () => Move("W"));
+        Bind("move_right", () => Move("E"));
+
+        Bind("mine", Mine);
+        Bind("collect", Collect);
+        Bind("purify", Purify);
+        Bind("drill", Drill);
+        Bind("pump", Pump);
+        Bind("measure", Measure);
+        Bind("go_back", Return);
+
+        BindReturn("scan", Scan);
+    }
+
+    //public void UnlockFeature(string featureName)
+    //{
+    //    if (bannedSyntaxNodes.Contains(featureName)) bannedSyntaxNodes.Remove(featureName);
+    //    if (bannedFunctions.Contains(featureName)) bannedFunctions.Remove(featureName);
+
+    //    PythonExecutor.instance.ClearPythonBan(featureName);
+    //}
 
     IEnumerator SetupInventory()
     {

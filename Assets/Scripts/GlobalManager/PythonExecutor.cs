@@ -5,6 +5,22 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[System.Serializable]
+public struct PythonValidationRequest
+{
+    public string code;
+    public string[] banned_nodes;
+    public string[] banned_functions;
+}
+
+[System.Serializable]
+public struct PythonValidationResult
+{
+    public bool is_valid;
+    public string error_msg;
+    public int line;
+}
+
 public class PythonExecutor : MonoBehaviour
 {
     public static PythonExecutor instance;
@@ -45,6 +61,50 @@ public class PythonExecutor : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+    }
+
+    public void InitializePythonBans(string[] nodes, string[] functions)
+    {
+        if (!PythonEngine.IsInitialized || pyScope == null) return;
+
+        PythonValidationRequest request = new PythonValidationRequest
+        {
+            banned_nodes = nodes,
+            banned_functions = functions
+        };
+        string jsonRequest = JsonUtility.ToJson(request);
+
+        using (Py.GIL())
+        {
+            dynamic pyInitFunc = pyScope.Get("initialize_bans");
+            pyInitFunc(jsonRequest);
+        }
+    }
+
+    public void ClearPythonBan(string unlockName)
+    {
+        if (!PythonEngine.IsInitialized || pyScope == null) return;
+
+        using (Py.GIL())
+        {
+            dynamic pyClearFunc = pyScope.Get("clear_ban");
+            pyClearFunc(unlockName);
+        }
+    }
+
+    public PythonValidationResult ValidateCode(string playerCode)
+    {
+        if (!PythonEngine.IsInitialized || pyScope == null)
+        {
+            return new PythonValidationResult { is_valid = false, error_msg = "Python Engine Error", line = 0 };
+        }
+
+        using (Py.GIL())
+        {
+            dynamic pyValidateFunc = pyScope.Get("validate_code");
+            string jsonResponse = pyValidateFunc(playerCode).ToString();
+            return JsonUtility.FromJson<PythonValidationResult>(jsonResponse);
         }
     }
 
@@ -171,7 +231,7 @@ public class PythonExecutor : MonoBehaviour
 
                 OnExecutionFinished?.Invoke();
             }
-            else 
+            else
             {
                 if (result.Contains(","))
                 {
@@ -205,10 +265,10 @@ public class PythonExecutor : MonoBehaviour
             Step();
         }
     }
+
     void LogFromPython(string message)
     {
         Debug.Log(message);
-
         OnPythonPrint?.Invoke(message);
     }
 
@@ -236,7 +296,6 @@ if hasattr(sys, '__stdout__'):
 global __gen__
 __gen__ = None
 ");
-
                 pyScope.Set("unity_log", null);
 
                 if (pyPrepareFunc is IDisposable p) p.Dispose();
