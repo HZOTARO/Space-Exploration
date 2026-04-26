@@ -144201,6 +144201,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Code Editor
       objectReference: {fileID: 0}
+    - target: {fileID: 5155222603106450178, guid: 8babe53297bdc9d48906d641441331a5, type: 3}
+      propertyPath: m_isRichText
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6213698390278110188, guid: 8babe53297bdc9d48906d641441331a5, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

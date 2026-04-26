@@ -2,6 +2,17 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Text;
+using System.Collections;
+using TMPro;
+using System.Text.RegularExpressions;
+
+[System.Serializable]
+public struct SyntaxGroup
+{
+    public string groupName;
+    public Color color;
+    public string[] keywords;
+}
 
 public class CodeEditor : MonoBehaviour
 {
@@ -12,9 +23,13 @@ public class CodeEditor : MonoBehaviour
 
     [Header("Highlight System")]
     public Image highlightImage;
+    private float currentHighlightCenterY = 0f;
+
+    [Header("Syntax Color")]
+    public TextMeshProUGUI syntaxOverlayText;
+    private SyntaxGroup[] syntaxGroups;
 
     [Header("Editor Settings")]
-    [Tooltip("How many spaces should a Tab key create?")]
     public int tabSize = 4;
 
     [Header("Line Number UI")]
@@ -35,11 +50,16 @@ public class CodeEditor : MonoBehaviour
 
     private bool aborting = false;
 
+    // For text change detection
     private string lastKnownText = "";
-    private float currentHighlightCenterY = 0f;
+    private float updateDelay = 0.15f;
+    private float currentUpdateTimer = 0f;
+    private bool needsHeavyUpdate = false;
 
     void Start()
     {
+        InitializeSyntaxGroups();
+
         gameManager = FindFirstObjectByType<GameManager>();
 
         if (inputField != null)
@@ -70,6 +90,37 @@ public class CodeEditor : MonoBehaviour
         PythonExecutor.instance.OnLineExecuted += TriggerHighlight;
 
         RemoveHighlight();
+    }
+
+    private void InitializeSyntaxGroups()
+    {
+        syntaxGroups = new SyntaxGroup[]
+        {
+            new SyntaxGroup
+            {
+                groupName = "Control Flow",
+                color = new Color(0.85f, 0.43f, 0.83f),
+                keywords = new string[] { "for", "in", "while", "if", "else", "elif", "return", "def", "class" }
+            },
+            new SyntaxGroup
+            {
+                groupName = "Logic",
+                color = new Color(0.33f, 0.66f, 1f),
+                keywords = new string[] { "and", "or", "not", "is" }
+            },
+            new SyntaxGroup
+            {
+                groupName = "Booleans & Types",
+                color = new Color(1f, 0.64f, 0f),
+                keywords = new string[] { "True", "False", "None", "int", "float", "str", "bool" }
+            },
+            new SyntaxGroup
+            {
+                groupName = "Built-in Functions",
+                color = new Color(0.86f, 0.86f, 0.67f),
+                keywords = new string[] { "print", "range", "len", "type" }
+            }
+        };
     }
 
     private void UpdateLineNumbers(string currentText)
@@ -184,21 +235,6 @@ public class CodeEditor : MonoBehaviour
         highlightImage.color = c;
     }
 
-    private int GetCharacterIndexFromLine(string text, int targetLine)
-    {
-        if (targetLine <= 1) return 0;
-        int currentLine = 1;
-        for (int i = 0; i < text.Length; i++)
-        {
-            if (text[i] == '\n')
-            {
-                currentLine++;
-                if (currentLine == targetLine) return i + 1;
-            }
-        }
-        return text.Length - 1;
-    }
-
     void PlayAbort()
     {
         if (!isPlaying)
@@ -306,7 +342,25 @@ public class CodeEditor : MonoBehaviour
         if (inputField != null && inputField.text != lastKnownText)
         {
             lastKnownText = inputField.text;
-            OnCodeEdited(lastKnownText);
+
+            UpdateSyntaxHighlighting(lastKnownText);
+            RemoveHighlight();
+
+            FastAbortCheck();
+
+            needsHeavyUpdate = true;
+            currentUpdateTimer = updateDelay;
+        }
+
+        if (needsHeavyUpdate)
+        {
+            currentUpdateTimer -= Time.deltaTime;
+
+            if (currentUpdateTimer <= 0f)
+            {
+                needsHeavyUpdate = false;
+                RunHeavyUIUpdates(lastKnownText);
+            }
         }
 
         // Sync line numbers and highlight with scrolling
@@ -329,24 +383,37 @@ public class CodeEditor : MonoBehaviour
             }
         }
     }
-    private void OnCodeEdited(string currentText)
-    {
-        UpdateLineNumbers(currentText);
-        RemoveHighlight();
 
+    private void UpdateSyntaxHighlighting(string rawText)
+    {
+        if (syntaxOverlayText == null || syntaxGroups == null) return;
+
+        string coloredText = rawText;
+
+        foreach (SyntaxGroup group in syntaxGroups)
+        {
+            string hexColor = ColorUtility.ToHtmlStringRGB(group.color);
+
+            foreach (string word in group.keywords)
+            {
+                string pattern = @"\b" + word + @"\b";
+
+                coloredText = Regex.Replace(coloredText, pattern, $"<color=#{hexColor}>{word}</color>");
+            }
+        }
+
+        syntaxOverlayText.text = coloredText;
+    }
+
+    private void FastAbortCheck()
+    {
         if (isPlaying || isPaused)
         {
             Abort();
             isPlaying = false;
 
-            if (gameManager.InAction())
-            {
-                aborting = true;
-            }
-            else
-            {
-                playButtonText.text = "Play";
-            }
+            if (gameManager.InAction()) { aborting = true; }
+            else { playButtonText.text = "Play"; }
 
             if (isPaused)
             {
@@ -355,6 +422,12 @@ public class CodeEditor : MonoBehaviour
             }
         }
     }
+
+    private void RunHeavyUIUpdates(string currentText)
+    {
+        UpdateLineNumbers(currentText);
+    }
+
     void RemoveHighlight()
     {
         if (highlightImage == null) return;
