@@ -7,12 +7,12 @@ public class GeneralUIScript: MonoBehaviour
     public GameObject pauseUI;
     public void PlayGame()
     {
-        SaveManager.instance.LoadGame(1);
+        SaveManager.instance.LoadGame(SaveManager.saveSlotInUse);
         OpenHubScene();
     }
     public void BackToMainMenu()
     {
-        SaveManager.instance.SaveGame(1);
+        SaveManager.instance.SaveGame(SaveManager.saveSlotInUse);
         SaveManager.saveData = null;
         UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu Scene");
     }
@@ -53,6 +53,14 @@ public class GeneralUIScript: MonoBehaviour
     public void UnPauseGame()
     {
         pauseUI.SetActive(true);
+    }
+    public void SetActive(GameObject UI)
+    {
+        UI.SetActive(true);
+    }
+    public void SetInActive(GameObject UI)
+    {
+        UI.SetActive(false);
     }
     public void ExitGame()
     {

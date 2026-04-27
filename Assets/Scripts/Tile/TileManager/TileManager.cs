@@ -33,13 +33,13 @@ public class TileManager : MonoBehaviour
 
     protected void SpawnTilesVisual()
     {
-        currentTilePrefab = FindTilePrefab(TileType.Default);
+        currentTilePrefab = FindTilePrefab(TileType.Floor);
 
         for (int z = 0; z < length; z++)
         {
             for (int x = 0; x < width; x++)
             {
-                if (gridArray[z, x].type == TileType.Default || !gridArray[z, x].tileInstance.haveTile)
+                if (gridArray[z, x].type == TileType.Floor || !gridArray[z, x].tileInstance.haveTile)
                 {
                     SpawnTileVisual(z, x, currentTilePrefab);
                 }

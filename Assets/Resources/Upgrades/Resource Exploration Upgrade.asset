@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 510a7592fff21df42be2ebd983fd262c, type: 3}
+  m_Name: Resource Exploration Upgrade
+  m_EditorClassIdentifier: GlobalManagerScriptIWrite::UpgradeSO
+  id: id
+  upgradeName: Upgrade Name
+  prerequisiteUpgrade: {fileID: 0}
+  prerequisiteLevelRequired: 1
+  tiers:
+  - description: This Is Description
+    requiresPuzzleToUnlock: 0
+    unlockFeatureString: 
+    costs:
+    - resourceType: 2
+      amount: 3
+    - resourceType: 1
+      amount: 2
+  - description: Tier 2
+    requiresPuzzleToUnlock: 0
+    unlockFeatureString: 
+    costs:
+    - resourceType: 3
+      amount: 10

@@ -2,10 +2,10 @@
   <Project Path="Assembly-CSharp.csproj" />
   <Project Path="GlobalManagerScriptIWrite.csproj" />
   <Project Path="CameraScriptIWrite.csproj" />
+  <Project Path="UIScriptIWrite.csproj" />
   <Project Path="Assembly-CSharp-Editor.csproj" />
   <Project Path="ScriptIWrite.csproj" />
   <Project Path="TileScriptIWrite.csproj" />
   <Project Path="TileManagerScriptIWrite.csproj" />
   <Project Path="UtilityScriptIWrite.csproj" />
-  <Project Path="UIScriptIWrite.csproj" />
 </Solution>

@@ -96,7 +96,7 @@ public class CheatManager : MonoBehaviour, IResourceUpdatable
         {
             if (SaveManager.instance != null)
             {
-                SaveManager.instance.SaveGame(1);
+                SaveManager.instance.SaveGame(SaveManager.saveSlotInUse);
                 Debug.Log("<color=green>CHEAT: Game Saved.</color>");
             }
         });
@@ -105,7 +105,7 @@ public class CheatManager : MonoBehaviour, IResourceUpdatable
         {
             if (SaveManager.instance != null)
             {
-                SaveManager.instance.LoadGame(1);
+                SaveManager.instance.LoadGame(SaveManager.saveSlotInUse);
                 Debug.Log("<color=green>CHEAT: Save Loaded.</color>");
                 SaveManager.instance.UpdateAllUI();
             }
@@ -115,8 +115,8 @@ public class CheatManager : MonoBehaviour, IResourceUpdatable
         {
             if (SaveManager.instance != null)
             {
-                SaveManager.instance.DeleteSave(1);
-                SaveManager.saveData = new SaveData();
+                SaveManager.instance.DeleteSave(SaveManager.saveSlotInUse);
+                SaveManager.instance.CreateNewSaveData();
                 Debug.Log("<color=red>CHEAT: Save File Deleted.</color>");
                 SaveManager.instance.UpdateAllUI();
             }

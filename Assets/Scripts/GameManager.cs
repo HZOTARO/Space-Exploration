@@ -31,8 +31,8 @@ public class GameManager : MonoBehaviour
     public int inventorySize = 6;
     private int currentInventoryIndex = 0;
     public Transform inventoryUI;
-    public List<TileImage> resourceSprites = new List<TileImage>();
-    private List<(TileType resourceType, int amount)> inventory = new List<(TileType resourceType, int amount)>();
+    public List<ResourceImage> resourceSprites = new List<ResourceImage>();
+    private List<(ResourceType resourceType, int amount)> inventory = new List<(ResourceType resourceType, int amount)>();
     private List<(Image slotImage, TextMeshProUGUI slotText)> inventorySlots = new List<(Image slotImage, TextMeshProUGUI slotText)>();
 
     [Header("Level Restrictions (Python)")]
@@ -163,7 +163,7 @@ public class GameManager : MonoBehaviour
                     }
 
                     inventorySlots.Add((newImage, newText));
-                    inventory.Add((TileType.Default, 0));
+                    inventory.Add((ResourceType.None, 0));
 
                     inventorySlots[i].slotImage.sprite = null;
                     inventorySlots[i].slotImage.gameObject.SetActive(false);
@@ -366,7 +366,7 @@ public class GameManager : MonoBehaviour
                     int amountPumped = vein.Pump();
                     if (amountPumped > 0)
                     {
-                        AddToInventory(TileType.PurpleVein, amountPumped);
+                        AddToInventory(ResourceType.PurpleLiquid, amountPumped);
                         Debug.Log($"<color=purple>Collected {amountPumped} Purple Liquid.</color>");
                     }
                 });
@@ -395,7 +395,7 @@ public class GameManager : MonoBehaviour
                     int amountCollected = ore.Collect();
                     if (amountCollected > 0)
                     {
-                        AddToInventory(TileType.WhiteOre, amountCollected);
+                        AddToInventory(ResourceType.WhiteOre, amountCollected);
                         Debug.Log($"<color=white>Collected {amountCollected} White Ore.</color>");
                     }
                 });
@@ -415,7 +415,7 @@ public class GameManager : MonoBehaviour
                     int amountCollected = ore.Collect();
                     if (amountCollected > 0)
                     {
-                        AddToInventory(TileType.BlackOre, amountCollected);
+                        AddToInventory(ResourceType.BlackOre, amountCollected);
                         Debug.Log($"<color=black>Collected {amountCollected} Black Ore.</color>");
                     }
                 });
@@ -444,7 +444,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void AddToInventory(TileType tileType, int amount)
+    private void AddToInventory(ResourceType tileType, int amount)
     {
         if (currentInventoryIndex >= inventorySize)
         {
@@ -452,7 +452,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        foreach (TileImage tileImage in resourceSprites)
+        foreach (ResourceImage tileImage in resourceSprites)
         {
             if (tileImage.type == tileType)
             {
@@ -505,17 +505,17 @@ public class GameManager : MonoBehaviour
         int whiteOreCount = 0;
         int purpleLiquidCount = 0;
         int blackOreCount = 0;
-        foreach ((TileType resourceType, int amount) in inventory)
+        foreach ((ResourceType resourceType, int amount) in inventory)
         {
             switch (resourceType)
             {
-                case TileType.WhiteOre:
+                case ResourceType.WhiteOre:
                     whiteOreCount += amount;
                     break;
-                case TileType.PurpleVein:
+                case ResourceType.PurpleLiquid:
                     purpleLiquidCount += amount;
                     break;
-                case TileType.BlackOre:
+                case ResourceType.BlackOre:
                     blackOreCount += amount;
                     break;
             }
@@ -523,7 +523,7 @@ public class GameManager : MonoBehaviour
         SaveManager.saveData.whiteOre += whiteOreCount;
         SaveManager.saveData.purpleLiquid += purpleLiquidCount;
         SaveManager.saveData.blackOre += blackOreCount;
-        SaveManager.instance.SaveGame(1);
+        SaveManager.instance.SaveGame(SaveManager.saveSlotInUse);
         Debug.Log("<color=green>Level Completed!</color>");
         UnityEngine.SceneManagement.SceneManager.LoadScene("Hub Scene");
     }

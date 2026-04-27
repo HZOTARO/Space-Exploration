@@ -40,7 +40,7 @@ public class CaveTileManager : TileManager
                     randZ = Random.Range(0, z == 0 ? segmentSize + segmentLengthRemainder : segmentSize) + z * segmentSize;
                     randX = Random.Range(0, x == 0 ? segmentSize + segmentWidthRemainder : segmentSize) + x * segmentSize;
 
-                    if (gridArray[randZ, randX].type == TileType.Default)
+                    if (gridArray[randZ, randX].type == TileType.Floor)
                     {
                         gridArray[randZ, randX].type = TileType.PurpleVein;
                         gridArray[randZ, randX].tileInstance = SpawnTileVisual(randZ, randX, currentTilePrefab);
@@ -54,7 +54,7 @@ public class CaveTileManager : TileManager
                     randZ = Random.Range(0, z == 0 ? segmentSize + segmentLengthRemainder : segmentSize) + z * segmentSize;
                     randX = Random.Range(0, x == 0 ? segmentSize + segmentWidthRemainder : segmentSize) + x * segmentSize;
 
-                    if (gridArray[randZ, randX].type == TileType.Default)
+                    if (gridArray[randZ, randX].type == TileType.Floor)
                     {
                         gridArray[randZ, randX].type = TileType.WhiteOre;
                         gridArray[randZ, randX].tileInstance = SpawnTileVisual(randZ, randX, currentTilePrefab);
@@ -67,7 +67,7 @@ public class CaveTileManager : TileManager
                 {
                     randZ = Random.Range(0, z == 0 ? segmentSize + segmentLengthRemainder : segmentSize) + z * segmentSize;
                     randX = Random.Range(0, x == 0 ? segmentSize + segmentWidthRemainder : segmentSize) + x * segmentSize;
-                    if (gridArray[randZ, randX].type == TileType.Default)
+                    if (gridArray[randZ, randX].type == TileType.Floor)
                     {
                         gridArray[randZ, randX].type = TileType.BlackOre;
                         gridArray[randZ, randX].tileInstance = SpawnTileVisual(randZ, randX, currentTilePrefab);

@@ -1,9 +1,15 @@
 {
-    "lastSavedTime": "24-04-2026 14:55",
-    "whiteOre": 300,
-    "purpleLiquid": 200,
-    "blackOre": 105,
+    "lastSavedTime": "27-04-2026 10:40",
+    "whiteOre": 298,
+    "purpleLiquid": 190,
+    "blackOre": 102,
     "partsA": 0,
     "partsB": 0,
-    "partsC": 0
+    "partsC": 0,
+    "unlockedUpgrades": [
+        {
+            "id": "id",
+            "currentLevel": 2
+        }
+    ]
 }

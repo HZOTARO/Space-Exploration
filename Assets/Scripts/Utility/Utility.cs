@@ -8,9 +8,21 @@ public enum Direction
     Right
 }
 
+public enum ResourceType
+{
+    None,
+    WhiteOre,
+    BlackOre,
+    PurpleLiquid,
+    PartA,
+    PartB,
+    PartC
+}
+
 public enum TileType
 {
-    Default, // Floor
+    None,
+    Floor, // Floor
     WhiteOre,
     PurpleVein,
     BlackOre,
@@ -26,8 +38,8 @@ public enum PlayerAction
 }
 
 [System.Serializable]
-public struct TileImage
+public struct ResourceImage
 {
-    public TileType type;
+    public ResourceType type;
     public Sprite image;
 }

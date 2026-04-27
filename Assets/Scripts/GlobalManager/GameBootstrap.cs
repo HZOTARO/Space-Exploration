@@ -20,12 +20,13 @@ public static class GameBootstrapper
 
         SpawnSystemPrefab("SaveManager");
         SpawnSystemPrefab("PythonExecutor");
+        SpawnSystemPrefab("UpgradeManager");
 
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
         SpawnSystemPrefab("CheatManager");
         if (SceneManager.GetActiveScene().name != "Main Menu")
         {
-            SaveManager.instance.LoadGame(1);
+            SaveManager.instance.LoadGame(SaveManager.saveSlotInUse);
         }
 #endif
     }
