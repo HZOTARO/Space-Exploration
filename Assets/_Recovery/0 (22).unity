@@ -28660,13 +28660,13 @@ MonoBehaviour:
   container: {fileID: 202872234}
   grid: {fileID: 7561592933734253305, guid: 623c822b7ae4df345afd321fded532bb, type: 3}
   tileData:
-  - type: 1
+  - type: 0
     tilePrefab: {fileID: -9208734708896110791, guid: 5b880c3cdeb231146bc576bce7b32fe2, type: 3}
-  - type: 3
-    tilePrefab: {fileID: 98364360411693396, guid: 0c072067696c19e41bd63e7251d67fba, type: 3}
   - type: 2
+    tilePrefab: {fileID: 98364360411693396, guid: 0c072067696c19e41bd63e7251d67fba, type: 3}
+  - type: 1
     tilePrefab: {fileID: 4859144738260387485, guid: d96f59058b0b80a40bcd4aa893bbd79d, type: 3}
-  - type: 4
+  - type: 3
     tilePrefab: {fileID: -1641081275331433878, guid: b6de4df3f6fee7142be73b985d7acdf3, type: 3}
 --- !u!1 &362840813
 GameObject:

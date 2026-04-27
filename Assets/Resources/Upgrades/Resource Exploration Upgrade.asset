@@ -21,13 +21,13 @@ MonoBehaviour:
     requiresPuzzleToUnlock: 0
     unlockFeatureString: 
     costs:
-    - resourceType: 2
+    - item: {fileID: 11400000, guid: e4df0c43eb096624da6b2581c1e6a2df, type: 2}
       amount: 3
-    - resourceType: 1
+    - item: {fileID: 11400000, guid: 350a3dc53def83941a8d8d4444a74578, type: 2}
       amount: 2
   - description: Tier 2
     requiresPuzzleToUnlock: 0
     unlockFeatureString: 
     costs:
-    - resourceType: 3
+    - item: {fileID: 11400000, guid: 6fd164fd5d34a6c4dae656987cf93902, type: 2}
       amount: 10

@@ -31,8 +31,7 @@ public class GameManager : MonoBehaviour
     public int inventorySize = 6;
     private int currentInventoryIndex = 0;
     public Transform inventoryUI;
-    public List<ResourceImage> resourceSprites = new List<ResourceImage>();
-    private List<(ResourceType resourceType, int amount)> inventory = new List<(ResourceType resourceType, int amount)>();
+    private List<(ItemSO item, int amount)> levelInventory = new List<(ItemSO item, int amount)>();
     private List<(Image slotImage, TextMeshProUGUI slotText)> inventorySlots = new List<(Image slotImage, TextMeshProUGUI slotText)>();
 
     [Header("Level Restrictions (Python)")]
@@ -60,7 +59,7 @@ public class GameManager : MonoBehaviour
             cameraController.gridWidth = levelSize;
             cameraController.Initialize();
         }
-        
+
         StartCoroutine(SetupInventory());
 
         bannedSyntaxNodes = new List<string> { "For", "While", "FunctionDef" };
@@ -163,7 +162,7 @@ public class GameManager : MonoBehaviour
                     }
 
                     inventorySlots.Add((newImage, newText));
-                    inventory.Add((ResourceType.None, 0));
+                    levelInventory.Add((null, 0));
 
                     inventorySlots[i].slotImage.sprite = null;
                     inventorySlots[i].slotImage.gameObject.SetActive(false);
@@ -275,111 +274,16 @@ public class GameManager : MonoBehaviour
         if (currentTile.type == TileType.WhiteOre)
         {
             CaveTile_WhiteOre ore = currentTile.tileInstance as CaveTile_WhiteOre;
-
-            if (!ore.isMined)
-            {
-                player.PerformAction(PlayerAction.Mine, () => ore.Mine());
-            }
-            else
-            {
-                Debug.Log("This White Ore has already been mined.");
-            }
+            if (!ore.isMined) player.PerformAction(PlayerAction.Mine, () => ore.Mine());
+            else Debug.Log("This White Ore has already been mined.");
         }
         else if (currentTile.type == TileType.BlackOre)
         {
             CaveTile_BlackOre ore = currentTile.tileInstance as CaveTile_BlackOre;
-            if (!ore.isMined)
-            {
-                player.PerformAction(PlayerAction.Mine, () =>
-                {
-                    if (ore.Mine())
-                    {
-                        DamagePlayer(60);
-                    }
-                });
-            }
-            else
-            {
-                Debug.Log("This Black Ore has already been mined.");
-            }
+            if (!ore.isMined) player.PerformAction(PlayerAction.Mine, () => { if (ore.Mine()) DamagePlayer(60); });
+            else Debug.Log("This Black Ore has already been mined.");
         }
-        else
-        {
-            Debug.Log("No mineable resource at current location.");
-        }
-    }
-    public void Purify()
-    {
-        TileObject currentTile = GetCurrentTile();
-        if (currentTile.type == TileType.BlackOre)
-        {
-            CaveTile_BlackOre ore = currentTile.tileInstance as CaveTile_BlackOre;
-
-            if (!ore.isPurified)
-            {
-                player.PerformAction(PlayerAction.Purify, () => ore.Purify());
-            }
-            else
-            {
-                Debug.Log("This Black Ore has already been purified.");
-            }
-        }
-        else
-        {
-            Debug.Log("No purifable resource at current location.");
-        }
-    }
-
-    public void Drill()
-    {
-        TileObject currentTile = GetCurrentTile();
-        if (currentTile.type == TileType.PurpleVein)
-        {
-            CaveTile_PurpleVein vein = currentTile.tileInstance as CaveTile_PurpleVein;
-
-            if (!vein.isDrilled)
-            {
-                player.PerformAction(PlayerAction.Drill, () => vein.Drill());
-            }
-            else
-            {
-                Debug.Log("This Purple Vein has already been drilled.");
-            }
-        }
-        else
-        {
-            Debug.Log("No drillable resource at current location.");
-        }
-    }
-
-    public void Pump()
-    {
-        TileObject currentTile = GetCurrentTile();
-        if (currentTile.type == TileType.PurpleVein)
-        {
-            CaveTile_PurpleVein vein = currentTile.tileInstance as CaveTile_PurpleVein;
-
-            if (vein.isDrilled && !vein.isPumped)
-            {
-                player.PerformAction(PlayerAction.Pump, () =>
-                {
-                    int amountPumped = vein.Pump();
-                    if (amountPumped > 0)
-                    {
-                        AddToInventory(ResourceType.PurpleLiquid, amountPumped);
-                        Debug.Log($"<color=purple>Collected {amountPumped} Purple Liquid.</color>");
-                    }
-                });
-            }
-            else
-            {
-                Debug.Log("Cannot pump! It is either not drilled yet, or already empty.");
-            }
-        }
-        else
-        {
-            Debug.Log("No pumpable resource at current location.");
-        }
+        else Debug.Log("No mineable resource at current location.");
     }
 
     public void Collect()
@@ -395,14 +299,10 @@ public class GameManager : MonoBehaviour
                     int amountCollected = ore.Collect();
                     if (amountCollected > 0)
                     {
-                        AddToInventory(ResourceType.WhiteOre, amountCollected);
+                        AddToInventory("white_ore", amountCollected); // FIXED: Passing String ID!
                         Debug.Log($"<color=white>Collected {amountCollected} White Ore.</color>");
                     }
                 });
-            }
-            else
-            {
-                Debug.Log("Cannot collect! It is either not mined, or already collected.");
             }
         }
         else if (currentTile.type == TileType.BlackOre)
@@ -415,36 +315,61 @@ public class GameManager : MonoBehaviour
                     int amountCollected = ore.Collect();
                     if (amountCollected > 0)
                     {
-                        AddToInventory(ResourceType.BlackOre, amountCollected);
+                        AddToInventory("black_ore", amountCollected); // FIXED: Passing String ID!
                         Debug.Log($"<color=black>Collected {amountCollected} Black Ore.</color>");
                     }
                 });
             }
-            else
-            {
-                Debug.Log("Cannot collect! It is either not mined, or already collected.");
-            }
-        }
-        else
-        {
-            Debug.Log("No collectable resource at current location.");
         }
     }
-    public void Measure()
+    public void Drill()
     {
-        IMeasureable measureableTile = GetCurrentTile().tileInstance as IMeasureable;
-        if (measureableTile != null)
+        TileObject currentTile = GetCurrentTile();
+        if (currentTile.type == TileType.PurpleVein)
         {
-            int measurement = measureableTile.Measured();
-            Debug.Log("Measurement result: " + measurement);
-        }
-        else
-        {
-            Debug.Log("Current tile is not measurable.");
+            CaveTile_PurpleVein vein = currentTile.tileInstance as CaveTile_PurpleVein;
+            if (!vein.isDrilled) player.PerformAction(PlayerAction.Drill, () => vein.Drill());
         }
     }
 
-    private void AddToInventory(ResourceType tileType, int amount)
+    public void Pump()
+    {
+        TileObject currentTile = GetCurrentTile();
+        if (currentTile.type == TileType.PurpleVein)
+        {
+            CaveTile_PurpleVein vein = currentTile.tileInstance as CaveTile_PurpleVein;
+            if (vein.isDrilled && !vein.isPumped)
+            {
+                player.PerformAction(PlayerAction.Pump, () =>
+                {
+                    int amountPumped = vein.Pump();
+                    if (amountPumped > 0)
+                    {
+                        AddToInventory("purple_liquid", amountPumped); // FIXED: Passing String ID!
+                        Debug.Log($"<color=purple>Collected {amountPumped} Purple Liquid.</color>");
+                    }
+                });
+            }
+        }
+    }
+
+    public void Purify()
+    {
+        TileObject currentTile = GetCurrentTile();
+        if (currentTile.type == TileType.BlackOre)
+        {
+            CaveTile_BlackOre ore = currentTile.tileInstance as CaveTile_BlackOre;
+            if (!ore.isPurified) player.PerformAction(PlayerAction.Purify, () => ore.Purify());
+        }
+    }
+
+    public void Measure()
+    {
+        IMeasureable measureableTile = GetCurrentTile().tileInstance as IMeasureable;
+        if (measureableTile != null) Debug.Log("Measurement result: " + measureableTile.Measured());
+    }
+
+    private void AddToInventory(string itemId, int amount)
     {
         if (currentInventoryIndex >= inventorySize)
         {
@@ -452,19 +377,17 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        foreach (ResourceImage tileImage in resourceSprites)
-        {
-            if (tileImage.type == tileType)
-            {
-                inventorySlots[currentInventoryIndex].slotImage.sprite = tileImage.image;
-                inventorySlots[currentInventoryIndex].slotImage.gameObject.SetActive(true);
-                break;
-            }
-        }
+        ItemSO itemData = InventoryManager.instance.GetItemData(itemId);
+        if (itemData == null) return;
+
+        inventorySlots[currentInventoryIndex].slotImage.sprite = itemData.icon;
+        inventorySlots[currentInventoryIndex].slotImage.gameObject.SetActive(true);
         inventorySlots[currentInventoryIndex].slotText.text = amount.ToString();
-        inventory[currentInventoryIndex] = (tileType, amount);
+
+        levelInventory[currentInventoryIndex] = (itemData, amount);
         currentInventoryIndex++;
     }
+
     private void DamagePlayer(int damage)
     {
         Debug.Log($"<color=red>Player took {damage} damage!</color>");
@@ -502,29 +425,46 @@ public class GameManager : MonoBehaviour
 
     private void LevelComplete()
     {
-        int whiteOreCount = 0;
-        int purpleLiquidCount = 0;
-        int blackOreCount = 0;
-        foreach ((ResourceType resourceType, int amount) in inventory)
+        foreach (var collected in levelInventory)
         {
-            switch (resourceType)
+            if (collected.item != null)
             {
-                case ResourceType.WhiteOre:
-                    whiteOreCount += amount;
-                    break;
-                case ResourceType.PurpleLiquid:
-                    purpleLiquidCount += amount;
-                    break;
-                case ResourceType.BlackOre:
-                    blackOreCount += amount;
-                    break;
+                InventoryManager.instance.AddItem(collected.item.itemId, collected.amount);
             }
         }
-        SaveManager.saveData.whiteOre += whiteOreCount;
-        SaveManager.saveData.purpleLiquid += purpleLiquidCount;
-        SaveManager.saveData.blackOre += blackOreCount;
+
+        SaveManager.saveData.inventory = InventoryManager.instance.GetInventoryForSave();
         SaveManager.instance.SaveGame(SaveManager.saveSlotInUse);
+
         Debug.Log("<color=green>Level Completed!</color>");
         UnityEngine.SceneManagement.SceneManager.LoadScene("Hub Scene");
+    }
+
+    public void UseItem(string requestedItemId)
+    {
+        string itemId = requestedItemId.ToLower().Trim();
+
+        ItemSO itemData = InventoryManager.instance.GetItemData(itemId);
+        if (itemData == null)
+        {
+            Debug.Log($"<color=red>Error: The item '{itemId}' does not exist in the game.</color>");
+            return;
+        }
+
+        if (itemData.category != ItemCategory.Consumable)
+        {
+            Debug.Log($"<color=red>Cannot use '{itemData.displayName}': That is a material, not a consumable!</color>");
+            return;
+        }
+
+        if (InventoryManager.instance.GetAmount(itemId) <= 0)
+        {
+            Debug.Log($"<color=red>Cannot use: You don't have any {itemData.displayName}!</color>");
+            return;
+        }
+
+        InventoryManager.instance.DeductItem(itemId, 1);
+
+        Debug.Log($"<color=green>Used {itemData.displayName}!</color>");
     }
 }

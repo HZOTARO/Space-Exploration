@@ -18,17 +18,22 @@ public class HubMenu : MonoBehaviour, IResourceUpdatable
 
     public void UpdateResource(SaveData saveData)
     {
-        if (whiteOreText != null) 
-            whiteOreText.text = SaveManager.saveData.whiteOre.ToString();
+        if (whiteOreText != null)
+            whiteOreText.text = InventoryManager.instance.GetAmount("white_ore").ToString();
+
         if (purpleLiquidText != null)
-            purpleLiquidText.text = SaveManager.saveData.purpleLiquid.ToString();
+            purpleLiquidText.text = InventoryManager.instance.GetAmount("purple_liquid").ToString();
+
         if (blackOreText != null)
-            blackOreText.text = SaveManager.saveData.blackOre.ToString();
+            blackOreText.text = InventoryManager.instance.GetAmount("black_ore").ToString();
+
         if (partsAText != null)
-            partsAText.text = SaveManager.saveData.partsA.ToString();
+            partsAText.text = InventoryManager.instance.GetAmount("parts_a").ToString();
+
         if (partsBText != null)
-            partsBText.text = SaveManager.saveData.partsB.ToString();
+            partsBText.text = InventoryManager.instance.GetAmount("parts_b").ToString();
+
         if (partCText != null)
-            partCText.text = SaveManager.saveData.partsC.ToString();
+            partCText.text = InventoryManager.instance.GetAmount("parts_c").ToString();
     }
 }

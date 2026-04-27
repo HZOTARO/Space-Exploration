@@ -1,7 +1,6 @@
 using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -44,13 +43,17 @@ public class CheatManager : MonoBehaviour, IResourceUpdatable
 
     public void UpdateResource(SaveData saveData)
     {
-        if (saveData == null || saveDataText == null) return;
+        if (saveData == null || saveDataText == null || InventoryManager.instance == null) return;
 
-        saveDataText.text = $"White Ore: {saveData.whiteOre}\n" +
-                            $"Purple Liquid: {saveData.purpleLiquid}\n" +
-                            $"Black Ore: {saveData.blackOre}\n" +
+        // FIXED: Now we ask the InventoryManager for the amounts using the ItemSO IDs
+        int whiteOre = InventoryManager.instance.GetAmount("white_ore");
+        int purpleLiquid = InventoryManager.instance.GetAmount("purple_liquid");
+        int blackOre = InventoryManager.instance.GetAmount("black_ore");
+
+        saveDataText.text = $"White Ore: {whiteOre}\n" +
+                            $"Purple Liquid: {purpleLiquid}\n" +
+                            $"Black Ore: {blackOre}\n" +
                             $"Last Saved: {saveData.lastSavedTime}";
-
     }
 
     void SetupCheatMenu()
@@ -64,9 +67,9 @@ public class CheatManager : MonoBehaviour, IResourceUpdatable
 
         CreateCheatButton("100 White Ore", () =>
         {
-            if (SaveManager.instance != null)
+            if (InventoryManager.instance != null)
             {
-                SaveManager.saveData.whiteOre += 100;
+                InventoryManager.instance.AddItem("white_ore", 100);
                 Debug.Log("<color=green>CHEAT: Added 100 White Ore!</color>");
                 SaveManager.instance.UpdateAllUI();
             }
@@ -74,9 +77,9 @@ public class CheatManager : MonoBehaviour, IResourceUpdatable
 
         CreateCheatButton("100 Purple Liquid", () =>
         {
-            if (SaveManager.instance != null)
+            if (InventoryManager.instance != null)
             {
-                SaveManager.saveData.purpleLiquid += 100;
+                InventoryManager.instance.AddItem("purple_liquid", 100);
                 Debug.Log("<color=green>CHEAT: Added 100 Purple Liquid!</color>");
                 SaveManager.instance.UpdateAllUI();
             }
@@ -84,9 +87,9 @@ public class CheatManager : MonoBehaviour, IResourceUpdatable
 
         CreateCheatButton("100 Black Ore", () =>
         {
-            if (SaveManager.instance != null)
+            if (InventoryManager.instance != null)
             {
-                SaveManager.saveData.blackOre += 100;
+                InventoryManager.instance.AddItem("black_ore", 100);
                 Debug.Log("<color=green>CHEAT: Added 100 Black Ore!</color>");
                 SaveManager.instance.UpdateAllUI();
             }
@@ -96,8 +99,12 @@ public class CheatManager : MonoBehaviour, IResourceUpdatable
         {
             if (SaveManager.instance != null)
             {
+                if (InventoryManager.instance != null) SaveManager.saveData.inventory = InventoryManager.instance.GetInventoryForSave();
+                if (UpgradeManager.instance != null) UpgradeManager.instance.SyncToSaveData();
+
                 SaveManager.instance.SaveGame(SaveManager.saveSlotInUse);
                 Debug.Log("<color=green>CHEAT: Game Saved.</color>");
+                SaveManager.instance.UpdateAllUI();
             }
         });
 
@@ -106,6 +113,11 @@ public class CheatManager : MonoBehaviour, IResourceUpdatable
             if (SaveManager.instance != null)
             {
                 SaveManager.instance.LoadGame(SaveManager.saveSlotInUse);
+
+                // FIXED: Push the newly loaded JSON data into the Managers!
+                if (InventoryManager.instance != null) InventoryManager.instance.LoadInventory(SaveManager.saveData.inventory);
+                if (UpgradeManager.instance != null) UpgradeManager.instance.LoadUpgradesFromSave();
+
                 Debug.Log("<color=green>CHEAT: Save Loaded.</color>");
                 SaveManager.instance.UpdateAllUI();
             }
@@ -117,6 +129,10 @@ public class CheatManager : MonoBehaviour, IResourceUpdatable
             {
                 SaveManager.instance.DeleteSave(SaveManager.saveSlotInUse);
                 SaveManager.instance.CreateNewSaveData();
+
+                if (InventoryManager.instance != null) InventoryManager.instance.LoadInventory(SaveManager.saveData.inventory);
+                if (UpgradeManager.instance != null) UpgradeManager.instance.LoadUpgradesFromSave();
+
                 Debug.Log("<color=red>CHEAT: Save File Deleted.</color>");
                 SaveManager.instance.UpdateAllUI();
             }

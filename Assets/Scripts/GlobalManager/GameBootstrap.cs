@@ -20,6 +20,8 @@ public static class GameBootstrapper
 
         SpawnSystemPrefab("SaveManager");
         SpawnSystemPrefab("PythonExecutor");
+        SpawnSystemPrefab("CraftingManager");
+        SpawnSystemPrefab("InventoryManager");
         SpawnSystemPrefab("UpgradeManager");
 
 #if UNITY_EDITOR || DEVELOPMENT_BUILD

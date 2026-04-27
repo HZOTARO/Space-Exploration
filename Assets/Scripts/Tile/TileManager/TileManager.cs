@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static PlasticPipe.Server.MonitorStats;
 
 public class TileManager : MonoBehaviour
 {
@@ -29,6 +30,15 @@ public class TileManager : MonoBehaviour
         spawnedGrid.name = "Grid";
 
         gridArray = new TileObject[length, width];
+
+        for (int z = 0; z < length; z++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                gridArray[z, x] = new TileObject();
+                gridArray[z, x].type = TileType.Floor;
+            }
+        }
     }
 
     protected void SpawnTilesVisual()
@@ -39,9 +49,16 @@ public class TileManager : MonoBehaviour
         {
             for (int x = 0; x < width; x++)
             {
-                if (gridArray[z, x].type == TileType.Floor || !gridArray[z, x].tileInstance.haveTile)
+                TileObject currentTile = gridArray[z, x];
+
+                bool needsTile = currentTile.type == TileType.Floor ||
+                                 (currentTile.tileInstance != null && !currentTile.tileInstance.haveTile) ||
+                                 currentTile.tileInstance == null;
+
+                if (currentTile.tileInstance == null || currentTile.type == TileType.Floor || !currentTile.tileInstance.haveTile)
                 {
-                    SpawnTileVisual(z, x, currentTilePrefab);
+                    currentTile.tileInstance = SpawnTileVisual(z, x, currentTilePrefab);
+                    currentTile.type = TileType.Floor;
                 }
             }
         }

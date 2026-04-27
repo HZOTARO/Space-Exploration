@@ -46,9 +46,9 @@ public class SkillTreeUI : MonoBehaviour
 
             string costString = "Requires:\n";
             if (nextTier.costs.Length == 0) costString += "- Free\n";
-            foreach (ResourceCost cost in nextTier.costs)
+            foreach (ItemCost cost in nextTier.costs)
             {
-                costString += $"- {cost.amount} {cost.resourceType}\n";
+                costString += $"- {cost.amount} {cost.item.displayName}\n";
             }
             costText.text = costString;
 

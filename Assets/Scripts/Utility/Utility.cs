@@ -8,17 +8,6 @@ public enum Direction
     Right
 }
 
-public enum ResourceType
-{
-    None,
-    WhiteOre,
-    BlackOre,
-    PurpleLiquid,
-    PartA,
-    PartB,
-    PartC
-}
-
 public enum TileType
 {
     None,
@@ -38,8 +27,8 @@ public enum PlayerAction
 }
 
 [System.Serializable]
-public struct ResourceImage
+public struct ItemCost
 {
-    public ResourceType type;
-    public Sprite image;
+    public ItemSO item;
+    public int amount;
 }

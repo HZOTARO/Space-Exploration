@@ -1,15 +1,18 @@
 {
-    "lastSavedTime": "27-04-2026 10:40",
-    "whiteOre": 298,
-    "purpleLiquid": 190,
-    "blackOre": 102,
-    "partsA": 0,
-    "partsB": 0,
-    "partsC": 0,
-    "unlockedUpgrades": [
+    "lastSavedTime": "27-04-2026 18:03",
+    "inventory": [
         {
-            "id": "id",
-            "currentLevel": 2
+            "itemId": "white_ore",
+            "amount": 100
+        },
+        {
+            "itemId": "purple_liquid",
+            "amount": 100
+        },
+        {
+            "itemId": "black_ore",
+            "amount": 300
         }
-    ]
+    ],
+    "unlockedUpgrades": []
 }

@@ -24,12 +24,5 @@ public class UpgradeTier
     [Tooltip("Syntax or Function Unlocked")]
     public string unlockFeatureString;
 
-    public ResourceCost[] costs;
-}
-
-[System.Serializable]
-public struct ResourceCost
-{
-    public ResourceType resourceType;
-    public int amount;
+    public ItemCost[] costs;
 }

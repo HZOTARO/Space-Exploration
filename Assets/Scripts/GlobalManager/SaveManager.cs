@@ -5,6 +5,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 [System.Serializable]
+public struct ItemSaveState
+{
+    public string itemId;
+    public int amount;
+}
+
+[System.Serializable]
 public class UpgradeSaveState
 {
     public string id;
@@ -15,18 +22,10 @@ public class UpgradeSaveState
 public class SaveData
 {
     public string lastSavedTime = "Never";
-
-    // Currency
-    public int whiteOre;
-    public int purpleLiquid;
-    public int blackOre;
-    public int partsA;
-    public int partsB;
-    public int partsC;
-    //public Dictionary<item, int> item
-    //public Dictionary<upgrade, bool> upgrade
-    public List<UpgradeSaveState> unlockedUpgrades;
+    public List<ItemSaveState> inventory = new List<ItemSaveState>();
+    public List<UpgradeSaveState> unlockedUpgrades = new List<UpgradeSaveState>();
 }
+
 public interface IResourceUpdatable
 {
     void UpdateResource(SaveData saveData);
@@ -59,14 +58,12 @@ public class SaveManager : MonoBehaviour
         resourceUpdateables = FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None)
                                         .OfType<IResourceUpdatable>()
                                         .ToArray();
+        UpdateAllUI();
     }
 
     public void CreateNewSaveData()
     {
-        saveData = new SaveData
-        {
-            unlockedUpgrades = new()
-        };
+        saveData = new SaveData();
     }
 
     public void UpdateAllUI()
@@ -151,24 +148,5 @@ public class SaveManager : MonoBehaviour
         }
 
         return null;
-    }
-
-    public int GetResourceAmount(ResourceType type)
-    {
-        if (saveData == null) return 0;
-
-        if (type == ResourceType.WhiteOre) return saveData.whiteOre;
-        if (type == ResourceType.PurpleLiquid) return saveData.purpleLiquid;
-        if (type == ResourceType.BlackOre) return saveData.blackOre;
-        return 0;
-    }
-
-    public void ConsumeResource(ResourceType type, int amount)
-    {
-        if (saveData == null) return;
-
-        if (type == ResourceType.WhiteOre) saveData.whiteOre -= amount;
-        if (type == ResourceType.PurpleLiquid) saveData.purpleLiquid -= amount;
-        if (type == ResourceType.BlackOre) saveData.blackOre -= amount;
     }
 }
