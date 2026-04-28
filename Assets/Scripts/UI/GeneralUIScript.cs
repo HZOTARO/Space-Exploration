@@ -8,34 +8,28 @@ public class GeneralUIScript: MonoBehaviour
     public void PlayGame()
     {
         SaveManager.instance.LoadGame(SaveManager.saveSlotInUse);
-        OpenHubScene();
+        OpenScene(LevelType.Hub);
     }
     public void BackToMainMenu()
     {
         SaveManager.instance.SaveGame(SaveManager.saveSlotInUse);
         SaveManager.saveData = null;
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu Scene");
+        OpenScene(LevelType.MainMenu);
     }
-    public void OpenHubScene()
+
+    private void OpenScene(LevelType levelType)
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Hub Scene");
+        if (LevelManager.instance)
+            LevelManager.instance.OpenScene(levelType);
+        else
+            Debug.LogError("LevelManager instance not found!");
     }
-    public void OpenResourceExplorationScene()
-    {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Resource Exploration Scene");
-    }
-    public void OpenPartsExplorationScene()
-    {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Ruins Scene");
-    }
-    public void OpenCraftingScene()
-    {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Crafting Scene");
-    }
-    public void OpenUpgradeScene()
-    {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Upgrade Scene");
-    }
+    public void OpenHubScene() => OpenScene(LevelType.Hub);
+    public void OpenResourceExplorationScene() => OpenScene(LevelType.ResourceExploration);
+    public void OpenPartsExplorationScene() => OpenScene(LevelType.PartsExploration);
+    public void OpenCraftingScene() => OpenScene(LevelType.CraftingLevel);
+    public void OpenUpgradeScene() => OpenScene(LevelType.UpgradeLevel);
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape) && enableEscape && pauseUI)

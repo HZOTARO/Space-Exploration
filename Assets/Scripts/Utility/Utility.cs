@@ -11,7 +11,7 @@ public enum Direction
 public enum TileType
 {
     None,
-    Floor, // Floor
+    Floor,
     WhiteOre,
     PurpleVein,
     BlackOre,

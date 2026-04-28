@@ -7,7 +7,6 @@ public class UpgradeManager : MonoBehaviour
     public static UpgradeManager instance;
 
     private List<UpgradeSO> allUpgrades = new List<UpgradeSO>();
-
     private Dictionary<string, UpgradeSaveState> playerUpgrades = new Dictionary<string, UpgradeSaveState>();
 
     void Awake()
@@ -17,7 +16,8 @@ public class UpgradeManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
 
-            LoadUpgradesFromResources();
+            UpgradeSO[] loaded = Resources.LoadAll<UpgradeSO>("Upgrades");
+            allUpgrades.AddRange(loaded);
         }
         else
         {
@@ -28,13 +28,6 @@ public class UpgradeManager : MonoBehaviour
     void Start()
     {
         LoadUpgradesFromSave();
-    }
-
-    private void LoadUpgradesFromResources()
-    {
-        UpgradeSO[] loaded = Resources.LoadAll<UpgradeSO>("Upgrades");
-        allUpgrades.AddRange(loaded);
-        Debug.Log($"<color=cyan>UpgradeManager loaded {allUpgrades.Count} upgrades from Resources!</color>");
     }
 
     public void LoadUpgradesFromSave()

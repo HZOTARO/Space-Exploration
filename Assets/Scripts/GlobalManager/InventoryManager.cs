@@ -6,26 +6,28 @@ public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager instance;
 
-    // Runtime inventory for instant lookups
-    private Dictionary<string, int> playerInventory = new Dictionary<string, int>();
-
-    // Database of all items in the game
     private Dictionary<string, ItemSO> itemDatabase = new Dictionary<string, ItemSO>();
+    private Dictionary<string, int> playerInventory = new Dictionary<string, int>();
 
     void Awake()
     {
-        if (instance == null) { instance = this; DontDestroyOnLoad(gameObject); }
-        else { Destroy(gameObject); }
+        if (instance == null) 
+        { 
+            instance = this; 
+            DontDestroyOnLoad(gameObject);
 
-        // 1. Instantly load every item definition from your Resources folder
-        ItemSO[] loadedItems = Resources.LoadAll<ItemSO>("Items");
-        foreach (var item in loadedItems)
+            ItemSO[] loadedItems = Resources.LoadAll<ItemSO>("Items");
+            foreach (ItemSO item in loadedItems)
+            {
+                itemDatabase[item.itemId] = item;
+            }
+        }
+        else 
         {
-            itemDatabase[item.itemId] = item;
+            Destroy(gameObject); 
         }
     }
 
-    // --- SAVE / LOAD ---
     public void LoadInventory(List<ItemSaveState> savedInventory)
     {
         playerInventory.Clear();
@@ -40,10 +42,8 @@ public class InventoryManager : MonoBehaviour
 
     public List<ItemSaveState> GetInventoryForSave()
     {
-        return playerInventory.Select(kvp => new ItemSaveState { itemId = kvp.Key, amount = kvp.Value }).ToList();
+        return playerInventory.Select(itemAmountPair => new ItemSaveState { itemId = itemAmountPair.Key, amount = itemAmountPair.Value }).ToList();
     }
-
-    // --- GENERIC ITEM LOGIC ---
 
     public ItemSO GetItemData(string itemId)
     {
@@ -72,7 +72,6 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    // You can loop through this to populate your UI!
     public Dictionary<string, int> GetAllItems()
     {
         return playerInventory;
