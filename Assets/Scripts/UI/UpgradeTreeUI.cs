@@ -2,7 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class SkillTreeUI : MonoBehaviour
+public class UpgradeTreeUI : MonoBehaviour
 {
     [Header("Side Panel UI")]
     public TextMeshProUGUI titleText;
@@ -12,16 +12,16 @@ public class SkillTreeUI : MonoBehaviour
     public Button actionButton;
     public TextMeshProUGUI actionButtonText;
 
-    private SkillTreeNode currentlySelectedNode;
-    private SkillTreeNode[] allNodes;
+    private UpgradeNode currentlySelectedNode;
+    private UpgradeNode[] allNodes;
 
     void Start()
     {
-        allNodes = GetComponentsInChildren<SkillTreeNode>();
+        allNodes = GetComponentsInChildren<UpgradeNode>();
         ClearPanel();
     }
 
-    public void SelectNode(SkillTreeNode node)
+    public void SelectNode(UpgradeNode node)
     {
         currentlySelectedNode = node;
         UpgradeSO data = node.upgradeData;
@@ -82,13 +82,13 @@ public class SkillTreeUI : MonoBehaviour
 
     public void RefreshAllNodes()
     {
-        foreach (SkillTreeNode node in allNodes)
+        foreach (UpgradeNode node in allNodes)
         {
             node.RefreshVisuals();
         }
     }
 
-    private void ClearPanel()
+    public void ClearPanel()
     {
         titleText.text = "Select an Upgrade";
         descriptionText.text = "";

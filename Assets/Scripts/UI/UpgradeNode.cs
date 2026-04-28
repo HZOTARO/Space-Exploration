@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SkillTreeNode : MonoBehaviour
+public class UpgradeNode : MonoBehaviour
 {
     public UpgradeSO upgradeData;
 
@@ -14,11 +14,11 @@ public class SkillTreeNode : MonoBehaviour
     public Color availableColor = Color.white;             
     public Color maxedColor = Color.green;                 
 
-    private SkillTreeUI treeUI;
+    private UpgradeTreeUI treeUI;
 
     void Start()
     {
-        treeUI = FindFirstObjectByType<SkillTreeUI>();
+        treeUI = FindFirstObjectByType<UpgradeTreeUI>();
         nodeButton.onClick.AddListener(OnClick);
         RefreshVisuals();
     }

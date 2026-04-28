@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6452a0322fa80f47b297932ad9d7802, type: 3}
+  m_Name: Test Recipe
+  m_EditorClassIdentifier: UtilityScriptIWrite::CraftingRecipeSO
+  recipeId: recipe_id
+  recipeName: This is Recipe Name
+  description: This is test recipe Description
+  materialsRequired:
+  - item: {fileID: 11400000, guid: e4df0c43eb096624da6b2581c1e6a2df, type: 2}
+    amount: 2
+  - item: {fileID: 11400000, guid: 6fd164fd5d34a6c4dae656987cf93902, type: 2}
+    amount: 1
+  - item: {fileID: 11400000, guid: 350a3dc53def83941a8d8d4444a74578, type: 2}
+    amount: 3
+  baseOutput:
+    item: {fileID: 11400000, guid: a3f8e3856257e444a9112e0f24d74950, type: 2}
+    amount: 1
+  puzzleSceneName: 

@@ -61,6 +61,10 @@ public class InventoryManager : MonoBehaviour
     {
         if (!playerInventory.ContainsKey(itemId)) playerInventory[itemId] = 0;
         playerInventory[itemId] += amount;
+        if (SaveManager.instance != null)
+        {
+            SaveManager.instance.UpdateAllUI();
+        }
     }
 
     public void DeductItem(string itemId, int amount)
@@ -69,6 +73,11 @@ public class InventoryManager : MonoBehaviour
         {
             playerInventory[itemId] -= amount;
             if (playerInventory[itemId] < 0) playerInventory[itemId] = 0;
+
+            if (SaveManager.instance != null)
+            {
+                SaveManager.instance.UpdateAllUI();
+            }
         }
     }
 

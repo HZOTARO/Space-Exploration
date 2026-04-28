@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 510a7592fff21df42be2ebd983fd262c, type: 3}
-  m_Name: Resource Exploration Upgrade
+  m_Name: Test Upgrade
   m_EditorClassIdentifier: GlobalManagerScriptIWrite::UpgradeSO
   id: id
   upgradeName: Upgrade Name
   prerequisiteUpgrade: {fileID: 0}
   prerequisiteLevelRequired: 1
   tiers:
-  - description: This Is Description
+  - description: Tier 1 Description
     requiresPuzzleToUnlock: 0
     unlockFeatureString: 
     costs:
@@ -25,7 +25,7 @@ MonoBehaviour:
       amount: 3
     - item: {fileID: 11400000, guid: 350a3dc53def83941a8d8d4444a74578, type: 2}
       amount: 2
-  - description: Tier 2
+  - description: Tier 2 Description
     requiresPuzzleToUnlock: 0
     unlockFeatureString: 
     costs:

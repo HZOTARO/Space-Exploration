@@ -45,7 +45,6 @@ public class CheatManager : MonoBehaviour, IResourceUpdatable
     {
         if (saveData == null || saveDataText == null || InventoryManager.instance == null) return;
 
-        // FIXED: Now we ask the InventoryManager for the amounts using the ItemSO IDs
         int whiteOre = InventoryManager.instance.GetAmount("white_ore");
         int purpleLiquid = InventoryManager.instance.GetAmount("purple_liquid");
         int blackOre = InventoryManager.instance.GetAmount("black_ore");

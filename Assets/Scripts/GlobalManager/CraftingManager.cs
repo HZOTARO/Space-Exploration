@@ -29,6 +29,11 @@ public class CraftingManager : MonoBehaviour
         return allRecipes.FirstOrDefault(recipe => recipe.recipeId == id);
     }
 
+    public List<CraftingRecipeSO> GetAllRecipes()
+    {
+        return allRecipes;
+    }
+
     public bool CanAffordRecipe(CraftingRecipeSO recipe)
     {
         foreach (ItemCost cost in recipe.materialsRequired)

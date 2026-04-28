@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 510a7592fff21df42be2ebd983fd262c, type: 3}
+  m_Name: Test Upgrade With Requirement
+  m_EditorClassIdentifier: GlobalManagerScriptIWrite::UpgradeSO
+  id: id2
+  upgradeName: Upgrade Name W Req
+  prerequisiteUpgrade: {fileID: 11400000, guid: 452d985a78fd5b14e9470002b88b7a9a, type: 2}
+  prerequisiteLevelRequired: 1
+  tiers:
+  - description: Tier 1 Description
+    requiresPuzzleToUnlock: 0
+    unlockFeatureString: 
+    costs:
+    - item: {fileID: 11400000, guid: 6fd164fd5d34a6c4dae656987cf93902, type: 2}
+      amount: 3
+    - item: {fileID: 11400000, guid: 350a3dc53def83941a8d8d4444a74578, type: 2}
+      amount: 2
+  - description: Tier 2 Description
+    requiresPuzzleToUnlock: 0
+    unlockFeatureString: 
+    costs:
+    - item: {fileID: 11400000, guid: e4df0c43eb096624da6b2581c1e6a2df, type: 2}
+      amount: 10

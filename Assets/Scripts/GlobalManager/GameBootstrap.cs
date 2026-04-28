@@ -18,15 +18,16 @@ public static class GameBootstrapper
             Debug.Log("Bootstrapper: Python Engine Started.");
         }
 
-        SpawnSystemPrefab("SaveManager");
         SpawnSystemPrefab("PythonExecutor");
         SpawnSystemPrefab("CraftingManager");
         SpawnSystemPrefab("InventoryManager");
         SpawnSystemPrefab("UpgradeManager");
+        SpawnSystemPrefab("LevelManager");
+        SpawnSystemPrefab("SaveManager");
 
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
         SpawnSystemPrefab("CheatManager");
-        if (SceneManager.GetActiveScene().name != "Main Menu")
+        if (SceneManager.GetActiveScene().name != "Main Menu Scene")
         {
             SaveManager.instance.LoadGame(SaveManager.saveSlotInUse);
         }

@@ -92,6 +92,16 @@ public class SaveManager : MonoBehaviour
 
     public void SaveGame(int slotNumber)
     {
+        if (InventoryManager.instance != null)
+        {
+            saveData.inventory = InventoryManager.instance.GetInventoryForSave();
+        }
+
+        if (UpgradeManager.instance != null)
+        {
+            UpgradeManager.instance.SyncToSaveData();
+        }
+
         saveData.lastSavedTime = System.DateTime.Now.ToString("dd-MM-yyyy HH:mm");
 
         string json = JsonUtility.ToJson(saveData, true);
@@ -109,13 +119,19 @@ public class SaveManager : MonoBehaviour
             string json = File.ReadAllText(path);
             saveData = JsonUtility.FromJson<SaveData>(json);
 
-            Debug.Log($"Successfully loaded game from Slot {slotNumber}");
+            Debug.Log($"<color=green>Successfully loaded game from Slot {slotNumber}</color>");
         }
         else
         {
             Debug.LogWarning($"Save Slot {slotNumber} is empty. Creating fresh data!");
             CreateNewSaveData();
         }
+
+        if (InventoryManager.instance != null)
+            InventoryManager.instance.LoadInventory(saveData.inventory);
+
+        if (UpgradeManager.instance != null)
+            UpgradeManager.instance.LoadUpgradesFromSave();
     }
 
     public bool DoesSaveExist(int slotNumber)
@@ -133,7 +149,7 @@ public class SaveManager : MonoBehaviour
             Debug.Log($"Deleted save data in Slot {slotNumber}");
         }
 
-        CreateNewSaveData();
+        LoadGame(slotNumber);
     }
 
     public SaveData GetSaveData(int slotNumber)
