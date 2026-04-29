@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77ec8656e80b2a74c8115d4995d6e9d5, type: 3}
-  m_Name: Black Ore
+  m_Name: Part A
   m_EditorClassIdentifier: UtilityScriptIWrite::ItemSO
-  itemId: black_ore
-  displayName: Black Ore
-  icon: {fileID: 21300000, guid: 56894bf3c2c67964f80788bb0e6c7e46, type: 3}
+  itemId: part_a
+  displayName: Part A
+  icon: {fileID: 21300000, guid: 7c94b9b7698324b4cb0d496df135b5e7, type: 3}
   category: 0
   description: 
