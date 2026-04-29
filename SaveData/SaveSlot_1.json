@@ -1,5 +1,5 @@
 {
-    "lastSavedTime": "28-04-2026 14:26",
+    "lastSavedTime": "29-04-2026 12:24",
     "inventory": [
         {
             "itemId": "white_ore",
@@ -11,7 +11,7 @@
         },
         {
             "itemId": "black_ore",
-            "amount": 87
+            "amount": 90
         }
     ],
     "unlockedUpgrades": [

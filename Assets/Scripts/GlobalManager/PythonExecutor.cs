@@ -222,7 +222,6 @@ public class PythonExecutor : MonoBehaviour
         using (Py.GIL())
         {
             var result = pyStepFunc().ToString();
-            Debug.Log("Python result: " + result);
 
             if (result == "DONE")
             {
@@ -268,7 +267,6 @@ public class PythonExecutor : MonoBehaviour
 
     void LogFromPython(string message)
     {
-        Debug.Log(message);
         OnPythonPrint?.Invoke(message);
     }
 

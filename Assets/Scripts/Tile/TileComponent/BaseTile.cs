@@ -6,4 +6,6 @@ public class BaseTile : MonoBehaviour
     public bool haveTile = false;
     [HideInInspector]
     public int z, x;
+
+    public ItemSO itemOnTile;
 }

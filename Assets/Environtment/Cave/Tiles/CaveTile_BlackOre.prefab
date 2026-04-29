@@ -232,6 +232,7 @@ MonoBehaviour:
   haveTile: 0
   z: 0
   x: 0
+  itemOnTile: {fileID: 11400000, guid: e4df0c43eb096624da6b2581c1e6a2df, type: 2}
   isMined: 0
   isCollected: 0
   isPurified: 0

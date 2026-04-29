@@ -1,9 +1,10 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Text;
+using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Text;
-using System.Collections;
-using System.Text.RegularExpressions;
 
 [System.Serializable]
 public struct SyntaxGroup
@@ -57,9 +58,64 @@ public class CodeEditor : MonoBehaviour
 
     void Start()
     {
-        InitializeSyntaxGroups();
-
         gameManager = FindFirstObjectByType<GameManager>();
+
+        List<string> bannedKeywordsForUI = new List<string>();
+        if (gameManager)
+        {
+            bannedKeywordsForUI.AddRange(gameManager.bannedFunctions);
+
+            // 1. Loops & Iteration
+            if (gameManager.bannedSyntaxNodes.Contains("For")) bannedKeywordsForUI.Add("for");
+            if (gameManager.bannedSyntaxNodes.Contains("While")) bannedKeywordsForUI.Add("while");
+            if (gameManager.bannedSyntaxNodes.Contains("Break")) bannedKeywordsForUI.Add("break");
+            if (gameManager.bannedSyntaxNodes.Contains("Continue")) bannedKeywordsForUI.Add("continue");
+
+            // 2. Functions & Classes
+            if (gameManager.bannedSyntaxNodes.Contains("FunctionDef")) bannedKeywordsForUI.Add("def");
+            if (gameManager.bannedSyntaxNodes.Contains("ClassDef")) bannedKeywordsForUI.Add("class");
+            if (gameManager.bannedSyntaxNodes.Contains("Return")) bannedKeywordsForUI.Add("return");
+            if (gameManager.bannedSyntaxNodes.Contains("Yield")) bannedKeywordsForUI.Add("yield");
+            if (gameManager.bannedSyntaxNodes.Contains("Lambda")) bannedKeywordsForUI.Add("lambda");
+
+            // 3. Control Flow
+            if (gameManager.bannedSyntaxNodes.Contains("If"))
+            {
+                bannedKeywordsForUI.Add("if");
+                bannedKeywordsForUI.Add("else");
+                bannedKeywordsForUI.Add("elif");
+            }
+            if (gameManager.bannedSyntaxNodes.Contains("Pass")) bannedKeywordsForUI.Add("pass");
+
+            // 4. Exception Handling
+            if (gameManager.bannedSyntaxNodes.Contains("Try"))
+            {
+                bannedKeywordsForUI.Add("try");
+                bannedKeywordsForUI.Add("finally");
+            }
+            if (gameManager.bannedSyntaxNodes.Contains("ExceptHandler")) bannedKeywordsForUI.Add("except");
+            if (gameManager.bannedSyntaxNodes.Contains("Raise")) bannedKeywordsForUI.Add("raise");
+            if (gameManager.bannedSyntaxNodes.Contains("Assert")) bannedKeywordsForUI.Add("assert");
+
+            // 5. Imports & Context Managers
+            if (gameManager.bannedSyntaxNodes.Contains("Import")) bannedKeywordsForUI.Add("import");
+            if (gameManager.bannedSyntaxNodes.Contains("ImportFrom"))
+            {
+                bannedKeywordsForUI.Add("from");
+                bannedKeywordsForUI.Add("import");
+            }
+            if (gameManager.bannedSyntaxNodes.Contains("With"))
+            {
+                bannedKeywordsForUI.Add("with");
+                bannedKeywordsForUI.Add("as");
+            }
+
+            // 6. Variables & Scoping
+            if (gameManager.bannedSyntaxNodes.Contains("Global")) bannedKeywordsForUI.Add("global");
+            if (gameManager.bannedSyntaxNodes.Contains("Nonlocal")) bannedKeywordsForUI.Add("nonlocal");
+            if (gameManager.bannedSyntaxNodes.Contains("Delete")) bannedKeywordsForUI.Add("del");
+        }
+        InitializeSyntaxGroups(bannedKeywordsForUI);
 
         if (inputField != null)
         {
@@ -91,33 +147,70 @@ public class CodeEditor : MonoBehaviour
         RemoveHighlight();
     }
 
-    private void InitializeSyntaxGroups()
+    private void InitializeSyntaxGroups(List<string> bannedWords)
     {
         syntaxGroups = new SyntaxGroup[]
         {
             new SyntaxGroup
             {
-                groupName = "Control Flow",
-                color = new Color(0.85f, 0.43f, 0.83f),
-                keywords = new string[] { "for", "in", "while", "if", "else", "elif", "return", "def", "class" }
+                groupName = "Banned",
+                color = Color.red,
+                keywords = bannedWords.ToArray()
             },
+
+            new SyntaxGroup
+            {
+                groupName = "Game Commands",
+                color = new Color(0.2f, 0.8f, 0.4f), // Bright Green
+                keywords = new string[]
+                {
+                    "move_up", "move_down", "move_left", "move_right",
+                    "mine", "collect", "purify", "drill", "pump",
+                    "measure", "go_back", "scan", "use_item"
+                }
+            },
+
+            new SyntaxGroup
+            {
+                groupName = "Control Flow",
+                color = new Color(0.85f, 0.43f, 0.83f), // Purple
+                keywords = new string[]
+                {
+                    "for", "in", "while", "if", "else", "elif", "return", "def", "class",
+                    "try", "except", "finally", "with", "as", "pass", "break", "continue",
+                    "yield", "import", "from", "global", "nonlocal", "lambda", "del",
+                    "assert", "await", "async"
+                }
+            },
+
             new SyntaxGroup
             {
                 groupName = "Logic",
-                color = new Color(0.33f, 0.66f, 1f),
+                color = new Color(0.33f, 0.66f, 1f), // Blue
                 keywords = new string[] { "and", "or", "not", "is" }
             },
+
             new SyntaxGroup
             {
                 groupName = "Booleans & Types",
-                color = new Color(1f, 0.64f, 0f),
-                keywords = new string[] { "True", "False", "None", "int", "float", "str", "bool" }
+                color = new Color(1f, 0.64f, 0f), // Orange
+                keywords = new string[]
+                {
+                    "True", "False", "None", "int", "float", "str", "bool",
+                    "list", "dict", "set", "tuple", "self"
+                }
             },
+
             new SyntaxGroup
             {
                 groupName = "Built-in Functions",
-                color = new Color(0.86f, 0.86f, 0.67f),
-                keywords = new string[] { "print", "range", "len", "type" }
+                color = new Color(0.96f, 0.96f, 0.67f), // Light Yellow
+                keywords = new string[]
+                {
+                    "print", "range", "len", "type", "abs", "max", "min", "sum",
+                    "round", "enumerate", "zip", "map", "filter", "input", "open",
+                    "dir", "help", "super"
+                }
             }
         };
     }
@@ -248,8 +341,8 @@ public class CodeEditor : MonoBehaviour
         {
             Abort();
             isPlaying = false;
-            if (gameManager.InAction()) 
-            { 
+            if (gameManager.InAction())
+            {
                 aborting = true;
                 return;
             }
@@ -387,7 +480,13 @@ public class CodeEditor : MonoBehaviour
         // Sync line numbers and highlight with scrolling
         if (inputField != null)
         {
-            float scrollY = inputField.textComponent.rectTransform.anchoredPosition.y;
+            Vector2 inputScrollPos = inputField.textComponent.rectTransform.anchoredPosition;
+            float scrollY = inputScrollPos.y;
+
+            if (syntaxOverlayText != null)
+            {
+                syntaxOverlayText.rectTransform.anchoredPosition = inputScrollPos;
+            }
 
             if (lineNumbersText != null)
             {
@@ -409,7 +508,25 @@ public class CodeEditor : MonoBehaviour
     {
         if (syntaxOverlayText == null || syntaxGroups == null) return;
 
-        string coloredText = rawText;
+        string extractionPattern = "(\"\"\"[\\s\\S]*?(\"\"\"|$)|'''[\\s\\S]*?('''|$)|#.*|\"[^\\n]*?\"|'[^\\n]*?'|\"[^\\n]*|'[^\\n]*)";
+
+        List<string> extractedTexts = new List<string>();
+        List<string> extractedColors = new List<string>();
+
+        string stringColorHex = "CE9178";
+        string commentColorHex = "6A9955";
+
+        string processedText = Regex.Replace(rawText, extractionPattern, match =>
+        {
+            extractedTexts.Add(match.Value);
+
+            if (match.Value.StartsWith("#"))
+                extractedColors.Add(commentColorHex);
+            else
+                extractedColors.Add(stringColorHex);
+
+            return $"___EXT{extractedTexts.Count - 1}___";
+        });
 
         foreach (SyntaxGroup group in syntaxGroups)
         {
@@ -418,12 +535,17 @@ public class CodeEditor : MonoBehaviour
             foreach (string word in group.keywords)
             {
                 string pattern = @"\b" + word + @"\b";
-
-                coloredText = Regex.Replace(coloredText, pattern, $"<color=#{hexColor}>{word}</color>");
+                processedText = Regex.Replace(processedText, pattern, $"<color=#{hexColor}>{word}</color>");
             }
         }
 
-        syntaxOverlayText.text = coloredText;
+        for (int i = 0; i < extractedTexts.Count; i++)
+        {
+            string coloredElement = $"<color=#{extractedColors[i]}>{extractedTexts[i]}</color>";
+            processedText = processedText.Replace($"___EXT{i}___", coloredElement);
+        }
+
+        syntaxOverlayText.text = processedText;
     }
 
     private void FastAbortCheck()

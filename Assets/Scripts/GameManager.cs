@@ -35,8 +35,35 @@ public class GameManager : MonoBehaviour
     private List<(Image slotImage, TextMeshProUGUI slotText)> inventorySlots = new List<(Image slotImage, TextMeshProUGUI slotText)>();
 
     [Header("Level Restrictions (Python)")]
-    public List<string> bannedSyntaxNodes = new List<string>();
-    public List<string> bannedFunctions = new List<string>();
+    public List<string> levelBannedSyntaxNodes = new List<string>();
+    public List<string> levelBannedFunctions = new List<string>();
+
+    [HideInInspector] public List<string> bannedSyntaxNodes = new List<string>();
+    [HideInInspector] public List<string> bannedFunctions = new List<string>();
+
+    void Awake()
+    {
+        List<string> permanentlyBannedSyntax = new List<string>
+        {
+            "ClassDef", "Yield", "YieldFrom", "Lambda", "Import", "ImportFrom",
+            "Try", "ExceptHandler", "Raise", "With", "Global", "Nonlocal",
+            "AsyncFunctionDef", "Await", "Delete", "Assert"
+        };
+
+        List<string> permanentlyBannedFunctions = new List<string>
+        {
+            "eval", "exec", "open", "compile", "__import__", "globals", "locals",
+            "getattr", "setattr", "delattr", "hasattr", "input", "super", "dir", "help", "memoryview"
+        };
+
+        bannedSyntaxNodes = new List<string>(permanentlyBannedSyntax);
+        bannedSyntaxNodes.AddRange(levelBannedSyntaxNodes);
+
+        bannedFunctions = new List<string>(permanentlyBannedFunctions);
+        bannedFunctions.AddRange(levelBannedFunctions);
+
+        PythonExecutor.instance.InitializePythonBans(bannedSyntaxNodes.ToArray(), bannedFunctions.ToArray());
+    }
 
     void Start()
     {
@@ -61,10 +88,6 @@ public class GameManager : MonoBehaviour
         }
 
         StartCoroutine(SetupInventory());
-
-        bannedSyntaxNodes = new List<string> { "For", "While", "FunctionDef" };
-        bannedFunctions = new List<string> { "print", "range" };
-        PythonExecutor.instance.InitializePythonBans(bannedSyntaxNodes.ToArray(), bannedFunctions.ToArray());
 
         RegisterPythonCommands();
 
@@ -201,6 +224,7 @@ public class GameManager : MonoBehaviour
 
     public void PrintToDisplay(string message)
     {
+        Debug.Log(message);
         if (terminalText == null) return;
 
         terminalText.text += "> " + message + "\n";
@@ -299,7 +323,7 @@ public class GameManager : MonoBehaviour
                     int amountCollected = ore.Collect();
                     if (amountCollected > 0)
                     {
-                        AddToInventory("white_ore", amountCollected); // FIXED: Passing String ID!
+                        AddToInventory(ore.itemOnTile, amountCollected);
                         Debug.Log($"<color=white>Collected {amountCollected} White Ore.</color>");
                     }
                 });
@@ -315,7 +339,7 @@ public class GameManager : MonoBehaviour
                     int amountCollected = ore.Collect();
                     if (amountCollected > 0)
                     {
-                        AddToInventory("black_ore", amountCollected); // FIXED: Passing String ID!
+                        AddToInventory(ore.itemOnTile, amountCollected);
                         Debug.Log($"<color=black>Collected {amountCollected} Black Ore.</color>");
                     }
                 });
@@ -345,7 +369,7 @@ public class GameManager : MonoBehaviour
                     int amountPumped = vein.Pump();
                     if (amountPumped > 0)
                     {
-                        AddToInventory("purple_liquid", amountPumped); // FIXED: Passing String ID!
+                        AddToInventory(vein.itemOnTile, amountPumped);
                         Debug.Log($"<color=purple>Collected {amountPumped} Purple Liquid.</color>");
                     }
                 });
@@ -369,7 +393,7 @@ public class GameManager : MonoBehaviour
         if (measureableTile != null) Debug.Log("Measurement result: " + measureableTile.Measured());
     }
 
-    private void AddToInventory(string itemId, int amount)
+    private void AddToInventory(ItemSO item, int amount)
     {
         if (currentInventoryIndex >= inventorySize)
         {
@@ -377,14 +401,13 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        ItemSO itemData = InventoryManager.instance.GetItemData(itemId);
-        if (itemData == null) return;
+        if (item == null) return;
 
-        inventorySlots[currentInventoryIndex].slotImage.sprite = itemData.icon;
+        inventorySlots[currentInventoryIndex].slotImage.sprite = item.icon;
         inventorySlots[currentInventoryIndex].slotImage.gameObject.SetActive(true);
         inventorySlots[currentInventoryIndex].slotText.text = amount.ToString();
 
-        levelInventory[currentInventoryIndex] = (itemData, amount);
+        levelInventory[currentInventoryIndex] = (item, amount);
         currentInventoryIndex++;
     }
 
