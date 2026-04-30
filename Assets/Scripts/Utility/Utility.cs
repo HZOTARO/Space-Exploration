@@ -27,7 +27,7 @@ public enum PlayerAction
 }
 
 [System.Serializable]
-public struct ItemCost
+public struct ItemAmount
 {
     public ItemSO item;
     public int amount;

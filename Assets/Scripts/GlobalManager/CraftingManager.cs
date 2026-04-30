@@ -36,7 +36,7 @@ public class CraftingManager : MonoBehaviour
 
     public bool CanAffordRecipe(CraftingRecipeSO recipe)
     {
-        foreach (ItemCost cost in recipe.materialsRequired)
+        foreach (ItemAmount cost in recipe.materialsRequired)
         {
             if (InventoryManager.instance.GetAmount(cost.item.itemId) < cost.amount)
                 return false;
@@ -64,7 +64,7 @@ public class CraftingManager : MonoBehaviour
         CraftingRecipeSO recipe = GetRecipe(recipeId);
         if (recipe == null || !CanAffordRecipe(recipe)) return;
 
-        foreach (ItemCost cost in recipe.materialsRequired)
+        foreach (ItemAmount cost in recipe.materialsRequired)
         {
             InventoryManager.instance.DeductItem(cost.item.itemId, cost.amount);
         }

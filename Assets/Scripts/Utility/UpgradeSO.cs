@@ -5,6 +5,7 @@ public class UpgradeSO : ScriptableObject
 {
     public string id;
     public string upgradeName;
+    public Sprite icon;
 
     [Header("Requirements")]
     public UpgradeSO prerequisiteUpgrade;
@@ -24,5 +25,5 @@ public class UpgradeTier
     [Tooltip("Syntax or Function Unlocked")]
     public string unlockFeatureString;
 
-    public ItemCost[] costs;
+    public ItemAmount[] costs;
 }

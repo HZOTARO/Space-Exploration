@@ -569,7 +569,7 @@ MonoBehaviour:
   inputField: {fileID: 5866017218640950339}
   highlightImage: {fileID: 685092554240524903}
   syntaxOverlayText: {fileID: 5155222603106450178}
-  tabSize: 4
+  tabSize: 2
   lineNumbersText: {fileID: 600336649651942521}
   playButton: {fileID: 3312565483515883258}
   pauseButton: {fileID: 3759550605808387913}

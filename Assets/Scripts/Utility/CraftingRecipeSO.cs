@@ -8,9 +8,9 @@ public class CraftingRecipeSO : ScriptableObject
     public string recipeName;
     [TextArea] public string description;
 
-    public List<ItemCost> materialsRequired = new List<ItemCost>();
+    public List<ItemAmount> materialsRequired = new List<ItemAmount>();
 
-    public ItemCost baseOutput;
+    public ItemAmount baseOutput;
 
     public string puzzleSceneName;
 }

@@ -62,7 +62,7 @@ public class CraftingUI : MonoBehaviour
 
         foreach (Transform child in costContainer) Destroy(child.gameObject);
 
-        foreach (ItemCost cost in data.materialsRequired)
+        foreach (ItemAmount cost in data.materialsRequired)
         {
             GameObject newSlot = Instantiate(costSlotPrefab, costContainer);
             ItemSlotUI slotUI = newSlot.GetComponent<ItemSlotUI>();

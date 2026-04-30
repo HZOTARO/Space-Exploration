@@ -27,12 +27,12 @@ public class GameManager : MonoBehaviour
     private int maxLines = 10;
 
     [Header("Inventory")]
-    [Range(6, 10)]
+    [Range(1, 15)]
     public int inventorySize = 6;
     private int currentInventoryIndex = 0;
     public Transform inventoryUI;
-    private List<(ItemSO item, int amount)> levelInventory = new List<(ItemSO item, int amount)>();
-    private List<(Image slotImage, TextMeshProUGUI slotText)> inventorySlots = new List<(Image slotImage, TextMeshProUGUI slotText)>();
+    private List<ItemAmount> levelInventory = new List<ItemAmount>();
+    private List<ItemSlotUI> inventorySlots = new List<ItemSlotUI>();
 
     [Header("Level Restrictions (Python)")]
     public List<string> levelBannedSyntaxNodes = new List<string>();
@@ -138,22 +138,9 @@ public class GameManager : MonoBehaviour
                     continue;
                 }
 
-                Image slotImage = null;
-                TextMeshProUGUI slotText = null;
+                ItemSlotUI itemSlot = slotTransform.GetComponentInChildren<ItemSlotUI>();
 
-                foreach (Transform slotElement in slotTransform.GetChild(0))
-                {
-                    if (slotElement.TryGetComponent<Image>(out Image image))
-                    {
-                        slotImage = image;
-                    }
-                    if (slotElement.TryGetComponent<TextMeshProUGUI>(out TextMeshProUGUI text))
-                    {
-                        slotText = text;
-                    }
-                }
-
-                if (slotImage && slotText)
+                if (itemSlot)
                 {
                     template = slotTransform;
                     template.gameObject.SetActive(false);
@@ -169,28 +156,15 @@ public class GameManager : MonoBehaviour
                     newSlot.gameObject.SetActive(true);
                     newSlot.name = $"Slot ({i + 1})";
 
-                    Image newImage = null;
-                    TextMeshProUGUI newText = null;
+                    ItemSlotUI newItemSlot = newSlot.GetComponentInChildren<ItemSlotUI>();
 
-                    foreach (Transform newSlotBackground in newSlot.GetChild(0))
-                    {
-                        if (newSlotBackground.TryGetComponent<Image>(out Image image))
-                        {
-                            newImage = image;
-                        }
-                        if (newSlotBackground.TryGetComponent<TextMeshProUGUI>(out TextMeshProUGUI text))
-                        {
-                            newText = text;
-                        }
-                    }
+                    inventorySlots.Add(newItemSlot);
+                    levelInventory.Add(new ItemAmount { item = null, amount = 0 });
 
-                    inventorySlots.Add((newImage, newText));
-                    levelInventory.Add((null, 0));
-
-                    inventorySlots[i].slotImage.sprite = null;
-                    inventorySlots[i].slotImage.gameObject.SetActive(false);
-                    inventorySlots[i].slotText.text = "";
-                    inventorySlots[i].slotText.fontSize = 30 + 6 * ((10 - inventorySize) / 4);
+                    inventorySlots[i].itemIcon.sprite = null;
+                    inventorySlots[i].itemIcon.gameObject.SetActive(false);
+                    inventorySlots[i].amountText.text = "";
+                    inventorySlots[i].amountText.fontSize = 30 + 6 * ((10 - Mathf.Min(Mathf.Max(inventorySize, 6), 10)) / (10 - 6));
 
                     if (i == inventorySize - 1)
                     {
@@ -204,6 +178,7 @@ public class GameManager : MonoBehaviour
                     float offset = slotRectTransform.offsetMax.y;
                     RectTransform inventoryRectTransform = inventoryUI.GetComponent<RectTransform>();
                     inventoryRectTransform.anchoredPosition += new Vector2(0f, offset);
+                    inventoryRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, Mathf.Min(inventorySize * 150, 910));
                 }
             }
             else
@@ -403,11 +378,10 @@ public class GameManager : MonoBehaviour
 
         if (item == null) return;
 
-        inventorySlots[currentInventoryIndex].slotImage.sprite = item.icon;
-        inventorySlots[currentInventoryIndex].slotImage.gameObject.SetActive(true);
-        inventorySlots[currentInventoryIndex].slotText.text = amount.ToString();
-
-        levelInventory[currentInventoryIndex] = (item, amount);
+        inventorySlots[currentInventoryIndex].Setup(item, amount);
+        inventorySlots[currentInventoryIndex].itemIcon.gameObject.SetActive(true);
+        
+        levelInventory[currentInventoryIndex] = new ItemAmount { item = item, amount = amount };
         currentInventoryIndex++;
     }
 
@@ -448,7 +422,7 @@ public class GameManager : MonoBehaviour
 
     private void LevelComplete()
     {
-        foreach (var collected in levelInventory)
+        foreach (ItemAmount collected in levelInventory)
         {
             if (collected.item != null)
             {

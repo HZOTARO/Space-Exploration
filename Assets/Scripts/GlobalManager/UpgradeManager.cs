@@ -92,7 +92,7 @@ public class UpgradeManager : MonoBehaviour
         if (!HasPrerequisite(upgrade)) return false;
 
         UpgradeTier nextTier = upgrade.tiers[nextLevel];
-        foreach (ItemCost cost in nextTier.costs)
+        foreach (ItemAmount cost in nextTier.costs)
         {
             if (InventoryManager.instance.GetAmount(cost.item.itemId) < cost.amount) return false;
         }
@@ -141,7 +141,7 @@ public class UpgradeManager : MonoBehaviour
 
     private void TierUpgradeConsumeResource(UpgradeTier tier)
     {
-        foreach (ItemCost cost in tier.costs)
+        foreach (ItemAmount cost in tier.costs)
         {
             InventoryManager.instance.DeductItem(cost.item.itemId, cost.amount);
         }
