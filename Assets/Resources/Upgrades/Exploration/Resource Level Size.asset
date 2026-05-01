@@ -17,4 +17,8 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 2178131416879b648922ec344e820711, type: 3}
   prerequisiteUpgrade: {fileID: 0}
   prerequisiteLevelRequired: 1
-  tiers: []
+  tiers:
+  - description: 
+    requiresPuzzleToUnlock: 0
+    unlockFeatureString: 
+    costs: []

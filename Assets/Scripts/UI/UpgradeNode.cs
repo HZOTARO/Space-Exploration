@@ -15,11 +15,11 @@ public class UpgradeNode : MonoBehaviour
     public Color availableColor = Color.white;             
     public Color maxedColor = Color.green;                 
 
-    private UpgradeTreeUI treeUI;
+    private UpgradeUI treeUI;
 
     void Start()
     {
-        treeUI = FindFirstObjectByType<UpgradeTreeUI>();
+        treeUI = FindFirstObjectByType<UpgradeUI>();
         nodeButton.onClick.AddListener(OnClick);
         RefreshVisuals();
     }

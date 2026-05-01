@@ -1812,6 +1812,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f09b892eb1cf5bb4983b0d2ff41f71ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UIScriptIWrite::SkillTreeUI
+--- !u!114 &1786503880 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6164071993899395530, guid: 83006f761f944064daaa1fc4e17323be, type: 3}
+  m_PrefabInstance: {fileID: 1786503877}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786503878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88b92a592008fbe438ff08532adb14f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UIScriptIWrite::GeneralUIScript
 --- !u!1001 &10896274346797009
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2006,7 +2017,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 600104802237410831, guid: aa15e98487968d740823673a5dd3aba6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 600104802237410831, guid: aa15e98487968d740823673a5dd3aba6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -2023,7 +2034,7 @@ PrefabInstance:
     - target: {fileID: 600104802237410831, guid: aa15e98487968d740823673a5dd3aba6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1760307585}
+      objectReference: {fileID: 1786503880}
     - target: {fileID: 600104802237410831, guid: aa15e98487968d740823673a5dd3aba6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -2050,7 +2061,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 600104802237410831, guid: aa15e98487968d740823673a5dd3aba6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: RefreshAllNodes
+      value: OnOpened
       objectReference: {fileID: 0}
     - target: {fileID: 600104802237410831, guid: aa15e98487968d740823673a5dd3aba6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
@@ -2062,7 +2073,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 600104802237410831, guid: aa15e98487968d740823673a5dd3aba6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: UpgradeTreeUI, UIScriptIWrite
+      value: UpgradeUI, UIScriptIWrite
       objectReference: {fileID: 0}
     - target: {fileID: 600104802237410831, guid: aa15e98487968d740823673a5dd3aba6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
