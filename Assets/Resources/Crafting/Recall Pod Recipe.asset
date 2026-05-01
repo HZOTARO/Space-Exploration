@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6452a0322fa80f47b297932ad9d7802, type: 3}
+  m_Name: Recall Pod Recipe
+  m_EditorClassIdentifier: UtilityScriptIWrite::CraftingRecipeSO
+  recipeId: recall_pod
+  materialsRequired: []
+  baseOutput:
+    item: {fileID: 11400000, guid: 08eb5922aebee4243a3411c9c18013dd, type: 2}
+    amount: 1
+  puzzleSceneName: 

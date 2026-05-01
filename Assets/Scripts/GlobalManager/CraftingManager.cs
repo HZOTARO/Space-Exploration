@@ -48,12 +48,13 @@ public class CraftingManager : MonoBehaviour
     {
         if (!CanAffordRecipe(recipe)) return;
 
-        Debug.Log($"Starting crafting level for {recipe.recipeName}");
+        Debug.Log($"Starting crafting level for {recipe.baseOutput.item.displayName}");
 
         PlayerPrefs.SetString("PendingCraftingRecipe", recipe.recipeId);
         PlayerPrefs.Save();
 
         // UnityEngine.SceneManagement.SceneManager.LoadScene(recipe.craftingScene);
+        CompleteCraftingPuzzle(1f); 
     }
 
     public void CompleteCraftingPuzzle(float scoreMultiplier)

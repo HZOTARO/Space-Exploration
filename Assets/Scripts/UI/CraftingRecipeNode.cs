@@ -22,7 +22,7 @@ public class CraftingRecipeNode : MonoBehaviour
         if (recipe.baseOutput.item != null)
         {
             outputIcon.sprite = recipe.baseOutput.item.icon;
-            recipeNameText.text = recipe.recipeName;
+            recipeNameText.text = recipe.baseOutput.item.displayName;
         }
 
         nodeButton.onClick.RemoveAllListeners();

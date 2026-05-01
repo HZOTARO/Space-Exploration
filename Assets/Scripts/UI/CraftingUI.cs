@@ -53,8 +53,8 @@ public class CraftingUI : MonoBehaviour
         currentlySelectedNode = node;
         CraftingRecipeSO data = node.recipeData;
 
-        titleText.text = data.recipeName;
-        descriptionText.text = data.description;
+        titleText.text = data.baseOutput.item.displayName;
+        descriptionText.text = data.baseOutput.item.description;
 
         outputItemIcon.sprite = data.baseOutput.item.icon;
         outputItemIcon.gameObject.SetActive(true);
