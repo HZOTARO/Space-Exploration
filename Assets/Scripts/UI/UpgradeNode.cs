@@ -6,6 +6,7 @@ public class UpgradeNode : MonoBehaviour
     public UpgradeSO upgradeData;
 
     [Header("UI References")]
+    public Image nodeIcon;
     public Image nodeBackground;
     public Button nodeButton;
 
@@ -46,6 +47,8 @@ public class UpgradeNode : MonoBehaviour
             nodeBackground.color = lockedColor;
             nodeButton.interactable = false;
         }
+
+        nodeIcon.sprite = upgradeData.icon;
     }
 
     private void OnClick()

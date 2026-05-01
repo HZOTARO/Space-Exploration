@@ -82,6 +82,7 @@ public class UpgradeTreeUI : MonoBehaviour
 
     public void RefreshAllNodes()
     {
+        if (allNodes == null) return;
         foreach (UpgradeNode node in allNodes)
         {
             node.RefreshVisuals();
