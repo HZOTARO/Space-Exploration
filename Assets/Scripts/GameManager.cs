@@ -72,12 +72,8 @@ public class GameManager : MonoBehaviour
 
         if (!player) player = FindFirstObjectByType<Player>();
         if (!tileManager) tileManager = FindFirstObjectByType<TileManager>();
-        if (tileManager)
-        {
-            tileManager.width = levelSize;
-            tileManager.length = levelSize;
-            tileManager.GenerateMap();
-        }
+
+        SetupMap();
 
         if (!cameraController) cameraController = FindFirstObjectByType<CameraController>();
         if (cameraController)
@@ -88,11 +84,20 @@ public class GameManager : MonoBehaviour
         }
 
         StartCoroutine(SetupInventory());
-
         RegisterPythonCommands();
 
         PythonExecutor.instance.CanStepCode = () => !InAction();
         PythonExecutor.instance.OnPythonPrint += PrintToDisplay;
+    }
+
+    protected virtual void SetupMap()
+    {
+        if (tileManager)
+        {
+            tileManager.width = levelSize;
+            tileManager.length = levelSize;
+            tileManager.GenerateMap();
+        }
     }
 
     private void RegisterPythonCommands()
@@ -104,29 +109,16 @@ public class GameManager : MonoBehaviour
         Bind("move_down", () => Move("S"));
         Bind("move_left", () => Move("W"));
         Bind("move_right", () => Move("E"));
-
-        Bind("mine", Mine);
-        Bind("collect", Collect);
-        Bind("purify", Purify);
-        Bind("drill", Drill);
-        Bind("pump", Pump);
-        Bind("measure", Measure);
         Bind("go_back", Return);
-
         BindReturn("scan", Scan);
+
+        RegisterLevelSpecificPythonCommands();
     }
 
-    //public void UnlockFeature(string featureName)
-    //{
-    //    if (bannedSyntaxNodes.Contains(featureName)) bannedSyntaxNodes.Remove(featureName);
-    //    if (bannedFunctions.Contains(featureName)) bannedFunctions.Remove(featureName);
-
-    //    PythonExecutor.instance.ClearPythonBan(featureName);
-    //}
+    protected virtual void RegisterLevelSpecificPythonCommands() { }
 
     IEnumerator SetupInventory()
     {
-        Debug.Log("Setting up inventory...");
         if (inventoryUI)
         {
             Transform template = null;
@@ -267,108 +259,7 @@ public class GameManager : MonoBehaviour
         return tileTypeName;
     }
 
-    public void Mine()
-    {
-        TileObject currentTile = GetCurrentTile();
-        if (currentTile.type == TileType.WhiteOre)
-        {
-            CaveTile_WhiteOre ore = currentTile.tileInstance as CaveTile_WhiteOre;
-            if (!ore.isMined) player.PerformAction(PlayerAction.Mine, () => ore.Mine());
-            else Debug.Log("This White Ore has already been mined.");
-        }
-        else if (currentTile.type == TileType.BlackOre)
-        {
-            CaveTile_BlackOre ore = currentTile.tileInstance as CaveTile_BlackOre;
-            if (!ore.isMined) player.PerformAction(PlayerAction.Mine, () => { if (ore.Mine()) DamagePlayer(60); });
-            else Debug.Log("This Black Ore has already been mined.");
-        }
-        else Debug.Log("No mineable resource at current location.");
-    }
-
-    public void Collect()
-    {
-        TileObject currentTile = GetCurrentTile();
-        if (currentTile.type == TileType.WhiteOre)
-        {
-            CaveTile_WhiteOre ore = currentTile.tileInstance as CaveTile_WhiteOre;
-            if (ore.isMined && !ore.isCollected)
-            {
-                player.PerformAction(PlayerAction.Collect, () =>
-                {
-                    int amountCollected = ore.Collect();
-                    if (amountCollected > 0)
-                    {
-                        AddToInventory(ore.itemOnTile, amountCollected);
-                        Debug.Log($"<color=white>Collected {amountCollected} White Ore.</color>");
-                    }
-                });
-            }
-        }
-        else if (currentTile.type == TileType.BlackOre)
-        {
-            CaveTile_BlackOre ore = currentTile.tileInstance as CaveTile_BlackOre;
-            if (ore.isMined && !ore.isCollected)
-            {
-                player.PerformAction(PlayerAction.Collect, () =>
-                {
-                    int amountCollected = ore.Collect();
-                    if (amountCollected > 0)
-                    {
-                        AddToInventory(ore.itemOnTile, amountCollected);
-                        Debug.Log($"<color=black>Collected {amountCollected} Black Ore.</color>");
-                    }
-                });
-            }
-        }
-    }
-    public void Drill()
-    {
-        TileObject currentTile = GetCurrentTile();
-        if (currentTile.type == TileType.PurpleVein)
-        {
-            CaveTile_PurpleVein vein = currentTile.tileInstance as CaveTile_PurpleVein;
-            if (!vein.isDrilled) player.PerformAction(PlayerAction.Drill, () => vein.Drill());
-        }
-    }
-
-    public void Pump()
-    {
-        TileObject currentTile = GetCurrentTile();
-        if (currentTile.type == TileType.PurpleVein)
-        {
-            CaveTile_PurpleVein vein = currentTile.tileInstance as CaveTile_PurpleVein;
-            if (vein.isDrilled && !vein.isPumped)
-            {
-                player.PerformAction(PlayerAction.Pump, () =>
-                {
-                    int amountPumped = vein.Pump();
-                    if (amountPumped > 0)
-                    {
-                        AddToInventory(vein.itemOnTile, amountPumped);
-                        Debug.Log($"<color=purple>Collected {amountPumped} Purple Liquid.</color>");
-                    }
-                });
-            }
-        }
-    }
-
-    public void Purify()
-    {
-        TileObject currentTile = GetCurrentTile();
-        if (currentTile.type == TileType.BlackOre)
-        {
-            CaveTile_BlackOre ore = currentTile.tileInstance as CaveTile_BlackOre;
-            if (!ore.isPurified) player.PerformAction(PlayerAction.Purify, () => ore.Purify());
-        }
-    }
-
-    public void Measure()
-    {
-        IMeasureable measureableTile = GetCurrentTile().tileInstance as IMeasureable;
-        if (measureableTile != null) Debug.Log("Measurement result: " + measureableTile.Measured());
-    }
-
-    private void AddToInventory(ItemSO item, int amount)
+    protected void AddToInventory(ItemSO item, int amount)
     {
         if (currentInventoryIndex >= inventorySize)
         {
@@ -385,7 +276,7 @@ public class GameManager : MonoBehaviour
         currentInventoryIndex++;
     }
 
-    private void DamagePlayer(int damage)
+    protected void DamagePlayer(int damage)
     {
         Debug.Log($"<color=red>Player took {damage} damage!</color>");
         playerHealth = Mathf.Max(playerHealth - damage, 0);
@@ -395,12 +286,12 @@ public class GameManager : MonoBehaviour
             LevelGameOver();
         }
     }
-    private void UpdateHealth()
+    protected void UpdateHealth()
     {
         if (playerHealthBar) playerHealthBar.fillAmount = (float)playerHealth / playerMaxHealth;
         if (playerHealthText) playerHealthText.text = $"{playerHealth} / {playerMaxHealth}";
     }
-    private void LevelGameOver()
+    protected void LevelGameOver()
     {
         PythonExecutor.instance.continuous = false;
         PythonExecutor.instance.currentCode = null;
@@ -408,7 +299,7 @@ public class GameManager : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene("Hub Scene");
     }
 
-    private void Return()
+    protected void Return()
     {
         if (playerGridLoc.x == 0 && playerGridLoc.y == 0)
         {
@@ -420,7 +311,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void LevelComplete()
+    protected void LevelComplete()
     {
         foreach (ItemAmount collected in levelInventory)
         {
