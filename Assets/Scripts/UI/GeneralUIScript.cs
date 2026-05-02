@@ -1,6 +1,7 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-public class GeneralUIScript: MonoBehaviour
+public class GeneralUIScript : MonoBehaviour
 {
     [Header("Escape")]
     public bool enableEscape = true;
@@ -63,5 +64,13 @@ public class GeneralUIScript: MonoBehaviour
 #else
         Application.Quit();
 #endif
+    }
+
+    public void DisplayHints(List<HintSO> hints)
+    {
+        if (HintManager.instance)
+        {
+            HintManager.instance.DisplayHints(hints);
+        }
     }
 }

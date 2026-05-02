@@ -23,6 +23,7 @@ public static class GameBootstrapper
         SpawnSystemPrefab("InventoryManager");
         SpawnSystemPrefab("UpgradeManager");
         SpawnSystemPrefab("LevelManager");
+        SpawnSystemPrefab("HintManager");
         SpawnSystemPrefab("SaveManager");
 
 #if UNITY_EDITOR || DEVELOPMENT_BUILD

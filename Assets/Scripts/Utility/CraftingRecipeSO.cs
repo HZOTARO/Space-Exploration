@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Recipe", menuName = "Crafting/Recipe")]
+[CreateAssetMenu(fileName = "New Recipe", menuName = "Scriptable Objects/RecipeSO")]
 public class CraftingRecipeSO : ScriptableObject
 {
     public string recipeId;
