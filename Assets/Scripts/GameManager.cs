@@ -212,7 +212,7 @@ public class GameManager : MonoBehaviour
     }
     public TileObject GetCurrentTile()
     {
-        return tileManager.gridArray[playerGridLoc.y, playerGridLoc.x];
+        return tileManager.floorArray[playerGridLoc.y, playerGridLoc.x];
     }
     public void Move(string dir)
     {

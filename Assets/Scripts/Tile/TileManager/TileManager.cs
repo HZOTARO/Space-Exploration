@@ -1,91 +1,130 @@
 using System.Collections.Generic;
 using UnityEngine;
-using static PlasticPipe.Server.MonitorStats;
 
 public class TileManager : MonoBehaviour
 {
     [Header("Grid Settings")]
-    [HideInInspector]
-    public int width = 5;
-    [HideInInspector]
-    public int length = 5;
+    [HideInInspector] public int width = 5;
+    [HideInInspector] public int length = 5;
 
     [Header("References")]
-    public GameObject container;
+    public GameObject tilesContainer;
 
     [Header("Prefab")]
     public GameObject grid;
+    public BaseTile floorTile;
     public List<TileReference> tileData = new List<TileReference>();
     protected BaseTile currentTilePrefab;
 
     [HideInInspector]
-    public TileObject[,] gridArray;
+    public TileObject[,] objectsArray;
+    [HideInInspector]
+    public TileObject[,] floorArray;
 
     public virtual void GenerateMap()
     {
-        if (!container) return;
-        GameObject spawnedGrid = Instantiate(grid, new Vector3(0, 0, -0.005f), Quaternion.identity);
-        spawnedGrid.transform.SetParent(container.transform, false);
-        spawnedGrid.transform.localScale = new Vector3(width, 1, length);
-        spawnedGrid.name = "Grid";
+        if (!tilesContainer) return;
 
-        gridArray = new TileObject[length, width];
+        objectsArray = new TileObject[length, width];
+        floorArray = new TileObject[length, width];
 
         for (int z = 0; z < length; z++)
         {
             for (int x = 0; x < width; x++)
             {
-                gridArray[z, x] = new TileObject();
-                gridArray[z, x].type = TileType.Floor;
+                objectsArray[z, x] = new TileObject();
+                objectsArray[z, x].type = TileType.Floor;
+
+                floorArray[z, x] = new TileObject();
+                floorArray[z, x].type = TileType.Floor;
             }
         }
+
+        GenerateMapContent();
+
+        SpawnTilesVisual();
     }
 
-    protected void SpawnTilesVisual()
+    protected virtual void GenerateMapContent()
     {
-        currentTilePrefab = FindTilePrefab(TileType.Floor);
-
-        for (int z = 0; z < length; z++)
-        {
-            for (int x = 0; x < width; x++)
-            {
-                TileObject currentTile = gridArray[z, x];
-
-                bool needsTile = currentTile.type == TileType.Floor ||
-                                 (currentTile.tileInstance != null && !currentTile.tileInstance.haveTile) ||
-                                 currentTile.tileInstance == null;
-
-                if (currentTile.tileInstance == null || currentTile.type == TileType.Floor || !currentTile.tileInstance.haveTile)
-                {
-                    currentTile.tileInstance = SpawnTileVisual(z, x, currentTilePrefab);
-                    currentTile.type = TileType.Floor;
-                }
-            }
-        }
     }
+
     protected BaseTile FindTilePrefab(TileType tileType)
     {
         foreach (var item in tileData)
         {
-            if (item.type == tileType)
-            {
-                return item.tilePrefab;
-            }
+            if (item.type == tileType) return item.tilePrefab;
         }
         return null;
     }
-    protected BaseTile SpawnTileVisual(int z, int x, BaseTile tilePrefab)
+
+    protected BaseTile InstantiateTileVisual(int z, int x, BaseTile prefab)
     {
-        if (tilePrefab)
+        if (!prefab) return null;
+
+        BaseTile spawnedTile = Instantiate(prefab, new Vector3(x, 0, z), Quaternion.identity);
+        spawnedTile.transform.localScale = Vector3.one;
+        spawnedTile.transform.SetParent(tilesContainer.transform, false);
+        spawnedTile.name = $"{prefab.name}_{z}_{x}";
+        spawnedTile.z = z;
+        spawnedTile.x = x;
+
+        return spawnedTile;
+    }
+
+    protected void SpawnTilesVisual()
+    {
+        for (int z = 0; z < length; z++)
         {
-            BaseTile spawnedTile = Instantiate(tilePrefab, new Vector3(x, 0, z), Quaternion.identity);
-            spawnedTile.transform.localScale = Vector3.one;
-            spawnedTile.transform.SetParent(container.transform, false);
-            spawnedTile.name = $"{tilePrefab.name}_{z}_{x}";
-            spawnedTile.z = z;
-            spawnedTile.x = x;
-            return spawnedTile;
+            for (int x = 0; x < width; x++)
+            {
+                TileObject currentObj = objectsArray[z, x];
+                TileObject currentFloor = floorArray[z, x];
+
+                if (currentFloor.tileInstance == null)
+                {
+                    GenerateFloorTile(z, x, currentFloor);
+                }
+
+                if (currentObj.type != TileType.Floor && currentObj.tileInstance == null)
+                {
+                    BaseTile objPrefab = FindTilePrefab(currentObj.type);
+                    if (objPrefab != null)
+                    {
+                        currentObj.tileInstance = InstantiateTileVisual(z, x, objPrefab);
+                    }
+                }
+
+                else if (currentObj.type == TileType.Floor)
+                {
+                    currentObj.tileInstance = currentFloor.tileInstance;
+                }
+            }
         }
-        return null;
+    }
+
+    protected virtual void GenerateFloorTile(int z, int x, TileObject currentFloorData)
+    {
+        BaseTile defaultFloorPrefab = floorTile != null ? floorTile : FindTilePrefab(TileType.Floor);
+
+        if (defaultFloorPrefab != null)
+        {
+            currentFloorData.tileInstance = InstantiateTileVisual(z, x, defaultFloorPrefab);
+            currentFloorData.type = TileType.Floor;
+        }
+    }
+
+    public void PlaceSpecificTile(int z, int x, TileType tileType, bool placeFloorUnderneath = true)
+    {
+        BaseTile prefab = FindTilePrefab(tileType);
+        if (prefab == null) return;
+
+        objectsArray[z, x].type = tileType;
+        objectsArray[z, x].tileInstance = InstantiateTileVisual(z, x, prefab);
+
+        if (placeFloorUnderneath && floorArray[z, x].tileInstance == null)
+        {
+            GenerateFloorTile(z, x, floorArray[z, x]);
+        }
     }
 }

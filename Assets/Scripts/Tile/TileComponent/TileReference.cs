@@ -1,5 +1,4 @@
-using UnityEngine;
-public struct TileObject
+public class TileObject
 {
     public TileType type;
     public BaseTile tileInstance;
@@ -9,4 +8,5 @@ public struct TileReference
 {
     public TileType type;
     public BaseTile tilePrefab;
+    public bool spawnsWithFloor;
 }

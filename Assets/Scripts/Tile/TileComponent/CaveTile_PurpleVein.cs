@@ -12,7 +12,6 @@ public class CaveTile_PurpleVein : BaseTile, IMeasureable
     public Material drilledMat;
     public Material pumpedMat;
 
-    void Awake() { haveTile = true; }
     void Start() { value = Random.Range(5, 11); }
     int IMeasureable.Measured()
     {

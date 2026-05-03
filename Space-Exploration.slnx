@@ -6,6 +6,6 @@
   <Project Path="CameraScriptIWrite.csproj" />
   <Project Path="ScriptIWrite.csproj" />
   <Project Path="Assembly-CSharp-Editor.csproj" />
-  <Project Path="TileScriptIWrite.csproj" />
   <Project Path="TileManagerScriptIWrite.csproj" />
+  <Project Path="TileScriptIWrite.csproj" />
 </Solution>
