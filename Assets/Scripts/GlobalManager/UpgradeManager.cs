@@ -6,8 +6,8 @@ public class UpgradeManager : MonoBehaviour
 {
     public static UpgradeManager instance;
 
-    private List<UpgradeSO> allUpgrades = new List<UpgradeSO>();
-    private Dictionary<string, UpgradeSaveState> playerUpgrades = new Dictionary<string, UpgradeSaveState>();
+    public List<UpgradeSO> allUpgrades = new List<UpgradeSO>();
+    public Dictionary<string, UpgradeSaveState> playerUpgrades = new Dictionary<string, UpgradeSaveState>();
 
     void Awake()
     {
@@ -62,26 +62,27 @@ public class UpgradeManager : MonoBehaviour
         return 0;
     }
 
-    public bool HasFeatureUnlocked(string featureKey)
+    public bool IsUpgradeUnlocked(string upgradeId)
     {
-        foreach (var saveState in playerUpgrades.Values)
-        {
-            UpgradeSO data = GetUpgradeData(saveState.id);
-            if (data != null && saveState.currentLevel > 0)
-            {
-                for (int i = 0; i < saveState.currentLevel; i++)
-                {
-                    if (data.tiers[i].unlockFeatureString == featureKey) return true;
-                }
-            }
-        }
-        return false;
+        return GetUpgradeLevel(upgradeId) > 0;
     }
 
     public bool HasPrerequisite(UpgradeSO upgrade)
     {
-        if (upgrade.prerequisiteUpgrade == null) return true;
-        return GetUpgradeLevel(upgrade.prerequisiteUpgrade.id) >= upgrade.prerequisiteLevelRequired;
+        if (upgrade.prerequisiteUpgrades == null || upgrade.prerequisiteUpgrades.Length == 0)
+        {
+            return true;
+        }
+
+        foreach (UpgradeSO prereq in upgrade.prerequisiteUpgrades)
+        {
+            if (!IsUpgradeUnlocked(prereq.id))
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public bool CanAffordAndUnlock(UpgradeSO upgrade)

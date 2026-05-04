@@ -8,8 +8,7 @@ public class UpgradeSO : ScriptableObject
     public Sprite icon;
 
     [Header("Requirements")]
-    public UpgradeSO prerequisiteUpgrade;
-    public int prerequisiteLevelRequired = 1;
+    public UpgradeSO[] prerequisiteUpgrades;
 
     [Header("Levels / Tiers")]
     public UpgradeTier[] tiers;
@@ -21,9 +20,5 @@ public class UpgradeTier
     [TextArea] public string description;
 
     public bool requiresPuzzleToUnlock;
-
-    [Tooltip("Syntax or Function Unlocked")]
-    public string unlockFeatureString;
-
     public ItemAmount[] costs;
 }

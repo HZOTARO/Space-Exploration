@@ -12,13 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 510a7592fff21df42be2ebd983fd262c, type: 3}
   m_Name: Purple Liquid Value
   m_EditorClassIdentifier: UtilityScriptIWrite::UpgradeSO
-  id: purple_liquid_value
+  id: purple_liquid
   upgradeName: Purple Liquid Value
   icon: {fileID: 21300000, guid: 6225f35155b86e74bb297cd2be929ed0, type: 3}
-  prerequisiteUpgrade: {fileID: 11400000, guid: 99c40490193a1ce4f81e49a3aa8eeb62, type: 2}
-  prerequisiteLevelRequired: 1
+  prerequisiteUpgrades:
+  - {fileID: 11400000, guid: 8706b81e30eb8b54b96a69d621fcc817, type: 2}
   tiers:
-  - description: 
+  - description: Unlock purple liquid in resource exploration with 7-10 yield
     requiresPuzzleToUnlock: 0
-    unlockFeatureString: 
+    costs: []
+  - description: Raise purple liquid yield to 10-15 each ore
+    requiresPuzzleToUnlock: 0
+    costs: []
+  - description: Raise purple liquid yield to 15-25 each ore
+    requiresPuzzleToUnlock: 0
+    costs: []
+  - description: Raise purple liquid yield to 25-50 each ore
+    requiresPuzzleToUnlock: 0
+    costs: []
+  - description: Raise purple liquid yield to 50-100 each ore
+    requiresPuzzleToUnlock: 0
     costs: []

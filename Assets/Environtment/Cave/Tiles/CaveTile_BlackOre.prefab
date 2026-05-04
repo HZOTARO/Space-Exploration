@@ -229,19 +229,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca881dfbfe646b54c8cb587178fd0b25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_BlackOre
-  haveTile: 0
   z: 0
   x: 0
   itemOnTile: {fileID: 11400000, guid: e4df0c43eb096624da6b2581c1e6a2df, type: 2}
+  notRandomized: 0
+  value: 0
+  upgrade: {fileID: 11400000, guid: 030761fac7aa4ca4e9fe6f12ab3ea149, type: 2}
+  upgradeValues:
+  - {x: 7, y: 10}
+  - {x: 10, y: 15}
+  - {x: 15, y: 25}
+  - {x: 25, y: 50}
+  - {x: 50, y: 100}
+  isFloating: 0
+  floatingItem: {fileID: 2020392785958225326}
+  floatSpeed: 2
+  floatHeight: 0.5
   isMined: 0
   isCollected: 0
   isPurified: 0
   normalOre: {fileID: 3468593839345182855}
   destroyedOre: {fileID: 7814217362098960561}
-  collectableOre: {fileID: 2020392785958225326}
   pointLight: {fileID: 8370811348004951404}
-  floatSpeed: 2
-  floatHeight: 0.5
 --- !u!1 &2020392785958225326
 GameObject:
   m_ObjectHideFlags: 0

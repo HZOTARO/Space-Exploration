@@ -1,2 +1,19 @@
 fileFormatVersion: 2
 guid: 06605413be714d4489bd0629ed6d88a1
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - cameraController: {instanceID: 0}
+  - player: {instanceID: 0}
+  - playerHealthBar: {instanceID: 0}
+  - playerHealthText: {instanceID: 0}
+  - terminalText: {instanceID: 0}
+  - inventoryUI: {instanceID: 0}
+  - mapSizeUpgrade: {fileID: 11400000, guid: 8706b81e30eb8b54b96a69d621fcc817, type: 2}
+  - inventorySizeUpgrade: {fileID: 11400000, guid: 1b94911b126e347409011dcafb761c2b, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

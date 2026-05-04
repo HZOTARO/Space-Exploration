@@ -1,33 +1,31 @@
 using UnityEngine;
 
-public class CaveTile_WhiteOre : BaseTile, IMeasureable
+public class CaveTile_WhiteOre : ValueTile_Floating
 {
     [HideInInspector]
     public bool isMined = false;
     [HideInInspector]
     public bool isCollected = false;
-    int value;
 
     [Header("References")]
     public GameObject normalOre;
     public GameObject destroyedOre;
-    public GameObject collectableOre;
     public GameObject pointLight;
 
-    [Header("Floating Settings")]
-    public float floatSpeed = 2f;
-    public float floatHeight = 0.5f;
-    private Vector3 startPos;
+    protected override void Start()
+    {
+        base.Start();
+        isFloating = false;
+    }
+    protected override int CalculateUpgradeIndex(int upgradeTier)
+    {
+        if (upgradeTier == 0)
+        {
+            return 1;
+        }
+        return upgradeTier + 1;
+    }
 
-    void Start()
-    {
-        value = Random.Range(5, 11);
-        startPos = collectableOre.transform.position;
-    }
-    int IMeasureable.Measured()
-    {
-        return value;
-    }
     public void Mine()
     {
         if (!isMined)
@@ -35,30 +33,23 @@ public class CaveTile_WhiteOre : BaseTile, IMeasureable
             isMined = true;
             if (normalOre) normalOre.SetActive(false);
             if (destroyedOre) destroyedOre.SetActive(true);
-            if (collectableOre) collectableOre.SetActive(true);
+            if (floatingItem) floatingItem.SetActive(true);
+            isFloating = true;
             Debug.Log("You mined a White Ore!");
         }
     }
-    public int Collect()
+
+    public override int Collect()
     {
         if (isMined && !isCollected)
         {
             isCollected = true;
             Debug.Log("You collected a White Ore!");
-            if (collectableOre) collectableOre.SetActive(false);
+            if (floatingItem) floatingItem.SetActive(false);
             if (pointLight) pointLight.SetActive(false);
+            isFloating = false;
             return value;
         }
         return -1;
-    }
-    void Update()
-    {
-        if (!isCollected && isMined)
-        {
-            float shiftedSin = (Mathf.Sin(Time.time * floatSpeed) + 1f) / 2f;
-            float newY = startPos.y + (shiftedSin * floatHeight);
-
-            collectableOre.transform.position = new Vector3(startPos.x, newY, startPos.z);
-        }
     }
 }

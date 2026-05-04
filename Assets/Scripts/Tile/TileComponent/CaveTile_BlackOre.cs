@@ -1,7 +1,7 @@
 using CodiceApp;
 using UnityEngine;
 
-public class CaveTile_BlackOre : BaseTile, IMeasureable
+public class CaveTile_BlackOre : ValueTile_Floating
 {
     [HideInInspector]
     public bool isMined = false;
@@ -9,27 +9,17 @@ public class CaveTile_BlackOre : BaseTile, IMeasureable
     public bool isCollected = false;
     [HideInInspector]
     public bool isPurified = false;
-    int value;
 
     [Header("References")]
     public GameObject normalOre;
     public GameObject destroyedOre;
-    public GameObject collectableOre;
     public GameObject pointLight;
-
-    [Header("Floating Settings")]
-    public float floatSpeed = 2f;
-    public float floatHeight = 0.5f;
-    private Vector3 startPos;
-
-    void Start() { 
-        value = Random.Range(5, 11); 
-        startPos = collectableOre.transform.position;
-    }
-    int IMeasureable.Measured()
+    protected override void Start()
     {
-        return value;
+        base.Start();
+        isFloating = false;
     }
+
     public void Purify()
     {
         if (!isMined && !isPurified)
@@ -67,7 +57,8 @@ public class CaveTile_BlackOre : BaseTile, IMeasureable
 
             if (normalOre) normalOre.SetActive(false);
             if (destroyedOre) destroyedOre.SetActive(true);
-            if (collectableOre) collectableOre.SetActive(true);
+            if (floatingItem) floatingItem.SetActive(true);
+            isFloating = true;
         }
         else
         {
@@ -75,7 +66,7 @@ public class CaveTile_BlackOre : BaseTile, IMeasureable
         }
         return exploded;
     }
-    public int Collect()
+    public override int Collect()
     {
         if (isMined)
         {
@@ -83,8 +74,9 @@ public class CaveTile_BlackOre : BaseTile, IMeasureable
             {
                 isCollected = true;
                 Debug.Log("You collected a Black Ore!");
-                if (collectableOre) collectableOre.SetActive(false);
+                if (floatingItem) floatingItem.SetActive(false);
                 if (pointLight) pointLight.SetActive(false);
+                isFloating = false;
 
                 return value;
             }
@@ -98,15 +90,5 @@ public class CaveTile_BlackOre : BaseTile, IMeasureable
             Debug.Log("You need to mine the Black Ore before collecting.");
         }
         return -1;
-    }
-    public void Update()
-    {
-        if (!isCollected && isMined)
-        {
-            float shiftedSin = (Mathf.Sin(Time.time * floatSpeed) + 1f) / 2f;
-            float newY = startPos.y + (shiftedSin * floatHeight);
-
-            collectableOre.transform.position = new Vector3(startPos.x, newY, startPos.z);
-        }
     }
 }

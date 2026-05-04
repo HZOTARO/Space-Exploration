@@ -113,7 +113,6 @@ public class CheatManager : MonoBehaviour, IResourceUpdatable
             {
                 SaveManager.instance.LoadGame(SaveManager.saveSlotInUse);
 
-                // FIXED: Push the newly loaded JSON data into the Managers!
                 if (InventoryManager.instance != null) InventoryManager.instance.LoadInventory(SaveManager.saveData.inventory);
                 if (UpgradeManager.instance != null) UpgradeManager.instance.LoadUpgradesFromSave();
 
@@ -134,6 +133,30 @@ public class CheatManager : MonoBehaviour, IResourceUpdatable
 
                 Debug.Log("<color=red>CHEAT: Save File Deleted.</color>");
                 SaveManager.instance.UpdateAllUI();
+            }
+        });
+
+        CreateCheatButton("Unlock All Upgrade", () =>
+        {
+            if (SaveManager.instance != null && UpgradeManager.instance != null)
+            {
+                foreach (UpgradeSO upgrade in UpgradeManager.instance.allUpgrades)
+                {
+                    int maxLevel = upgrade.tiers.Length;
+
+                    if (!UpgradeManager.instance.playerUpgrades.ContainsKey(upgrade.id))
+                    {
+                        UpgradeManager.instance.playerUpgrades[upgrade.id] = new UpgradeSaveState { id = upgrade.id, currentLevel = maxLevel };
+                    }
+                    else
+                    {
+                        UpgradeManager.instance.playerUpgrades[upgrade.id].currentLevel = maxLevel;
+                    }
+                }
+
+                SaveManager.instance.UpdateAllUI();
+
+                Debug.Log("<color=magenta>Cheat Activated: All Upgrades Maxed Out!</color>");
             }
         });
     }

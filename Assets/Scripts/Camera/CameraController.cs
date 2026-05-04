@@ -47,6 +47,8 @@ public class CameraController : MonoBehaviour
         maxZoom = lowerDimension + 2 + Mathf.Floor(lowerDimension / 10) * 1;
 
         cameraPitchAngle = childCamera.transform.eulerAngles.x * Mathf.Deg2Rad;
+
+        HandleZooming();
     }
 
     void LateUpdate()

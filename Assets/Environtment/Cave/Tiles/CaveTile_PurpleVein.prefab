@@ -81,10 +81,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c993141121d33f8498520201ec96b690, type: 3}
   m_Name: 
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_PurpleVein
-  haveTile: 0
   z: 0
   x: 0
   itemOnTile: {fileID: 11400000, guid: 6fd164fd5d34a6c4dae656987cf93902, type: 2}
+  notRandomized: 0
+  value: 0
+  upgrade: {fileID: 11400000, guid: 7ca1cd75362b7374d94e810f34ccd958, type: 2}
+  upgradeValues:
+  - {x: 7, y: 10}
+  - {x: 10, y: 15}
+  - {x: 15, y: 25}
+  - {x: 25, y: 50}
+  - {x: 50, y: 100}
   isDrilled: 0
   isPumped: 0
   matRenderer: {fileID: 6039436597383828859}

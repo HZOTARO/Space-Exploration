@@ -3,6 +3,20 @@ using System;
 
 public class GameManager_ResourceExploration : GameManager
 {
+    public UpgradeSO mapSizeUpgrade;
+    public UpgradeSO inventorySizeUpgrade;
+    protected override void Start()
+    {
+        if (UpgradeManager.instance)
+        {
+            if (mapSizeUpgrade) levelSize = 5 * (UpgradeManager.instance.GetUpgradeLevel(mapSizeUpgrade.id) + 1);
+            if (inventorySizeUpgrade) inventorySize = 4 + 2 * (UpgradeManager.instance.GetUpgradeLevel(inventorySizeUpgrade.id));
+        }
+
+
+        base.Start();
+    }
+
     protected override void RegisterLevelSpecificPythonCommands()
     {
         void Bind(string pyName, Action action) => PythonExecutor.instance.RegisterPythonFunction(pyName, action);

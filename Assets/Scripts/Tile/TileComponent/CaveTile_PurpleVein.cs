@@ -1,22 +1,16 @@
 using UnityEngine;
 
-public class CaveTile_PurpleVein : BaseTile, IMeasureable
+public class CaveTile_PurpleVein : ValueTile
 {
     [HideInInspector]
     public bool isDrilled = false;
     [HideInInspector]
     public bool isPumped = false;
-    int value;
 
     public Renderer matRenderer;
     public Material drilledMat;
     public Material pumpedMat;
 
-    void Start() { value = Random.Range(5, 11); }
-    int IMeasureable.Measured()
-    {
-        return value;
-    }
     public void Drill()
     {
         if (!isDrilled)
@@ -33,6 +27,7 @@ public class CaveTile_PurpleVein : BaseTile, IMeasureable
             Debug.Log("This Purple Vein has already been drilled.");
         }
     }
+
     public int Pump()
     {
         if (!isPumped)

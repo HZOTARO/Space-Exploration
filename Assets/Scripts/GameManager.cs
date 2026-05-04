@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     int playerHealth;
 
     [Header("Tile")]
-    int levelSize = 10;
+    protected int levelSize = 10;
     private TileManager tileManager;
     Vector2Int playerGridLoc = new();
 
@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
         PythonExecutor.instance.InitializePythonBans(bannedSyntaxNodes.ToArray(), bannedFunctions.ToArray());
     }
 
-    void Start()
+    protected virtual void Start()
     {
         playerHealth = playerMaxHealth;
         UpdateHealth();
@@ -212,7 +212,7 @@ public class GameManager : MonoBehaviour
     }
     public TileObject GetCurrentTile()
     {
-        return tileManager.floorArray[playerGridLoc.y, playerGridLoc.x];
+        return tileManager.objectsArray[playerGridLoc.y, playerGridLoc.x];
     }
     public void Move(string dir)
     {

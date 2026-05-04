@@ -4,12 +4,44 @@ public class TileManager_ResourceExploration : TileManager_Cave
 {
     protected override void GenerateMapContent()
     {
-        int resourceCount = Mathf.RoundToInt(Random.Range(15f, 25f) / 100 * width * length);
-        int whiteOreCount = Mathf.RoundToInt(Random.Range(30f, 40f) / 100 * resourceCount);
-        resourceCount -= whiteOreCount;
-        int blackOreCount = Mathf.RoundToInt(Random.Range(30f, 40f) / 100 * resourceCount);
-        resourceCount -= blackOreCount;
-        int veinCount = resourceCount;
+        bool whiteOreUnlocked = true;
+        
+        bool blackOreUnlocked = UpgradeManager.instance.IsUpgradeUnlocked("black_ore");
+        bool purpleVeinUnlocked = UpgradeManager.instance.IsUpgradeUnlocked("purple_liquid");
+
+        int totalResourceCount = Mathf.RoundToInt(Random.Range(15f, 25f) / 100f * width * length);
+        int remainingResources = totalResourceCount;
+
+        int whiteOreCount = 0;
+        int blackOreCount = 0;
+        int veinCount = 0;
+
+        int unlockedTypes = (whiteOreUnlocked ? 1 : 0) + (blackOreUnlocked ? 1 : 0) + (purpleVeinUnlocked ? 1 : 0);
+
+        float minPercent = (unlockedTypes == 2) ? 40f : 30f;
+        float maxPercent = (unlockedTypes == 2) ? 60f : 40f;
+
+        if (unlockedTypes > 0)
+        {
+            if (whiteOreUnlocked)
+            {
+                unlockedTypes--;
+                whiteOreCount = (unlockedTypes == 0) ? remainingResources : Mathf.RoundToInt(Random.Range(minPercent, maxPercent) / 100f * remainingResources);
+                remainingResources -= whiteOreCount;
+            }
+
+            if (blackOreUnlocked)
+            {
+                unlockedTypes--;
+                blackOreCount = (unlockedTypes == 0) ? remainingResources : Mathf.RoundToInt(Random.Range(minPercent, maxPercent) / 100f * remainingResources);
+                remainingResources -= blackOreCount;
+            }
+
+            if (purpleVeinUnlocked)
+            {
+                veinCount = remainingResources;
+            }
+        }
 
         int segmentSize = 5;
         int segmentLength = Mathf.RoundToInt((float)length / segmentSize);
@@ -54,6 +86,7 @@ public class TileManager_ResourceExploration : TileManager_Cave
                     if (objectsArray[randZ, randX].type == TileType.Floor)
                     {
                         objectsArray[randZ, randX].type = TileType.WhiteOre;
+
                         segmentWhiteOreCount--;
                     }
                 }
@@ -66,6 +99,7 @@ public class TileManager_ResourceExploration : TileManager_Cave
                     if (objectsArray[randZ, randX].type == TileType.Floor)
                     {
                         objectsArray[randZ, randX].type = TileType.BlackOre;
+
                         segmentBlackOreCount--;
                     }
                 }

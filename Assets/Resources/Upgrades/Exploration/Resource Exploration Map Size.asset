@@ -10,15 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 510a7592fff21df42be2ebd983fd262c, type: 3}
-  m_Name: Resource Level Size
+  m_Name: Resource Exploration Map Size
   m_EditorClassIdentifier: UtilityScriptIWrite::UpgradeSO
-  id: resource_level_size
-  upgradeName: Resource Level Size
+  id: resourceexploration_mapsize
+  upgradeName: Resource Exploration Map Size
   icon: {fileID: 21300000, guid: 2178131416879b648922ec344e820711, type: 3}
-  prerequisiteUpgrade: {fileID: 0}
-  prerequisiteLevelRequired: 1
+  prerequisiteUpgrades: []
   tiers:
-  - description: 
+  - description: Expand resource exploration level map size to 10 x 10
     requiresPuzzleToUnlock: 0
-    unlockFeatureString: 
+    costs: []
+  - description: Expand resource exploration level map size to 15 x 15
+    requiresPuzzleToUnlock: 0
+    costs: []
+  - description: Expand resource exploration level map size to 20 x 20
+    requiresPuzzleToUnlock: 0
     costs: []

@@ -8,5 +8,4 @@ public struct TileReference
 {
     public TileType type;
     public BaseTile tilePrefab;
-    public bool spawnsWithFloor;
 }
