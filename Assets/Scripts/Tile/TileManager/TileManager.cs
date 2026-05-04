@@ -51,7 +51,7 @@ public class TileManager : MonoBehaviour
 
     protected BaseTile FindTilePrefab(TileType tileType)
     {
-        foreach (var item in tileData)
+        foreach (TileReference item in tileData)
         {
             if (item.type == tileType) return item.tilePrefab;
         }
@@ -88,13 +88,19 @@ public class TileManager : MonoBehaviour
 
                 if (currentObj.type != TileType.Floor && currentObj.tileInstance == null)
                 {
-                    BaseTile objPrefab = FindTilePrefab(currentObj.type);
-                    if (objPrefab != null)
+                    if (currentObj.type == currentFloor.type)
                     {
-                        currentObj.tileInstance = InstantiateTileVisual(z, x, objPrefab);
+                        currentObj.tileInstance = currentFloor.tileInstance;
+                    }
+                    else
+                    {
+                        BaseTile objPrefab = FindTilePrefab(currentObj.type);
+                        if (objPrefab != null)
+                        {
+                            currentObj.tileInstance = InstantiateTileVisual(z, x, objPrefab);
+                        }
                     }
                 }
-
                 else if (currentObj.type == TileType.Floor)
                 {
                     currentObj.tileInstance = currentFloor.tileInstance;
@@ -105,12 +111,17 @@ public class TileManager : MonoBehaviour
 
     protected virtual void GenerateFloorTile(int z, int x, TileObject currentFloorData)
     {
-        BaseTile defaultFloorPrefab = floorTile != null ? floorTile : FindTilePrefab(TileType.Floor);
+        BaseTile prefabToSpawn = FindTilePrefab(currentFloorData.type);
 
-        if (defaultFloorPrefab != null)
+        if (prefabToSpawn == null)
         {
-            currentFloorData.tileInstance = InstantiateTileVisual(z, x, defaultFloorPrefab);
+            prefabToSpawn = floorTile != null ? floorTile : FindTilePrefab(TileType.Floor);
             currentFloorData.type = TileType.Floor;
+        }
+
+        if (prefabToSpawn != null)
+        {
+            currentFloorData.tileInstance = InstantiateTileVisual(z, x, prefabToSpawn);
         }
     }
 

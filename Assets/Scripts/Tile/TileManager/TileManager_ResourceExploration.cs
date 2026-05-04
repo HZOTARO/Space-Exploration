@@ -34,20 +34,22 @@ public class TileManager_ResourceExploration : TileManager_Cave
 
                 while (segmentVeinCount > 0)
                 {
-                    randZ = Random.Range(0, z == 0 ? segmentSize + segmentLengthRemainder : segmentSize) + z * segmentSize;
-                    randX = Random.Range(0, x == 0 ? segmentSize + segmentWidthRemainder : segmentSize) + x * segmentSize;
+                    randZ = Random.Range(0, z == segmentLength - 1 ? segmentSize + segmentLengthRemainder : segmentSize) + z * segmentSize;
+                    randX = Random.Range(0, x == segmentWidth - 1 ? segmentSize + segmentWidthRemainder : segmentSize) + x * segmentSize;
 
                     if (objectsArray[randZ, randX].type == TileType.Floor)
                     {
+                        floorArray[randZ, randX].type = TileType.PurpleVein;
                         objectsArray[randZ, randX].type = TileType.PurpleVein;
+
                         segmentVeinCount--;
                     }
                 }
 
                 while (segmentWhiteOreCount > 0)
                 {
-                    randZ = Random.Range(0, z == 0 ? segmentSize + segmentLengthRemainder : segmentSize) + z * segmentSize;
-                    randX = Random.Range(0, x == 0 ? segmentSize + segmentWidthRemainder : segmentSize) + x * segmentSize;
+                    randZ = Random.Range(0, z == segmentLength - 1 ? segmentSize + segmentLengthRemainder : segmentSize) + z * segmentSize;
+                    randX = Random.Range(0, x == segmentWidth - 1 ? segmentSize + segmentWidthRemainder : segmentSize) + x * segmentSize;
 
                     if (objectsArray[randZ, randX].type == TileType.Floor)
                     {
@@ -58,8 +60,8 @@ public class TileManager_ResourceExploration : TileManager_Cave
 
                 while (segmentBlackOreCount > 0)
                 {
-                    randZ = Random.Range(0, z == 0 ? segmentSize + segmentLengthRemainder : segmentSize) + z * segmentSize;
-                    randX = Random.Range(0, x == 0 ? segmentSize + segmentWidthRemainder : segmentSize) + x * segmentSize;
+                    randZ = Random.Range(0, z == segmentLength - 1 ? segmentSize + segmentLengthRemainder : segmentSize) + z * segmentSize;
+                    randX = Random.Range(0, x == segmentWidth - 1 ? segmentSize + segmentWidthRemainder : segmentSize) + x * segmentSize;
 
                     if (objectsArray[randZ, randX].type == TileType.Floor)
                     {
