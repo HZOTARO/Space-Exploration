@@ -79,6 +79,12 @@ class YieldInserter(ast.NodeTransformer):
             ast.Expr(value=ast.Yield(value=ast.Constant(value=val)))
         ]
 
+    def create_yield_node(self, node):
+        start_line = getattr(node, 'lineno', 0)
+        end_line = getattr(node, 'end_lineno', start_line)
+        val = f"{start_line},{end_line}"
+        return ast.Expr(value=ast.Yield(value=ast.Constant(value=val)))
+
     def visit_Expr(self, node):
         self.generic_visit(node)
         return self.insert_yield(node)
@@ -107,10 +113,12 @@ class YieldInserter(ast.NodeTransformer):
 
     def visit_For(self, node):
         self.generic_visit(node)
+        node.body.insert(0, self.create_yield_node(node))
         return self.insert_yield(node)
 
     def visit_While(self, node):
         self.generic_visit(node)
+        node.body.insert(0, self.create_yield_node(node))
         return self.insert_yield(node)
 
     def visit_Call(self, node):
