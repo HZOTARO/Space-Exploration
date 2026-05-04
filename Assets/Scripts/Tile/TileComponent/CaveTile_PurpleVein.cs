@@ -11,6 +11,12 @@ public class CaveTile_PurpleVein : ValueTile
     public Material drilledMat;
     public Material pumpedMat;
 
+    protected override void Start()
+    {
+        base.Start();
+        isWalkable = true;
+    }
+
     public void Drill()
     {
         if (!isDrilled)

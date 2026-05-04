@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI playerHealthText;
     int playerMaxHealth = 100;
     int playerHealth;
+    // 0 = North(N), 1 = East(E), 2 = South(S), 3 = West(W)
+    public int playerFacing = 0;
 
     [Header("Tile")]
     protected int levelSize = 10;
@@ -105,10 +107,12 @@ public class GameManager : MonoBehaviour
         void Bind(string pyName, Action action) => PythonExecutor.instance.RegisterPythonFunction(pyName, action);
         void BindReturn<T>(string pyName, Func<T> func) => PythonExecutor.instance.RegisterPythonFunction(pyName, func);
 
-        Bind("move_up", () => Move("N"));
-        Bind("move_down", () => Move("S"));
-        Bind("move_left", () => Move("W"));
-        Bind("move_right", () => Move("E"));
+        Bind("move_forward", MoveForward);
+        Bind("move_backward", MoveBackward);
+        //Bind("move_left", () => Move("W"));
+        //Bind("move_right", () => Move("E"));
+        Bind("turn_right", TurnRight);
+        Bind("turn_left", TurnLeft);
         Bind("go_back", Return);
         BindReturn("scan", Scan);
 
@@ -214,40 +218,99 @@ public class GameManager : MonoBehaviour
     {
         return tileManager.objectsArray[playerGridLoc.y, playerGridLoc.x];
     }
-    public void Move(string dir)
+
+    public Vector2Int GetForwardGridLoc()
     {
-        switch (dir)
-        {
-            case "N":
-                if (playerGridLoc.y < tileManager.length - 1)
-                {
-                    player.Move(Direction.Forward);
-                    playerGridLoc.y++;
-                }
-                break;
-            case "S":
-                if (playerGridLoc.y > 0)
-                {
-                    player.Move(Direction.Backward);
-                    playerGridLoc.y--;
-                }
-                break;
-            case "E":
-                if (playerGridLoc.x < tileManager.width - 1)
-                {
-                    player.Move(Direction.Right);
-                    playerGridLoc.x++;
-                }
-                break;
-            case "W":
-                if (playerGridLoc.x > 0)
-                {
-                    player.Move(Direction.Left);
-                    playerGridLoc.x--;
-                }
-                break;
-        }
+        int targetX = playerGridLoc.x;
+        int targetY = playerGridLoc.y;
+
+        if (playerFacing == 0) targetY++;
+        else if (playerFacing == 1) targetX++;
+        else if (playerFacing == 2) targetY--;
+        else if (playerFacing == 3) targetX--;
+
+        return new Vector2Int(targetX, targetY);
     }
+
+    public TileObject GetTileInFront()
+    {
+        Vector2Int forwardLoc = GetForwardGridLoc();
+
+        if (forwardLoc.x >= 0 && forwardLoc.x < tileManager.width && forwardLoc.y >= 0 && forwardLoc.y < tileManager.length)
+        {
+            return tileManager.objectsArray[forwardLoc.y, forwardLoc.x];
+        }
+
+        return null;
+    }
+
+    private bool IsTileWalkable(int x, int y)
+    {
+        TileObject targetTile = tileManager.objectsArray[y, x];
+
+        if (targetTile.type == TileType.Floor)
+        {
+            return true;
+        }
+
+        if (targetTile.tileInstance != null)
+        {
+            return targetTile.tileInstance.isWalkable;
+        }
+
+        return false;
+    }
+
+    public void MoveForward()
+    {
+        int targetX = playerGridLoc.x;
+        int targetY = playerGridLoc.y;
+
+        if (playerFacing == 0) targetY++;     
+        else if (playerFacing == 1) targetX++; 
+        else if (playerFacing == 2) targetY--;
+        else if (playerFacing == 3) targetX--; 
+
+        if (targetX < 0 || targetX >= tileManager.width || targetY < 0 || targetY >= tileManager.length) return;
+        if (!IsTileWalkable(targetX, targetY)) return;
+
+        playerGridLoc.x = targetX;
+        playerGridLoc.y = targetY;
+
+        player.Move(Direction.Forward);
+    }
+
+    public void MoveBackward()
+    {
+        int targetX = playerGridLoc.x;
+        int targetY = playerGridLoc.y;
+
+        if (playerFacing == 0) targetY--;     
+        else if (playerFacing == 1) targetX--; 
+        else if (playerFacing == 2) targetY++;
+        else if (playerFacing == 3) targetX++; 
+
+        if (targetX < 0 || targetX >= tileManager.width || targetY < 0 || targetY >= tileManager.length) return;
+        if (!IsTileWalkable(targetX, targetY)) return;
+
+        playerGridLoc.x = targetX;
+        playerGridLoc.y = targetY;
+
+        player.Move(Direction.Backward);
+    }
+
+    public void TurnRight()
+    {
+        playerFacing = (playerFacing + 1) % 4;
+        player.Turn(90f);
+    }
+
+    public void TurnLeft()
+    {
+        playerFacing = (playerFacing + 3) % 4;
+        player.Turn(-90f);
+    }
+
     public string Scan()
     {
         TileObject currentTile = GetCurrentTile();

@@ -31,20 +31,30 @@ public class GameManager_ResourceExploration : GameManager
 
     public void Mine()
     {
-        TileObject currentTile = GetCurrentTile();
-        if (currentTile.type == TileType.WhiteOre)
+        TileObject targetTile = GetTileInFront();
+
+        if (targetTile == null)
         {
-            CaveTile_WhiteOre ore = currentTile.tileInstance as CaveTile_WhiteOre;
+            Debug.Log("Nothing to mine. You are facing the edge of the map!");
+            return;
+        }
+
+        if (targetTile.type == TileType.WhiteOre)
+        {
+            CaveTile_WhiteOre ore = targetTile.tileInstance as CaveTile_WhiteOre;
             if (!ore.isMined) player.PerformAction(PlayerAction.Mine, () => ore.Mine());
             else Debug.Log("This White Ore has already been mined.");
         }
-        else if (currentTile.type == TileType.BlackOre)
+        else if (targetTile.type == TileType.BlackOre)
         {
-            CaveTile_BlackOre ore = currentTile.tileInstance as CaveTile_BlackOre;
+            CaveTile_BlackOre ore = targetTile.tileInstance as CaveTile_BlackOre;
             if (!ore.isMined) player.PerformAction(PlayerAction.Mine, () => { if (ore.Mine()) DamagePlayer(60); });
             else Debug.Log("This Black Ore has already been mined.");
         }
-        else Debug.Log("No mineable resource at current location.");
+        else
+        {
+            Debug.Log("No mineable resource in front of you.");
+        }
     }
 
     public void Collect()

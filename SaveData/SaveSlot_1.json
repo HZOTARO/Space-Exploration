@@ -1,5 +1,34 @@
 {
-    "lastSavedTime": "04-05-2026 20:57",
+    "lastSavedTime": "04-05-2026 21:35",
     "inventory": [],
-    "unlockedUpgrades": []
+    "unlockedUpgrades": [
+        {
+            "id": "resourceexploration_inventorysize",
+            "currentLevel": 1
+        },
+        {
+            "id": "partsexploration_inventorysize",
+            "currentLevel": 1
+        },
+        {
+            "id": "resourceexploration_mapsize",
+            "currentLevel": 1
+        },
+        {
+            "id": "white_ore",
+            "currentLevel": 1
+        },
+        {
+            "id": "black_ore",
+            "currentLevel": 1
+        },
+        {
+            "id": "purple_liquid",
+            "currentLevel": 1
+        },
+        {
+            "id": "partsexploration_mapsize",
+            "currentLevel": 2
+        }
+    ]
 }

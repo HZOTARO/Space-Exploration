@@ -21,6 +21,11 @@ public class Player : MonoBehaviour
     private bool isMoving = false;
     public bool inAction = false;
 
+    [Header("Rotation")]
+    public float rotationSpeed = 15f;
+    private Quaternion targetRotation;
+    private bool isRotating = false;
+
     [Header("Animations")]
     public Animator animator;
     private string currentAnimation;
@@ -32,15 +37,6 @@ public class Player : MonoBehaviour
 
     void Awake()
     {
-        //animationSetup = new AnimationMapping[]
-        //{
-        //    new AnimationMapping { action = PlayerAction.Mine, animatorStateName = "Mine" },
-        //    new AnimationMapping { action = PlayerAction.Collect, animatorStateName = "Collect" },
-        //    new AnimationMapping { action = PlayerAction.Purify, animatorStateName = "Purify" },
-        //    new AnimationMapping { action = PlayerAction.Drill, animatorStateName = "Drill" },
-        //    new AnimationMapping { action = PlayerAction.Pump, animatorStateName = "Pump" }
-        //};
-
         foreach (AnimationMapping map in animationSetup)
         {
             if (!animationDict.ContainsKey(map.action))
@@ -58,15 +54,42 @@ public class Player : MonoBehaviour
     {
         if (animator == null) animator = GetComponent<Animator>();
         targetPosition = transform.position;
+        targetRotation = transform.rotation;
 
         idleCoroutine = StartCoroutine(IdleRandomize());
     }
 
     void Update()
     {
-        if (isMoving)
+        if (isMoving) MoveTowardTarget();
+        if (isRotating) RotateTowardTarget();
+    }
+
+    public void Turn(float angle)
+    {
+        StopAnimationCoroutine();
+        targetRotation *= Quaternion.Euler(0, angle, 0);
+        isRotating = true;
+        inAction = true;
+
+        if (angle < 0) ChangeAnimation("Walk_Left");
+        else ChangeAnimation("Walk_Right");
+    }
+
+    void RotateTowardTarget()
+    {
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+        if (Quaternion.Angle(transform.rotation, targetRotation) < 0.1f)
         {
-            MoveTowardTarget();
+            transform.rotation = targetRotation;
+            isRotating = false;
+
+            if (!isMoving)
+            {
+                inAction = false;
+                idleCoroutine = StartCoroutine(IdleRandomize());
+            }
         }
     }
 
@@ -99,31 +122,30 @@ public class Player : MonoBehaviour
         switch (dir)
         {
             case Direction.Forward:
-                movementVector = Vector3.forward;
+                movementVector = transform.forward;
                 moveAnimName = "Walk";
                 moveSpeed = baseMoveSpeed;
                 break;
             case Direction.Backward:
-                movementVector = Vector3.back;
+                movementVector = -transform.forward;
                 moveAnimName = "Walk_Back";
                 moveSpeed = baseMoveSpeed;
                 break;
             case Direction.Left:
-                movementVector = Vector3.left;
+                movementVector = -transform.right;
                 moveAnimName = "Walk_Left";
-                moveSpeed = baseMoveSpeed/1.25f;
+                moveSpeed = baseMoveSpeed / 1.25f;
                 break;
             case Direction.Right:
-                movementVector = Vector3.right;
+                movementVector = transform.right;
                 moveAnimName = "Walk_Right";
-                moveSpeed = baseMoveSpeed/1.25f;
+                moveSpeed = baseMoveSpeed / 1.25f;
                 break;
         }
-        
+
         if (movementVector != Vector3.zero)
         {
             movementVector.z *= 1.25f;
-
             StopAnimationCoroutine();
 
             targetPosition = transform.position + (movementVector * moveDistance);
