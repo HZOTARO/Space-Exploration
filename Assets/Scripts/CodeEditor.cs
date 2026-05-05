@@ -42,6 +42,11 @@ public class CodeEditor : MonoBehaviour
     public Button stepButton;
     TextMeshProUGUI stepButtonText;
 
+    [Header("Error System")]
+    public RectTransform errorPanel;
+    public TextMeshProUGUI errorText;
+    public RectTransform editorViewport;
+
     [Header("State")]
     [HideInInspector]
     public bool isPlaying = false;
@@ -89,8 +94,10 @@ public class CodeEditor : MonoBehaviour
 
         PythonExecutor.instance.OnExecutionFinished += OnPythonFinished;
         PythonExecutor.instance.OnLineExecuted += TriggerHighlight;
+        PythonExecutor.instance.OnRuntimeError += HandleRuntimeError;
 
         RemoveHighlight();
+        HideError();
     }
 
     public void InitializeSyntaxGroups()
@@ -286,6 +293,43 @@ public class CodeEditor : MonoBehaviour
         c.a = 1f;
         highlightImage.color = c;
     }
+    void HandleRuntimeError(int line, string errorMessage)
+    {
+        isPlaying = false;
+        if (playButtonText != null) playButtonText.text = "Play";
+
+        ShowError(line, "Runtime Error: " + errorMessage);
+    }
+    public void ShowError(int line, string message)
+    {
+        if (errorPanel != null) errorPanel.gameObject.SetActive(true);
+        if (errorText != null) errorText.text = $"Error on line {line}:\n{message}";
+
+        TriggerHighlight(line, line);
+
+        if (inputField != null && editorViewport != null && inputField.verticalScrollbar != null)
+        {
+            float contentHeight = inputField.textComponent.rectTransform.rect.height;
+            float viewHeight = editorViewport.rect.height;
+            float lineY = Mathf.Abs(currentHighlightCenterY);
+            float currentScroll = inputField.textComponent.rectTransform.anchoredPosition.y;
+
+            if (lineY < currentScroll || lineY > currentScroll + viewHeight)
+            {
+                float targetScroll = lineY - (viewHeight / 2f);
+                float maxScroll = Mathf.Max(0.0001f, contentHeight - viewHeight);
+                targetScroll = Mathf.Clamp(targetScroll, 0f, maxScroll);
+
+                float normalized = 1f - (targetScroll / maxScroll);
+                inputField.verticalScrollbar.value = normalized;
+            }
+        }
+    }
+
+    public void HideError()
+    {
+        if (errorPanel != null) errorPanel.gameObject.SetActive(false);
+    }
 
     void PlayAbort()
     {
@@ -318,12 +362,13 @@ public class CodeEditor : MonoBehaviour
     }
     bool Play()
     {
+        HideError();
         PythonValidationResult result = PythonExecutor.instance.ValidateCode(inputField.text);
 
         if (!result.is_valid)
         {
             isPlaying = false;
-            gameManager.PrintToDisplay($"<color=red>Error on line {result.line}: {result.error_msg}</color>");
+            ShowError(result.line, result.error_msg);
             TriggerHighlight(result.line, result.line);
             return false;
         }
@@ -336,8 +381,8 @@ public class CodeEditor : MonoBehaviour
 
     void Abort()
     {
-        PythonExecutor.instance.currentCode = null;
-        PythonExecutor.instance.continuous = false;
+        PythonExecutor.instance.StopRunningCode();
+        HideError();
     }
     void PauseContinue()
     {
@@ -369,10 +414,11 @@ public class CodeEditor : MonoBehaviour
     {
         if (!isPlaying)
         {
+            HideError();
             PythonValidationResult result = PythonExecutor.instance.ValidateCode(inputField.text);
             if (!result.is_valid)
             {
-                gameManager.PrintToDisplay($"<color=red>Error on line {result.line}: {result.error_msg}</color>");
+                ShowError(result.line, result.error_msg);
 
                 TriggerHighlight(result.line, result.line);
                 return;
@@ -451,6 +497,8 @@ public class CodeEditor : MonoBehaviour
         {
             lastKnownText = inputField.text;
 
+            HideError();
+
             UpdateSyntaxHighlighting(lastKnownText);
             RemoveHighlight();
 
@@ -494,6 +542,19 @@ public class CodeEditor : MonoBehaviour
                 Vector3 highlightPos = highlightImage.rectTransform.localPosition;
                 highlightPos.y = scrollY + currentHighlightCenterY;
                 highlightImage.rectTransform.localPosition = highlightPos;
+            }
+
+            if (errorPanel != null && errorPanel.gameObject.activeSelf && editorViewport != null)
+            {
+                float rawY = scrollY + currentHighlightCenterY;
+                float halfHeight = errorPanel.rect.height / 2f;
+
+                float topBound = -halfHeight;
+                float bottomBound = -editorViewport.rect.height + halfHeight;
+
+                float clampedY = Mathf.Clamp(rawY, Mathf.Min(topBound, bottomBound), topBound);
+
+                errorPanel.anchoredPosition = new Vector2(errorPanel.anchoredPosition.x, clampedY);
             }
         }
     }
@@ -548,12 +609,12 @@ public class CodeEditor : MonoBehaviour
                 if (group.groupName == "List Methods")
                 {
                     string pattern = @"(\.\s*)\b(" + word + @")\b";
-                    processedText = Regex.Replace(processedText, pattern, $"$1<color=#{hexColor}>$2</color>");
+                    processedText = SafeReplace(processedText, pattern, $"$1<color=#{hexColor}>$2</color>");
                 }
                 else
                 {
                     string pattern = @"\b" + word + @"\b";
-                    processedText = Regex.Replace(processedText, pattern, $"<color=#{hexColor}>{word}</color>");
+                    processedText = SafeReplace(processedText, pattern, $"<color=#{hexColor}>{word}</color>");
                 }
             }
         }
@@ -603,6 +664,7 @@ public class CodeEditor : MonoBehaviour
         {
             PythonExecutor.instance.OnExecutionFinished -= OnPythonFinished;
             PythonExecutor.instance.OnLineExecuted -= TriggerHighlight;
+            PythonExecutor.instance.OnRuntimeError -= HandleRuntimeError;
         }
     }
     void OnPythonFinished()

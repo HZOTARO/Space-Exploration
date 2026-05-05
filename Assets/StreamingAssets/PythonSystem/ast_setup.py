@@ -1,6 +1,8 @@
 import ast
 import types
 import json
+import sys
+import traceback
 
 # |=================|
 # | SYNTAX LIMITING |
@@ -186,12 +188,14 @@ def __wrap_call__(func, *args, **kwargs):
     return res
 
 __gen__ = None
+__init_error__ = None
 
 # |================|
 # | STEP EXECUTION |
 # |================|
 def prepare(code):
-    global __gen__
+    global __gen__, __init_error__
+    __init_error__ = None
     
     try:
         tree = ast.parse(code)
@@ -229,14 +233,26 @@ def prepare(code):
         __gen__ = env['__runner__']()
         
     except Exception as e:
-        print(f'{type(e).__name__}: {e}')
+        exc_type, exc_value, exc_tb = sys.exc_info()
+        line_no = 1
+        for frame in traceback.extract_tb(exc_tb):
+            if frame.filename == '<player_code>':
+                line_no = frame.lineno
+                break
+                
+        __init_error__ = f"RUNTIME_ERROR|{line_no}|{type(e).__name__}: {e}"
         __gen__ = None
 
 def step():
-    global __gen__
+    global __gen__, __init_error__
     
+    if __init_error__ is not None:
+        err = __init_error__
+        __init_error__ = None
+        return err
+
     if __gen__ is None:
-        return 'ERROR'
+        return 'DONE'
 
     try:
         yielded_value = next(__gen__)
@@ -247,5 +263,11 @@ def step():
     except StopIteration:
         return 'DONE'
     except Exception as e:
-        print(f'{type(e).__name__}: {e}')
-        return 'ERROR'
+        exc_type, exc_value, exc_tb = sys.exc_info()
+        line_no = 1
+        for frame in traceback.extract_tb(exc_tb):
+            if frame.filename == '<player_code>':
+                line_no = frame.lineno
+                break
+                
+        return f"RUNTIME_ERROR|{line_no}|{type(e).__name__}: {e}"

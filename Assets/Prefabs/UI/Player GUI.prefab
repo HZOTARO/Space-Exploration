@@ -571,7 +571,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &7594509716996782281
 MonoBehaviour:
@@ -1183,7 +1183,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 905976380711984238, guid: dc220b938cd6aa846a3484802a06dfd1, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 905976380711984238, guid: dc220b938cd6aa846a3484802a06dfd1, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1191,7 +1191,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 905976380711984238, guid: dc220b938cd6aa846a3484802a06dfd1, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1811714936824688120, guid: dc220b938cd6aa846a3484802a06dfd1, type: 3}
       propertyPath: m_AnchorMax.y

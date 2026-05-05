@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Text.RegularExpressions;
 
 [System.Serializable]
 public struct PythonValidationRequest
@@ -39,6 +40,7 @@ public class PythonExecutor : MonoBehaviour
     public event Action OnExecutionFinished;
     public event Action<string> OnPythonPrint;
     public event Action<int, int> OnLineExecuted;
+    public event Action<int, string> OnRuntimeError;
 
     public Func<bool> CanStepCode;
 
@@ -187,6 +189,7 @@ public class PythonExecutor : MonoBehaviour
             using (Py.GIL())
             {
                 pyScope.Set("unity_log", new Action<string>(LogFromPython));
+
                 pyScope.Exec(File.ReadAllText(filePath));
             }
         }
@@ -228,11 +231,24 @@ public class PythonExecutor : MonoBehaviour
         {
             var result = pyStepFunc().ToString();
 
-            if (result == "DONE")
+            if (result.StartsWith("RUNTIME_ERROR|"))
             {
                 continuous = false;
                 currentCode = null;
 
+                string[] parts = result.Split('|', 3);
+
+                int.TryParse(parts[1], out int line);
+                string msg = parts.Length > 2 ? parts[2] : "Unknown Error";
+
+                OnRuntimeError?.Invoke(line, msg);
+                return;
+            }
+
+            if (result == "DONE")
+            {
+                continuous = false;
+                currentCode = null;
                 OnExecutionFinished?.Invoke();
             }
             else
@@ -252,7 +268,7 @@ public class PythonExecutor : MonoBehaviour
             }
         }
 
-        if (stepDelay > 0)
+        if (stepDelay > 0 && continuous)
         {
             lockDelay = true;
             Invoke("UnlockDelay", stepDelay * Time.timeScale);
