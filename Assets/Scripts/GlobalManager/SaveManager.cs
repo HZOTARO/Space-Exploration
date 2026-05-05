@@ -25,6 +25,8 @@ public class SaveData
     public string lastSavedTime = "Never";
     public List<ItemSaveState> inventory = new List<ItemSaveState>();
     public List<UpgradeSaveState> unlockedUpgrades = new List<UpgradeSaveState>();
+    public float stepDelay = 0.1f;
+    public float gameSpeed = 1f;
 }
 
 public interface IResourceUpdatable

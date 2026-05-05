@@ -437,6 +437,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 16
   x: 16
+  isWalkable: 0
 --- !u!23 &10717125
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -722,6 +723,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 17
   x: 11
+  isWalkable: 0
 --- !u!23 &15067407
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1007,6 +1009,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 2
   x: 0
+  isWalkable: 0
 --- !u!23 &17405397
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1112,6 +1115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 14
   x: 7
+  isWalkable: 0
 --- !u!23 &19127152
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1217,6 +1221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 15
   x: 24
+  isWalkable: 0
 --- !u!23 &19670589
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1502,6 +1507,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 19
   x: 13
+  isWalkable: 0
 --- !u!23 &20961638
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1607,6 +1613,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 13
   x: 3
+  isWalkable: 0
 --- !u!23 &23115421
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1712,6 +1719,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 1
   x: 15
+  isWalkable: 0
 --- !u!23 &23906572
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1817,6 +1825,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 3
   x: 24
+  isWalkable: 0
 --- !u!23 &24665223
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1922,6 +1931,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_PurpleVein
   z: 3
   x: 17
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -2127,6 +2137,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 8
   x: 19
+  isWalkable: 0
 --- !u!23 &31984828
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2322,6 +2333,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 24
   x: 2
+  isWalkable: 0
 --- !u!23 &34116896
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3619,6 +3631,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 15
   x: 23
+  isWalkable: 0
 --- !u!23 &49487353
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3724,6 +3737,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 1
   x: 4
+  isWalkable: 0
 --- !u!23 &49672324
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3829,6 +3843,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 19
   x: 12
+  isWalkable: 0
 --- !u!23 &51891789
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4024,6 +4039,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 13
   x: 11
+  isWalkable: 0
 --- !u!23 &52519101
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4129,6 +4145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 3
   x: 20
+  isWalkable: 0
 --- !u!23 &53906975
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4324,6 +4341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 22
   x: 11
+  isWalkable: 0
 --- !u!23 &54518503
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4556,6 +4574,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 17
   x: 4
+  isWalkable: 0
 --- !u!23 &55064055
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4661,6 +4680,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 20
   x: 7
+  isWalkable: 0
 --- !u!23 &57735125
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5343,6 +5363,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 8
   x: 24
+  isWalkable: 0
 --- !u!23 &64998519
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5448,6 +5469,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 18
   x: 9
+  isWalkable: 0
 --- !u!23 &65088489
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5553,6 +5575,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 5
   x: 22
+  isWalkable: 0
 --- !u!23 &65203476
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6003,6 +6026,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 10
   x: 0
+  isWalkable: 0
 --- !u!23 &67238722
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6288,6 +6312,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 6
   x: 6
+  isWalkable: 0
 --- !u!23 &73039180
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6393,6 +6418,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 12
   x: 20
+  isWalkable: 0
 --- !u!23 &73383617
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7292,6 +7318,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 19
   x: 18
+  isWalkable: 0
 --- !u!23 &86314785
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7397,6 +7424,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 20
   x: 14
+  isWalkable: 0
 --- !u!23 &87025480
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7502,6 +7530,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 1
   x: 8
+  isWalkable: 0
 --- !u!23 &88983380
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7914,6 +7943,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 17
   x: 10
+  isWalkable: 0
 --- !u!23 &95299656
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8022,6 +8052,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_BlackOre
   z: 24
   x: 18
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -8387,6 +8418,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 12
   x: 22
+  isWalkable: 0
 --- !u!23 &99572807
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8492,6 +8524,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 7
   x: 18
+  isWalkable: 0
 --- !u!23 &102369187
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8687,6 +8720,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 5
   x: 8
+  isWalkable: 0
 --- !u!23 &108237604
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8792,6 +8826,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 18
   x: 3
+  isWalkable: 0
 --- !u!23 &110966386
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9871,6 +9906,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 15
   x: 2
+  isWalkable: 0
 --- !u!23 &129724748
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9979,6 +10015,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_WhiteOre
   z: 19
   x: 1
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -10041,6 +10078,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 10
   x: 9
+  isWalkable: 0
 --- !u!23 &130186765
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10146,6 +10184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 13
   x: 24
+  isWalkable: 0
 --- !u!23 &133294301
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10251,6 +10290,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 20
   x: 5
+  isWalkable: 0
 --- !u!23 &133734831
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10536,6 +10576,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 16
   x: 12
+  isWalkable: 0
 --- !u!23 &138019678
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10821,6 +10862,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 11
   x: 1
+  isWalkable: 0
 --- !u!23 &140693981
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11016,6 +11058,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 4
   x: 14
+  isWalkable: 0
 --- !u!23 &141279702
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11121,6 +11164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 11
   x: 19
+  isWalkable: 0
 --- !u!23 &142409229
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11226,6 +11270,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 12
   x: 2
+  isWalkable: 0
 --- !u!23 &144284840
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11331,6 +11376,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_PurpleVein
   z: 22
   x: 20
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -11576,6 +11622,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_BlackOre
   z: 8
   x: 15
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -11639,6 +11686,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 14
   x: 18
+  isWalkable: 0
 --- !u!23 &150088687
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11924,6 +11972,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 11
   x: 17
+  isWalkable: 0
 --- !u!23 &151041488
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -12029,6 +12078,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 13
   x: 19
+  isWalkable: 0
 --- !u!23 &151043475
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -12224,6 +12274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 14
   x: 4
+  isWalkable: 0
 --- !u!23 &152490348
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -12599,6 +12650,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 22
   x: 15
+  isWalkable: 0
 --- !u!23 &155364531
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -12974,6 +13026,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 5
   x: 17
+  isWalkable: 0
 --- !u!23 &157290996
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13169,6 +13222,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 0
   x: 10
+  isWalkable: 0
 --- !u!23 &157665223
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13457,6 +13511,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_BlackOre
   z: 3
   x: 0
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -13610,6 +13665,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 13
   x: 13
+  isWalkable: 0
 --- !u!23 &165407264
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14220,6 +14276,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 23
   x: 3
+  isWalkable: 0
 --- !u!23 &174066090
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14325,6 +14382,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 23
   x: 18
+  isWalkable: 0
 --- !u!23 &177959784
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14520,6 +14578,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 15
   x: 21
+  isWalkable: 0
 --- !u!23 &178660488
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14625,6 +14684,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 0
   x: 8
+  isWalkable: 0
 --- !u!23 &179453424
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14733,6 +14793,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_BlackOre
   z: 3
   x: 20
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -14796,6 +14857,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 11
   x: 11
+  isWalkable: 0
 --- !u!23 &184067942
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14991,6 +15053,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 13
   x: 12
+  isWalkable: 0
 --- !u!23 &185542022
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15186,6 +15249,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 3
   x: 1
+  isWalkable: 0
 --- !u!23 &193616280
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15471,6 +15535,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 5
   x: 9
+  isWalkable: 0
 --- !u!23 &196131228
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15576,6 +15641,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 13
   x: 4
+  isWalkable: 0
 --- !u!23 &196369280
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15681,6 +15747,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 15
   x: 11
+  isWalkable: 0
 --- !u!23 &196599849
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15876,6 +15943,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 20
   x: 20
+  isWalkable: 0
 --- !u!23 &198881153
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -16071,6 +16139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 20
   x: 10
+  isWalkable: 0
 --- !u!23 &199060593
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -16176,6 +16245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 9
   x: 6
+  isWalkable: 0
 --- !u!23 &199395877
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -16371,6 +16441,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 16
   x: 4
+  isWalkable: 0
 --- !u!23 &199846944
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -16690,6 +16761,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_BlackOre
   z: 14
   x: 9
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -16753,6 +16825,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 17
   x: 8
+  isWalkable: 0
 --- !u!23 &205330393
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -17250,6 +17323,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 6
   x: 9
+  isWalkable: 0
 --- !u!23 &215951549
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -18113,6 +18187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 2
   x: 14
+  isWalkable: 0
 --- !u!23 &226637095
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -18218,6 +18293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 14
   x: 24
+  isWalkable: 0
 --- !u!23 &230137185
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -18489,6 +18565,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 3
   x: 13
+  isWalkable: 0
 --- !u!23 &232475190
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -18684,6 +18761,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 12
   x: 6
+  isWalkable: 0
 --- !u!23 &234122485
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -19043,6 +19121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 21
   x: 15
+  isWalkable: 0
 --- !u!23 &235652285
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -19151,6 +19230,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_BlackOre
   z: 2
   x: 15
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -19214,6 +19294,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 21
   x: 2
+  isWalkable: 0
 --- !u!23 &236833438
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -19319,6 +19400,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 5
   x: 1
+  isWalkable: 0
 --- !u!23 &237616040
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -19424,6 +19506,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 3
   x: 0
+  isWalkable: 0
 --- !u!23 &238662609
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -19709,6 +19792,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 8
   x: 9
+  isWalkable: 0
 --- !u!23 &240553911
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -19852,6 +19936,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_PurpleVein
   z: 6
   x: 12
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -19967,6 +20052,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_PurpleVein
   z: 11
   x: 12
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -20082,6 +20168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_PurpleVein
   z: 1
   x: 16
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -20197,6 +20284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 18
   x: 2
+  isWalkable: 0
 --- !u!23 &245878161
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -20519,6 +20607,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 12
   x: 9
+  isWalkable: 0
 --- !u!23 &249199098
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -21091,6 +21180,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 2
   x: 11
+  isWalkable: 0
 --- !u!23 &256802844
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -21286,6 +21376,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 22
   x: 16
+  isWalkable: 0
 --- !u!23 &260851138
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -21481,6 +21572,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 10
   x: 22
+  isWalkable: 0
 --- !u!23 &263471016
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -21586,6 +21678,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 23
   x: 23
+  isWalkable: 0
 --- !u!23 &264182763
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -21781,6 +21874,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 10
   x: 10
+  isWalkable: 0
 --- !u!23 &266894953
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -21923,6 +22017,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 15
   x: 0
+  isWalkable: 0
 --- !u!23 &269537606
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -22065,6 +22160,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 5
   x: 12
+  isWalkable: 0
 --- !u!23 &270773694
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -22440,6 +22536,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 4
   x: 10
+  isWalkable: 0
 --- !u!23 &274040945
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -22582,6 +22679,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 8
   x: 13
+  isWalkable: 0
 --- !u!23 &275563592
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -22687,6 +22785,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 6
   x: 13
+  isWalkable: 0
 --- !u!23 &279614467
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -23065,6 +23164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_WhiteOre
   z: 22
   x: 12
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -23165,6 +23265,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 23
   x: 9
+  isWalkable: 0
 --- !u!23 &283625202
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -23578,6 +23679,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 13
   x: 15
+  isWalkable: 0
 --- !u!23 &288567997
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -23683,6 +23785,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 10
   x: 23
+  isWalkable: 0
 --- !u!23 &289853529
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -23791,6 +23894,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_BlackOre
   z: 21
   x: 19
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -24336,6 +24440,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 7
   x: 1
+  isWalkable: 0
 --- !u!23 &309486756
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -24441,6 +24546,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 24
   x: 11
+  isWalkable: 0
 --- !u!23 &309508702
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -24546,6 +24652,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 3
   x: 4
+  isWalkable: 0
 --- !u!23 &314082036
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -24651,6 +24758,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 3
   x: 23
+  isWalkable: 0
 --- !u!23 &314170711
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -24756,6 +24864,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 11
   x: 3
+  isWalkable: 0
 --- !u!23 &315787480
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -24861,6 +24970,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 17
   x: 9
+  isWalkable: 0
 --- !u!23 &315907482
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -25056,6 +25166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 1
   x: 0
+  isWalkable: 0
 --- !u!23 &317196869
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -25431,6 +25542,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 11
   x: 13
+  isWalkable: 0
 --- !u!23 &320210217
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -25539,6 +25651,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_BlackOre
   z: 12
   x: 0
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -25605,6 +25718,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_WhiteOre
   z: 0
   x: 19
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -25974,6 +26088,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 12
   x: 0
+  isWalkable: 0
 --- !u!23 &325482626
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -26079,6 +26194,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 18
   x: 20
+  isWalkable: 0
 --- !u!23 &325679361
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -26274,6 +26390,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 0
   x: 3
+  isWalkable: 0
 --- !u!23 &327809050
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -26379,6 +26496,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 12
   x: 14
+  isWalkable: 0
 --- !u!23 &328712959
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -26484,6 +26602,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 24
   x: 23
+  isWalkable: 0
 --- !u!23 &332289719
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -26679,6 +26798,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 2
   x: 10
+  isWalkable: 0
 --- !u!23 &335130564
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -26964,6 +27084,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 20
   x: 16
+  isWalkable: 0
 --- !u!23 &339026050
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -27069,6 +27190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 22
   x: 21
+  isWalkable: 0
 --- !u!23 &340278116
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -27174,6 +27296,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 4
   x: 21
+  isWalkable: 0
 --- !u!23 &343775176
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -27279,6 +27402,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 11
   x: 15
+  isWalkable: 0
 --- !u!23 &347040448
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -27474,6 +27598,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 16
   x: 13
+  isWalkable: 0
 --- !u!23 &347802524
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -27579,6 +27704,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 9
   x: 5
+  isWalkable: 0
 --- !u!23 &348324133
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -27774,6 +27900,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 2
   x: 12
+  isWalkable: 0
 --- !u!23 &350435362
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -27969,6 +28096,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 9
   x: 17
+  isWalkable: 0
 --- !u!23 &352665026
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -28077,6 +28205,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_BlackOre
   z: 10
   x: 14
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -28140,6 +28269,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 10
   x: 18
+  isWalkable: 0
 --- !u!23 &356360286
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -28515,6 +28645,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_PurpleVein
   z: 1
   x: 9
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -28630,6 +28761,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 19
   x: 3
+  isWalkable: 0
 --- !u!23 &362840816
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -28825,6 +28957,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 10
   x: 1
+  isWalkable: 0
 --- !u!23 &365005394
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -29020,6 +29153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 23
   x: 0
+  isWalkable: 0
 --- !u!23 &366509459
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -29125,6 +29259,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 11
   x: 24
+  isWalkable: 0
 --- !u!23 &366850348
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -29230,6 +29365,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 3
   x: 22
+  isWalkable: 0
 --- !u!23 &368392347
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -29518,6 +29654,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_WhiteOre
   z: 16
   x: 24
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -29644,7 +29781,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7955953769729619003, guid: 9b385f8dd6d2614418a23eab23de6489, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.5
+      value: 2.25
       objectReference: {fileID: 0}
     - target: {fileID: 7955953769729619003, guid: 9b385f8dd6d2614418a23eab23de6489, type: 3}
       propertyPath: m_LocalRotation.w
@@ -29944,6 +30081,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 14
   x: 3
+  isWalkable: 0
 --- !u!23 &376540056
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -30049,6 +30187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 2
   x: 2
+  isWalkable: 0
 --- !u!23 &376851621
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -30154,6 +30293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 14
   x: 10
+  isWalkable: 0
 --- !u!23 &376987714
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -30381,6 +30521,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 7
   x: 7
+  isWalkable: 0
 --- !u!23 &379413193
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -30576,6 +30717,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 23
   x: 15
+  isWalkable: 0
 --- !u!23 &384983474
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -30861,6 +31003,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 15
   x: 17
+  isWalkable: 0
 --- !u!23 &390330806
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -31056,6 +31199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 4
   x: 24
+  isWalkable: 0
 --- !u!23 &392888892
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -31325,6 +31469,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 8
   x: 16
+  isWalkable: 0
 --- !u!23 &395998084
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -31430,6 +31575,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 7
   x: 21
+  isWalkable: 0
 --- !u!23 &397173102
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -31535,6 +31681,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 7
   x: 8
+  isWalkable: 0
 --- !u!23 &397260941
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -31640,6 +31787,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 18
   x: 23
+  isWalkable: 0
 --- !u!23 &397328457
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -31835,6 +31983,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 6
   x: 21
+  isWalkable: 0
 --- !u!23 &398044556
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -32157,6 +32306,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 10
   x: 15
+  isWalkable: 0
 --- !u!23 &400957196
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -32389,6 +32539,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 12
   x: 11
+  isWalkable: 0
 --- !u!23 &402564457
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -32854,6 +33005,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 24
   x: 20
+  isWalkable: 0
 --- !u!23 &407946245
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -33483,6 +33635,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 19
   x: 22
+  isWalkable: 0
 --- !u!23 &411354870
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -33678,6 +33831,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 13
   x: 23
+  isWalkable: 0
 --- !u!23 &414568507
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -33783,6 +33937,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 7
   x: 0
+  isWalkable: 0
 --- !u!23 &414911245
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -33888,6 +34043,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 1
   x: 22
+  isWalkable: 0
 --- !u!23 &415050807
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -33993,6 +34149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 1
   x: 14
+  isWalkable: 0
 --- !u!23 &416746696
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -34098,6 +34255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 1
   x: 2
+  isWalkable: 0
 --- !u!23 &416782003
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -34543,6 +34701,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 4
   x: 7
+  isWalkable: 0
 --- !u!23 &420785830
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -34680,6 +34839,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 4
   x: 3
+  isWalkable: 0
 --- !u!23 &423296490
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -35529,6 +35689,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_WhiteOre
   z: 8
   x: 5
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -35861,6 +36022,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 22
   x: 9
+  isWalkable: 0
 --- !u!23 &434366430
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -36056,6 +36218,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 21
   x: 5
+  isWalkable: 0
 --- !u!23 &434678231
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -36341,6 +36504,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 21
   x: 21
+  isWalkable: 0
 --- !u!23 &435489607
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -36446,6 +36610,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 21
   x: 3
+  isWalkable: 0
 --- !u!23 &437420210
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -36551,6 +36716,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 1
   x: 13
+  isWalkable: 0
 --- !u!23 &437565543
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -36656,6 +36822,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 1
   x: 11
+  isWalkable: 0
 --- !u!23 &439617873
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -36978,6 +37145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 24
   x: 22
+  isWalkable: 0
 --- !u!23 &446337984
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -37623,6 +37791,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 7
   x: 19
+  isWalkable: 0
 --- !u!23 &455888728
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -37728,6 +37897,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 1
   x: 24
+  isWalkable: 0
 --- !u!23 &456557926
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -37836,6 +38006,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_BlackOre
   z: 8
   x: 9
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -38079,6 +38250,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 24
   x: 4
+  isWalkable: 0
 --- !u!23 &462267321
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -38491,6 +38663,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 0
   x: 23
+  isWalkable: 0
 --- !u!23 &466277640
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -38634,6 +38807,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 22
   x: 1
+  isWalkable: 0
 --- !u!23 &468933640
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -39083,6 +39257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 10
   x: 20
+  isWalkable: 0
 --- !u!23 &473521702
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -39188,6 +39363,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 14
   x: 20
+  isWalkable: 0
 --- !u!23 &475207839
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -39653,6 +39829,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 17
   x: 21
+  isWalkable: 0
 --- !u!23 &479544581
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -40336,6 +40513,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_PurpleVein
   z: 17
   x: 14
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -40541,6 +40719,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 12
   x: 16
+  isWalkable: 0
 --- !u!23 &488915225
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -40863,6 +41042,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 14
   x: 0
+  isWalkable: 0
 --- !u!23 &491185607
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -40968,6 +41148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 13
   x: 16
+  isWalkable: 0
 --- !u!23 &492040384
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -41105,6 +41286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 13
   x: 22
+  isWalkable: 0
 --- !u!23 &494909926
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -41608,6 +41790,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 18
   x: 21
+  isWalkable: 0
 --- !u!23 &502508040
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -41713,6 +41896,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 5
   x: 23
+  isWalkable: 0
 --- !u!23 &505832272
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -41908,6 +42092,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 17
   x: 18
+  isWalkable: 0
 --- !u!23 &508542536
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -42106,6 +42291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_WhiteOre
   z: 11
   x: 19
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -42348,6 +42534,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 16
   x: 7
+  isWalkable: 0
 --- !u!23 &513646304
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -42543,6 +42730,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 5
   x: 20
+  isWalkable: 0
 --- !u!23 &514404907
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -42918,6 +43106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 19
   x: 16
+  isWalkable: 0
 --- !u!23 &520332598
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -43023,6 +43212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 22
   x: 12
+  isWalkable: 0
 --- !u!23 &520419995
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -43131,6 +43321,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_WhiteOre
   z: 18
   x: 11
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -43405,6 +43596,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_PurpleVein
   z: 0
   x: 24
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -43520,6 +43712,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 22
   x: 24
+  isWalkable: 0
 --- !u!23 &528442304
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -44008,6 +44201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 11
   x: 14
+  isWalkable: 0
 --- !u!23 &531916227
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -44386,6 +44580,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_WhiteOre
   z: 10
   x: 5
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -45057,6 +45252,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 16
   x: 20
+  isWalkable: 0
 --- !u!23 &555314425
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -45162,6 +45358,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 5
   x: 7
+  isWalkable: 0
 --- !u!23 &555658271
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -45357,6 +45554,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 7
   x: 9
+  isWalkable: 0
 --- !u!23 &560050725
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -45584,6 +45782,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 22
   x: 8
+  isWalkable: 0
 --- !u!23 &562761288
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -45689,6 +45888,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 19
   x: 17
+  isWalkable: 0
 --- !u!23 &562973874
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -45974,6 +46174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 20
   x: 18
+  isWalkable: 0
 --- !u!23 &566137445
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -46201,6 +46402,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 7
   x: 4
+  isWalkable: 0
 --- !u!23 &569734862
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -46396,6 +46598,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 16
   x: 15
+  isWalkable: 0
 --- !u!23 &573212850
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -46718,6 +46921,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 14
   x: 11
+  isWalkable: 0
 --- !u!23 &579463244
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -46913,6 +47117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 24
   x: 1
+  isWalkable: 0
 --- !u!23 &580950343
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -47178,6 +47383,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 14
   x: 1
+  isWalkable: 0
 --- !u!23 &585426283
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -47500,6 +47706,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 17
   x: 15
+  isWalkable: 0
 --- !u!23 &590667613
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -47695,6 +47902,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 8
   x: 18
+  isWalkable: 0
 --- !u!23 &591409258
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -47800,6 +48008,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 4
   x: 18
+  isWalkable: 0
 --- !u!23 &592297126
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -48085,6 +48294,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 15
   x: 16
+  isWalkable: 0
 --- !u!23 &593294963
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -48410,6 +48620,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_WhiteOre
   z: 9
   x: 10
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -48472,6 +48683,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 17
   x: 7
+  isWalkable: 0
 --- !u!23 &599732951
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -48757,6 +48969,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 0
   x: 21
+  isWalkable: 0
 --- !u!23 &604326797
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -49042,6 +49255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 7
   x: 23
+  isWalkable: 0
 --- !u!23 &612131172
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -49150,6 +49364,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_WhiteOre
   z: 0
   x: 22
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -49302,6 +49517,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 16
   x: 9
+  isWalkable: 0
 --- !u!23 &617394375
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -49407,6 +49623,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 18
   x: 15
+  isWalkable: 0
 --- !u!23 &618129191
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -49549,6 +49766,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 8
   x: 17
+  isWalkable: 0
 --- !u!23 &622343416
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -50090,6 +50308,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 4
   x: 6
+  isWalkable: 0
 --- !u!23 &633226010
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -50195,6 +50414,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 4
   x: 4
+  isWalkable: 0
 --- !u!23 &635907665
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -50300,6 +50520,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_PurpleVein
   z: 10
   x: 8
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -50505,6 +50726,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 10
   x: 5
+  isWalkable: 0
 --- !u!23 &642179837
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -50613,6 +50835,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_WhiteOre
   z: 9
   x: 22
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -50765,6 +50988,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 5
   x: 4
+  isWalkable: 0
 --- !u!23 &643548174
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -51320,6 +51544,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 12
   x: 1
+  isWalkable: 0
 --- !u!23 &648344251
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -51425,6 +51650,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_PurpleVein
   z: 12
   x: 15
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -51648,6 +51874,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 5
   x: 18
+  isWalkable: 0
 --- !u!23 &656863163
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -51843,6 +52070,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 18
   x: 0
+  isWalkable: 0
 --- !u!23 &657055359
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -52038,6 +52266,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 16
   x: 2
+  isWalkable: 0
 --- !u!23 &660903697
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -52503,6 +52732,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_PurpleVein
   z: 3
   x: 3
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -52618,6 +52848,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 5
   x: 6
+  isWalkable: 0
 --- !u!23 &673832169
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -52723,6 +52954,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 14
   x: 12
+  isWalkable: 0
 --- !u!23 &675242419
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -53008,6 +53240,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 9
   x: 12
+  isWalkable: 0
 --- !u!23 &677411060
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -53510,6 +53743,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 24
   x: 7
+  isWalkable: 0
 --- !u!23 &682178852
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -53615,6 +53849,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 14
   x: 17
+  isWalkable: 0
 --- !u!23 &682532706
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -53720,6 +53955,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 18
   x: 14
+  isWalkable: 0
 --- !u!23 &683125254
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -53825,6 +54061,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 17
   x: 17
+  isWalkable: 0
 --- !u!23 &683951582
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -54020,6 +54257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_PurpleVein
   z: 20
   x: 15
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -54135,6 +54373,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 12
   x: 12
+  isWalkable: 0
 --- !u!23 &686648735
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -54510,6 +54749,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 18
   x: 1
+  isWalkable: 0
 --- !u!23 &692692334
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -54769,6 +55009,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 16
   x: 21
+  isWalkable: 0
 --- !u!23 &695538243
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -54874,6 +55115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 2
   x: 1
+  isWalkable: 0
 --- !u!23 &701614425
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -54979,6 +55221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 0
   x: 5
+  isWalkable: 0
 --- !u!23 &702339705
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -55174,6 +55417,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 23
   x: 22
+  isWalkable: 0
 --- !u!23 &703846885
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -55766,6 +56010,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 23
   x: 2
+  isWalkable: 0
 --- !u!23 &711535013
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -56054,6 +56299,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_WhiteOre
   z: 17
   x: 11
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -56116,6 +56362,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 2
   x: 15
+  isWalkable: 0
 --- !u!23 &718683161
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -56224,6 +56471,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_BlackOre
   z: 2
   x: 5
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -56441,6 +56689,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 2
   x: 22
+  isWalkable: 0
 --- !u!23 &731116780
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -56546,6 +56795,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 19
   x: 10
+  isWalkable: 0
 --- !u!23 &732404554
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -56959,6 +57209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 11
   x: 0
+  isWalkable: 0
 --- !u!23 &736857097
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -57694,6 +57945,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 22
   x: 10
+  isWalkable: 0
 --- !u!23 &743971958
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -57889,6 +58141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 15
   x: 18
+  isWalkable: 0
 --- !u!23 &746222264
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -58836,6 +59089,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_PurpleVein
   z: 16
   x: 6
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -58951,6 +59205,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 10
   x: 17
+  isWalkable: 0
 --- !u!23 &755168343
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -59329,6 +59584,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_BlackOre
   z: 4
   x: 13
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -59392,6 +59648,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 14
   x: 21
+  isWalkable: 0
 --- !u!23 &767507739
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -59767,6 +60024,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 5
   x: 15
+  isWalkable: 0
 --- !u!23 &770802214
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -59962,6 +60220,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 13
   x: 9
+  isWalkable: 0
 --- !u!23 &771112528
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -60067,6 +60326,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 10
   x: 24
+  isWalkable: 0
 --- !u!23 &771308945
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -60172,6 +60432,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 19
   x: 1
+  isWalkable: 0
 --- !u!23 &771829415
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -60674,6 +60935,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_PurpleVein
   z: 3
   x: 12
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -60789,6 +61051,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 9
   x: 16
+  isWalkable: 0
 --- !u!23 &781181340
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -61111,6 +61374,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 3
   x: 6
+  isWalkable: 0
 --- !u!23 &791443854
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -61216,6 +61480,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 12
   x: 7
+  isWalkable: 0
 --- !u!23 &791620992
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -61448,6 +61713,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 0
   x: 14
+  isWalkable: 0
 --- !u!23 &792522480
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -61643,6 +61909,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_PurpleVein
   z: 2
   x: 23
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -61758,6 +62025,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 18
   x: 17
+  isWalkable: 0
 --- !u!23 &795300202
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -61866,6 +62134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_BlackOre
   z: 15
   x: 6
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -61929,6 +62198,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 8
   x: 7
+  isWalkable: 0
 --- !u!23 &797234922
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -62034,6 +62304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 24
   x: 8
+  isWalkable: 0
 --- !u!23 &797900524
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -62229,6 +62500,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 18
   x: 18
+  isWalkable: 0
 --- !u!23 &801400091
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -62424,6 +62696,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 23
   x: 14
+  isWalkable: 0
 --- !u!23 &802430463
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -62529,6 +62802,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 17
   x: 0
+  isWalkable: 0
 --- !u!23 &804896924
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -62672,6 +62946,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 17
   x: 1
+  isWalkable: 0
 --- !u!23 &807538659
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -62867,6 +63142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 18
   x: 22
+  isWalkable: 0
 --- !u!23 &813541404
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -63062,6 +63338,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_PurpleVein
   z: 19
   x: 20
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -63177,6 +63454,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 4
   x: 22
+  isWalkable: 0
 --- !u!23 &815538647
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -63381,6 +63659,182 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 816972577}
   m_Mesh: {fileID: 4300000, guid: 78ffc1ed5f72076498d0614872cf48ec, type: 3}
+--- !u!1001 &818802477
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3016595231885816313, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
+      propertyPath: m_Name
+      value: Player GUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 3632169115596495670, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3632169115596495670, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3632169115596495670, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3632169115596495670, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4562414778641927136, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4562414778641927136, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4562414778641927136, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4562414778641927136, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4562414778641927136, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072239607351180526, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072239607351180526, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072239607351180526, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072239607351180526, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8516548240918520743, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8516548240918520743, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8516548240918520743, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8516548240918520743, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8516548240918520743, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8516548240918520743, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8516548240918520743, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8516548240918520743, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8516548240918520743, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8516548240918520743, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8516548240918520743, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8516548240918520743, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8516548240918520743, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8516548240918520743, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8516548240918520743, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8516548240918520743, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8516548240918520743, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8516548240918520743, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8516548240918520743, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8516548240918520743, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
+--- !u!224 &818802478 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4409307445940174865, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
+  m_PrefabInstance: {fileID: 818802477}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &818802479 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1256198640757002280, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
+  m_PrefabInstance: {fileID: 818802477}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!114 &818802480 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5924353717350774612, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
+  m_PrefabInstance: {fileID: 818802477}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1 &822016228
 GameObject:
   m_ObjectHideFlags: 0
@@ -63522,6 +63976,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_WhiteOre
   z: 6
   x: 23
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -63674,6 +64129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 22
   x: 6
+  isWalkable: 0
 --- !u!23 &822662177
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -63869,6 +64325,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 18
   x: 7
+  isWalkable: 0
 --- !u!23 &824755620
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -64371,6 +64828,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_PurpleVein
   z: 0
   x: 12
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -64486,6 +64944,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 2
   x: 20
+  isWalkable: 0
 --- !u!23 &828914870
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -64718,6 +65177,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 9
   x: 24
+  isWalkable: 0
 --- !u!23 &830771702
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -64962,6 +65422,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 5
   x: 11
+  isWalkable: 0
 --- !u!23 &836945161
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -65427,6 +65888,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 6
   x: 15
+  isWalkable: 0
 --- !u!23 &841297044
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -65622,6 +66084,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 10
   x: 3
+  isWalkable: 0
 --- !u!23 &845212185
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -66215,6 +66678,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 0
   x: 4
+  isWalkable: 0
 --- !u!23 &849008632
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -66410,6 +66874,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 2
   x: 6
+  isWalkable: 0
 --- !u!23 &849454904
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -66515,6 +66980,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 20
   x: 1
+  isWalkable: 0
 --- !u!23 &849927724
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -66800,6 +67266,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 20
   x: 21
+  isWalkable: 0
 --- !u!23 &854273695
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -66995,6 +67462,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 3
   x: 9
+  isWalkable: 0
 --- !u!23 &857393475
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -67280,6 +67748,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 6
   x: 16
+  isWalkable: 0
 --- !u!23 &858451081
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -67513,6 +67982,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_PurpleVein
   z: 7
   x: 12
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -67628,6 +68098,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 6
   x: 3
+  isWalkable: 0
 --- !u!23 &865642438
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -67913,6 +68384,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_PurpleVein
   z: 9
   x: 23
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -68028,6 +68500,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 5
   x: 19
+  isWalkable: 0
 --- !u!23 &867702462
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -68133,6 +68606,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 3
   x: 10
+  isWalkable: 0
 --- !u!23 &868206873
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -68546,6 +69020,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 8
   x: 11
+  isWalkable: 0
 --- !u!23 &870283115
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -68831,6 +69306,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_PurpleVein
   z: 6
   x: 18
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -69735,6 +70211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 6
   x: 4
+  isWalkable: 0
 --- !u!23 &886845967
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -69840,6 +70317,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 5
   x: 13
+  isWalkable: 0
 --- !u!23 &886870728
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -70125,6 +70603,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 22
   x: 0
+  isWalkable: 0
 --- !u!23 &889741915
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -70320,6 +70799,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 7
   x: 15
+  isWalkable: 0
 --- !u!23 &890392508
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -70785,6 +71265,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 21
   x: 12
+  isWalkable: 0
 --- !u!23 &895669924
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -71073,6 +71554,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_WhiteOre
   z: 11
   x: 5
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -71225,6 +71707,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 11
   x: 7
+  isWalkable: 0
 --- !u!23 &903565242
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -71330,6 +71813,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_PurpleVein
   z: 5
   x: 5
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -71448,6 +71932,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_WhiteOre
   z: 23
   x: 9
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -71600,6 +72085,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 7
   x: 24
+  isWalkable: 0
 --- !u!23 &904905349
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -71705,6 +72191,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 20
   x: 24
+  isWalkable: 0
 --- !u!23 &905027363
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -71810,6 +72297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 13
   x: 17
+  isWalkable: 0
 --- !u!23 &906512621
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -72713,6 +73201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_BlackOre
   z: 15
   x: 20
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -73258,6 +73747,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 9
   x: 10
+  isWalkable: 0
 --- !u!23 &925814338
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -73363,6 +73853,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 13
   x: 21
+  isWalkable: 0
 --- !u!23 &926750544
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -73558,6 +74049,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 24
   x: 18
+  isWalkable: 0
 --- !u!23 &931346856
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -73843,6 +74335,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 22
   x: 4
+  isWalkable: 0
 --- !u!23 &936583390
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -74131,6 +74624,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_WhiteOre
   z: 24
   x: 15
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -74463,6 +74957,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 15
   x: 15
+  isWalkable: 0
 --- !u!23 &940225951
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -74841,6 +75336,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_BlackOre
   z: 16
   x: 10
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -74904,6 +75400,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 16
   x: 0
+  isWalkable: 0
 --- !u!23 &946347120
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -76017,6 +76514,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 19
   x: 21
+  isWalkable: 0
 --- !u!23 &969616378
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -76212,6 +76710,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_PurpleVein
   z: 11
   x: 21
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -76507,6 +77006,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 1
   x: 10
+  isWalkable: 0
 --- !u!23 &975544300
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -76908,6 +77408,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 1
   x: 18
+  isWalkable: 0
 --- !u!23 &976690896
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -77196,6 +77697,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_BlackOre
   z: 8
   x: 1
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -77474,6 +77976,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_WhiteOre
   z: 23
   x: 15
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -77664,6 +78167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 12
   x: 10
+  isWalkable: 0
 --- !u!23 &986912074
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -78039,6 +78543,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 0
   x: 19
+  isWalkable: 0
 --- !u!23 &994213498
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -78144,6 +78649,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 9
   x: 18
+  isWalkable: 0
 --- !u!23 &995218482
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -78466,6 +78972,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 14
   x: 2
+  isWalkable: 0
 --- !u!23 &998542322
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -78661,6 +79168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 12
   x: 19
+  isWalkable: 0
 --- !u!23 &999728502
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -78766,6 +79274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 14
   x: 22
+  isWalkable: 0
 --- !u!23 &1001613799
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -79051,6 +79560,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 10
   x: 19
+  isWalkable: 0
 --- !u!23 &1004206485
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -79156,6 +79666,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 20
   x: 23
+  isWalkable: 0
 --- !u!23 &1005086412
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -79261,6 +79772,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 5
   x: 3
+  isWalkable: 0
 --- !u!23 &1009492349
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -79456,6 +79968,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 6
   x: 7
+  isWalkable: 0
 --- !u!23 &1011310743
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -79561,6 +80074,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 19
   x: 4
+  isWalkable: 0
 --- !u!23 &1011707939
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -80116,6 +80630,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 21
   x: 16
+  isWalkable: 0
 --- !u!23 &1020807950
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -80401,6 +80916,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 14
   x: 13
+  isWalkable: 0
 --- !u!23 &1023579882
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -80725,6 +81241,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_WhiteOre
   z: 3
   x: 4
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -80787,6 +81304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 5
   x: 14
+  isWalkable: 0
 --- !u!23 &1027269389
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -81199,6 +81717,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 23
   x: 19
+  isWalkable: 0
 --- !u!23 &1032884735
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -81431,6 +81950,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 2
   x: 16
+  isWalkable: 0
 --- !u!23 &1033501143
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -81536,6 +82056,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_PurpleVein
   z: 12
   x: 5
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -81778,6 +82299,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 18
   x: 13
+  isWalkable: 0
 --- !u!23 &1036925470
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -82063,6 +82585,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 6
   x: 1
+  isWalkable: 0
 --- !u!23 &1039101647
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -82438,6 +82961,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 11
   x: 6
+  isWalkable: 0
 --- !u!23 &1045234396
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -83120,6 +83644,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 24
   x: 9
+  isWalkable: 0
 --- !u!23 &1049906183
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -83442,6 +83967,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 11
   x: 5
+  isWalkable: 0
 --- !u!23 &1055802353
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -83730,6 +84256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_WhiteOre
   z: 13
   x: 11
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -83792,6 +84319,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 1
   x: 23
+  isWalkable: 0
 --- !u!23 &1057081854
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -84077,6 +84605,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 1
   x: 1
+  isWalkable: 0
 --- !u!23 &1060410592
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -84667,6 +85196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_WhiteOre
   z: 13
   x: 21
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -84729,6 +85259,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 13
   x: 20
+  isWalkable: 0
 --- !u!23 &1065524811
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -85014,6 +85545,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 0
   x: 22
+  isWalkable: 0
 --- !u!23 &1066185437
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -85299,6 +85831,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 14
   x: 9
+  isWalkable: 0
 --- !u!23 &1071933884
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -85404,6 +85937,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 0
   x: 1
+  isWalkable: 0
 --- !u!23 &1073383748
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -85758,6 +86292,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 3
   x: 21
+  isWalkable: 0
 --- !u!23 &1080653548
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -85863,6 +86398,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 17
   x: 13
+  isWalkable: 0
 --- !u!23 &1080750322
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -86958,6 +87494,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 19
   x: 11
+  isWalkable: 0
 --- !u!23 &1093610889
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -87243,6 +87780,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 18
   x: 12
+  isWalkable: 0
 --- !u!23 &1093972440
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -87655,6 +88193,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 9
   x: 21
+  isWalkable: 0
 --- !u!23 &1096676609
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -87850,6 +88389,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 4
   x: 16
+  isWalkable: 0
 --- !u!23 &1099519885
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -88135,6 +88675,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 0
   x: 9
+  isWalkable: 0
 --- !u!23 &1105595270
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -88623,6 +89164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 9
   x: 3
+  isWalkable: 0
 --- !u!23 &1111996683
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -88680,155 +89222,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1111996680}
   m_Mesh: {fileID: -5495902117074765545, guid: c77bc876771c5e94aa99715226d71908, type: 3}
---- !u!1001 &1112865185
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3016595231885816313, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
-      propertyPath: m_Name
-      value: Player GUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 3632169115596495670, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3632169115596495670, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3632169115596495670, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3632169115596495670, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4562414778641927136, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4562414778641927136, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4562414778641927136, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4562414778641927136, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4562414778641927136, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8072239607351180526, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8072239607351180526, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8072239607351180526, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8072239607351180526, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8516548240918520743, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8516548240918520743, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8516548240918520743, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8516548240918520743, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8516548240918520743, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8516548240918520743, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8516548240918520743, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8516548240918520743, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8516548240918520743, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8516548240918520743, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8516548240918520743, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8516548240918520743, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8516548240918520743, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8516548240918520743, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8516548240918520743, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8516548240918520743, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8516548240918520743, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8516548240918520743, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8516548240918520743, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8516548240918520743, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b165c6a26b4926a48b93d6d855df3abd, type: 3}
 --- !u!1 &1118497369
 GameObject:
   m_ObjectHideFlags: 0
@@ -88877,6 +89270,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 22
   x: 22
+  isWalkable: 0
 --- !u!23 &1118497372
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -88982,6 +89376,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 23
   x: 7
+  isWalkable: 0
 --- !u!23 &1119154322
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -89090,6 +89485,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_BlackOre
   z: 24
   x: 5
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -89397,6 +89793,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 24
   x: 5
+  isWalkable: 0
 --- !u!23 &1135371423
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -89772,6 +90169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_PurpleVein
   z: 9
   x: 4
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -90157,6 +90555,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 23
   x: 10
+  isWalkable: 0
 --- !u!23 &1143947716
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -90262,6 +90661,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 2
   x: 9
+  isWalkable: 0
 --- !u!23 &1144668961
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -90457,6 +90857,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_PurpleVein
   z: 8
   x: 23
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -90572,6 +90973,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 12
   x: 18
+  isWalkable: 0
 --- !u!23 &1147454268
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -91037,6 +91439,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 11
   x: 2
+  isWalkable: 0
 --- !u!23 &1155472287
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -91481,6 +91884,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 5
   x: 21
+  isWalkable: 0
 --- !u!23 &1161657010
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -91766,6 +92170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 1
   x: 7
+  isWalkable: 0
 --- !u!23 &1164040438
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -91961,6 +92366,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 9
   x: 14
+  isWalkable: 0
 --- !u!23 &1164376228
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -92490,6 +92896,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 0
   x: 11
+  isWalkable: 0
 --- !u!23 &1173756765
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -92722,6 +93129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 9
   x: 11
+  isWalkable: 0
 --- !u!23 &1174377940
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -93097,6 +93505,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 21
   x: 8
+  isWalkable: 0
 --- !u!23 &1177670887
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -93240,6 +93649,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 19
   x: 6
+  isWalkable: 0
 --- !u!23 &1181081011
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -93435,6 +93845,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 4
   x: 15
+  isWalkable: 0
 --- !u!23 &1183700232
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -93880,6 +94291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 4
   x: 11
+  isWalkable: 0
 --- !u!23 &1189522491
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -93985,6 +94397,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 8
   x: 22
+  isWalkable: 0
 --- !u!23 &1190960856
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -94270,6 +94683,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 15
   x: 14
+  isWalkable: 0
 --- !u!23 &1192921077
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -94587,6 +95001,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 16
   x: 14
+  isWalkable: 0
 --- !u!23 &1201289487
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -94692,6 +95107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 3
   x: 2
+  isWalkable: 0
 --- !u!23 &1202098382
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -94980,6 +95396,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_BlackOre
   z: 22
   x: 11
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -95043,6 +95460,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 14
   x: 5
+  isWalkable: 0
 --- !u!23 &1211775098
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -95238,6 +95656,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 6
   x: 8
+  isWalkable: 0
 --- !u!23 &1217509304
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -95560,6 +95979,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 17
   x: 24
+  isWalkable: 0
 --- !u!23 &1223207611
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -95665,6 +96085,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 16
   x: 22
+  isWalkable: 0
 --- !u!23 &1223290575
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -95860,6 +96281,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 2
   x: 8
+  isWalkable: 0
 --- !u!23 &1226094665
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -95965,6 +96387,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 1
   x: 3
+  isWalkable: 0
 --- !u!23 &1226315375
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -96160,6 +96583,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 23
   x: 24
+  isWalkable: 0
 --- !u!23 &1230626726
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -96689,6 +97113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 17
   x: 12
+  isWalkable: 0
 --- !u!23 &1242210215
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -96977,6 +97402,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_WhiteOre
   z: 14
   x: 16
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -97399,6 +97825,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 23
   x: 20
+  isWalkable: 0
 --- !u!23 &1250407202
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -97504,6 +97931,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 9
   x: 20
+  isWalkable: 0
 --- !u!23 &1250830316
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -97609,6 +98037,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 3
   x: 5
+  isWalkable: 0
 --- !u!23 &1251603946
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -97804,6 +98233,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 13
   x: 2
+  isWalkable: 0
 --- !u!23 &1253819572
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -97999,6 +98429,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 20
   x: 17
+  isWalkable: 0
 --- !u!23 &1254803210
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -98107,6 +98538,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_WhiteOre
   z: 17
   x: 19
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -98169,6 +98601,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 16
   x: 5
+  isWalkable: 0
 --- !u!23 &1256369944
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -98454,6 +98887,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 9
   x: 7
+  isWalkable: 0
 --- !u!23 &1258089079
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -98776,6 +99210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 1
   x: 19
+  isWalkable: 0
 --- !u!23 &1260013337
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -98881,6 +99316,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 23
   x: 11
+  isWalkable: 0
 --- !u!23 &1260097190
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -98986,6 +99422,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 21
   x: 13
+  isWalkable: 0
 --- !u!23 &1260145885
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -99349,6 +99786,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_WhiteOre
   z: 7
   x: 17
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -99591,6 +100029,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 8
   x: 0
+  isWalkable: 0
 --- !u!23 &1276428204
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -100093,6 +100532,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 20
   x: 12
+  isWalkable: 0
 --- !u!23 &1287217125
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -100198,6 +100638,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 7
   x: 16
+  isWalkable: 0
 --- !u!23 &1287514015
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -100573,6 +101014,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 23
   x: 21
+  isWalkable: 0
 --- !u!23 &1294256610
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -100768,6 +101210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 3
   x: 14
+  isWalkable: 0
 --- !u!23 &1295627141
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -100873,6 +101316,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 10
   x: 12
+  isWalkable: 0
 --- !u!23 &1296248550
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -101016,6 +101460,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 2
   x: 17
+  isWalkable: 0
 --- !u!23 &1298454898
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -101124,6 +101569,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_BlackOre
   z: 9
   x: 14
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -101187,6 +101633,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 12
   x: 8
+  isWalkable: 0
 --- !u!23 &1301836864
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -101295,6 +101742,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_WhiteOre
   z: 17
   x: 21
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -101357,6 +101805,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 4
   x: 5
+  isWalkable: 0
 --- !u!23 &1302991555
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -101769,6 +102218,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 21
   x: 19
+  isWalkable: 0
 --- !u!23 &1307570630
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -102054,6 +102504,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_PurpleVein
   z: 15
   x: 1
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -102387,6 +102838,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_PurpleVein
   z: 8
   x: 8
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -102502,6 +102954,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 4
   x: 2
+  isWalkable: 0
 --- !u!23 &1321972527
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -102787,6 +103240,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 22
   x: 3
+  isWalkable: 0
 --- !u!23 &1322510661
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -102892,6 +103346,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 23
   x: 12
+  isWalkable: 0
 --- !u!23 &1323393484
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -103394,6 +103849,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 15
   x: 5
+  isWalkable: 0
 --- !u!23 &1327174884
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -103499,6 +103955,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 15
   x: 12
+  isWalkable: 0
 --- !u!23 &1327263942
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -103604,6 +104061,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 22
   x: 18
+  isWalkable: 0
 --- !u!23 &1327967550
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -104249,6 +104707,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 18
   x: 10
+  isWalkable: 0
 --- !u!23 &1337188076
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -104357,6 +104816,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_WhiteOre
   z: 1
   x: 6
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -104419,6 +104879,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 4
   x: 0
+  isWalkable: 0
 --- !u!23 &1340294493
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -104794,6 +105255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 12
   x: 4
+  isWalkable: 0
 --- !u!23 &1346156925
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -105987,6 +106449,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_PurpleVein
   z: 10
   x: 4
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -106102,6 +106565,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 11
   x: 22
+  isWalkable: 0
 --- !u!23 &1356161576
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -106207,6 +106671,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 20
   x: 13
+  isWalkable: 0
 --- !u!23 &1356285955
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -106852,6 +107317,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 21
   x: 4
+  isWalkable: 0
 --- !u!23 &1362548988
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -106957,6 +107423,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 11
   x: 23
+  isWalkable: 0
 --- !u!23 &1365605254
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -107062,6 +107529,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 19
   x: 7
+  isWalkable: 0
 --- !u!23 &1368328552
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -107297,6 +107765,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_BlackOre
   z: 21
   x: 23
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -107761,6 +108230,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_WhiteOre
   z: 1
   x: 13
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -108006,6 +108476,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_BlackOre
   z: 19
   x: 17
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -108159,6 +108630,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 21
   x: 0
+  isWalkable: 0
 --- !u!23 &1382507656
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -108354,6 +108826,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 19
   x: 14
+  isWalkable: 0
 --- !u!23 &1384582315
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -108729,6 +109202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 23
   x: 5
+  isWalkable: 0
 --- !u!23 &1389752728
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -109231,6 +109705,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 10
   x: 7
+  isWalkable: 0
 --- !u!23 &1394768938
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -109643,6 +110118,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 21
   x: 14
+  isWalkable: 0
 --- !u!23 &1398482422
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -109748,6 +110224,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 4
   x: 1
+  isWalkable: 0
 --- !u!23 &1399489578
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -109980,6 +110457,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_PurpleVein
   z: 14
   x: 19
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -110692,6 +111170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 1
   x: 17
+  isWalkable: 0
 --- !u!23 &1407622229
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -110887,6 +111366,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 14
   x: 6
+  isWalkable: 0
 --- !u!23 &1410280177
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -111294,6 +111774,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 24
   x: 0
+  isWalkable: 0
 --- !u!23 &1413881528
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -111669,6 +112150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 19
   x: 9
+  isWalkable: 0
 --- !u!23 &1420606356
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -111774,6 +112256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 8
   x: 12
+  isWalkable: 0
 --- !u!23 &1420737461
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -111879,6 +112362,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 8
   x: 4
+  isWalkable: 0
 --- !u!23 &1422805330
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -112180,6 +112664,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 23
   x: 8
+  isWalkable: 0
 --- !u!23 &1431114262
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -112629,6 +113114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 10
   x: 13
+  isWalkable: 0
 --- !u!23 &1438360357
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -112824,6 +113310,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 1
   x: 21
+  isWalkable: 0
 --- !u!23 &1440189943
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -112929,6 +113416,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 16
   x: 3
+  isWalkable: 0
 --- !u!23 &1442680861
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -113342,6 +113830,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 8
   x: 15
+  isWalkable: 0
 --- !u!23 &1448491026
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -113908,6 +114397,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 6
   x: 23
+  isWalkable: 0
 --- !u!23 &1456225842
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -114257,6 +114747,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 13
   x: 7
+  isWalkable: 0
 --- !u!23 &1460386486
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -114362,6 +114853,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 6
   x: 22
+  isWalkable: 0
 --- !u!23 &1461325630
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -114467,6 +114959,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 23
   x: 1
+  isWalkable: 0
 --- !u!23 &1464679462
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -114699,6 +115192,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 17
   x: 6
+  isWalkable: 0
 --- !u!23 &1470618345
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -114836,6 +115330,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 6
   x: 14
+  isWalkable: 0
 --- !u!23 &1472631818
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -114941,6 +115436,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 24
   x: 15
+  isWalkable: 0
 --- !u!23 &1473501110
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -115263,6 +115759,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 9
   x: 22
+  isWalkable: 0
 --- !u!23 &1482133068
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -115490,6 +115987,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_PurpleVein
   z: 21
   x: 9
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -115605,6 +116103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 0
   x: 6
+  isWalkable: 0
 --- !u!23 &1486317815
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -115710,6 +116209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 9
   x: 9
+  isWalkable: 0
 --- !u!23 &1486419147
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -115905,6 +116405,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 2
   x: 24
+  isWalkable: 0
 --- !u!23 &1488984053
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -116280,6 +116781,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 7
   x: 10
+  isWalkable: 0
 --- !u!23 &1496780340
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -116385,6 +116887,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 11
   x: 9
+  isWalkable: 0
 --- !u!23 &1498103070
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -116649,6 +117152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 15
   x: 8
+  isWalkable: 0
 --- !u!23 &1501352116
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -116881,6 +117385,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 6
   x: 24
+  isWalkable: 0
 --- !u!23 &1503847394
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -117076,6 +117581,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 17
   x: 3
+  isWalkable: 0
 --- !u!23 &1505468126
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -117181,6 +117687,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 6
   x: 20
+  isWalkable: 0
 --- !u!23 &1506482365
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -117556,6 +118063,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 18
   x: 11
+  isWalkable: 0
 --- !u!23 &1514242067
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -117661,6 +118169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 22
   x: 17
+  isWalkable: 0
 --- !u!23 &1514860199
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -118434,6 +118943,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_PurpleVein
   z: 17
   x: 2
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -118639,6 +119149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 5
   x: 10
+  isWalkable: 0
 --- !u!23 &1529496198
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -118744,6 +119255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 0
   x: 0
+  isWalkable: 0
 --- !u!23 &1530647607
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -118849,6 +119361,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 20
   x: 22
+  isWalkable: 0
 --- !u!23 &1530997312
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -119134,6 +119647,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_PurpleVein
   z: 24
   x: 13
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -119379,6 +119893,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_BlackOre
   z: 21
   x: 6
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -119442,6 +119957,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 4
   x: 20
+  isWalkable: 0
 --- !u!23 &1539847612
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -119547,6 +120063,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 24
   x: 10
+  isWalkable: 0
 --- !u!23 &1540725228
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -119742,6 +120259,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 7
   x: 5
+  isWalkable: 0
 --- !u!23 &1541864664
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -119847,6 +120365,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 4
   x: 17
+  isWalkable: 0
 --- !u!23 &1542898867
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -119952,6 +120471,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 7
   x: 3
+  isWalkable: 0
 --- !u!23 &1543744356
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -120837,6 +121357,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 7
   x: 20
+  isWalkable: 0
 --- !u!23 &1553750737
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -121032,6 +121553,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_PurpleVein
   z: 19
   x: 19
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -121365,6 +121887,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 7
   x: 13
+  isWalkable: 0
 --- !u!23 &1566401763
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -121470,6 +121993,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 8
   x: 3
+  isWalkable: 0
 --- !u!23 &1567919842
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -122152,6 +122676,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 2
   x: 18
+  isWalkable: 0
 --- !u!23 &1573865370
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -122257,6 +122782,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 22
   x: 7
+  isWalkable: 0
 --- !u!23 &1574957141
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -122452,6 +122978,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 12
   x: 3
+  isWalkable: 0
 --- !u!23 &1577780959
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -122557,6 +123084,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 21
   x: 17
+  isWalkable: 0
 --- !u!23 &1580784881
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -122662,6 +123190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 0
   x: 15
+  isWalkable: 0
 --- !u!23 &1581401022
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -122860,6 +123389,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_WhiteOre
   z: 23
   x: 7
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -123081,6 +123611,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 5
   x: 16
+  isWalkable: 0
 --- !u!23 &1586453130
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -123494,6 +124025,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 9
   x: 19
+  isWalkable: 0
 --- !u!23 &1594895429
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -123689,6 +124221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 3
   x: 19
+  isWalkable: 0
 --- !u!23 &1597612118
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -123794,6 +124327,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 13
   x: 1
+  isWalkable: 0
 --- !u!23 &1598521881
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -124154,6 +124688,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 3
   x: 15
+  isWalkable: 0
 --- !u!23 &1603320606
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -124439,6 +124974,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 13
   x: 8
+  isWalkable: 0
 --- !u!23 &1604793680
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -124544,6 +125080,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 24
   x: 6
+  isWalkable: 0
 --- !u!23 &1606739727
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -124739,6 +125276,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 4
   x: 9
+  isWalkable: 0
 --- !u!23 &1610019164
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -125369,6 +125907,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 18
   x: 6
+  isWalkable: 0
 --- !u!23 &1623003646
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -125474,6 +126013,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 20
   x: 3
+  isWalkable: 0
 --- !u!23 &1628331408
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -125579,6 +126119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 23
   x: 16
+  isWalkable: 0
 --- !u!23 &1629108699
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -125684,6 +126225,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 20
   x: 9
+  isWalkable: 0
 --- !u!23 &1629532768
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -126134,6 +126676,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 0
   x: 18
+  isWalkable: 0
 --- !u!23 &1635910058
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -126239,6 +126782,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 14
   x: 14
+  isWalkable: 0
 --- !u!23 &1636481521
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -126382,6 +126926,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_PurpleVein
   z: 17
   x: 23
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -126497,6 +127042,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_PurpleVein
   z: 22
   x: 5
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -127046,6 +127592,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 3
   x: 7
+  isWalkable: 0
 --- !u!23 &1645673385
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -127461,6 +128008,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_BlackOre
   z: 10
   x: 18
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -127652,6 +128200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 24
   x: 17
+  isWalkable: 0
 --- !u!23 &1653531371
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -128117,6 +128666,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 19
   x: 24
+  isWalkable: 0
 --- !u!23 &1662777636
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -128222,6 +128772,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 20
   x: 6
+  isWalkable: 0
 --- !u!23 &1663981009
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -128327,6 +128878,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 3
   x: 18
+  isWalkable: 0
 --- !u!23 &1664377559
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -128522,6 +129074,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 7
   x: 14
+  isWalkable: 0
 --- !u!23 &1667459519
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -129077,6 +129630,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 21
   x: 24
+  isWalkable: 0
 --- !u!23 &1681921093
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -129182,6 +129736,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 3
   x: 8
+  isWalkable: 0
 --- !u!23 &1682413509
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -129415,6 +129970,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 6
   x: 2
+  isWalkable: 0
 --- !u!23 &1686058191
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -130092,6 +130648,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 12
   x: 17
+  isWalkable: 0
 --- !u!23 &1693952379
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -130287,6 +130844,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 20
   x: 4
+  isWalkable: 0
 --- !u!23 &1699018899
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -130392,6 +130950,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 21
   x: 7
+  isWalkable: 0
 --- !u!23 &1699071328
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -130587,6 +131146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 4
   x: 13
+  isWalkable: 0
 --- !u!23 &1700087597
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -130782,6 +131342,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 21
   x: 11
+  isWalkable: 0
 --- !u!23 &1704786598
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -130887,6 +131448,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 11
   x: 10
+  isWalkable: 0
 --- !u!23 &1710083590
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -131122,6 +131684,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_WhiteOre
   z: 8
   x: 3
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -131184,6 +131747,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 2
   x: 13
+  isWalkable: 0
 --- !u!23 &1715874397
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -131416,6 +131980,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 15
   x: 10
+  isWalkable: 0
 --- !u!23 &1719407260
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -131521,6 +132086,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 12
   x: 23
+  isWalkable: 0
 --- !u!23 &1725638078
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -132256,6 +132822,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 8
   x: 6
+  isWalkable: 0
 --- !u!23 &1730711627
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -132361,6 +132928,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 17
   x: 5
+  isWalkable: 0
 --- !u!23 &1731140963
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -132466,6 +133034,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 18
   x: 8
+  isWalkable: 0
 --- !u!23 &1732216921
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -132571,6 +133140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 14
   x: 23
+  isWalkable: 0
 --- !u!23 &1734245762
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -132803,6 +133373,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 21
   x: 6
+  isWalkable: 0
 --- !u!23 &1737384631
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -133073,6 +133644,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 20
   x: 8
+  isWalkable: 0
 --- !u!23 &1742780375
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -133358,6 +133930,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 5
   x: 2
+  isWalkable: 0
 --- !u!23 &1744934066
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -133553,6 +134126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 16
   x: 23
+  isWalkable: 0
 --- !u!23 &1746182436
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -133748,6 +134322,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 18
   x: 24
+  isWalkable: 0
 --- !u!23 &1748817171
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -133943,6 +134518,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 15
   x: 3
+  isWalkable: 0
 --- !u!23 &1750092408
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -134048,6 +134624,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 3
   x: 16
+  isWalkable: 0
 --- !u!23 &1751223912
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -134156,6 +134733,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_WhiteOre
   z: 14
   x: 4
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -134398,6 +134976,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 17
   x: 16
+  isWalkable: 0
 --- !u!23 &1756643894
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -134503,6 +135082,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 16
   x: 10
+  isWalkable: 0
 --- !u!23 &1760004485
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -134608,6 +135188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 5
   x: 24
+  isWalkable: 0
 --- !u!23 &1760982834
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -134840,6 +135421,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 3
   x: 11
+  isWalkable: 0
 --- !u!23 &1764622158
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -134945,6 +135527,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 2
   x: 19
+  isWalkable: 0
 --- !u!23 &1766834926
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -135050,6 +135633,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 13
   x: 18
+  isWalkable: 0
 --- !u!23 &1766899189
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -135155,6 +135739,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 19
   x: 8
+  isWalkable: 0
 --- !u!23 &1769229011
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -135297,6 +135882,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 6
   x: 17
+  isWalkable: 0
 --- !u!23 &1772474849
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -135402,6 +135988,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 1
   x: 5
+  isWalkable: 0
 --- !u!23 &1776928165
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -135724,6 +136311,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 18
   x: 5
+  isWalkable: 0
 --- !u!23 &1779017748
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -135919,6 +136507,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 8
   x: 1
+  isWalkable: 0
 --- !u!23 &1781929876
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -136024,6 +136613,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 0
   x: 13
+  isWalkable: 0
 --- !u!23 &1783900518
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -136132,6 +136722,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_BlackOre
   z: 6
   x: 22
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -136195,6 +136786,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 4
   x: 8
+  isWalkable: 0
 --- !u!23 &1784699070
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -136390,6 +136982,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 10
   x: 6
+  isWalkable: 0
 --- !u!23 &1787935363
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -136622,6 +137215,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 16
   x: 17
+  isWalkable: 0
 --- !u!23 &1790388417
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -136817,6 +137411,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 15
   x: 20
+  isWalkable: 0
 --- !u!23 &1792794144
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -136954,6 +137549,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 10
   x: 11
+  isWalkable: 0
 --- !u!23 &1794801176
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -137149,6 +137745,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 15
   x: 6
+  isWalkable: 0
 --- !u!23 &1796248199
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -137524,6 +138121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 16
   x: 18
+  isWalkable: 0
 --- !u!23 &1808908441
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -137849,6 +138447,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_WhiteOre
   z: 22
   x: 4
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -138091,6 +138690,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 16
   x: 19
+  isWalkable: 0
 --- !u!23 &1816775776
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -138376,6 +138976,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 14
   x: 8
+  isWalkable: 0
 --- !u!23 &1820699927
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -138481,6 +139082,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 19
   x: 23
+  isWalkable: 0
 --- !u!23 &1823016156
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -138586,6 +139188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 22
   x: 2
+  isWalkable: 0
 --- !u!23 &1823268269
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -138691,6 +139294,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 24
   x: 12
+  isWalkable: 0
 --- !u!23 &1824503428
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -138976,6 +139580,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 2
   x: 5
+  isWalkable: 0
 --- !u!23 &1828225290
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -139171,6 +139776,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 13
   x: 5
+  isWalkable: 0
 --- !u!23 &1834944201
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -139456,6 +140062,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 15
   x: 7
+  isWalkable: 0
 --- !u!23 &1837018475
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -139683,6 +140290,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 16
   x: 24
+  isWalkable: 0
 --- !u!23 &1843177226
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -139825,6 +140433,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 21
   x: 23
+  isWalkable: 0
 --- !u!23 &1846269168
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -140762,6 +141371,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 8
   x: 5
+  isWalkable: 0
 --- !u!23 &1851736098
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -140867,6 +141477,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 4
   x: 12
+  isWalkable: 0
 --- !u!23 &1852537104
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -141332,6 +141943,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 6
   x: 19
+  isWalkable: 0
 --- !u!23 &1858169069
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -141909,6 +142521,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 21
   x: 22
+  isWalkable: 0
 --- !u!23 &1863958112
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -142104,6 +142717,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 9
   x: 2
+  isWalkable: 0
 --- !u!23 &1866814593
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -142209,6 +142823,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 0
   x: 17
+  isWalkable: 0
 --- !u!23 &1867865865
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -142747,6 +143362,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_BlackOre
   z: 16
   x: 1
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -143080,6 +143696,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 10
   x: 14
+  isWalkable: 0
 --- !u!23 &1872841433
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -143185,6 +143802,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 21
   x: 18
+  isWalkable: 0
 --- !u!23 &1873171832
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -143380,6 +143998,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 23
   x: 4
+  isWalkable: 0
 --- !u!23 &1874181209
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -143522,6 +144141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 6
   x: 10
+  isWalkable: 0
 --- !u!23 &1876619245
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -143664,6 +144284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 21
   x: 10
+  isWalkable: 0
 --- !u!23 &1877098337
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -143859,6 +144480,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 20
   x: 2
+  isWalkable: 0
 --- !u!23 &1881138250
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -143964,6 +144586,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 0
   x: 2
+  isWalkable: 0
 --- !u!23 &1882911325
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -144069,6 +144692,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 22
   x: 19
+  isWalkable: 0
 --- !u!23 &1884213473
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -144354,6 +144978,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 15
   x: 19
+  isWalkable: 0
 --- !u!23 &1885172256
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -144639,6 +145264,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 20
   x: 0
+  isWalkable: 0
 --- !u!23 &1886003351
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -144924,6 +145550,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 9
   x: 15
+  isWalkable: 0
 --- !u!23 &1889774137
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -145119,6 +145746,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 11
   x: 20
+  isWalkable: 0
 --- !u!23 &1892699587
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -145224,6 +145852,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 15
   x: 4
+  isWalkable: 0
 --- !u!23 &1893575918
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -145329,6 +145958,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 9
   x: 1
+  isWalkable: 0
 --- !u!23 &1894342705
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -145974,6 +146604,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 6
   x: 5
+  isWalkable: 0
 --- !u!23 &1899302787
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -146079,6 +146710,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 13
   x: 6
+  isWalkable: 0
 --- !u!23 &1900501752
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -146364,6 +146996,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_PurpleVein
   z: 21
   x: 1
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -146659,6 +147292,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 12
   x: 13
+  isWalkable: 0
 --- !u!23 &1904785087
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -146854,6 +147488,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 20
   x: 11
+  isWalkable: 0
 --- !u!23 &1907538133
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -147139,6 +147774,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 18
   x: 4
+  isWalkable: 0
 --- !u!23 &1911550017
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -147247,6 +147883,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_WhiteOre
   z: 18
   x: 2
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -147309,6 +147946,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 24
   x: 24
+  isWalkable: 0
 --- !u!23 &1912744079
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -147504,6 +148142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 2
   x: 21
+  isWalkable: 0
 --- !u!23 &1913407234
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -147609,6 +148248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 4
   x: 19
+  isWalkable: 0
 --- !u!23 &1913565626
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -147804,6 +148444,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 18
   x: 19
+  isWalkable: 0
 --- !u!23 &1914975784
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -147999,6 +148640,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 11
   x: 18
+  isWalkable: 0
 --- !u!23 &1916741096
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -148104,6 +148746,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 7
   x: 17
+  isWalkable: 0
 --- !u!23 &1917421876
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -148209,6 +148852,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 12
   x: 24
+  isWalkable: 0
 --- !u!23 &1917970703
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -148314,6 +148958,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 15
   x: 22
+  isWalkable: 0
 --- !u!23 &1918223833
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -148509,6 +149154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 10
   x: 2
+  isWalkable: 0
 --- !u!23 &1919122236
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -148974,6 +149620,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_PurpleVein
   z: 23
   x: 17
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -149359,6 +150006,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 22
   x: 13
+  isWalkable: 0
 --- !u!23 &1925773510
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -149824,6 +150472,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 9
   x: 8
+  isWalkable: 0
 --- !u!23 &1930737885
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -150411,6 +151060,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 4
   x: 23
+  isWalkable: 0
 --- !u!23 &1940609178
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -150855,6 +151505,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 20
   x: 19
+  isWalkable: 0
 --- !u!23 &1945915109
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -151140,6 +151791,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 8
   x: 14
+  isWalkable: 0
 --- !u!23 &1949825453
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -151515,6 +152167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 6
   x: 11
+  isWalkable: 0
 --- !u!23 &1954546770
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -152102,6 +152755,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_PurpleVein
   z: 2
   x: 7
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -152577,6 +153231,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 15
   x: 9
+  isWalkable: 0
 --- !u!23 &1967795382
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -152955,6 +153610,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_BlackOre
   z: 10
   x: 23
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -153288,6 +153944,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 17
   x: 20
+  isWalkable: 0
 --- !u!23 &1973859029
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -153483,6 +154140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 13
   x: 0
+  isWalkable: 0
 --- !u!23 &1979798835
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -153715,6 +154373,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 5
   x: 0
+  isWalkable: 0
 --- !u!23 &1982483962
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -154160,6 +154819,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 0
   x: 16
+  isWalkable: 0
 --- !u!23 &1994074836
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -154265,6 +154925,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 0
   x: 20
+  isWalkable: 0
 --- !u!23 &1995308885
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -154460,6 +155121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 18
   x: 16
+  isWalkable: 0
 --- !u!23 &1997628160
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -154745,6 +155407,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 19
   x: 5
+  isWalkable: 0
 --- !u!23 &1998882529
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -155407,6 +156070,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 7
   x: 6
+  isWalkable: 0
 --- !u!23 &2008723621
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -155782,6 +156446,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_PurpleVein
   z: 15
   x: 13
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -155897,6 +156562,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 17
   x: 22
+  isWalkable: 0
 --- !u!23 &2014565785
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -156002,6 +156668,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 17
   x: 19
+  isWalkable: 0
 --- !u!23 &2014735287
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -156107,6 +156774,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 16
   x: 1
+  isWalkable: 0
 --- !u!23 &2015432435
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -156302,6 +156970,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 10
   x: 21
+  isWalkable: 0
 --- !u!23 &2017987052
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -156407,6 +157076,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 8
   x: 10
+  isWalkable: 0
 --- !u!23 &2020483603
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -156515,6 +157185,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_BlackOre
   z: 21
   x: 2
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -156706,6 +157377,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 14
   x: 15
+  isWalkable: 0
 --- !u!23 &2025738337
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -157203,6 +157875,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 19
   x: 0
+  isWalkable: 0
 --- !u!23 &2031781687
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -157398,6 +158071,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 12
   x: 21
+  isWalkable: 0
 --- !u!23 &2033922335
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -157593,6 +158267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 24
   x: 19
+  isWalkable: 0
 --- !u!23 &2034915917
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -158090,6 +158765,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 9
   x: 13
+  isWalkable: 0
 --- !u!23 &2041765242
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -158195,6 +158871,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 24
   x: 14
+  isWalkable: 0
 --- !u!23 &2041807616
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -158607,6 +159284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 24
   x: 3
+  isWalkable: 0
 --- !u!23 &2047668698
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -158802,6 +159480,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 11
   x: 8
+  isWalkable: 0
 --- !u!23 &2052537380
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -158907,6 +159586,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 1
   x: 20
+  isWalkable: 0
 --- !u!23 &2053445555
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -159282,6 +159962,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 2
   x: 4
+  isWalkable: 0
 --- !u!23 &2060193080
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -159837,6 +160518,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 10
   x: 16
+  isWalkable: 0
 --- !u!23 &2065461140
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -160392,6 +161074,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 13
   x: 10
+  isWalkable: 0
 --- !u!23 &2074851370
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -160529,6 +161212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_PurpleVein
   z: 2
   x: 3
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -160644,6 +161328,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 11
   x: 16
+  isWalkable: 0
 --- !u!23 &2076985187
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -160929,6 +161614,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 24
   x: 21
+  isWalkable: 0
 --- !u!23 &2079704507
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -161288,6 +161974,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 8
   x: 20
+  isWalkable: 0
 --- !u!23 &2083115815
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -161393,6 +162080,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 9
   x: 0
+  isWalkable: 0
 --- !u!23 &2083497219
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -161498,6 +162186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 16
   x: 8
+  isWalkable: 0
 --- !u!23 &2083803104
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -161606,6 +162295,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_WhiteOre
   z: 15
   x: 8
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -161758,6 +162448,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_PurpleVein
   z: 6
   x: 0
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -162053,6 +162744,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 23
   x: 6
+  isWalkable: 0
 --- !u!23 &2091618388
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -162158,6 +162850,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 14
   x: 16
+  isWalkable: 0
 --- !u!23 &2091720882
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -162263,6 +162956,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 22
   x: 23
+  isWalkable: 0
 --- !u!23 &2092461516
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -162458,6 +163152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 24
   x: 16
+  isWalkable: 0
 --- !u!23 &2095078002
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -163013,6 +163708,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 13
   x: 14
+  isWalkable: 0
 --- !u!23 &2103484998
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -163118,6 +163814,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 21
   x: 20
+  isWalkable: 0
 --- !u!23 &2104753727
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -163223,6 +163920,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 11
   x: 4
+  isWalkable: 0
 --- !u!23 &2107360809
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -163418,6 +164116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 8
   x: 21
+  isWalkable: 0
 --- !u!23 &2108649015
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -163613,6 +164312,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 19
   x: 2
+  isWalkable: 0
 --- !u!23 &2109752759
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -163991,6 +164691,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::CaveTile_WhiteOre
   z: 20
   x: 21
+  isWalkable: 0
   itemOnTile: {fileID: 0}
   notRandomized: 0
   value: 0
@@ -164053,6 +164754,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 1
   x: 12
+  isWalkable: 0
 --- !u!23 &2113385339
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -164248,6 +164950,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 7
   x: 2
+  isWalkable: 0
 --- !u!23 &2115911654
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -164660,6 +165363,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 23
   x: 13
+  isWalkable: 0
 --- !u!23 &2122666811
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -164855,6 +165559,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 16
   x: 11
+  isWalkable: 0
 --- !u!23 &2124651782
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -164960,6 +165665,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 7
   x: 22
+  isWalkable: 0
 --- !u!23 &2125230307
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -165277,6 +165983,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 8
   x: 2
+  isWalkable: 0
 --- !u!23 &2130575340
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -165382,6 +166089,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 7
   x: 11
+  isWalkable: 0
 --- !u!23 &2130700755
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -166047,17 +166755,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: ScriptIWrite::GameManager_ResourceExploration
   cameraController: {fileID: 0}
   player: {fileID: 0}
-  playerHealthBar: {fileID: 0}
-  playerHealthText: {fileID: 0}
+  playerHealthBar: {fileID: 818802480}
+  playerHealthText: {fileID: 818802479}
+  playerFacing: 0
   terminalText: {fileID: 0}
   inventorySize: 6
-  inventoryUI: {fileID: 0}
+  inventoryUI: {fileID: 818802478}
   levelBannedSyntaxNodes: []
   levelBannedFunctions: []
   bannedSyntaxNodes: []
   bannedFunctions: []
-  mapSizeUpgrade: {fileID: 0}
-  inventorySizeUpgrade: {fileID: 0}
+  mapSizeUpgrade: {fileID: 11400000, guid: 8706b81e30eb8b54b96a69d621fcc817, type: 2}
+  inventorySizeUpgrade: {fileID: 11400000, guid: 1b94911b126e347409011dcafb761c2b, type: 2}
 --- !u!4 &2140633901
 Transform:
   m_ObjectHideFlags: 0
@@ -166121,6 +166830,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 1
   x: 6
+  isWalkable: 0
 --- !u!23 &2141575019
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -166443,6 +167153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 0
   x: 7
+  isWalkable: 0
 --- !u!23 &2146159405
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -166638,6 +167349,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 19
   x: 15
+  isWalkable: 0
 --- !u!23 &2146935226
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -166743,6 +167455,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
   z: 22
   x: 14
+  isWalkable: 0
 --- !u!23 &2147096153
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -166809,7 +167522,7 @@ SceneRoots:
   - {fileID: 832575519}
   - {fileID: 975707257}
   - {fileID: 1455327351}
-  - {fileID: 1112865185}
+  - {fileID: 818802477}
   - {fileID: 373270355}
   - {fileID: 2140633901}
   - {fileID: 1025948149}

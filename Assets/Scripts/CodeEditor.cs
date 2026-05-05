@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -164,7 +163,7 @@ public class CodeEditor : MonoBehaviour
                 color = new Color(0.2f, 0.8f, 0.4f), // Bright Green
                 keywords = new string[]
                 {
-                    "move_up", "move_down", "move_left", "move_right",
+                    "move_forward", "move_backward", "turn_left", "turn_right",
                     "mine", "collect", "purify", "drill", "pump",
                     "measure", "go_back", "scan", "use_item"
                 }
@@ -309,7 +308,8 @@ public class CodeEditor : MonoBehaviour
         if (visualEndLine == -1) visualEndLine = textInfo.lineCount - 1;
 
         float topY = textInfo.lineInfo[visualStartLine].ascender;
-        float bottomY = textInfo.lineInfo[visualEndLine].descender;
+        //float bottomY = textInfo.lineInfo[visualEndLine].descender;
+        float bottomY = textInfo.lineInfo[visualStartLine].descender;
 
         float totalLineSize = topY - bottomY;
 

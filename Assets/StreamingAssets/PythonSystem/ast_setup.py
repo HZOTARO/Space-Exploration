@@ -54,10 +54,20 @@ class GlobalCollector(ast.NodeVisitor):
             self.global_names.add(node.id)
             
     def visit_FunctionDef(self, node):
-        self.global_names.add(node.name)
+        self.generic_visit(node)
+        
+        return [
+            self.create_yield_node(node), 
+            node
+        ]
         
     def visit_ClassDef(self, node):
-        self.global_names.add(node.name)
+        self.generic_visit(node)
+        
+        return [
+            self.create_yield_node(node), 
+            node
+        ]
         
     def visit_Import(self, node):
         for alias in node.names:
@@ -109,17 +119,29 @@ class YieldInserter(ast.NodeTransformer):
 
     def visit_If(self, node):
         self.generic_visit(node)
-        return self.insert_yield(node)
+        yield_node = self.create_yield_node(node)
+        return [
+            yield_node, 
+            node
+        ]
 
     def visit_For(self, node):
         self.generic_visit(node)
         node.body.insert(0, self.create_yield_node(node))
-        return self.insert_yield(node)
+        
+        return [
+            self.create_yield_node(node), 
+            node
+        ]
 
     def visit_While(self, node):
         self.generic_visit(node)
         node.body.insert(0, self.create_yield_node(node))
-        return self.insert_yield(node)
+        
+        return [
+            self.create_yield_node(node), 
+            node
+        ]
 
     def visit_Call(self, node):
         self.generic_visit(node)

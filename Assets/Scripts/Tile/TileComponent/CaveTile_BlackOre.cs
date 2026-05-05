@@ -17,6 +17,7 @@ public class CaveTile_BlackOre : ValueTile_Floating
     protected override void Start()
     {
         base.Start();
+        isWalkable = false;
         isFloating = false;
     }
 
@@ -59,6 +60,7 @@ public class CaveTile_BlackOre : ValueTile_Floating
             if (destroyedOre) destroyedOre.SetActive(true);
             if (floatingItem) floatingItem.SetActive(true);
             isFloating = true;
+            isWalkable = true;
         }
         else
         {

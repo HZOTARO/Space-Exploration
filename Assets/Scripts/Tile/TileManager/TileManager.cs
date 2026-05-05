@@ -40,7 +40,11 @@ public class TileManager : MonoBehaviour
             }
         }
 
+        objectsArray[0, 0].type = TileType.None;
+
         GenerateMapContent();
+
+        objectsArray[0, 0].type = TileType.Floor;
 
         SpawnTilesVisual();
     }

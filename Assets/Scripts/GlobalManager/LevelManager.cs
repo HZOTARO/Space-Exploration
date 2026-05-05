@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum LevelType
 {
@@ -28,6 +29,13 @@ public class LevelManager : MonoBehaviour
     }
     public void OpenScene(LevelType levelType)
     {
+        float timeScale = 1.0f;
+        if (levelType != LevelType.Hub && levelType != LevelType.MainMenu)
+        {
+            if (SaveManager.instance)
+                timeScale = SaveManager.saveData.gameSpeed;
+        }
+        Time.timeScale = timeScale;
         switch (levelType)
         {
             case LevelType.MainMenu:

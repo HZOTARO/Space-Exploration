@@ -13,7 +13,6 @@ public class GameManager_ResourceExploration : GameManager
             if (inventorySizeUpgrade) inventorySize = 4 + 2 * (UpgradeManager.instance.GetUpgradeLevel(inventorySizeUpgrade.id));
         }
 
-
         base.Start();
     }
 
@@ -59,10 +58,10 @@ public class GameManager_ResourceExploration : GameManager
 
     public void Collect()
     {
-        TileObject currentTile = GetCurrentTile();
-        if (currentTile.type == TileType.WhiteOre)
+        TileObject targetTile = GetTileInFront();
+        if (targetTile.type == TileType.WhiteOre)
         {
-            CaveTile_WhiteOre ore = currentTile.tileInstance as CaveTile_WhiteOre;
+            CaveTile_WhiteOre ore = targetTile.tileInstance as CaveTile_WhiteOre;
             if (ore.isMined && !ore.isCollected)
             {
                 player.PerformAction(PlayerAction.Collect, () =>
@@ -76,9 +75,9 @@ public class GameManager_ResourceExploration : GameManager
                 });
             }
         }
-        else if (currentTile.type == TileType.BlackOre)
+        else if (targetTile.type == TileType.BlackOre)
         {
-            CaveTile_BlackOre ore = currentTile.tileInstance as CaveTile_BlackOre;
+            CaveTile_BlackOre ore = targetTile.tileInstance as CaveTile_BlackOre;
             if (ore.isMined && !ore.isCollected)
             {
                 player.PerformAction(PlayerAction.Collect, () =>
@@ -96,20 +95,20 @@ public class GameManager_ResourceExploration : GameManager
 
     public void Drill()
     {
-        TileObject currentTile = GetCurrentTile();
-        if (currentTile.type == TileType.PurpleVein)
+        TileObject targetTile = GetTileInFront();
+        if (targetTile.type == TileType.PurpleVein)
         {
-            CaveTile_PurpleVein vein = currentTile.tileInstance as CaveTile_PurpleVein;
+            CaveTile_PurpleVein vein = targetTile.tileInstance as CaveTile_PurpleVein;
             if (!vein.isDrilled) player.PerformAction(PlayerAction.Drill, () => vein.Drill());
         }
     }
 
     public void Pump()
     {
-        TileObject currentTile = GetCurrentTile();
-        if (currentTile.type == TileType.PurpleVein)
+        TileObject targetTile = GetTileInFront();
+        if (targetTile.type == TileType.PurpleVein)
         {
-            CaveTile_PurpleVein vein = currentTile.tileInstance as CaveTile_PurpleVein;
+            CaveTile_PurpleVein vein = targetTile.tileInstance as CaveTile_PurpleVein;
             if (vein.isDrilled && !vein.isPumped)
             {
                 player.PerformAction(PlayerAction.Pump, () =>
@@ -127,17 +126,11 @@ public class GameManager_ResourceExploration : GameManager
 
     public void Purify()
     {
-        TileObject currentTile = GetCurrentTile();
-        if (currentTile.type == TileType.BlackOre)
+        TileObject targetTile = GetTileInFront();
+        if (targetTile.type == TileType.BlackOre)
         {
-            CaveTile_BlackOre ore = currentTile.tileInstance as CaveTile_BlackOre;
+            CaveTile_BlackOre ore = targetTile.tileInstance as CaveTile_BlackOre;
             if (!ore.isPurified) player.PerformAction(PlayerAction.Purify, () => ore.Purify());
         }
-    }
-
-    public void Measure()
-    {
-        IMeasureable measureableTile = GetCurrentTile().tileInstance as IMeasureable;
-        if (measureableTile != null) Debug.Log("Measurement result: " + measureableTile.Measured());
     }
 }

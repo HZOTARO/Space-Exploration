@@ -12,6 +12,7 @@ public class ValueTile_Floating : ValueTile
     protected override void Start()
     {
         base.Start();
+        isWalkable = true;
         if (floatingItem)
         {
             startPos = floatingItem.transform.position;

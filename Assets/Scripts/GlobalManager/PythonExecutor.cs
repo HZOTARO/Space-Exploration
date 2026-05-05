@@ -25,6 +25,8 @@ public class PythonExecutor : MonoBehaviour
 {
     public static PythonExecutor instance;
 
+    public float stepDelay = 0.1f;
+
     PyModule pyScope;
     dynamic pyPrepareFunc;
     dynamic pyStepFunc;
@@ -247,8 +249,11 @@ public class PythonExecutor : MonoBehaviour
             }
         }
 
-        lockDelay = true;
-        Invoke("UnlockDelay", 0.1f);
+        if (stepDelay > 0)
+        {
+            lockDelay = true;
+            Invoke("UnlockDelay", stepDelay * Time.timeScale);
+        }
     }
 
     void UnlockDelay()

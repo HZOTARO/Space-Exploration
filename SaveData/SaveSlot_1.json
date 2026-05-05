@@ -1,34 +1,20 @@
 {
-    "lastSavedTime": "04-05-2026 21:35",
-    "inventory": [],
-    "unlockedUpgrades": [
+    "lastSavedTime": "05-05-2026 15:15",
+    "inventory": [
         {
-            "id": "resourceexploration_inventorysize",
-            "currentLevel": 1
+            "itemId": "recall_pod",
+            "amount": 1
         },
         {
-            "id": "partsexploration_inventorysize",
-            "currentLevel": 1
+            "itemId": "map_scanner",
+            "amount": 1
         },
         {
-            "id": "resourceexploration_mapsize",
-            "currentLevel": 1
-        },
-        {
-            "id": "white_ore",
-            "currentLevel": 1
-        },
-        {
-            "id": "black_ore",
-            "currentLevel": 1
-        },
-        {
-            "id": "purple_liquid",
-            "currentLevel": 1
-        },
-        {
-            "id": "partsexploration_mapsize",
-            "currentLevel": 2
+            "itemId": "wall",
+            "amount": 1
         }
-    ]
+    ],
+    "unlockedUpgrades": [],
+    "stepDelay": 0.10000000149011612,
+    "gameSpeed": 1.0
 }

@@ -15,6 +15,7 @@ public class CaveTile_WhiteOre : ValueTile_Floating
     protected override void Start()
     {
         base.Start();
+        isWalkable = false;
         isFloating = false;
     }
     protected override int CalculateUpgradeIndex(int upgradeTier)
@@ -35,6 +36,7 @@ public class CaveTile_WhiteOre : ValueTile_Floating
             if (destroyedOre) destroyedOre.SetActive(true);
             if (floatingItem) floatingItem.SetActive(true);
             isFloating = true;
+            isWalkable = true;
             Debug.Log("You mined a White Ore!");
         }
     }

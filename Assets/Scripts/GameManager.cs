@@ -36,6 +36,10 @@ public class GameManager : MonoBehaviour
     private List<ItemAmount> levelInventory = new List<ItemAmount>();
     private List<ItemSlotUI> inventorySlots = new List<ItemSlotUI>();
 
+    [Header("Consumables (Shuffled)")]
+    public List<ItemSO> availableConsumables = new List<ItemSO>();
+    private List<ItemSO> shuffledConsumables = new List<ItemSO>();
+
     [Header("Level Restrictions (Python)")]
     public List<string> levelBannedSyntaxNodes = new List<string>();
     public List<string> levelBannedFunctions = new List<string>();
@@ -88,6 +92,24 @@ public class GameManager : MonoBehaviour
         StartCoroutine(SetupInventory());
         RegisterPythonCommands();
 
+        shuffledConsumables = new List<ItemSO>(availableConsumables);
+
+        for (int i = 0; i < shuffledConsumables.Count; i++)
+        {
+            ItemSO temp = shuffledConsumables[i];
+            int randomIndex = UnityEngine.Random.Range(i, shuffledConsumables.Count);
+
+            shuffledConsumables[i] = shuffledConsumables[randomIndex];
+            shuffledConsumables[randomIndex] = temp;
+        }
+
+        string debugResult = "Shuffled Order: ";
+        for (int i = 0; i < shuffledConsumables.Count; i++)
+        {
+            debugResult += shuffledConsumables[i].itemId + " | ";
+        }
+        Debug.Log($"<color=cyan>{debugResult}</color>");
+
         PythonExecutor.instance.CanStepCode = () => !InAction();
         PythonExecutor.instance.OnPythonPrint += PrintToDisplay;
     }
@@ -105,16 +127,19 @@ public class GameManager : MonoBehaviour
     private void RegisterPythonCommands()
     {
         void Bind(string pyName, Action action) => PythonExecutor.instance.RegisterPythonFunction(pyName, action);
-        void BindReturn<T>(string pyName, Func<T> func) => PythonExecutor.instance.RegisterPythonFunction(pyName, func);
+        void BindReturn<TResult>(string pyName, Func<TResult> func) => PythonExecutor.instance.RegisterPythonFunction(pyName, func);
+        void BindWithArg<TArg, TResult>(string pyName, Func<TArg, TResult> func) => PythonExecutor.instance.RegisterPythonFunction(pyName, func);
 
         Bind("move_forward", MoveForward);
         Bind("move_backward", MoveBackward);
-        //Bind("move_left", () => Move("W"));
-        //Bind("move_right", () => Move("E"));
         Bind("turn_right", TurnRight);
         Bind("turn_left", TurnLeft);
         Bind("go_back", Return);
+
         BindReturn("scan", Scan);
+        BindWithArg<int, object>("use_item", UseItem);
+        BindWithArg<int, string>("inspect_item", InspectItem);
+        BindReturn<int>("get_inventory_size", GetConsumablesSize);
 
         RegisterLevelSpecificPythonCommands();
     }
@@ -313,13 +338,24 @@ public class GameManager : MonoBehaviour
 
     public string Scan()
     {
-        TileObject currentTile = GetCurrentTile();
+        TileObject targetTile = GetTileInFront();
 
-        string tileTypeName = currentTile.type.ToString();
+        if (targetTile == null)
+        {
+            return "Empty";
+        }
+
+        string tileTypeName = targetTile.type.ToString();
 
         Debug.Log($"Player scanned the tile: {tileTypeName}");
 
         return tileTypeName;
+    }
+
+    public void Measure()
+    {
+        IMeasureable measureableTile = GetTileInFront().tileInstance as IMeasureable;
+        if (measureableTile != null) Debug.Log("Measurement result: " + measureableTile.Measured());
     }
 
     protected void AddToInventory(ItemSO item, int amount)
@@ -391,31 +427,41 @@ public class GameManager : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene("Hub Scene");
     }
 
-    public void UseItem(string requestedItemId)
+    public object UseItem(int index)
     {
-        string itemId = requestedItemId.ToLower().Trim();
+        if (index < 0 || index >= shuffledConsumables.Count) return false;
 
-        ItemSO itemData = InventoryManager.instance.GetItemData(itemId);
+        ItemSO itemData = shuffledConsumables[index];
+        if (itemData == null || itemData.category != ItemCategory.Consumable) return false;
+        if (InventoryManager.instance.GetAmount(itemData.itemId) <= 0) return false;
+
+        //InventoryManager.instance.DeductItem(itemData.itemId, 1);
+        Debug.Log($"Used {itemData.displayName}!");
+
+        string id = itemData.itemId.ToLower();
+
+        return itemData.itemId;
+    }
+
+    public string InspectItem(int index)
+    {
+        if (index < 0 || index >= shuffledConsumables.Count)
+        {
+            return "Invalid";
+        }
+
+        ItemSO itemData = shuffledConsumables[index];
         if (itemData == null)
         {
-            Debug.Log($"<color=red>Error: The item '{itemId}' does not exist in the game.</color>");
-            return;
+            return "None";
         }
 
-        if (itemData.category != ItemCategory.Consumable)
-        {
-            Debug.Log($"<color=red>Cannot use '{itemData.displayName}': That is a material, not a consumable!</color>");
-            return;
-        }
+        return itemData.itemId;
+    }
+    public int GetConsumablesSize()
+    {
+        if (shuffledConsumables == null) return 0;
 
-        if (InventoryManager.instance.GetAmount(itemId) <= 0)
-        {
-            Debug.Log($"<color=red>Cannot use: You don't have any {itemData.displayName}!</color>");
-            return;
-        }
-
-        InventoryManager.instance.DeductItem(itemId, 1);
-
-        Debug.Log($"<color=green>Used {itemData.displayName}!</color>");
+        return shuffledConsumables.Count;
     }
 }

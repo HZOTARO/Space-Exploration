@@ -1,11 +1,33 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GeneralUIScript : MonoBehaviour
 {
     [Header("Escape")]
     public bool enableEscape = true;
     public GameObject pauseUI;
+
+    [Header("Sliders References")]
+    public TextMeshProUGUI stepDelayText;
+    public Slider stepDelaySlider;
+    public TextMeshProUGUI gameSpeedText;
+    public Slider gameSpeedSlider;
+
+    public void Start()
+    {
+        if (stepDelaySlider)
+            stepDelaySlider.value = SaveManager.saveData != null ? SaveManager.saveData.stepDelay * 20f : 0f;
+        if (stepDelayText)
+            SetStepDelay(SaveManager.saveData != null ? SaveManager.saveData.stepDelay * 20f : 0f);
+        if (gameSpeedSlider)
+            gameSpeedSlider.value = SaveManager.saveData != null ? SaveManager.saveData.gameSpeed : 1f;
+        if (gameSpeedText)
+            SetGameSpeed(SaveManager.saveData != null ? SaveManager.saveData.gameSpeed : 1f);
+    }
+
     public void PlayGame()
     {
         SaveManager.instance.LoadGame(SaveManager.saveSlotInUse);
@@ -43,11 +65,11 @@ public class GeneralUIScript : MonoBehaviour
     }
     public void PauseGame()
     {
-        pauseUI.SetActive(false);
+        pauseUI.SetActive(true);
     }
     public void UnPauseGame()
     {
-        pauseUI.SetActive(true);
+        pauseUI.SetActive(false);
     }
     public void SetActive(GameObject UI)
     {
@@ -72,5 +94,31 @@ public class GeneralUIScript : MonoBehaviour
         {
             HintManager.instance.DisplayHints(hints);
         }
+    }
+
+    public void SetStepDelay(float delay)
+    {
+        delay = delay / 20f;
+
+        if (stepDelayText != null)
+            stepDelayText.text = $"Step Delay: {delay:0.00}s";
+
+        if (SaveManager.instance)
+            SaveManager.saveData.stepDelay = delay;
+
+        if (PythonExecutor.instance)
+            PythonExecutor.instance.stepDelay = delay;
+    }
+
+    public void SetGameSpeed(float speed)
+    {
+        if (gameSpeedText != null)
+            gameSpeedText.text = $"Game Speed: {speed:0.00}x";
+
+        if (SaveManager.instance)
+            SaveManager.saveData.gameSpeed = speed;
+
+        if (SceneManager.GetActiveScene().name != "Hub Scene")
+            Time.timeScale = speed;
     }
 }
