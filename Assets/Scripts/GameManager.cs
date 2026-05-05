@@ -31,7 +31,6 @@ public class GameManager : MonoBehaviour
     [Header("Inventory")]
     [Range(1, 15)]
     public int inventorySize = 6;
-    private int currentInventoryIndex = 0;
     public Transform inventoryUI;
     private List<ItemAmount> levelInventory = new List<ItemAmount>();
     private List<ItemSlotUI> inventorySlots = new List<ItemSlotUI>();
@@ -41,34 +40,105 @@ public class GameManager : MonoBehaviour
     private List<ItemSO> shuffledConsumables = new List<ItemSO>();
 
     [Header("Level Restrictions (Python)")]
-    public List<string> levelBannedSyntaxNodes = new List<string>();
-    public List<string> levelBannedFunctions = new List<string>();
+    public List<string> levelAllowedSyntaxNodes = new List<string>();
+    public List<string> levelAllowedFunctions = new List<string>();
 
-    [HideInInspector] public List<string> bannedSyntaxNodes = new List<string>();
-    [HideInInspector] public List<string> bannedFunctions = new List<string>();
+    [HideInInspector] public List<string> allowedSyntaxNodes = new List<string>();
+    [HideInInspector] public List<string> allowedFunctions = new List<string>();
 
     void Awake()
     {
-        List<string> permanentlyBannedSyntax = new List<string>
+        List<string> foundationalSyntax = new List<string>
         {
-            "ClassDef", "Yield", "YieldFrom", "Lambda", "Import", "ImportFrom",
-            "Try", "ExceptHandler", "Raise", "With", "Global", "Nonlocal",
-            "AsyncFunctionDef", "Await", "Delete", "Assert"
+            "Module", "Expr", "Call", "Name", "Load", "Store", "Constant", "Pass", "keyword", "arg",
+
+            // Basic math operations
+            "BinOp",    // Any math operation
+            "UnaryOp",  // Needed for negative numbers (-5)
+            "USub",     // '-' sign for negative numbers
+            "Add", "Sub", "Mult", "Div", "FloorDiv", "Mod", "Pow",
+
+            // String
+            "JoinedStr", // f-strings
+            "FormattedValue", // f-string values
         };
 
-        List<string> permanentlyBannedFunctions = new List<string>
+        allowedSyntaxNodes = new List<string>(foundationalSyntax);
+
+        List<string> foundationalFunctions = new List<string>
         {
-            "eval", "exec", "open", "compile", "__import__", "globals", "locals",
-            "getattr", "setattr", "delattr", "hasattr", "input", "super", "dir", "help", "memoryview"
+            "print", "range", "len", "int", "float", "str", "bool", "type", "abs", "max", "min", "sum", "round", "list"
         };
+        allowedFunctions = new List<string>(foundationalFunctions);
 
-        bannedSyntaxNodes = new List<string>(permanentlyBannedSyntax);
-        bannedSyntaxNodes.AddRange(levelBannedSyntaxNodes);
+        bool hasVariables = UpgradeManager.instance != null && UpgradeManager.instance.IsUpgradeUnlocked("variable");
+        bool hasIfStatements = UpgradeManager.instance != null && UpgradeManager.instance.IsUpgradeUnlocked("ifelse");
+        bool hasLoops = UpgradeManager.instance != null && UpgradeManager.instance.IsUpgradeUnlocked("loop");
+        bool hasLists = UpgradeManager.instance != null && UpgradeManager.instance.IsUpgradeUnlocked("list");
 
-        bannedFunctions = new List<string>(permanentlyBannedFunctions);
-        bannedFunctions.AddRange(levelBannedFunctions);
+        if (hasVariables)
+        {
+            allowedSyntaxNodes.Add("Assign");
+            allowedSyntaxNodes.Add("AugAssign"); // +=
+        }
 
-        PythonExecutor.instance.InitializePythonBans(bannedSyntaxNodes.ToArray(), bannedFunctions.ToArray());
+        if (hasIfStatements)
+        {
+            allowedSyntaxNodes.Add("If");
+            allowedSyntaxNodes.Add("IfExp");
+
+            allowedSyntaxNodes.Add("Match");
+            allowedSyntaxNodes.Add("match_case");
+            allowedSyntaxNodes.Add("MatchValue");
+            allowedSyntaxNodes.Add("MatchOr");
+            allowedSyntaxNodes.Add("MatchAs");        // case _:
+            allowedSyntaxNodes.Add("MatchSingleton"); // case None:
+            allowedSyntaxNodes.Add("MatchSequence");  // case [1, 2, 3]:
+
+            allowedSyntaxNodes.Add("Compare");
+            allowedSyntaxNodes.Add("UnaryOp");
+            allowedSyntaxNodes.Add("Eq");
+            allowedSyntaxNodes.Add("NotEq");
+            allowedSyntaxNodes.Add("Gt");
+            allowedSyntaxNodes.Add("GtE");
+            allowedSyntaxNodes.Add("Lt");
+            allowedSyntaxNodes.Add("LtE");
+
+            allowedSyntaxNodes.Add("BoolOp");
+            allowedSyntaxNodes.Add("Or");
+            allowedSyntaxNodes.Add("And");
+            allowedSyntaxNodes.Add("Not");
+
+            allowedSyntaxNodes.Add("Is");
+            allowedSyntaxNodes.Add("IsNot");
+        }
+
+        if (hasLoops)
+        {
+            allowedSyntaxNodes.Add("For");
+            allowedSyntaxNodes.Add("While");
+            allowedSyntaxNodes.Add("Break");
+            allowedSyntaxNodes.Add("Continue");
+        }
+
+        if (hasLists)
+        {
+            allowedSyntaxNodes.Add("List");
+            allowedSyntaxNodes.Add("Subscript"); // my_list[0]
+            allowedSyntaxNodes.Add("Slice");     // my_list[0:2]
+            allowedSyntaxNodes.Add("Attribute"); // allow for methods like .append()
+
+            allowedSyntaxNodes.Add("Delete");
+            allowedSyntaxNodes.Add("Del");
+
+            allowedSyntaxNodes.Add("In");
+            allowedSyntaxNodes.Add("NotIn");
+
+            allowedSyntaxNodes.Add("Starred"); // [1, *other] combine
+        }
+
+        allowedSyntaxNodes.AddRange(levelAllowedSyntaxNodes);
+        allowedFunctions.AddRange(levelAllowedFunctions);
     }
 
     protected virtual void Start()
@@ -90,6 +160,7 @@ public class GameManager : MonoBehaviour
         }
 
         StartCoroutine(SetupInventory());
+        PythonExecutor.instance.InitializePythonAllowed(allowedSyntaxNodes.ToArray(), allowedFunctions.ToArray());
         RegisterPythonCommands();
 
         shuffledConsumables = new List<ItemSO>(availableConsumables);
@@ -139,9 +210,17 @@ public class GameManager : MonoBehaviour
         BindReturn("scan", Scan);
         BindWithArg<int, object>("use_item", UseItem);
         BindWithArg<int, string>("inspect_item", InspectItem);
-        BindReturn<int>("get_inventory_size", GetConsumablesSize);
+        BindReturn<int>("item_type_count", GetConsumablesSize);
+        BindWithArg<int, int>("item_count", GetItemCount);
+        BindWithArg<int, bool>("discard_inventory", DiscardInventory);
 
         RegisterLevelSpecificPythonCommands();
+
+        CodeEditor editor = FindFirstObjectByType<CodeEditor>();
+        if (editor != null)
+        {
+            editor.InitializeSyntaxGroups();
+        }
     }
 
     protected virtual void RegisterLevelSpecificPythonCommands() { }
@@ -358,21 +437,57 @@ public class GameManager : MonoBehaviour
         if (measureableTile != null) Debug.Log("Measurement result: " + measureableTile.Measured());
     }
 
+    public int GetItemCount(int index)
+    {
+        if (index < 0 || index >= inventorySize) return 0;
+        if (levelInventory[index].item == null) return 0;
+
+        return levelInventory[index].amount;
+    }
+
+    public bool DiscardInventory(int index)
+    {
+        if (index < 0 || index >= inventorySize) return false;
+        if (levelInventory[index].item == null) return false;
+
+        Debug.Log($"Discarded {levelInventory[index].item.displayName} from slot {index}.");
+
+        levelInventory[index] = new ItemAmount { item = null, amount = 0 };
+
+        inventorySlots[index].itemIcon.sprite = null;
+        inventorySlots[index].itemIcon.gameObject.SetActive(false);
+        inventorySlots[index].amountText.text = "";
+
+        return true;
+    }
+
     protected void AddToInventory(ItemSO item, int amount)
     {
-        if (currentInventoryIndex >= inventorySize)
+        if (item == null) return;
+
+        int emptyIndex = -1;
+
+        for (int i = 0; i < inventorySize; i++)
         {
-            Debug.Log("Inventory is full! Cannot add more items.");
+            if (levelInventory[i].item == null)
+            {
+                emptyIndex = i;
+                break;
+            }
+        }
+
+        if (emptyIndex == -1)
+        {
+            Debug.Log("<color=red>Inventory is full! Cannot add more items.</color>");
             return;
         }
 
-        if (item == null) return;
+        inventorySlots[emptyIndex].Setup(item, amount);
+        inventorySlots[emptyIndex].itemIcon.gameObject.SetActive(true);
 
-        inventorySlots[currentInventoryIndex].Setup(item, amount);
-        inventorySlots[currentInventoryIndex].itemIcon.gameObject.SetActive(true);
-        
-        levelInventory[currentInventoryIndex] = new ItemAmount { item = item, amount = amount };
-        currentInventoryIndex++;
+        levelInventory[emptyIndex] = new ItemAmount { item = item, amount = amount };
+
+        Debug.Log($"<color=green>Added {item.displayName} to Inventory Slot {emptyIndex}.</color>");
     }
 
     protected void DamagePlayer(int damage)

@@ -156,5 +156,6 @@ public class UpgradeManager : MonoBehaviour
         }
         playerUpgrades[upgradeId].currentLevel++;
         SyncToSaveData();
+        SaveManager.instance.UpdateAllUI();
     }
 }

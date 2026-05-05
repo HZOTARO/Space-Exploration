@@ -9,10 +9,12 @@ public struct CurrencyDisplay
     public ItemSlotUI slotUI;
 }
 
-public class ItemsDisplayUI : MonoBehaviour, IResourceUpdatable
+public class HubUI : MonoBehaviour, IResourceUpdatable
 {
     [Header("Resources Reference")]
     public List<CurrencyDisplay> currenciesDisplays;
+
+
 
     void Start()
     {

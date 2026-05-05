@@ -12,13 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 510a7592fff21df42be2ebd983fd262c, type: 3}
   m_Name: SyntaxUpgrade_Loop
   m_EditorClassIdentifier: GlobalManagerScriptIWrite::UpgradeSO
-  id: syntax_loop
+  id: loop
   upgradeName: Loop
   icon: {fileID: 21300000, guid: 425e3872f226ac24d8cbd91335e6da01, type: 3}
-  prerequisiteUpgrade: {fileID: 11400000, guid: 847865fe10bc3764bba728d4ba6af7e8, type: 2}
-  prerequisiteLevelRequired: 1
+  prerequisiteUpgrades:
+  - {fileID: 11400000, guid: 847865fe10bc3764bba728d4ba6af7e8, type: 2}
   tiers:
   - description: 
     requiresPuzzleToUnlock: 0
-    unlockFeatureString: 
     costs: []

@@ -9,20 +9,20 @@ import json
 current_banned_nodes = []
 current_banned_functions = []
 
-def initialize_bans(json_string):
-    global current_banned_nodes, current_banned_functions
+def initialize_allowed(json_string):
+    global current_allowed_nodes, current_allowed_functions
     data = json.loads(json_string)
-    current_banned_nodes = data.get("banned_nodes", [])
-    current_banned_functions = data.get("banned_functions", [])
-    return "Bans Initialized"
+    current_allowed_nodes = data.get("allowed_nodes", [])
+    current_allowed_functions = data.get("allowed_functions", [])
+    return "Allowed Lists Initialized"
 
-def clear_ban(ban_name):
-    global current_banned_nodes, current_banned_functions
-    if ban_name in current_banned_nodes:
-        current_banned_nodes.remove(ban_name)
-    if ban_name in current_banned_functions:
-        current_banned_functions.remove(ban_name)
-    return "Cleared"
+def unlock_syntax(unlock_name):
+    global current_allowed_nodes, current_allowed_functions
+    if unlock_name not in current_allowed_nodes:
+        current_allowed_nodes.append(unlock_name)
+    if unlock_name not in current_allowed_functions:
+        current_allowed_functions.append(unlock_name)
+    return "Unlocked"
 
 def validate_code(source_code):
     try:
@@ -30,14 +30,39 @@ def validate_code(source_code):
     except SyntaxError as e:
         return json.dumps({"is_valid": False, "error_msg": f"Syntax Error: {e.msg}", "line": e.lineno})
 
+    parent_map = {child: node for node in ast.walk(tree) for child in ast.iter_child_nodes(node)}
+    
     for node in ast.walk(tree):
         node_type = type(node).__name__ 
-        if node_type in current_banned_nodes:
-            return json.dumps({"is_valid": False, "error_msg": f"'{node_type}' is locked!", "line": getattr(node, 'lineno', 1)})
+        
+        line_no = getattr(node, 'lineno', None)
+
+        if line_no is None:
+            curr = node
+            while curr in parent_map:
+                curr = parent_map[curr]
+                line_no = getattr(curr, 'lineno', None)
+                if line_no is not None:
+                    break
+
+            if line_no is None:
+                line_no = 1
+
+        if node_type not in current_allowed_nodes:
+            return json.dumps({
+                "is_valid": False, 
+                "error_msg": f"Syntax '{node_type}' is locked or not allowed!", 
+                "line": line_no
+            })
             
         if isinstance(node, ast.Call) and isinstance(node.func, ast.Name):
-            if node.func.id in current_banned_functions:
-                return json.dumps({"is_valid": False, "error_msg": f"'{node.func.id}()' is locked!", "line": getattr(node, 'lineno', 1)})
+            func_name = node.func.id
+            if func_name not in current_allowed_functions:
+                return json.dumps({
+                    "is_valid": False, 
+                    "error_msg": f"Function '{func_name}()' is locked or not allowed!", 
+                    "line": line_no
+                })
 
     return json.dumps({"is_valid": True, "error_msg": "Success", "line": -1})
 

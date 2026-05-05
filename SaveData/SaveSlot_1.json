@@ -1,5 +1,5 @@
 {
-    "lastSavedTime": "05-05-2026 15:15",
+    "lastSavedTime": "05-05-2026 20:20",
     "inventory": [
         {
             "itemId": "recall_pod",
@@ -14,7 +14,24 @@
             "amount": 1
         }
     ],
-    "unlockedUpgrades": [],
+    "unlockedUpgrades": [
+        {
+            "id": "variable",
+            "currentLevel": 1
+        },
+        {
+            "id": "ifelse",
+            "currentLevel": 1
+        },
+        {
+            "id": "loop",
+            "currentLevel": 1
+        },
+        {
+            "id": "list",
+            "currentLevel": 1
+        }
+    ],
     "stepDelay": 0.10000000149011612,
     "gameSpeed": 1.0
 }

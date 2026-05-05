@@ -12,13 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 510a7592fff21df42be2ebd983fd262c, type: 3}
   m_Name: SyntaxUpgrade_Variable
   m_EditorClassIdentifier: GlobalManagerScriptIWrite::UpgradeSO
-  id: syntax_variable
+  id: variable
   upgradeName: Variable
   icon: {fileID: 21300000, guid: 6e9f03b4ba0ef2947827bb0d85f25b0e, type: 3}
-  prerequisiteUpgrade: {fileID: 0}
-  prerequisiteLevelRequired: 1
+  prerequisiteUpgrades: []
   tiers:
   - description: 
     requiresPuzzleToUnlock: 0
-    unlockFeatureString: 
     costs: []

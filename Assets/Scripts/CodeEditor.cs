@@ -60,61 +60,8 @@ public class CodeEditor : MonoBehaviour
         gameManager = FindFirstObjectByType<GameManager>();
 
         List<string> bannedKeywordsForUI = new List<string>();
-        if (gameManager)
-        {
-            bannedKeywordsForUI.AddRange(gameManager.bannedFunctions);
 
-            // 1. Loops & Iteration
-            if (gameManager.bannedSyntaxNodes.Contains("For")) bannedKeywordsForUI.Add("for");
-            if (gameManager.bannedSyntaxNodes.Contains("While")) bannedKeywordsForUI.Add("while");
-            if (gameManager.bannedSyntaxNodes.Contains("Break")) bannedKeywordsForUI.Add("break");
-            if (gameManager.bannedSyntaxNodes.Contains("Continue")) bannedKeywordsForUI.Add("continue");
-
-            // 2. Functions & Classes
-            if (gameManager.bannedSyntaxNodes.Contains("FunctionDef")) bannedKeywordsForUI.Add("def");
-            if (gameManager.bannedSyntaxNodes.Contains("ClassDef")) bannedKeywordsForUI.Add("class");
-            if (gameManager.bannedSyntaxNodes.Contains("Return")) bannedKeywordsForUI.Add("return");
-            if (gameManager.bannedSyntaxNodes.Contains("Yield")) bannedKeywordsForUI.Add("yield");
-            if (gameManager.bannedSyntaxNodes.Contains("Lambda")) bannedKeywordsForUI.Add("lambda");
-
-            // 3. Control Flow
-            if (gameManager.bannedSyntaxNodes.Contains("If"))
-            {
-                bannedKeywordsForUI.Add("if");
-                bannedKeywordsForUI.Add("else");
-                bannedKeywordsForUI.Add("elif");
-            }
-            if (gameManager.bannedSyntaxNodes.Contains("Pass")) bannedKeywordsForUI.Add("pass");
-
-            // 4. Exception Handling
-            if (gameManager.bannedSyntaxNodes.Contains("Try"))
-            {
-                bannedKeywordsForUI.Add("try");
-                bannedKeywordsForUI.Add("finally");
-            }
-            if (gameManager.bannedSyntaxNodes.Contains("ExceptHandler")) bannedKeywordsForUI.Add("except");
-            if (gameManager.bannedSyntaxNodes.Contains("Raise")) bannedKeywordsForUI.Add("raise");
-            if (gameManager.bannedSyntaxNodes.Contains("Assert")) bannedKeywordsForUI.Add("assert");
-
-            // 5. Imports & Context Managers
-            if (gameManager.bannedSyntaxNodes.Contains("Import")) bannedKeywordsForUI.Add("import");
-            if (gameManager.bannedSyntaxNodes.Contains("ImportFrom"))
-            {
-                bannedKeywordsForUI.Add("from");
-                bannedKeywordsForUI.Add("import");
-            }
-            if (gameManager.bannedSyntaxNodes.Contains("With"))
-            {
-                bannedKeywordsForUI.Add("with");
-                bannedKeywordsForUI.Add("as");
-            }
-
-            // 6. Variables & Scoping
-            if (gameManager.bannedSyntaxNodes.Contains("Global")) bannedKeywordsForUI.Add("global");
-            if (gameManager.bannedSyntaxNodes.Contains("Nonlocal")) bannedKeywordsForUI.Add("nonlocal");
-            if (gameManager.bannedSyntaxNodes.Contains("Delete")) bannedKeywordsForUI.Add("del");
-        }
-        InitializeSyntaxGroups(bannedKeywordsForUI);
+        InitializeSyntaxGroups();
 
         if (inputField != null)
         {
@@ -146,71 +93,84 @@ public class CodeEditor : MonoBehaviour
         RemoveHighlight();
     }
 
-    private void InitializeSyntaxGroups(List<string> bannedWords)
+    public void InitializeSyntaxGroups()
     {
+        List<string> controlFlow = new List<string>();
+        List<string> logicAndTypes = new List<string> { "True", "False", "None" };
+        List<string> gameCommands = new List<string>();
+        List<string> builtInFunctions = new List<string>();
+        List<string> listMethods = new List<string>();
+
+        if (gameManager != null)
+        {
+            if (gameManager.allowedSyntaxNodes.Contains("For"))
+            {
+                controlFlow.Add("for");
+                controlFlow.Add("in");
+            }
+            if (gameManager.allowedSyntaxNodes.Contains("While")) controlFlow.Add("while");
+            if (gameManager.allowedSyntaxNodes.Contains("Break")) controlFlow.Add("break");
+            if (gameManager.allowedSyntaxNodes.Contains("Continue")) controlFlow.Add("continue");
+
+            if (gameManager.allowedSyntaxNodes.Contains("If"))
+            {
+                controlFlow.Add("if");
+                controlFlow.Add("else");
+                controlFlow.Add("elif");
+            }
+            if (gameManager.allowedSyntaxNodes.Contains("Match"))
+            {
+                controlFlow.Add("match");
+                controlFlow.Add("case");
+            }
+            if (gameManager.allowedSyntaxNodes.Contains("Pass")) controlFlow.Add("pass");
+
+            if (gameManager.allowedSyntaxNodes.Contains("FunctionDef"))
+            {
+                controlFlow.Add("def");
+                controlFlow.Add("return");
+            }
+            if (gameManager.allowedSyntaxNodes.Contains("ClassDef")) controlFlow.Add("class");
+            if (gameManager.allowedSyntaxNodes.Contains("Yield")) controlFlow.Add("yield");
+            if (gameManager.allowedSyntaxNodes.Contains("Lambda")) controlFlow.Add("lambda");
+
+            if (gameManager.allowedSyntaxNodes.Contains("Try")) { controlFlow.Add("try"); controlFlow.Add("except"); controlFlow.Add("finally"); }
+            if (gameManager.allowedSyntaxNodes.Contains("Raise")) controlFlow.Add("raise");
+            if (gameManager.allowedSyntaxNodes.Contains("Assert")) controlFlow.Add("assert");
+
+            if (gameManager.allowedSyntaxNodes.Contains("Import") || gameManager.allowedSyntaxNodes.Contains("ImportFrom")) { controlFlow.Add("import"); controlFlow.Add("from"); }
+            if (gameManager.allowedSyntaxNodes.Contains("With")) { controlFlow.Add("with"); controlFlow.Add("as"); }
+
+            if (gameManager.allowedSyntaxNodes.Contains("Global")) controlFlow.Add("global");
+            if (gameManager.allowedSyntaxNodes.Contains("Nonlocal")) controlFlow.Add("nonlocal");
+            if (gameManager.allowedSyntaxNodes.Contains("Delete")) controlFlow.Add("del");
+
+            if (gameManager.allowedSyntaxNodes.Contains("BoolOp")) { logicAndTypes.Add("and"); logicAndTypes.Add("or"); }
+            if (gameManager.allowedSyntaxNodes.Contains("UnaryOp")) logicAndTypes.Add("not");
+            if (gameManager.allowedSyntaxNodes.Contains("Compare")) logicAndTypes.Add("is");
+
+            builtInFunctions = new List<string>(gameManager.allowedFunctions);
+            gameCommands = new List<string>();
+
+            if (PythonExecutor.instance != null && PythonExecutor.instance.registeredFunctionNames != null)
+            {
+                gameCommands.AddRange(PythonExecutor.instance.registeredFunctionNames);
+            }
+
+            if (gameManager.allowedSyntaxNodes.Contains("List"))
+            {
+                listMethods.AddRange(new string[] { "append", "extend", "insert", "remove", "pop", "clear", "index", "count", "sort", "reverse", "copy" });
+            }
+        }
+
         syntaxGroups = new SyntaxGroup[]
         {
-            new SyntaxGroup
-            {
-                groupName = "Banned",
-                color = Color.red,
-                keywords = bannedWords.ToArray()
-            },
-
-            new SyntaxGroup
-            {
-                groupName = "Game Commands",
-                color = new Color(0.2f, 0.8f, 0.4f), // Bright Green
-                keywords = new string[]
-                {
-                    "move_forward", "move_backward", "turn_left", "turn_right",
-                    "mine", "collect", "purify", "drill", "pump",
-                    "measure", "go_back", "scan", "use_item"
-                }
-            },
-
-            new SyntaxGroup
-            {
-                groupName = "Control Flow",
-                color = new Color(0.85f, 0.43f, 0.83f), // Purple
-                keywords = new string[]
-                {
-                    "for", "in", "while", "if", "else", "elif", "return", "def", "class",
-                    "try", "except", "finally", "with", "as", "pass", "break", "continue",
-                    "yield", "import", "from", "global", "nonlocal", "lambda", "del",
-                    "assert", "await", "async"
-                }
-            },
-
-            new SyntaxGroup
-            {
-                groupName = "Logic",
-                color = new Color(0.33f, 0.66f, 1f), // Blue
-                keywords = new string[] { "and", "or", "not", "is" }
-            },
-
-            new SyntaxGroup
-            {
-                groupName = "Booleans & Types",
-                color = new Color(1f, 0.64f, 0f), // Orange
-                keywords = new string[]
-                {
-                    "True", "False", "None", "int", "float", "str", "bool",
-                    "list", "dict", "set", "tuple", "self"
-                }
-            },
-
-            new SyntaxGroup
-            {
-                groupName = "Built-in Functions",
-                color = new Color(0.96f, 0.96f, 0.67f), // Light Yellow
-                keywords = new string[]
-                {
-                    "print", "range", "len", "type", "abs", "max", "min", "sum",
-                    "round", "enumerate", "zip", "map", "filter", "input", "open",
-                    "dir", "help", "super"
-                }
-            }
+            new SyntaxGroup { groupName = "Game Commands", color = new Color(0.2f, 0.8f, 0.4f), keywords = gameCommands.ToArray() },
+            new SyntaxGroup { groupName = "Control Flow", color = new Color(0.85f, 0.43f, 0.83f), keywords = controlFlow.ToArray() },
+            new SyntaxGroup { groupName = "Logic & Types", color = new Color(0.33f, 0.66f, 1f), keywords = logicAndTypes.ToArray() },
+            new SyntaxGroup { groupName = "Built-in Functions", color = new Color(0.96f, 0.96f, 0.67f), keywords = builtInFunctions.ToArray() },
+            
+            new SyntaxGroup { groupName = "List Methods", color = new Color(0.86f, 0.86f, 0.67f), keywords = listMethods.ToArray() }
         };
     }
 
@@ -423,6 +383,16 @@ public class CodeEditor : MonoBehaviour
         }
     }
 
+    public void InsertTextAtCaret(string textToInsert)
+    {
+        if (inputField == null) return;
+
+        int pos = inputField.caretPosition;
+        inputField.text = inputField.text.Insert(pos, textToInsert);
+        inputField.caretPosition = pos + textToInsert.Length;
+        inputField.ForceLabelUpdate();
+    }
+
     private void Update()
     {
         // Halt aborting text change
@@ -435,6 +405,30 @@ public class CodeEditor : MonoBehaviour
             {
                 isPaused = false;
                 pauseButtonText.text = "Pause";
+            }
+        }
+
+        // Auto-Indent logic
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            Canvas.ForceUpdateCanvases();
+
+            int caretPos = inputField.caretPosition;
+            string text = inputField.text;
+
+            int lineStart = text.LastIndexOf('\n', Mathf.Max(0, caretPos - 2)) + 1;
+            string prevLine = text.Substring(lineStart, caretPos - lineStart);
+
+            if (prevLine.TrimEnd().EndsWith(":"))
+            {
+                string indent = "";
+                foreach (char c in prevLine)
+                {
+                    if (c == ' ') indent += " ";
+                    else break;
+                }
+                // Just add the extra indentation
+                InsertTextAtCaret(indent + new string(' ', tabSize));
             }
         }
 
@@ -528,14 +522,39 @@ public class CodeEditor : MonoBehaviour
             return $"___EXT{extractedTexts.Count - 1}___";
         });
 
+        string SafeReplace(string input, string pattern, string replacement)
+        {
+            string safePattern = @"(?:<color=#[A-Fa-f0-9]{6}>|</color>)|" + pattern;
+
+            return Regex.Replace(input, safePattern, m =>
+            {
+                if (m.Value.StartsWith("<color=") || m.Value == "</color>")
+                    return m.Value;
+
+                return m.Result(replacement);
+            });
+        }
+
+        processedText = SafeReplace(processedText, @"\b\d+(\.\d+)?\b", "<color=#B5CEA8>$0</color>");
+
+        processedText = SafeReplace(processedText, @"([+\-*/%&|^<>!={}-])", "<color=#D4D4D4>$1</color>");
+
         foreach (SyntaxGroup group in syntaxGroups)
         {
             string hexColor = ColorUtility.ToHtmlStringRGB(group.color);
 
             foreach (string word in group.keywords)
             {
-                string pattern = @"\b" + word + @"\b";
-                processedText = Regex.Replace(processedText, pattern, $"<color=#{hexColor}>{word}</color>");
+                if (group.groupName == "List Methods")
+                {
+                    string pattern = @"(\.\s*)\b(" + word + @")\b";
+                    processedText = Regex.Replace(processedText, pattern, $"$1<color=#{hexColor}>$2</color>");
+                }
+                else
+                {
+                    string pattern = @"\b" + word + @"\b";
+                    processedText = Regex.Replace(processedText, pattern, $"<color=#{hexColor}>{word}</color>");
+                }
             }
         }
 

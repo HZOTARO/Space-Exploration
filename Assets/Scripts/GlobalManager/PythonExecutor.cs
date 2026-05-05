@@ -9,8 +9,8 @@ using UnityEngine.SceneManagement;
 public struct PythonValidationRequest
 {
     public string code;
-    public string[] banned_nodes;
-    public string[] banned_functions;
+    public string[] allowed_nodes;
+    public string[] allowed_functions;
 }
 
 [System.Serializable]
@@ -30,7 +30,7 @@ public class PythonExecutor : MonoBehaviour
     PyModule pyScope;
     dynamic pyPrepareFunc;
     dynamic pyStepFunc;
-    private List<string> registeredFunctionNames = new List<string>();
+    public List<string> registeredFunctionNames = new List<string>();
 
     [HideInInspector] public string currentCode;
     public bool continuous = false;
@@ -66,20 +66,20 @@ public class PythonExecutor : MonoBehaviour
         }
     }
 
-    public void InitializePythonBans(string[] nodes, string[] functions)
+    public void InitializePythonAllowed(string[] nodes, string[] functions)
     {
         if (!PythonEngine.IsInitialized || pyScope == null) return;
 
         PythonValidationRequest request = new PythonValidationRequest
         {
-            banned_nodes = nodes,
-            banned_functions = functions
+            allowed_nodes = nodes,
+            allowed_functions = functions
         };
         string jsonRequest = JsonUtility.ToJson(request);
 
         using (Py.GIL())
         {
-            dynamic pyInitFunc = pyScope.Get("initialize_bans");
+            dynamic pyInitFunc = pyScope.Get("initialize_allowed");
             pyInitFunc(jsonRequest);
         }
     }
@@ -153,8 +153,11 @@ public class PythonExecutor : MonoBehaviour
             {
                 registeredFunctionNames.Add(pythonName);
             }
+
+            dynamic pyUnlockFunc = pyScope.Get("unlock_syntax");
+            pyUnlockFunc(pythonName);
         }
-    }
+    }   
 
     /// <summary>
     /// Stop python running, and clear for next scene
