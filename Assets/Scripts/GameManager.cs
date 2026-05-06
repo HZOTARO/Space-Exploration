@@ -24,10 +24,6 @@ public class GameManager : MonoBehaviour
     private TileManager tileManager;
     Vector2Int playerGridLoc = new();
 
-    [Header("Code Editor")]
-    public TextMeshProUGUI terminalText;
-    private int maxLines = 10;
-
     [Header("Inventory")]
     [Range(1, 15)]
     public int inventorySize = 6;
@@ -300,14 +296,11 @@ public class GameManager : MonoBehaviour
     public void PrintToDisplay(string message)
     {
         Debug.Log(message);
-        if (terminalText == null) return;
 
-        terminalText.text += "> " + message + "\n";
-
-        string[] lines = terminalText.text.Split('\n');
-        if (lines.Length > maxLines)
+        if (player != null)
         {
-            terminalText.text = string.Join("\n", lines, 1, Mathf.Min(lines.Length - 1, 10));
+            PlayerFloatingText pft = player.GetComponent<PlayerFloatingText>();
+            if (pft != null) pft.ShowText(message);
         }
     }
 

@@ -295,13 +295,35 @@ public class CodeEditor : MonoBehaviour
     }
     void HandleRuntimeError(int line, string errorMessage)
     {
+        PythonExecutor.instance.StopRunningCode();
+
         isPlaying = false;
-        if (playButtonText != null) playButtonText.text = "Play";
+
+        if (gameManager.InAction())
+        {
+            aborting = true;
+        }
+        else
+        {
+            if (playButtonText != null) playButtonText.text = "Play";
+
+            if (isPaused)
+            {
+                isPaused = false;
+                if (pauseButtonText != null) pauseButtonText.text = "Pause";
+            }
+        }
 
         ShowError(line, "Runtime Error: " + errorMessage);
     }
     public void ShowError(int line, string message)
     {
+        if (gameManager != null && gameManager.player != null)
+        {
+            PlayerFloatingText pft = gameManager.player.GetComponent<PlayerFloatingText>();
+            if (pft != null) pft.HideText();
+        }
+
         if (errorPanel != null) errorPanel.gameObject.SetActive(true);
         if (errorText != null) errorText.text = $"Error on line {line}:\n{message}";
 
@@ -516,6 +538,17 @@ public class CodeEditor : MonoBehaviour
             {
                 needsHeavyUpdate = false;
                 RunHeavyUIUpdates(lastKnownText);
+            }
+        }
+
+        if (errorPanel != null && errorPanel.gameObject.activeSelf)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (!RectTransformUtility.RectangleContainsScreenPoint(errorPanel, Input.mousePosition, null))
+                {
+                    HideError();
+                }
             }
         }
 
