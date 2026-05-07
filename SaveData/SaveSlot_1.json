@@ -1,37 +1,7 @@
 {
-    "lastSavedTime": "06-05-2026 12:45",
-    "inventory": [
-        {
-            "itemId": "recall_pod",
-            "amount": 1
-        },
-        {
-            "itemId": "map_scanner",
-            "amount": 1
-        },
-        {
-            "itemId": "wall",
-            "amount": 1
-        }
-    ],
-    "unlockedUpgrades": [
-        {
-            "id": "variable",
-            "currentLevel": 1
-        },
-        {
-            "id": "ifelse",
-            "currentLevel": 1
-        },
-        {
-            "id": "loop",
-            "currentLevel": 1
-        },
-        {
-            "id": "list",
-            "currentLevel": 1
-        }
-    ],
+    "lastSavedTime": "07-05-2026 18:42",
+    "inventory": [],
+    "unlockedUpgrades": [],
     "stepDelay": 0.10000000149011612,
     "gameSpeed": 1.0
 }
