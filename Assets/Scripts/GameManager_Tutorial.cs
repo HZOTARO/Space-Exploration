@@ -1,33 +1,38 @@
+using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public class GameManager_Tutorial : GameManager
 {
-    [Header("Lecture Specifics")]
-    public string lectureWinCondition; // e.g., "Reached the green tile"
+    [Header("Training Data")]
+    public string trainingId = "training_01_movement";
 
-    // IMPORTANT: By overriding this and leaving it empty, we stop the Base GameManager 
-    // from destroying your hand-built Unity scene map!
+    protected override void SetLevelAllowedSyntax()
+    {
+        //allowedSyntaxNodes.AddRange(SyntaxDictionary.Variables);
+    }
+
     protected override void SetupMap()
     {
-        // Do nothing! The map is already built in the Unity Scene.
-        Debug.Log("Lecture Level: Using pre-built map.");
+        tileManager.GenerateMap();
     }
 
-    protected override void RegisterLevelSpecificPythonCommands()
+    protected override void Start()
     {
-        // Lectures might just use the basic movement commands, or introduce a specific tool
-        // for the very first time!
+        levelSize = 5;
+        inventorySize = 0;
+        base.Start();
     }
 
-    // You could override Return() or create a custom method to check if the student passed the lecture
-    public void CheckLectureComplete()
+    protected override void LevelComplete()
     {
-        //TileObject currentTile = GetCurrentTile();
-        //if (currentTile.type == TileType.Objective)
+        // Mark this training module as completed in the save data!
+        //if (!SaveManager.saveData.completedTrainings.Contains(trainingId))
         //{
-        //    Debug.Log("Lecture Passed!");
-        //    LevelComplete();
+        //    SaveManager.saveData.completedTrainings.Add(trainingId);
+        //    SaveManager.instance.SaveGame(SaveManager.saveSlotInUse);
         //}
+
+        Debug.Log("<color=green>Training Completed!</color>");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Hub Scene");
     }
 }

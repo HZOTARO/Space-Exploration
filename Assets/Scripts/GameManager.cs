@@ -14,127 +14,65 @@ public class GameManager : MonoBehaviour
     public Player player;
     public Image playerHealthBar;
     public TextMeshProUGUI playerHealthText;
-    int playerMaxHealth = 100;
-    int playerHealth;
+    protected int playerMaxHealth = 100;
+    protected int playerHealth;
     // 0 = North(N), 1 = East(E), 2 = South(S), 3 = West(W)
     public int playerFacing = 0;
 
     [Header("Tile")]
-    protected int levelSize = 10;
-    private TileManager tileManager;
+    protected int levelSize;
+    protected TileManager tileManager;
     Vector2Int playerGridLoc = new();
 
     [Header("Inventory")]
     [Range(1, 15)]
     public int inventorySize = 6;
     public Transform inventoryUI;
-    private List<ItemAmount> levelInventory = new List<ItemAmount>();
-    private List<ItemSlotUI> inventorySlots = new List<ItemSlotUI>();
+    protected List<ItemAmount> levelInventory = new List<ItemAmount>();
+    protected List<ItemSlotUI> inventorySlots = new List<ItemSlotUI>();
 
     [Header("Consumables (Shuffled)")]
     public List<ItemSO> availableConsumables = new List<ItemSO>();
-    private List<ItemSO> shuffledConsumables = new List<ItemSO>();
-
-    [Header("Level Restrictions (Python)")]
-    public List<string> levelAllowedSyntaxNodes = new List<string>();
-    public List<string> levelAllowedFunctions = new List<string>();
+    protected List<ItemSO> shuffledConsumables = new List<ItemSO>();
 
     [HideInInspector] public List<string> allowedSyntaxNodes = new List<string>();
     [HideInInspector] public List<string> allowedFunctions = new List<string>();
 
     void Awake()
     {
-        List<string> foundationalSyntax = new List<string>
+        allowedSyntaxNodes = new List<string>();
+        allowedSyntaxNodes.AddRange(SyntaxDictionary.Core);
+
+        allowedFunctions = new List<string>();
+        allowedFunctions.AddRange(FunctionDictionary.Core);
+
+        SetLevelAllowedSyntax();
+    }
+
+    protected virtual void SetLevelAllowedSyntax()
+    {
+        if (UpgradeManager.instance != null)
         {
-            "Module", "Expr", "Call", "Name", "Load", "Store", "Constant", "Pass", "keyword", "arg",
+            if (UpgradeManager.instance.IsUpgradeUnlocked("variable"))
+            {
+                allowedSyntaxNodes.AddRange(SyntaxDictionary.Variables);
+            }
 
-            // Basic math operations
-            "BinOp",    // Any math operation
-            "UnaryOp",  // Needed for negative numbers (-5)
-            "USub",     // '-' sign for negative numbers
-            "Add", "Sub", "Mult", "Div", "FloorDiv", "Mod", "Pow",
+            if (UpgradeManager.instance.IsUpgradeUnlocked("ifelse"))
+            {
+                allowedSyntaxNodes.AddRange(SyntaxDictionary.Logic);
+            }
 
-            // String
-            "JoinedStr", // f-strings
-            "FormattedValue", // f-string values
-        };
+            if (UpgradeManager.instance.IsUpgradeUnlocked("loop"))
+            {
+                allowedSyntaxNodes.AddRange(SyntaxDictionary.Loops);
+            }
 
-        allowedSyntaxNodes = new List<string>(foundationalSyntax);
-
-        List<string> foundationalFunctions = new List<string>
-        {
-            "print", "range", "len", "int", "float", "str", "bool", "type", "abs", "max", "min", "sum", "round", "list"
-        };
-        allowedFunctions = new List<string>(foundationalFunctions);
-
-        bool hasVariables = UpgradeManager.instance != null && UpgradeManager.instance.IsUpgradeUnlocked("variable");
-        bool hasIfStatements = UpgradeManager.instance != null && UpgradeManager.instance.IsUpgradeUnlocked("ifelse");
-        bool hasLoops = UpgradeManager.instance != null && UpgradeManager.instance.IsUpgradeUnlocked("loop");
-        bool hasLists = UpgradeManager.instance != null && UpgradeManager.instance.IsUpgradeUnlocked("list");
-
-        if (hasVariables)
-        {
-            allowedSyntaxNodes.Add("Assign");
-            allowedSyntaxNodes.Add("AugAssign"); // +=
+            if (UpgradeManager.instance.IsUpgradeUnlocked("list"))
+            {
+                allowedSyntaxNodes.AddRange(SyntaxDictionary.Lists);
+            }
         }
-
-        if (hasIfStatements)
-        {
-            allowedSyntaxNodes.Add("If");
-            allowedSyntaxNodes.Add("IfExp");
-
-            allowedSyntaxNodes.Add("Match");
-            allowedSyntaxNodes.Add("match_case");
-            allowedSyntaxNodes.Add("MatchValue");
-            allowedSyntaxNodes.Add("MatchOr");
-            allowedSyntaxNodes.Add("MatchAs");        // case _:
-            allowedSyntaxNodes.Add("MatchSingleton"); // case None:
-            allowedSyntaxNodes.Add("MatchSequence");  // case [1, 2, 3]:
-
-            allowedSyntaxNodes.Add("Compare");
-            allowedSyntaxNodes.Add("UnaryOp");
-            allowedSyntaxNodes.Add("Eq");
-            allowedSyntaxNodes.Add("NotEq");
-            allowedSyntaxNodes.Add("Gt");
-            allowedSyntaxNodes.Add("GtE");
-            allowedSyntaxNodes.Add("Lt");
-            allowedSyntaxNodes.Add("LtE");
-
-            allowedSyntaxNodes.Add("BoolOp");
-            allowedSyntaxNodes.Add("Or");
-            allowedSyntaxNodes.Add("And");
-            allowedSyntaxNodes.Add("Not");
-
-            allowedSyntaxNodes.Add("Is");
-            allowedSyntaxNodes.Add("IsNot");
-        }
-
-        if (hasLoops)
-        {
-            allowedSyntaxNodes.Add("For");
-            allowedSyntaxNodes.Add("While");
-            allowedSyntaxNodes.Add("Break");
-            allowedSyntaxNodes.Add("Continue");
-        }
-
-        if (hasLists)
-        {
-            allowedSyntaxNodes.Add("List");
-            allowedSyntaxNodes.Add("Subscript"); // my_list[0]
-            allowedSyntaxNodes.Add("Slice");     // my_list[0:2]
-            allowedSyntaxNodes.Add("Attribute"); // allow for methods like .append()
-
-            allowedSyntaxNodes.Add("Delete");
-            allowedSyntaxNodes.Add("Del");
-
-            allowedSyntaxNodes.Add("In");
-            allowedSyntaxNodes.Add("NotIn");
-
-            allowedSyntaxNodes.Add("Starred"); // [1, *other] combine
-        }
-
-        allowedSyntaxNodes.AddRange(levelAllowedSyntaxNodes);
-        allowedFunctions.AddRange(levelAllowedFunctions);
     }
 
     protected virtual void Start()
@@ -183,12 +121,11 @@ public class GameManager : MonoBehaviour
 
     protected virtual void SetupMap()
     {
-        if (tileManager)
-        {
-            tileManager.width = levelSize;
-            tileManager.length = levelSize;
-            tileManager.GenerateMap();
-        }
+        if (!tileManager) return;
+        
+        tileManager.width = levelSize;
+        tileManager.length = levelSize;
+        tileManager.GenerateMap();
     }
 
     private void RegisterPythonCommands()
@@ -363,10 +300,10 @@ public class GameManager : MonoBehaviour
         int targetX = playerGridLoc.x;
         int targetY = playerGridLoc.y;
 
-        if (playerFacing == 0) targetY++;     
-        else if (playerFacing == 1) targetX++; 
+        if (playerFacing == 0) targetY++;
+        else if (playerFacing == 1) targetX++;
         else if (playerFacing == 2) targetY--;
-        else if (playerFacing == 3) targetX--; 
+        else if (playerFacing == 3) targetX--;
 
         if (targetX < 0 || targetX >= tileManager.width || targetY < 0 || targetY >= tileManager.length) return;
         if (!IsTileWalkable(targetX, targetY)) return;
@@ -382,10 +319,10 @@ public class GameManager : MonoBehaviour
         int targetX = playerGridLoc.x;
         int targetY = playerGridLoc.y;
 
-        if (playerFacing == 0) targetY--;     
-        else if (playerFacing == 1) targetX--; 
+        if (playerFacing == 0) targetY--;
+        else if (playerFacing == 1) targetX--;
         else if (playerFacing == 2) targetY++;
-        else if (playerFacing == 3) targetX++; 
+        else if (playerFacing == 3) targetX++;
 
         if (targetX < 0 || targetX >= tileManager.width || targetY < 0 || targetY >= tileManager.length) return;
         if (!IsTileWalkable(targetX, targetY)) return;
@@ -518,7 +455,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    protected void LevelComplete()
+    protected virtual void LevelComplete()
     {
         foreach (ItemAmount collected in levelInventory)
         {
