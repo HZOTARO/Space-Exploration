@@ -187,12 +187,14 @@ def __wrap_call__(func, *args, **kwargs):
         
     return res
 
-__gen__ = None
-__init_error__ = None
-
 # |================|
 # | STEP EXECUTION |
 # |================|
+
+__gen__ = None
+__init_error__ = None
+__player_env__ = None
+
 def prepare(code):
     global __gen__, __init_error__
     __init_error__ = None
@@ -230,6 +232,7 @@ def prepare(code):
         env['__wrap_call__'] = __wrap_call__
         exec(compiled, env)
 
+        __player_env__ = env
         __gen__ = env['__runner__']()
         
     except Exception as e:
@@ -271,3 +274,38 @@ def step():
                 break
                 
         return f"RUNTIME_ERROR|{line_no}|{type(e).__name__}: {e}"
+
+def get_variable_value(var_name):
+    global __gen__, __player_env__
+    
+    if __gen__ is not None and hasattr(__gen__, 'gi_frame') and __gen__.gi_frame is not None:
+        local_vars = __gen__.gi_frame.f_locals
+        if var_name in local_vars:
+            return str(local_vars[var_name])
+            
+    if __player_env__ is not None and var_name in __player_env__:
+        return str(__player_env__[var_name])
+        
+    return "Undefined"
+
+def get_line_syntax_map(source_code):
+    try:
+        tree = ast.parse(source_code)
+        line_map = {}
+        
+        for node in ast.walk(tree):
+            if hasattr(node, 'lineno'):
+                line = node.lineno
+                node_type = type(node).__name__
+                
+                if line not in line_map:
+                    line_map[line] = set()
+                line_map[line].add(node_type)
+        
+        result = []
+        for line, nodes in line_map.items():
+            result.append(f"{line}:{','.join(nodes)}")
+            
+        return "|".join(result)
+    except Exception:
+        return ""

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Text.RegularExpressions;
 
 [System.Serializable]
 public struct PythonValidationRequest
@@ -28,9 +27,13 @@ public class PythonExecutor : MonoBehaviour
 
     public float stepDelay = 0.1f;
 
+    [Header("Python Settings")]
     PyModule pyScope;
     dynamic pyPrepareFunc;
     dynamic pyStepFunc;
+    dynamic pyGetVarFunc;
+    dynamic pyGetLineSyntaxMap;
+    public Dictionary<int, HashSet<string>> currentSyntaxMap = new Dictionary<int, HashSet<string>>();
     public List<string> registeredFunctionNames = new List<string>();
 
     [HideInInspector] public string currentCode;
@@ -205,6 +208,8 @@ public class PythonExecutor : MonoBehaviour
                 pyScope.Exec(File.ReadAllText(filePath));
                 pyPrepareFunc = pyScope.Get("prepare");
                 pyStepFunc = pyScope.Get("step");
+                pyGetVarFunc = pyScope.Get("get_variable_value");
+                pyGetLineSyntaxMap = pyScope.Get("get_line_syntax_map");
             }
         }
     }
@@ -218,7 +223,9 @@ public class PythonExecutor : MonoBehaviour
             {
                 pyPrepareFunc(currentCode);
             }
+            BuildSyntaxMap(code);
         }
+
         Step();
     }
 
@@ -322,6 +329,7 @@ __gen__ = None
 
                 if (pyPrepareFunc is IDisposable p) p.Dispose();
                 if (pyStepFunc is IDisposable s) s.Dispose();
+                if (pyGetVarFunc is IDisposable g) g.Dispose();
 
                 pyPrepareFunc = null;
                 pyStepFunc = null;
@@ -335,5 +343,53 @@ __gen__ = None
 
         System.GC.Collect();
         System.GC.WaitForPendingFinalizers();
+    }
+
+    public string GetVariableValue(string varName)
+    {
+        if (pyGetVarFunc == null) return "Undefined";
+
+        using (Py.GIL())
+        {
+            try
+            {
+                return pyGetVarFunc(varName).ToString();
+            }
+            catch
+            {
+                return "Undefined";
+            }
+        }
+    }
+    private void BuildSyntaxMap(string code)
+    {
+        currentSyntaxMap.Clear();
+        if (pyGetLineSyntaxMap == null) return;
+
+        using (Py.GIL())
+        {
+            string mapString = pyGetLineSyntaxMap(code).ToString();
+            if (string.IsNullOrEmpty(mapString)) return;
+
+            string[] lines = mapString.Split('|');
+            foreach (string lineData in lines)
+            {
+                string[] parts = lineData.Split(':');
+                if (parts.Length == 2 && int.TryParse(parts[0], out int lineNum))
+                {
+                    HashSet<string> nodes = new HashSet<string>(parts[1].Split(','));
+                    currentSyntaxMap[lineNum] = nodes;
+                }
+            }
+        }
+    }
+
+    public bool CurrentLineContainsSyntax(int line, string requiredSyntax)
+    {
+        if (currentSyntaxMap.ContainsKey(line))
+        {
+            return currentSyntaxMap[line].Contains(requiredSyntax);
+        }
+        return false;
     }
 }
