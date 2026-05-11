@@ -196,7 +196,7 @@ __init_error__ = None
 __player_env__ = None
 
 def prepare(code):
-    global __gen__, __init_error__
+    global __gen__, __init_error__, __player_env__
     __init_error__ = None
     
     try:
