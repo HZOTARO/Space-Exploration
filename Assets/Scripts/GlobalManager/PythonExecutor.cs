@@ -258,6 +258,7 @@ public class PythonExecutor : MonoBehaviour
                 currentCode = null;
                 OnExecutionFinished?.Invoke();
             }
+
             else
             {
                 if (result.Contains(","))

@@ -1,66 +1,148 @@
 using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
-
-[System.Serializable]
-public class WatchedVariable
-{
-    public string variableName;
-    public TextMeshProUGUI uiText;
-}
+using UnityEngine.UI;
+using System.Text;
 
 public class VariableWatcher : MonoBehaviour
 {
-    public List<WatchedVariable> watchedVariables = new List<WatchedVariable>();
+    [Header("Menu UI (The Editor)")]
+    public GameObject menuPanel;
+    public Button addVariableButton;
+    public Transform menuRowContainer;
+    public GameObject menuRowPrefab;
+
+    [Header("Gameplay Display UI (The HUD)")]
+    public GameObject displayPanel;
+    public TextMeshProUGUI singleDisplayText;
+
+    public LayoutElement displayPanelLayoutElement;
+    public float heightPadding = 25f;
+
+    [Header("Settings")]
+    public int maxVariables = 5;
+
+    private List<VariableSetupRow> activeRows = new List<VariableSetupRow>();
+    private List<string> cachedVariables = new List<string>();
 
     void Start()
     {
         if (PythonExecutor.instance != null)
         {
-            PythonExecutor.instance.OnLineExecuted += UpdateWatchedVariables;
-            PythonExecutor.instance.OnExecutionFinished += UpdateWatchedVariables;
+            PythonExecutor.instance.OnLineExecuted += HandleLineExecuted;
+            PythonExecutor.instance.OnExecutionFinished += UpdateHUD;
         }
 
-        ResetUI();
+        if (addVariableButton != null)
+        {
+            addVariableButton.onClick.AddListener(AddEmptyRow);
+        }
+
+        for (int i = 0; i < maxVariables; i++)
+        {
+            AddEmptyRow();
+        }
+
+        SaveAndApply();
     }
 
     void OnDestroy()
     {
         if (PythonExecutor.instance != null)
         {
-            PythonExecutor.instance.OnLineExecuted -= UpdateWatchedVariables;
-            PythonExecutor.instance.OnExecutionFinished -= UpdateWatchedVariables;
+            PythonExecutor.instance.OnLineExecuted -= HandleLineExecuted;
+            PythonExecutor.instance.OnExecutionFinished -= UpdateHUD;
         }
     }
 
-    private void UpdateWatchedVariables(int startLine, int endLine)
+    private void AddEmptyRow()
     {
-        UpdateWatchedVariables();
+        if (activeRows.Count >= maxVariables) return;
+
+        GameObject rowObj = Instantiate(menuRowPrefab, menuRowContainer);
+        VariableSetupRow rowScript = rowObj.GetComponent<VariableSetupRow>();
+
+        string name = "Variable " + (activeRows.Count + 1) + ":";
+        rowScript.Setup(name, RemoveRow);
+        activeRows.Add(rowScript);
+
+        UpdateAddButtonState();
     }
 
-    public void UpdateWatchedVariables()
+    private void RemoveRow(VariableSetupRow rowScript)
     {
-        if (PythonExecutor.instance == null) return;
+        activeRows.Remove(rowScript);
+        Destroy(rowScript.gameObject);
+        UpdateAddButtonState();
+    }
 
-        foreach (var watch in watchedVariables)
+    private void UpdateAddButtonState()
+    {
+        if (addVariableButton != null)
         {
-            if (watch.uiText != null && !string.IsNullOrEmpty(watch.variableName))
-            {
-                string liveValue = PythonExecutor.instance.GetVariableValue(watch.variableName);
-
-                watch.uiText.text = $"{watch.variableName}: <color=yellow>{liveValue}</color>";
-            }
+            addVariableButton.interactable = (activeRows.Count < maxVariables);
         }
     }
 
-    public void ResetUI()
+    public void OpenMenu()
     {
-        foreach (var watch in watchedVariables)
+        if (menuPanel != null) menuPanel.SetActive(true);
+    }
+
+    public void SaveAndApply()
+    {
+        cachedVariables.Clear();
+
+        foreach (VariableSetupRow row in activeRows)
         {
-            if (watch.uiText != null)
+            string vName = row.VariableName;
+
+            if (!string.IsNullOrWhiteSpace(vName) && !cachedVariables.Contains(vName))
             {
-                watch.uiText.text = $"{watch.variableName}: <color=grey>Undefined</color>";
+                cachedVariables.Add(vName);
             }
+        }
+
+        if (menuPanel != null) menuPanel.SetActive(false);
+
+        UpdateHUD();
+    }
+
+    private void HandleLineExecuted(int startLine, int endLine)
+    {
+        UpdateHUD();
+    }
+    private void UpdateHUD()
+    {
+        if (singleDisplayText == null || PythonExecutor.instance == null) return;
+
+        if (cachedVariables.Count == 0)
+        {
+            if (displayPanel != null) displayPanel.SetActive(false);
+            singleDisplayText.text = "";
+            return;
+        }
+
+        if (displayPanel != null) displayPanel.SetActive(true);
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < cachedVariables.Count; i++)
+        {
+            string vName = cachedVariables[i];
+            string vValue = PythonExecutor.instance.GetVariableValue(vName);
+
+            if (i > 0) sb.Append("\n");
+            sb.Append($"{vName}: <color=yellow>{vValue}</color>");
+        }
+
+        singleDisplayText.text = sb.ToString();
+
+        if (displayPanelLayoutElement != null)
+        {
+            singleDisplayText.ForceMeshUpdate();
+
+            float exactTextHeight = singleDisplayText.preferredHeight;
+            displayPanelLayoutElement.preferredHeight = exactTextHeight + heightPadding;
         }
     }
 }

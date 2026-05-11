@@ -366,6 +366,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4271208786348695368}
   - component: {fileID: 2478417756555783045}
+  - component: {fileID: 1437486062218210120}
   m_Layer: 0
   m_Name: Setting
   m_TagString: Untagged
@@ -408,6 +409,18 @@ MonoBehaviour:
   stepDelaySlider: {fileID: 7460191842134034437}
   gameSpeedText: {fileID: 1600892028931304527}
   gameSpeedSlider: {fileID: 1160774866302052936}
+--- !u!225 &1437486062218210120
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 831424081758192892}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1334427482429219025
 GameObject:
   m_ObjectHideFlags: 0
