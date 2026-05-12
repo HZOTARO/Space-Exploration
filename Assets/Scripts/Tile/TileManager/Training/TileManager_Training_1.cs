@@ -6,10 +6,9 @@ public class TileManager_Training_1 : TileManager_Training
     }
     protected override void GenerateMapContent()
     {
-        objectsArray[0, 0].type = TileType.Floor;
-        objectsArray[1, 0].type = TileType.Floor;
-        objectsArray[2, 0].type = TileType.Floor;
-        objectsArray[2, 1].type = TileType.Goal;
-        floorArray[2, 1].type = TileType.Goal;
+        SetTile(0, 0, TileType.Floor);
+        SetTile(1, 0, TileType.Floor);
+        SetTile(2, 0, TileType.Floor);
+        SetTile(2, 1, TileType.Goal);
     }
 }

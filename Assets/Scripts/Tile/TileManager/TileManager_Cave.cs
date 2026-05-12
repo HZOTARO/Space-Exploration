@@ -14,6 +14,6 @@ public class TileManager_Cave : TileManager
             spawnedGrid.name = "Grid";
         }
 
-        base.GenerateMap();
+        base.GenerateMap(setAllFloor);
     }
 }
