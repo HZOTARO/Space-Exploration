@@ -15,6 +15,7 @@ public enum TileType
     WhiteOre,
     PurpleVein,
     BlackOre,
+    Goal,
 }
 
 public enum PlayerAction

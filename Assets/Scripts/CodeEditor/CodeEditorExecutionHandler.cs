@@ -19,11 +19,13 @@ public class CodeExecutionController : MonoBehaviour
     [HideInInspector] public bool isPaused = false;
     [HideInInspector] public bool aborting = false;
 
+    private VariableWatcher variableWatcher;
     private CodeEditor ui;
 
     void Awake()
     {
         ui = GetComponent<CodeEditor>();
+        variableWatcher = GetComponent<VariableWatcher>();
     }
 
     void Start()
@@ -135,6 +137,8 @@ public class CodeExecutionController : MonoBehaviour
     {
         PythonExecutor.instance.StopRunningCode();
         ui.HideError();
+
+        if (variableWatcher != null) variableWatcher.ResetAllToUndefined();
     }
 
     public void FastAbortCheck()

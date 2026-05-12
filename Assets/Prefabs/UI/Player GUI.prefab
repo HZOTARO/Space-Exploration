@@ -102,6 +102,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3692899846858350486}
   - component: {fileID: 8297779878136479362}
+  - component: {fileID: 1503994525791791214}
   m_Layer: 5
   m_Name: Inventory
   m_TagString: Untagged
@@ -137,6 +138,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1361597387129405420}
   m_CullTransparentMesh: 1
+--- !u!114 &1503994525791791214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1361597387129405420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b47c783e6feed245b58afad54615731, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ScriptIWrite::PlayerCargoComponent
+  cargoSize: 6
+  cargoUI: {fileID: 4409307445940174865}
+  levelCargo: []
 --- !u!1 &1813926222965135712
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,7 +328,6 @@ GameObject:
   - component: {fileID: 7294195710020889149}
   - component: {fileID: 7594509716996782281}
   - component: {fileID: 1176623574764243997}
-  - component: {fileID: 8612577123414200357}
   m_Layer: 5
   m_Name: Player GUI
   m_TagString: Untagged
@@ -403,24 +418,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &8612577123414200357
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3016595231885816313}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88b92a592008fbe438ff08532adb14f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UIScriptIWrite::GeneralUIScript
-  enableEscape: 0
-  pauseUI: {fileID: 0}
-  stepDelayText: {fileID: 0}
-  stepDelaySlider: {fileID: 0}
-  gameSpeedText: {fileID: 0}
-  gameSpeedSlider: {fileID: 0}
 --- !u!1 &4991948541454337740
 GameObject:
   m_ObjectHideFlags: 0
@@ -508,6 +505,7 @@ GameObject:
   - component: {fileID: 4013135254273256633}
   - component: {fileID: 341583985794035808}
   - component: {fileID: 9049744183946044748}
+  - component: {fileID: 2321921827027098907}
   m_Layer: 5
   m_Name: HealthBar_Background
   m_TagString: Untagged
@@ -588,6 +586,21 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
   m_EffectDistance: {x: 5, y: -5}
   m_UseGraphicAlpha: 1
+--- !u!114 &2321921827027098907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5641201118968868521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4fe907862da3bc449d58a3334e54334, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ScriptIWrite::PlayerHealthComponent
+  maxHealth: 100
+  healthBar: {fileID: 5924353717350774612}
+  healthText: {fileID: 1256198640757002280}
 --- !u!1 &7118855164872951778
 GameObject:
   m_ObjectHideFlags: 0

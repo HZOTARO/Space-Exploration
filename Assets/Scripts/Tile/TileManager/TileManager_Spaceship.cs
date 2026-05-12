@@ -11,8 +11,7 @@ public class TileManager_Spaceship : TileManager
         if (floorEven != null && floorOdd != null)
         {
             BaseTile prefabToUse = ((x + z) % 2 == 0) ? floorEven : floorOdd;
-            currentFloorData.tileInstance = InstantiateTileVisual(z, x, prefabToUse);
-            currentFloorData.type = TileType.Floor;
+            currentFloorData.tileInstance = InstantiateTileVisual(z, x, (prefabToUse) ? prefabToUse : FindTilePrefab(TileType.Floor));
         }
     }
 }

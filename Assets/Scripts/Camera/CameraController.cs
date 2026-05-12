@@ -10,7 +10,7 @@ public class CameraController : MonoBehaviour
     public float tileLength = 2.5f;
 
     [Header("UI Padding")]
-    public float uiPaddingLeft = 0.0f;  
+    public float uiPaddingLeft = 0.15f;  
     public float uiPaddingRight = 0.0f; 
     public float uiPaddingBottom = 0.2f;
     public float uiPaddingTop = 0.2f;

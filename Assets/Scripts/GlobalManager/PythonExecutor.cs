@@ -2,6 +2,7 @@ using Python.Runtime;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -382,6 +383,16 @@ __gen__ = None
                     currentSyntaxMap[lineNum] = nodes;
                 }
             }
+
+            //StringBuilder sb = new StringBuilder();
+            //for(int i = 0; i <= currentSyntaxMap.Count; i++)
+            //{
+            //    currentSyntaxMap.TryGetValue(i, out HashSet<string> syntaxSet);
+            //    if (syntaxSet != null) { 
+            //        sb.AppendLine($"Line {i}: {string.Join(", ", syntaxSet)}");
+            //    }
+            //}
+            //Debug.Log(sb.ToString());
         }
     }
 
@@ -392,5 +403,24 @@ __gen__ = None
             return currentSyntaxMap[line].Contains(requiredSyntax);
         }
         return false;
+    }
+    public bool CheckASTPattern(int startLine, int endLine, string pattern, string target)
+    {
+        if (pyScope == null || string.IsNullOrEmpty(currentCode)) return false;
+
+        using (Py.GIL())
+        {
+            try
+            {
+                dynamic pyCheckFunc = pyScope.Get("check_ast_pattern");
+                string result = pyCheckFunc(currentCode, startLine, endLine, pattern, target).ToString();
+                return result == "True";
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogWarning("AST Pattern Check Failed: " + e.Message);
+                return false;
+            }
+        }
     }
 }

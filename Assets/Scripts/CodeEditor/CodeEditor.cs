@@ -72,24 +72,38 @@ public class CodeEditor : MonoBehaviour
         if (inputField == null || !inputField.isFocused) return;
 
         // Auto-Indent logic
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
         {
             Canvas.ForceUpdateCanvases();
-            int caretPos = inputField.caretPosition;
-            string text = inputField.text;
 
-            int lineStart = text.LastIndexOf('\n', Mathf.Max(0, caretPos - 2)) + 1;
-            string prevLine = text.Substring(lineStart, caretPos - lineStart);
+            string textBeforeCaret = inputField.text.Substring(0, inputField.caretPosition);
+            string[] lines = textBeforeCaret.Split('\n');
 
-            if (prevLine.TrimEnd().EndsWith(":"))
+            if (lines.Length >= 2)
             {
+                string prevLine = lines[lines.Length - 2];
                 string indent = "";
+
                 foreach (char c in prevLine)
                 {
-                    if (c == ' ') indent += " ";
+                    if (c == ' ' || c == '\t') indent += c;
                     else break;
                 }
-                InsertTextAtCaret(indent + new string(' ', tabSize));
+
+                string lineWithoutStrings = Regex.Replace(prevLine, "(\".*?\"|'.*?')", "");
+
+                int commentIndex = lineWithoutStrings.IndexOf('#');
+                string logicalLine = commentIndex >= 0 ? lineWithoutStrings.Substring(0, commentIndex) : lineWithoutStrings;
+
+                if (logicalLine.TrimEnd().EndsWith(":"))
+                {
+                    indent += new string(' ', tabSize);
+                }
+
+                if (!string.IsNullOrEmpty(indent))
+                {
+                    InsertTextAtCaret(indent);
+                }
             }
         }
 

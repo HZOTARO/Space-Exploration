@@ -4,14 +4,13 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
+  - healthComponent: {instanceID: 0}
+  - cargoComponent: {instanceID: 0}
   - cameraController: {instanceID: 0}
   - player: {instanceID: 0}
-  - playerHealthBar: {instanceID: 0}
-  - playerHealthText: {instanceID: 0}
-  - terminalText: {instanceID: 0}
-  - inventoryUI: {instanceID: 0}
   - mapSizeUpgrade: {fileID: 11400000, guid: 8706b81e30eb8b54b96a69d621fcc817, type: 2}
-  - inventorySizeUpgrade: {fileID: 11400000, guid: 1b94911b126e347409011dcafb761c2b, type: 2}
+  - cargoSizeUpgrade: {fileID: 11400000, guid: 1b94911b126e347409011dcafb761c2b, type: 2}
+  - healthUpgrade: {fileID: 11400000, guid: ae3488b8fd4e60540b9aa5962265df86, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

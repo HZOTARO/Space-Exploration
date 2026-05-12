@@ -1,25 +1,30 @@
-using UnityEngine;
-using TMPro;
 using System.Collections.Generic;
-using UnityEngine.UI;
+using TMPro;
+using UnityEngine;
 
-public enum ObjectiveType { Syntax, VariableState, ReachGoal }
+public enum ObjectiveType { Syntax, FunctionCall, VariableState, CustomEvent }
 
 [System.Serializable]
 public class LevelObjective
 {
-    public string description; // What the UI displays (e.g., "Write a For Loop")
+    public string description;
     public ObjectiveType type;
 
     [Header("Syntax Settings")]
-    public string targetSyntaxNode; // e.g., "For" or "List"
+    public string targetSyntaxNode;
+
+    [Header("Function Settings")]
+    public string targetFunctionName;
 
     [Header("Variable Settings")]
-    public string targetVariableName; // e.g., "password"
-    public string targetVariableValue; // e.g., "1234"
+    public string targetVariableName;
+    public string targetVariableValue;
+
+    [Header("Custom Event Settings")]
+    public string customEventId;
 
     [HideInInspector] public bool isComplete = false;
-    [HideInInspector] public TextMeshProUGUI uiTextRef; // The spawned UI text
+    [HideInInspector] public TextMeshProUGUI uiTextRef;
 }
 
 public class ObjectiveManager : MonoBehaviour
@@ -30,8 +35,8 @@ public class ObjectiveManager : MonoBehaviour
     public List<LevelObjective> objectives = new List<LevelObjective>();
 
     [Header("UI References")]
-    public GameObject objectivePrefab; // A prefab containing a TextMeshPro object
-    public Transform objectiveContainer; // The Layout Group that holds the checklist
+    public GameObject objectivePrefab;
+    public Transform objectiveContainer;
 
     void Awake()
     {
@@ -40,15 +45,6 @@ public class ObjectiveManager : MonoBehaviour
 
     void Start()
     {
-        // 1. Spawn the UI Checklist
-        foreach (var obj in objectives)
-        {
-            GameObject newObjUI = Instantiate(objectivePrefab, objectiveContainer);
-            obj.uiTextRef = newObjUI.GetComponentInChildren<TextMeshProUGUI>();
-            UpdateUI(obj);
-        }
-
-        // 2. Hook into Python execution for Real-Time checking
         if (PythonExecutor.instance != null)
         {
             PythonExecutor.instance.OnLineExecuted += EvaluateRuntimeObjectives;
@@ -63,57 +59,78 @@ public class ObjectiveManager : MonoBehaviour
         }
     }
 
-    // =========================================================
-    // RUNS EVERY TIME A LINE OF PYTHON EXECUTES
-    // =========================================================
+    public void InitiateAllTask()
+    {
+        foreach (LevelObjective obj in objectives)
+        {
+            GameObject newObjUI = Instantiate(objectivePrefab, objectiveContainer);
+            obj.uiTextRef = newObjUI.GetComponentInChildren<TextMeshProUGUI>();
+            UpdateUI(obj);
+        }
+    }
+
     private void EvaluateRuntimeObjectives(int startLine, int endLine)
     {
         if (PythonExecutor.instance == null) return;
 
-        foreach (var obj in objectives)
+        foreach (LevelObjective obj in objectives)
         {
-            // 1. Evaluate Dynamic Syntax (Did the line we just ran contain the required node?)
-            if (obj.type == ObjectiveType.Syntax && !obj.isComplete)
+            if (obj.isComplete) continue;
+
+            if (obj.type == ObjectiveType.Syntax)
             {
                 if (PythonExecutor.instance.CurrentLineContainsSyntax(startLine, obj.targetSyntaxNode))
                 {
-                    obj.isComplete = true;
-                    UpdateUI(obj);
+                    CompleteObjective(obj);
                 }
             }
-
-            // 2. Evaluate Dynamic Variables (Did the line we just ran set the correct variable?)
-            if (obj.type == ObjectiveType.VariableState && !obj.isComplete)
+            else if (obj.type == ObjectiveType.FunctionCall)
+            {
+                if (PythonExecutor.instance.CheckASTPattern(startLine, endLine, "FunctionCall", obj.targetFunctionName))
+                {
+                    CompleteObjective(obj);
+                }
+            }
+            else if (obj.type == ObjectiveType.VariableState)
             {
                 string currentValue = PythonExecutor.instance.GetVariableValue(obj.targetVariableName);
 
                 if (currentValue == obj.targetVariableValue)
                 {
-                    obj.isComplete = true;
-                    UpdateUI(obj);
+                    CompleteObjective(obj);
                 }
             }
         }
     }
 
-    // =========================================================
-    // CALLED BY GOAL TILE: When the robot steps on the finish line
-    // =========================================================
-    public void CompleteGoalObjective()
+    public void TriggerCustomEvent(string eventId)
     {
-        foreach (var obj in objectives)
+        foreach (LevelObjective obj in objectives)
         {
-            if (obj.type == ObjectiveType.ReachGoal)
+            if (obj.type == ObjectiveType.CustomEvent && !obj.isComplete)
             {
-                obj.isComplete = true;
-                UpdateUI(obj);
+                if (obj.customEventId == eventId)
+                {
+                    CompleteObjective(obj);
+                }
             }
+        }
+    }
+
+    private void CompleteObjective(LevelObjective obj)
+    {
+        obj.isComplete = true;
+        UpdateUI(obj);
+
+        if (AreAllObjectivesComplete())
+        {
+            Debug.Log("<color=green>All objectives complete!</color>");
         }
     }
 
     public bool AreAllObjectivesComplete()
     {
-        foreach (var obj in objectives)
+        foreach (LevelObjective obj in objectives)
         {
             if (!obj.isComplete) return false;
         }
@@ -126,8 +143,8 @@ public class ObjectiveManager : MonoBehaviour
 
         if (obj.isComplete)
         {
-            obj.uiTextRef.text = $"[<color=green>V</color>] {obj.description}";
-            obj.uiTextRef.color = Color.green; // Or grayed out, depending on your style
+            obj.uiTextRef.text = $"[<color=green>V</color>] <s>{obj.description}</s>";
+            obj.uiTextRef.color = Color.green;
         }
         else
         {

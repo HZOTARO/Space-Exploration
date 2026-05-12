@@ -21,7 +21,7 @@ public class TileManager : MonoBehaviour
     [HideInInspector]
     public TileObject[,] floorArray;
 
-    public virtual void GenerateMap()
+    public virtual void GenerateMap(bool setAllFloor = true)
     {
         if (!tilesContainer) return;
 
@@ -33,10 +33,10 @@ public class TileManager : MonoBehaviour
             for (int x = 0; x < width; x++)
             {
                 objectsArray[z, x] = new TileObject();
-                objectsArray[z, x].type = TileType.Floor;
+                objectsArray[z, x].type = setAllFloor ? TileType.Floor : TileType.None;
 
                 floorArray[z, x] = new TileObject();
-                floorArray[z, x].type = TileType.Floor;
+                floorArray[z, x].type = setAllFloor ? TileType.Floor : TileType.None;
             }
         }
 
@@ -85,29 +85,29 @@ public class TileManager : MonoBehaviour
                 TileObject currentObj = objectsArray[z, x];
                 TileObject currentFloor = floorArray[z, x];
 
-                if (currentFloor.tileInstance == null)
+                if (currentObj.type == TileType.None || currentFloor.type == TileType.None)
+                {
+                    continue;
+                }
+
+                // Floor
+                if (currentFloor.type == TileType.Floor)
                 {
                     GenerateFloorTile(z, x, currentFloor);
                 }
-
-                if (currentObj.type != TileType.Floor && currentObj.tileInstance == null)
+                else
                 {
-                    if (currentObj.type == currentFloor.type)
-                    {
-                        currentObj.tileInstance = currentFloor.tileInstance;
-                    }
-                    else
-                    {
-                        BaseTile objPrefab = FindTilePrefab(currentObj.type);
-                        if (objPrefab != null)
-                        {
-                            currentObj.tileInstance = InstantiateTileVisual(z, x, objPrefab);
-                        }
-                    }
+                    currentFloor.tileInstance = InstantiateTileVisual(z, x, FindTilePrefab(currentFloor.type));
                 }
-                else if (currentObj.type == TileType.Floor)
+
+                // Object
+                if (currentObj.type == currentFloor.type)
                 {
                     currentObj.tileInstance = currentFloor.tileInstance;
+                }
+                else
+                {
+                    currentObj.tileInstance = InstantiateTileVisual(z, x, FindTilePrefab(currentObj.type));
                 }
             }
         }
@@ -115,31 +115,6 @@ public class TileManager : MonoBehaviour
 
     protected virtual void GenerateFloorTile(int z, int x, TileObject currentFloorData)
     {
-        BaseTile prefabToSpawn = FindTilePrefab(currentFloorData.type);
-
-        if (prefabToSpawn == null)
-        {
-            prefabToSpawn = floorTile != null ? floorTile : FindTilePrefab(TileType.Floor);
-            currentFloorData.type = TileType.Floor;
-        }
-
-        if (prefabToSpawn != null)
-        {
-            currentFloorData.tileInstance = InstantiateTileVisual(z, x, prefabToSpawn);
-        }
-    }
-
-    public void PlaceSpecificTile(int z, int x, TileType tileType, bool placeFloorUnderneath = true)
-    {
-        BaseTile prefab = FindTilePrefab(tileType);
-        if (prefab == null) return;
-
-        objectsArray[z, x].type = tileType;
-        objectsArray[z, x].tileInstance = InstantiateTileVisual(z, x, prefab);
-
-        if (placeFloorUnderneath && floorArray[z, x].tileInstance == null)
-        {
-            GenerateFloorTile(z, x, floorArray[z, x]);
-        }
+        currentFloorData.tileInstance = InstantiateTileVisual(z, x, (floorTile) ? floorTile : FindTilePrefab(TileType.Floor));
     }
 }

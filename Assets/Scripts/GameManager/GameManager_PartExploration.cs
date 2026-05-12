@@ -3,17 +3,20 @@ using System;
 
 public class GameManager_PartExploration : GameManager
 {
-    public UpgradeSO mapSizeUpgrade;
-    public UpgradeSO inventorySizeUpgrade;
-    protected override void Start()
+    protected override void StartValuesSetup()
     {
-        if (UpgradeManager.instance)
-        {
-            if (mapSizeUpgrade) levelSize = 5 * (UpgradeManager.instance.GetUpgradeLevel(mapSizeUpgrade.id) + 1);
-            if (inventorySizeUpgrade) inventorySize = 4 + 2 * (UpgradeManager.instance.GetUpgradeLevel(inventorySizeUpgrade.id));
-        }
+        base.StartValuesSetup();
 
-        base.Start();
+        if (mapSizeUpgrade)
+        {
+            int upgradeLevel = UpgradeManager.instance.GetUpgradeLevel(mapSizeUpgrade.id);
+            levelSize = 5 * (upgradeLevel + 1);
+        }
+        if (cargoSizeUpgrade && cargoComponent)
+        {
+            int upgradeLevel = UpgradeManager.instance.GetUpgradeLevel(cargoSizeUpgrade.id);
+            cargoComponent.cargoSize = 4 + 2 * upgradeLevel;
+        }
     }
 
     protected override void RegisterLevelSpecificPythonCommands()
@@ -38,7 +41,7 @@ public class GameManager_PartExploration : GameManager
                     int amountCollected = ore.Collect();
                     if (amountCollected > 0)
                     {
-                        AddToInventory(ore.itemOnTile, amountCollected);
+                        cargoComponent.AddToCargo(ore.itemOnTile, amountCollected);
                         Debug.Log($"<color=white>Collected {amountCollected} White Ore.</color>");
                     }
                 });
@@ -54,7 +57,7 @@ public class GameManager_PartExploration : GameManager
                     int amountCollected = ore.Collect();
                     if (amountCollected > 0)
                     {
-                        AddToInventory(ore.itemOnTile, amountCollected);
+                        cargoComponent.AddToCargo(ore.itemOnTile, amountCollected);
                         Debug.Log($"<color=black>Collected {amountCollected} Black Ore.</color>");
                     }
                 });

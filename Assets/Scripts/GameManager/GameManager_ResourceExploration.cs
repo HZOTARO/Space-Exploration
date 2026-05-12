@@ -3,19 +3,21 @@ using System;
 
 public class GameManager_ResourceExploration : GameManager
 {
-    public UpgradeSO mapSizeUpgrade;
-    public UpgradeSO inventorySizeUpgrade;
-    protected override void Start()
+    protected override void StartValuesSetup()
     {
-        if (UpgradeManager.instance)
+        base.StartValuesSetup();
+
+        if (mapSizeUpgrade)
         {
-            if (mapSizeUpgrade) levelSize = 5 * (UpgradeManager.instance.GetUpgradeLevel(mapSizeUpgrade.id) + 1);
-            if (inventorySizeUpgrade) inventorySize = 4 + 2 * (UpgradeManager.instance.GetUpgradeLevel(inventorySizeUpgrade.id));
+            int upgradeLevel = UpgradeManager.instance.GetUpgradeLevel(mapSizeUpgrade.id);
+            levelSize = 5 * (upgradeLevel + 1);
         }
-
-        base.Start();
+        if (cargoSizeUpgrade && cargoComponent) 
+        { 
+            int upgradeLevel = UpgradeManager.instance.GetUpgradeLevel(cargoSizeUpgrade.id);
+            cargoComponent.cargoSize = 4 + 2 * upgradeLevel;
+        }
     }
-
     protected override void RegisterLevelSpecificPythonCommands()
     {
         void Bind(string pyName, Action action) => PythonExecutor.instance.RegisterPythonFunction(pyName, action);
@@ -47,7 +49,7 @@ public class GameManager_ResourceExploration : GameManager
         else if (targetTile.type == TileType.BlackOre)
         {
             CaveTile_BlackOre ore = targetTile.tileInstance as CaveTile_BlackOre;
-            if (!ore.isMined) player.PerformAction(PlayerAction.Mine, () => { if (ore.Mine()) DamagePlayer(60); });
+            if (!ore.isMined) player.PerformAction(PlayerAction.Mine, () => { if (ore.Mine()) healthComponent.DamagePlayer(60); });
             else Debug.Log("This Black Ore has already been mined.");
         }
         else
@@ -69,7 +71,7 @@ public class GameManager_ResourceExploration : GameManager
                     int amountCollected = ore.Collect();
                     if (amountCollected > 0)
                     {
-                        AddToInventory(ore.itemOnTile, amountCollected);
+                        cargoComponent.AddToCargo(ore.itemOnTile, amountCollected);
                         Debug.Log($"<color=white>Collected {amountCollected} White Ore.</color>");
                     }
                 });
@@ -85,7 +87,7 @@ public class GameManager_ResourceExploration : GameManager
                     int amountCollected = ore.Collect();
                     if (amountCollected > 0)
                     {
-                        AddToInventory(ore.itemOnTile, amountCollected);
+                        cargoComponent.AddToCargo(ore.itemOnTile, amountCollected);
                         Debug.Log($"<color=black>Collected {amountCollected} Black Ore.</color>");
                     }
                 });
@@ -116,7 +118,7 @@ public class GameManager_ResourceExploration : GameManager
                     int amountPumped = vein.Pump();
                     if (amountPumped > 0)
                     {
-                        AddToInventory(vein.itemOnTile, amountPumped);
+                        cargoComponent.AddToCargo(vein.itemOnTile, amountPumped);
                         Debug.Log($"<color=purple>Collected {amountPumped} Purple Liquid.</color>");
                     }
                 });

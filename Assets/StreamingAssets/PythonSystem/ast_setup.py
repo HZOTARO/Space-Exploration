@@ -309,3 +309,32 @@ def get_line_syntax_map(source_code):
         return "|".join(result)
     except Exception:
         return ""
+
+def check_ast_pattern(source_code, start_line, end_line, pattern, target):
+    try:
+        tree = ast.parse(source_code)
+        for node in ast.walk(tree):
+            line = getattr(node, 'lineno', -1)
+            
+            if int(start_line) <= line <= int(end_line):
+                
+                if pattern == "FunctionCall":
+                    if isinstance(node, ast.Call):
+                        if isinstance(node.func, ast.Name) and node.func.id == target:
+                            return "True"
+                        if isinstance(node.func, ast.Attribute) and node.func.attr == target:
+                            return "True"
+                
+                elif pattern == "VarToVar":
+                    if isinstance(node, ast.Assign):
+                        if isinstance(node.value, ast.Name):
+                            if target:
+                                for t in node.targets:
+                                    if isinstance(t, ast.Name) and t.id == target:
+                                        return "True"
+                            else:
+                                return "True" 
+                                
+        return "False"
+    except Exception:
+        return "False"

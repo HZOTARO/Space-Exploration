@@ -25,12 +25,19 @@ public class VariableWatcher : MonoBehaviour
     private List<VariableSetupRow> activeRows = new List<VariableSetupRow>();
     private List<string> cachedVariables = new List<string>();
 
+    private CodeExecutionController codeExecutionController;
+
+    void Awake()
+    {
+        codeExecutionController = GetComponent<CodeExecutionController>();
+    }
+
     void Start()
     {
         if (PythonExecutor.instance != null)
         {
             PythonExecutor.instance.OnLineExecuted += HandleLineExecuted;
-            PythonExecutor.instance.OnExecutionFinished += UpdateHUD;
+            PythonExecutor.instance.OnExecutionFinished += ResetAllToUndefined;
         }
 
         if (addVariableButton != null)
@@ -51,7 +58,7 @@ public class VariableWatcher : MonoBehaviour
         if (PythonExecutor.instance != null)
         {
             PythonExecutor.instance.OnLineExecuted -= HandleLineExecuted;
-            PythonExecutor.instance.OnExecutionFinished -= UpdateHUD;
+            PythonExecutor.instance.OnExecutionFinished -= ResetAllToUndefined;
         }
     }
 
@@ -105,7 +112,14 @@ public class VariableWatcher : MonoBehaviour
 
         if (menuPanel != null) menuPanel.SetActive(false);
 
-        UpdateHUD();
+        if (codeExecutionController != null && codeExecutionController.isPlaying)
+        {
+            UpdateHUD();
+        }
+        else
+        {
+            ResetAllToUndefined();
+        }
     }
 
     private void HandleLineExecuted(int startLine, int endLine)
@@ -143,6 +157,38 @@ public class VariableWatcher : MonoBehaviour
 
             float exactTextHeight = singleDisplayText.preferredHeight;
             displayPanelLayoutElement.preferredHeight = exactTextHeight + heightPadding;
+        }
+    }
+
+    public void ResetAllToUndefined()
+    {
+        if (singleDisplayText == null) return;
+
+        if (cachedVariables.Count == 0)
+        {
+            if (displayPanel != null) displayPanel.SetActive(false);
+            singleDisplayText.text = "";
+            return;
+        }
+
+        if (displayPanel != null) displayPanel.SetActive(true);
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < cachedVariables.Count; i++)
+        {
+            string vName = cachedVariables[i];
+
+            if (i > 0) sb.Append("\n");
+
+            sb.Append($"{vName}: <color=grey>Undefined</color>");
+        }
+
+        singleDisplayText.text = sb.ToString();
+
+        if (displayPanelLayoutElement != null)
+        {
+            singleDisplayText.ForceMeshUpdate();
+            displayPanelLayoutElement.preferredHeight = singleDisplayText.preferredHeight + heightPadding;
         }
     }
 }

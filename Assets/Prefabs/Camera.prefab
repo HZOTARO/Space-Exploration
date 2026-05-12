@@ -50,7 +50,7 @@ MonoBehaviour:
   gridHeight: 25
   tileWidth: 2
   tileLength: 2.5
-  uiPaddingLeft: 0
+  uiPaddingLeft: 0.15
   uiPaddingRight: 0
   uiPaddingBottom: 0.2
   uiPaddingTop: 0.2
@@ -59,10 +59,6 @@ MonoBehaviour:
   minZoom: 2
   maxZoom: 15
   childCamera: {fileID: 7582798019999636468}
-  mapMinX: 0
-  mapMaxX: 0
-  mapMinZ: 0
-  mapMaxZ: 0
 --- !u!1 &6215036819698816613
 GameObject:
   m_ObjectHideFlags: 0

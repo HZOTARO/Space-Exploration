@@ -1,2 +1,18 @@
 fileFormatVersion: 2
 guid: 27d708d5da1401b4c946bf72f6e2939c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - healthComponent: {instanceID: 0}
+  - cargoComponent: {instanceID: 0}
+  - cameraController: {instanceID: 0}
+  - player: {instanceID: 0}
+  - mapSizeUpgrade: {instanceID: 0}
+  - cargoSizeUpgrade: {instanceID: 0}
+  - healthUpgrade: {fileID: 11400000, guid: ae3488b8fd4e60540b9aa5962265df86, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
