@@ -5,6 +5,7 @@ using UnityEngine;
 public class HintManager : MonoBehaviour
 {
     public static HintManager instance;
+
     public static event Action<List<HintSO>> OnDisplayHintsRequested;
     public static event Action OnCloseHintsRequested;
 
@@ -29,7 +30,14 @@ public class HintManager : MonoBehaviour
         HintSO[] loadedHints = Resources.LoadAll<HintSO>("Hints");
         foreach (HintSO hint in loadedHints)
         {
-            hintDatabase[hint.hintId] = hint;
+            if (!hintDatabase.ContainsKey(hint.hintId))
+            {
+                hintDatabase.Add(hint.hintId, hint);
+            }
+            else
+            {
+                Debug.LogWarning($"Duplicate Hint ID found in Resources: {hint.hintId}. Skipping...");
+            }
         }
     }
 
@@ -48,6 +56,22 @@ public class HintManager : MonoBehaviour
         if (hintsToDisplay.Count > 0)
         {
             OnDisplayHintsRequested?.Invoke(hintsToDisplay);
+        }
+    }
+
+    public void RequestDisplayHints(List <HintSO> hintsToDisplay)
+    {
+        if (hintsToDisplay != null && hintsToDisplay.Count > 0)
+        {
+            OnDisplayHintsRequested?.Invoke(hintsToDisplay);
+        }
+    }
+
+    public void RequestDisplayHints(HintCollectionSO hintCollection)
+    {
+        if (hintCollection != null && hintCollection.hints != null && hintCollection.hints.Count > 0)
+        {
+            OnDisplayHintsRequested?.Invoke(hintCollection.hints);
         }
     }
 
