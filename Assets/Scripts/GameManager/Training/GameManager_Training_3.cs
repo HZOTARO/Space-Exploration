@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GameManager_Training_2 : GameManager_Training
+public class GameManager_Training_3 : GameManager_Training
 {
     protected override void SetLevelAllowedSyntax()
     {

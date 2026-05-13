@@ -13,8 +13,12 @@ public class HubUI : MonoBehaviour, IResourceUpdatable
 {
     [Header("Resources Reference")]
     public List<CurrencyDisplay> currenciesDisplays;
+    private Button_Id[] buttons;
 
-
+    private void Awake()
+    {
+        buttons = GetComponentsInChildren<Button_Id>(true);
+    }
 
     void Start()
     {
@@ -23,7 +27,6 @@ public class HubUI : MonoBehaviour, IResourceUpdatable
             if (currencyDisplay.slotUI != null && currencyDisplay.itemData != null)
             {
                 currencyDisplay.slotUI.itemIcon.sprite = currencyDisplay.itemData.icon;
-                currencyDisplay.slotUI.amountText.text = InventoryManager.instance.GetAmount(currencyDisplay.itemData.itemId).ToString();
             }
         }
         UpdateResource(SaveManager.saveData);
@@ -37,6 +40,11 @@ public class HubUI : MonoBehaviour, IResourceUpdatable
             {
                 currencyDisplay.slotUI.amountText.text = InventoryManager.instance.GetAmount(currencyDisplay.itemData.itemId).ToString();
             }
+        }
+
+        foreach (Button_Id button in buttons)
+        {
+            button.SetupButton();
         }
     }
 }

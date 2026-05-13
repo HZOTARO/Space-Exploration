@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -20,6 +19,14 @@ public class UpgradeSaveState
 }
 
 [System.Serializable]
+public class HintSaveState
+{
+    public string id;
+    public bool hasAppeared = false;
+    public bool isAppeared = false;
+}
+
+[System.Serializable]
 public class SaveData
 {
     public string lastSavedTime = "Never";
@@ -27,6 +34,9 @@ public class SaveData
     public List<UpgradeSaveState> unlockedUpgrades = new List<UpgradeSaveState>();
     public float stepDelay = 0.1f;
     public float gameSpeed = 1f;
+
+    public List<string> levelCompleted = new List<string>();
+    public List<HintSaveState> hints = new List<HintSaveState>();
 }
 
 public interface IResourceUpdatable

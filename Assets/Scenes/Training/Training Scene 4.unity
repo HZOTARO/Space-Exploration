@@ -680,74 +680,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cdd008508c48f3d4186003f24127853e, type: 3}
---- !u!114 &719912971 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 152535840563119052, guid: 31630860cad4b7144ba8896773436368, type: 3}
-  m_PrefabInstance: {fileID: 6096573076397695217}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!224 &790107588 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5880175685895758419, guid: 12f60c6d5b9e1244ab5e8b794cd8ef15, type: 3}
   m_PrefabInstance: {fileID: 3767577136402537788}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &806191393
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 806191395}
-  - component: {fileID: 806191394}
-  m_Layer: 0
-  m_Name: TileManager_Training_1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &806191394
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 806191393}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 571df9650214b4d40b07ccd4e12a7b3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: TileManagerScriptIWrite::TileManager_Training_1
-  width: 5
-  length: 5
-  tilesContainer: {fileID: 202872234}
-  grid: {fileID: 0}
-  floorTile: {fileID: -9208734708896110791, guid: 5b880c3cdeb231146bc576bce7b32fe2, type: 3}
-  tileData:
-  - type: 5
-    tilePrefab: {fileID: 98364360411693396, guid: 0c072067696c19e41bd63e7251d67fba, type: 3}
---- !u!4 &806191395
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 806191393}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1218.022, y: 621.50616, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &816056000
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1245,7 +1182,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1305923945
+--- !u!1 &1224861972
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1253,27 +1190,27 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1305923947}
-  - component: {fileID: 1305923946}
+  - component: {fileID: 1224861974}
+  - component: {fileID: 1224861973}
   m_Layer: 0
-  m_Name: GameManager_Training_1
+  m_Name: GameManager_Training_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1305923946
+--- !u!114 &1224861973
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1305923945}
+  m_GameObject: {fileID: 1224861972}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4080af467b3a4314a9b6f6edc77957b1, type: 3}
+  m_Script: {fileID: 11500000, guid: 9ac99dab23a99824cb68eeac422e79d4, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: ScriptIWrite::GameManager_Training_1
+  m_EditorClassIdentifier: ScriptIWrite::GameManager_Training_4
   healthComponent: {fileID: 0}
   cargoComponent: {fileID: 0}
   cameraController: {fileID: 0}
@@ -1285,17 +1222,17 @@ MonoBehaviour:
   availableConsumables: []
   allowedSyntaxNodes: []
   allowedFunctions: []
-  levelCompletePopup: {fileID: 719912971}
---- !u!4 &1305923947
+  levelCompletePopup: {fileID: 6096573076397695218}
+--- !u!4 &1224861974
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1305923945}
+  m_GameObject: {fileID: 1224861972}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1218.022, y: 621.50616, z: 0}
+  m_LocalPosition: {x: 880.0395, y: 447.73822, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1358,6 +1295,56 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86c74cb2b99e66540b8b16c0f14b006b, type: 3}
+--- !u!1 &2022990518
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2022990520}
+  - component: {fileID: 2022990519}
+  m_Layer: 0
+  m_Name: TileManager_Training_4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2022990519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022990518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f1ffea6427166844b760f12a35a5aa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: TileManagerScriptIWrite::TileManager_Training_4
+  width: 5
+  length: 5
+  tilesContainer: {fileID: 202872234}
+  grid: {fileID: 0}
+  floorTile: {fileID: -9208734708896110791, guid: 5b880c3cdeb231146bc576bce7b32fe2, type: 3}
+  tileData: []
+--- !u!4 &2022990520
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022990518}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 880.0395, y: 447.73822, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3767577136402537788
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1580,6 +1567,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31630860cad4b7144ba8896773436368, type: 3}
+--- !u!114 &6096573076397695218 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 152535840563119052, guid: 31630860cad4b7144ba8896773436368, type: 3}
+  m_PrefabInstance: {fileID: 6096573076397695217}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1593,7 +1591,7 @@ SceneRoots:
   - {fileID: 818802477}
   - {fileID: 373270355}
   - {fileID: 202872235}
-  - {fileID: 1305923947}
-  - {fileID: 806191395}
+  - {fileID: 1224861974}
+  - {fileID: 2022990520}
   - {fileID: 1400094151}
   - {fileID: 6096573076397695217}

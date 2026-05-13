@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -37,6 +38,8 @@ public class ObjectiveManager : MonoBehaviour
     [Header("UI References")]
     public GameObject objectivePrefab;
     public Transform objectiveContainer;
+
+    public event Action OnAllObjectiveComplete;
 
     void Awake()
     {
@@ -124,7 +127,7 @@ public class ObjectiveManager : MonoBehaviour
 
         if (AreAllObjectivesComplete())
         {
-            Debug.Log("<color=green>All objectives complete!</color>");
+            OnAllObjectiveComplete?.Invoke();
         }
     }
 

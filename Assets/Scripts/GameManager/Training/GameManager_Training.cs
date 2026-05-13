@@ -1,30 +1,70 @@
 using UnityEngine;
+using System.Collections;
+using UnityEngine.UI;
 
 public class GameManager_Training : GameManager
 {
-    [Header("Training Data")]
-    public string trainingId = "dummy";
+    [Header("UI References")]
+    public Button levelCompletePopup;
+
+    private bool hasFinished = false;
 
     protected override void Start()
     {
         SetLevelObjectives();
         base.Start();
         ObjectiveManager.instance.InitiateAllTask();
+        ObjectiveManager.instance.OnAllObjectiveComplete += OnLevelComplete;
+
+        if (levelCompletePopup != null)
+        {
+            levelCompletePopup.gameObject.SetActive(false);
+            levelCompletePopup.onClick.AddListener(FinishAndLeaveLevel);
+        }
     }
     protected virtual void SetLevelObjectives()
     {
         if (ObjectiveManager.instance == null) return;
     }
-    protected override void LevelComplete()
+    protected virtual void OnLevelComplete()
     {
-        // Mark this training module as completed in the save data!
-        //if (!SaveManager.saveData.completedTrainings.Contains(trainingId))
-        //{
-        //    SaveManager.saveData.completedTrainings.Add(trainingId);
-        //    SaveManager.instance.SaveGame(SaveManager.saveSlotInUse);
-        //}
+        if (levelCompletePopup != null)
+        {
+            levelCompletePopup.gameObject.SetActive(true);
+        }
+
+        StartCoroutine(AutoFinishTimer());
+    }
+    private IEnumerator AutoFinishTimer()
+    {
+        yield return new WaitForSeconds(5f);
+        FinishAndLeaveLevel();
+    }
+
+    private void FinishAndLeaveLevel()
+    {
+        if (hasFinished) return;
+        hasFinished = true;
+
+        LevelComplete();
+    }
+
+    public override void LevelComplete()
+    {
+        if (!SaveManager.saveData.levelCompleted.Contains(PlayerPrefs.GetString("CurrentLevelId")))
+        {
+            SaveManager.saveData.levelCompleted.Add(PlayerPrefs.GetString("CurrentLevelId"));
+            SaveManager.instance.SaveGame(SaveManager.saveSlotInUse);
+        }
 
         Debug.Log("<color=green>Training Completed!</color>");
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Hub Scene");
+        LevelManager.instance.OpenScene(LevelType.Hub);
+    }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        if (ObjectiveManager.instance != null) ObjectiveManager.instance.OnAllObjectiveComplete -= OnLevelComplete;
+        if (levelCompletePopup != null) levelCompletePopup.onClick.RemoveListener(FinishAndLeaveLevel);
     }
 }

@@ -1,12 +1,8 @@
-using System;
-using UnityEngine;
-
 public class GameManager_Training_1 : GameManager_Training
 {
     protected override void Awake()
     {
         base.Awake();
-        trainingId = "training_1";
     }
 
     public override void MoveForward()

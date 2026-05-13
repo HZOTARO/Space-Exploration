@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TileManager_Training_2 : TileManager_Training
+public class TileManager_Training_5 : TileManager_Training
 {
     public override void GenerateMap(bool setAllFloor = true)
     {

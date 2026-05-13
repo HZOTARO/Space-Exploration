@@ -1,68 +1,11 @@
 {
-    "lastSavedTime": "12-05-2026 12:00",
+    "lastSavedTime": "13-05-2026 15:02",
     "inventory": [],
-    "unlockedUpgrades": [
-        {
-            "id": "black_ore",
-            "currentLevel": 5
-        },
-        {
-            "id": "partsexploration_inventorysize",
-            "currentLevel": 2
-        },
-        {
-            "id": "partsexploration_mapsize",
-            "currentLevel": 2
-        },
-        {
-            "id": "purple_liquid",
-            "currentLevel": 5
-        },
-        {
-            "id": "resourceexploration_inventorysize",
-            "currentLevel": 3
-        },
-        {
-            "id": "resourceexploration_mapsize",
-            "currentLevel": 3
-        },
-        {
-            "id": "white_ore",
-            "currentLevel": 4
-        },
-        {
-            "id": "far_scan",
-            "currentLevel": 1
-        },
-        {
-            "id": "measure",
-            "currentLevel": 1
-        },
-        {
-            "id": "scan",
-            "currentLevel": 1
-        },
-        {
-            "id": "health",
-            "currentLevel": 1
-        },
-        {
-            "id": "ifelse",
-            "currentLevel": 1
-        },
-        {
-            "id": "list",
-            "currentLevel": 1
-        },
-        {
-            "id": "loop",
-            "currentLevel": 1
-        },
-        {
-            "id": "variable",
-            "currentLevel": 1
-        }
-    ],
+    "unlockedUpgrades": [],
     "stepDelay": 0.10000000149011612,
-    "gameSpeed": 1.0
+    "gameSpeed": 1.0,
+    "levelCompleted": [
+        "Tutorial 1"
+    ],
+    "hints": []
 }

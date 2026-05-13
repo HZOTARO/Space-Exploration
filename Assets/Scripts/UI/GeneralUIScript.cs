@@ -88,14 +88,6 @@ public class GeneralUIScript : MonoBehaviour
 #endif
     }
 
-    public void DisplayHints(List<HintSO> hints)
-    {
-        if (HintManager.instance)
-        {
-            HintManager.instance.DisplayHints(hints);
-        }
-    }
-
     public void SetStepDelay(float delay)
     {
         delay = delay / 20f;

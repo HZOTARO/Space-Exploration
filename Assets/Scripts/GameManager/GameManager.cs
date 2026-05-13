@@ -101,6 +101,8 @@ public class GameManager : MonoBehaviour
 
         PythonExecutor.instance.CanStepCode = () => !InAction();
         PythonExecutor.instance.OnPythonPrint += PrintToDisplay;
+
+        // Show hint for first time players
     }
 
     protected virtual void StartValuesSetup()
@@ -333,7 +335,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region ---LEVEL COMPLETE & GAME OVER---
-    protected virtual void LevelComplete()
+    public virtual void LevelComplete()
     {
         if (cargoComponent != null)
         {

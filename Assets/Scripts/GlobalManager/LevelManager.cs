@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public enum LevelType
 {
@@ -8,7 +7,13 @@ public enum LevelType
     ResourceExploration,
     PartsExploration,
     CraftingLevel,
-    UpgradeLevel
+    UpgradeLevel,
+
+    Training_1,
+    Training_2,
+    Training_3,
+    Training_4,
+    Training_5,
 }
 
 public class LevelManager : MonoBehaviour
@@ -55,6 +60,22 @@ public class LevelManager : MonoBehaviour
                 break;
             case LevelType.UpgradeLevel:
                 UnityEngine.SceneManagement.SceneManager.LoadScene("Upgrade Scene");
+                break;
+
+            case LevelType.Training_1:
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Training Scene 1");
+                break;
+            case LevelType.Training_2:
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Training Scene 2");
+                break;
+            case LevelType.Training_3:
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Training Scene 3");
+                break;
+            case LevelType.Training_4:
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Training Scene 4");
+                break;
+            case LevelType.Training_5:
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Training Scene 5");
                 break;
         }
     }
