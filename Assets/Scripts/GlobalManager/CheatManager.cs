@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CheatManager : MonoBehaviour, IResourceUpdatable
+public class CheatManager : MonoBehaviour
 {
     public static CheatManager instance;
     [Header("UI References")]
@@ -34,23 +34,8 @@ public class CheatManager : MonoBehaviour, IResourceUpdatable
             if (cheatPanel != null)
             {
                 cheatPanel.SetActive(!cheatPanel.activeSelf);
-                UpdateResource(SaveManager.saveData);
             }
         }
-    }
-
-    public void UpdateResource(SaveData saveData)
-    {
-        if (saveData == null || saveDataText == null || InventoryManager.instance == null) return;
-
-        int whiteOre = InventoryManager.instance.GetAmount("white_ore");
-        int purpleLiquid = InventoryManager.instance.GetAmount("purple_liquid");
-        int blackOre = InventoryManager.instance.GetAmount("black_ore");
-
-        saveDataText.text = $"White Ore: {whiteOre}\n" +
-                            $"Purple Liquid: {purpleLiquid}\n" +
-                            $"Black Ore: {blackOre}\n" +
-                            $"Last Saved: {saveData.lastSavedTime}";
     }
 
     void SetupCheatMenu()
