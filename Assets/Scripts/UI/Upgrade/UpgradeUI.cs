@@ -113,11 +113,7 @@ public class UpgradeUI : MonoBehaviour
             bool canAfford = UpgradeManager.instance.CanAffordAndUnlock(data);
             upgradeButton.interactable = canAfford;
 
-            if (canAfford)
-            {
-                upgradeButtonText.text = nextTier.requiresPuzzleToUnlock ? "START PUZZLE" : "BUY UPGRADE";
-            }
-            else
+            if (!canAfford)
             {
                 upgradeButtonText.text = "NOT ENOUGH MATERIALS";
             }

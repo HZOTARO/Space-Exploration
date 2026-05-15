@@ -39,10 +39,10 @@ public class HintUI : MonoBehaviour
         hintPanel.SetActive(false);
     }
 
-    private void OpenUIWithHints(List<HintSO> hints)
+    private void OpenUIWithHints(List<HintSO> hints, int openedIndex)
     {
         activeHints = new List<HintSO>(hints);
-        currentPageIndex = 0;
+        currentPageIndex = openedIndex;
         hintPanel.SetActive(true);
 
         UpdatePageVisuals();

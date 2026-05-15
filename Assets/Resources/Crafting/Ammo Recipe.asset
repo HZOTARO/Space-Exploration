@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Ammo Recipe
   m_EditorClassIdentifier: UtilityScriptIWrite::CraftingRecipeSO
   recipeId: ammo
+  requiredUpgrade: {fileID: 0}
   materialsRequired:
   - item: {fileID: 11400000, guid: e4df0c43eb096624da6b2581c1e6a2df, type: 2}
     amount: 5
-  baseOutput:
+  output:
     item: {fileID: 11400000, guid: 2e2b8117987743a4b9984d009db0f304, type: 2}
     amount: 1
-  puzzleSceneName: 

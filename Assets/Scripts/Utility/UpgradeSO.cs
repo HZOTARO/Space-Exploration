@@ -7,6 +7,9 @@ public class UpgradeSO : ScriptableObject
     public string upgradeName;
     public Sprite icon;
 
+    string requiredPuzzle;
+    HintSO hint;
+
     [Header("Requirements")]
     public UpgradeSO[] prerequisiteUpgrades;
 
@@ -19,6 +22,5 @@ public class UpgradeTier
 {
     [TextArea] public string description;
 
-    public bool requiresPuzzleToUnlock;
     public ItemAmount[] costs;
 }

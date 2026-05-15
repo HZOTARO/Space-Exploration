@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Bomb Recipe
   m_EditorClassIdentifier: UtilityScriptIWrite::CraftingRecipeSO
   recipeId: bomb
+  requiredUpgrade: {fileID: 0}
   materialsRequired: []
-  baseOutput:
+  output:
     item: {fileID: 11400000, guid: 81655232d5ebf7a49bf714f6c3ae86fe, type: 2}
     amount: 1
-  puzzleSceneName: 

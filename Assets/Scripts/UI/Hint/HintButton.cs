@@ -6,6 +6,7 @@ public class HintButton : MonoBehaviour
 {
     [Header("Hint Data")]
     public HintCollectionSO hintCollection;
+    public HintSO openedHint;
 
     private Button button;
 
@@ -18,7 +19,7 @@ public class HintButton : MonoBehaviour
     private void OnHintButtonClicked()
     {
         if (hintCollection == null) return;
-        if (HintManager.instance != null) HintManager.instance.RequestDisplayHints(hintCollection);
+        if (HintManager.instance != null) HintManager.instance.RequestDisplayHints(hintCollection, openedHint);
     }
 
     private void OnDestroy()

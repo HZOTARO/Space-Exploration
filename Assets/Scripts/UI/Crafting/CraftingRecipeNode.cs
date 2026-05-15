@@ -9,6 +9,7 @@ public class CraftingRecipeNode : MonoBehaviour
     [Header("UI References")]
     public Image outputIcon;
     public TextMeshProUGUI recipeNameText;
+    public TextMeshProUGUI ownedCountText;
     public Button nodeButton;
 
     private CraftingUI craftingUI;
@@ -18,20 +19,29 @@ public class CraftingRecipeNode : MonoBehaviour
         recipeData = recipe;
         craftingUI = uiManager;
 
-        // Automatically grab the output item's name and icon!
-        if (recipe.baseOutput.item != null)
+        if (recipe.output.item != null)
         {
-            outputIcon.sprite = recipe.baseOutput.item.icon;
-            recipeNameText.text = recipe.baseOutput.item.displayName;
+            outputIcon.sprite = recipe.output.item.icon;
+            recipeNameText.text = recipe.output.item.displayName;
         }
+        RefreshOwnedCount();
 
         nodeButton.onClick.RemoveAllListeners();
         nodeButton.onClick.AddListener(OnClick);
     }
 
+    public void RefreshOwnedCount()
+    {
+        if (ownedCountText != null && recipeData != null && recipeData.output.item != null)
+        {
+            int ownedAmount = InventoryManager.instance.GetAmount(recipeData.output.item.itemId);
+            ownedCountText.text = "Owned: " + ownedAmount;
+        }
+    }
+
     private void OnClick()
     {
-        if (craftingUI != null)
+        if (craftingUI != null && craftingUI.currentlySelectedNode != this)
         {
             craftingUI.SelectRecipe(this);
         }

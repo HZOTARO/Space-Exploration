@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Wall Recipe
   m_EditorClassIdentifier: UtilityScriptIWrite::CraftingRecipeSO
   recipeId: wall
+  requiredUpgrade: {fileID: 0}
   materialsRequired: []
-  baseOutput:
+  output:
     item: {fileID: 11400000, guid: 4c6ff3bd45deed748b428fc19c1bc132, type: 2}
     amount: 1
-  puzzleSceneName: 

@@ -1,11 +1,15 @@
 {
-    "lastSavedTime": "13-05-2026 18:19",
+    "lastSavedTime": "15-05-2026 15:46",
     "inventory": [],
     "unlockedUpgrades": [],
     "stepDelay": 0.10000000149011612,
     "gameSpeed": 1.0,
-    "levelCompleted": [
-        "Tutorial 1"
-    ],
-    "hints": []
+    "levelCompleted": [],
+    "hints": [
+        {
+            "id": "dummy",
+            "hasAppeared": false,
+            "isUnlocked": false
+        }
+    ]
 }

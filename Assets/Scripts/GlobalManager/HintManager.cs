@@ -6,7 +6,7 @@ public class HintManager : MonoBehaviour
 {
     public static HintManager instance;
 
-    public static event Action<List<HintSO>> OnDisplayHintsRequested;
+    public static event Action<List<HintSO>, int> OnDisplayHintsRequested;
     public static event Action OnCloseHintsRequested;
 
     private Dictionary<string, HintSO> hintDatabase = new Dictionary<string, HintSO>();
@@ -41,42 +41,117 @@ public class HintManager : MonoBehaviour
         }
     }
 
-    public void RequestDisplayHints(List<string> hintIds)
-    {
-        List<HintSO> hintsToDisplay = new List<HintSO>();
+    //public void RequestDisplayHints(List<string> hintIds, string openedHintId = "", bool setHasAppeared = true)
+    //{
+    //    List<HintSO> hintsToDisplay = new List<HintSO>();
+    //    HintSO openedHint = null;
 
-        foreach (string id in hintIds)
+    //    foreach (string id in hintIds)
+    //    {
+    //        if (hintDatabase.TryGetValue(id, out HintSO foundHint))
+    //        {
+    //            hintsToDisplay.Add(foundHint);
+    //            if (foundHint.hintId == openedHintId)
+    //            {
+    //                openedHint = foundHint;
+    //            }
+    //        }
+    //    }
+
+    //    RequestDisplayHints(hintsToDisplay, openedHint);
+    //}
+
+    public void RequestDisplayHints(List <HintSO> hintsToDisplay, HintSO openedHint = null, bool setHasAppeared = true, bool onlyShowNewOne = false)
+    {
+        List<HintSO> validHintsToDisplay = new List<HintSO>();
+        bool dataWasChanged = false;
+
+        if (hintsToDisplay != null)
         {
-            if (hintDatabase.TryGetValue(id, out HintSO foundHint))
+            for (int i = 0; i < hintsToDisplay.Count; i++)
             {
-                hintsToDisplay.Add(foundHint);
+                HintSO hint = hintsToDisplay[i];
+                HintSaveState saveState = GetHintSaveState(hint);
+
+                if (!IsHintUnlocked(hint)) continue;
+
+                if (setHasAppeared && !saveState.hasAppeared)
+                {
+                    saveState.hasAppeared = true;
+                    dataWasChanged = true;
+                }
+
+                if (setHasAppeared) saveState.hasAppeared = true;
+                validHintsToDisplay.Add(hint);
+            }
+
+            if (dataWasChanged)
+            {
+                SaveManager.instance.SaveGame(SaveManager.saveSlotInUse);
             }
         }
-
-        if (hintsToDisplay.Count > 0)
+        if (validHintsToDisplay.Count > 0)
         {
-            OnDisplayHintsRequested?.Invoke(hintsToDisplay);
+            int startIndex = Mathf.Max(0, validHintsToDisplay.IndexOf(openedHint));
+            OnDisplayHintsRequested?.Invoke(validHintsToDisplay, startIndex);
         }
     }
 
-    public void RequestDisplayHints(List <HintSO> hintsToDisplay)
+    public void RequestDisplayHints(HintCollectionSO hintCollection, HintSO openedHint = null, bool setHasAppeared = true, bool onlyShowNewOne = false)
     {
-        if (hintsToDisplay != null && hintsToDisplay.Count > 0)
-        {
-            OnDisplayHintsRequested?.Invoke(hintsToDisplay);
-        }
-    }
-
-    public void RequestDisplayHints(HintCollectionSO hintCollection)
-    {
-        if (hintCollection != null && hintCollection.hints != null && hintCollection.hints.Count > 0)
-        {
-            OnDisplayHintsRequested?.Invoke(hintCollection.hints);
-        }
+        RequestDisplayHints(hintCollection.hints, openedHint, setHasAppeared, onlyShowNewOne);
     }
 
     public void RequestCloseHints()
     {
         OnCloseHintsRequested?.Invoke();
+    }
+
+    private HintSaveState GetHintSaveState(HintSO hint)
+    {
+        if (SaveManager.saveData == null) return null;
+
+        foreach (HintSaveState saveState in SaveManager.saveData.hints)
+        {
+            if (saveState.id == hint.hintId) return saveState;
+        }
+
+        HintSaveState newState = new HintSaveState();
+        newState.id = hint.hintId;
+        SaveManager.saveData.hints.Add(newState);
+        return newState;
+    }
+
+    private bool IsHintUnlocked(HintSO hint)
+    {
+        if (hint.isUnlockedByDefault) return true;
+
+        if (SaveManager.saveData != null)
+        {
+            foreach (HintSaveState saveState in SaveManager.saveData.hints)
+            {
+                if (saveState.id == hint.hintId && saveState.isUnlocked)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public void UnlockHint(HintSO hint, bool showHint, bool setHasAppeared)
+    {
+        HintSaveState state = GetHintSaveState(hint);
+
+        state.isUnlocked = true;
+
+        if (showHint)
+        {
+            if (setHasAppeared) state.hasAppeared = true;
+
+            RequestDisplayHints(new List<HintSO> { hint }, hint);
+        }
+
+        SaveManager.instance.SaveGame(SaveManager.saveSlotInUse);
     }
 }

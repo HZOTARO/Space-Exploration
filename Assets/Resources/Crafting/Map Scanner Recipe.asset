@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Map Scanner Recipe
   m_EditorClassIdentifier: UtilityScriptIWrite::CraftingRecipeSO
   recipeId: map_scanner
+  requiredUpgrade: {fileID: 0}
   materialsRequired: []
-  baseOutput:
+  output:
     item: {fileID: 11400000, guid: 3406c01b89b6b7b46b91b58c510e60c5, type: 2}
     amount: 1
-  puzzleSceneName: 

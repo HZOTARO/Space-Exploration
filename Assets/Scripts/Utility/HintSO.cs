@@ -19,4 +19,7 @@ public class HintSO : ScriptableObject
 
     [Header("Hint Content (Stacked)")]
     public List<HintBlock> hintBlocks = new List<HintBlock>();
+
+    [Header("Unlock Settings")]
+    public bool isUnlockedByDefault = false;
 }

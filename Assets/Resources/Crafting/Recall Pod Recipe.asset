@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Recall Pod Recipe
   m_EditorClassIdentifier: UtilityScriptIWrite::CraftingRecipeSO
   recipeId: recall_pod
+  requiredUpgrade: {fileID: 0}
   materialsRequired: []
-  baseOutput:
+  output:
     item: {fileID: 11400000, guid: 08eb5922aebee4243a3411c9c18013dd, type: 2}
     amount: 1
-  puzzleSceneName: 

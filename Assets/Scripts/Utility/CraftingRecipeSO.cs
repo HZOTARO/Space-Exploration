@@ -5,12 +5,8 @@ using UnityEngine;
 public class CraftingRecipeSO : ScriptableObject
 {
     public string recipeId;
-    //public string recipeName;
-    //[TextArea] public string description;
+    public UpgradeSO requiredUpgrade;
 
     public List<ItemAmount> materialsRequired = new List<ItemAmount>();
-
-    public ItemAmount baseOutput;
-
-    public string puzzleSceneName;
+    public ItemAmount output = new ItemAmount();
 }

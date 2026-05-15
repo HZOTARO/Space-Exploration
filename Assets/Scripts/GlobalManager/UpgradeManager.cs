@@ -108,19 +108,8 @@ public class UpgradeManager : MonoBehaviour
         int currentLvl = GetUpgradeLevel(upgrade.id);
         UpgradeTier tierToBuy = upgrade.tiers[currentLvl];
 
-        if (tierToBuy.requiresPuzzleToUnlock)
-        {
-            Debug.Log($"<color=yellow>Starting puzzle for {upgrade.upgradeName}!</color>");
-            PlayerPrefs.SetString("PendingPuzzleUpgrade", upgrade.id);
-            PlayerPrefs.Save();
-
-            // UnityEngine.SceneManagement.SceneManager.LoadScene("PuzzleScene");
-        }
-        else
-        {
-            TierUpgradeConsumeResource(tierToBuy);
-            ApplyUnlock(upgrade.id);
-        }
+        TierUpgradeConsumeResource(tierToBuy);
+        ApplyUnlock(upgrade.id);
     }
 
     public void CompletePuzzle()

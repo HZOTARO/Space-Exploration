@@ -23,7 +23,7 @@ public class HintSaveState
 {
     public string id;
     public bool hasAppeared = false;
-    public bool isAppeared = false;
+    public bool isUnlocked = false;
 }
 
 [System.Serializable]
@@ -68,9 +68,9 @@ public class SaveManager : MonoBehaviour
 
     void OnLevelLoaded(Scene scene, LoadSceneMode mode)
     {
-        resourceUpdateables = FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None)
-                                        .OfType<IResourceUpdatable>()
-                                        .ToArray();
+        resourceUpdateables = FindObjectsByType<MonoBehaviour>(FindObjectsInactive.Include, FindObjectsSortMode.None)
+                                                .OfType<IResourceUpdatable>()
+                                                .ToArray();
         UpdateAllUI();
     }
 

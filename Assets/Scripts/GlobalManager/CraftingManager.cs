@@ -1,12 +1,16 @@
+using System;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
+using UnityEngine;
 
 public class CraftingManager : MonoBehaviour
 {
     public static CraftingManager instance;
 
-    private List<CraftingRecipeSO> allRecipes = new List<CraftingRecipeSO>();
+    public static event Action<CraftingRecipeSO, int> OnCraftingSucceeded;
+    public static event Action<CraftingRecipeSO> OnCraftingFailed;
+
+    private Dictionary<string, CraftingRecipeSO> recipeDatabase = new Dictionary<string, CraftingRecipeSO>();
 
     void Awake()
     {
@@ -14,9 +18,7 @@ public class CraftingManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
-
-            CraftingRecipeSO[] loaded = Resources.LoadAll<CraftingRecipeSO>("Crafting");
-            allRecipes.AddRange(loaded);
+            LoadRecipes();
         }
         else
         {
@@ -24,63 +26,66 @@ public class CraftingManager : MonoBehaviour
         }
     }
 
+    private void LoadRecipes()
+    {
+        CraftingRecipeSO[] loaded = Resources.LoadAll<CraftingRecipeSO>("Crafting");
+        foreach (CraftingRecipeSO recipe in loaded)
+        {
+            if (!recipeDatabase.ContainsKey(recipe.recipeId))
+            {
+                recipeDatabase.Add(recipe.recipeId, recipe);
+            }
+        }
+    }
+
     public CraftingRecipeSO GetRecipe(string id)
     {
-        return allRecipes.FirstOrDefault(recipe => recipe.recipeId == id);
+        if (recipeDatabase.TryGetValue(id, out CraftingRecipeSO recipe))
+        {
+            return recipe;
+        }
+        return null;
     }
 
     public List<CraftingRecipeSO> GetAllRecipes()
     {
-        return allRecipes;
+        return recipeDatabase.Values.ToList();
     }
 
-    public bool CanAffordRecipe(CraftingRecipeSO recipe)
+    public bool CanAffordRecipe(CraftingRecipeSO recipe, int multiplier = 1)
     {
+        if (recipe == null) return false;
+
         foreach (ItemAmount cost in recipe.materialsRequired)
         {
-            if (InventoryManager.instance.GetAmount(cost.item.itemId) < cost.amount)
+            if (InventoryManager.instance.GetAmount(cost.item.itemId) < cost.amount * multiplier)
                 return false;
         }
         return true;
     }
 
-    public void AttemptCraft(CraftingRecipeSO recipe)
+    public bool AttemptCraft(CraftingRecipeSO recipe, int multiplier = 1)
     {
-        if (!CanAffordRecipe(recipe)) return;
+        if (recipe == null) return false;
 
-        Debug.Log($"Starting crafting level for {recipe.baseOutput.item.displayName}");
-
-        PlayerPrefs.SetString("PendingCraftingRecipe", recipe.recipeId);
-        PlayerPrefs.Save();
-
-        // UnityEngine.SceneManagement.SceneManager.LoadScene(recipe.craftingScene);
-        CompleteCraftingPuzzle(1f); 
-    }
-
-    public void CompleteCraftingPuzzle(float scoreMultiplier)
-    {
-        string recipeId = PlayerPrefs.GetString("PendingCraftingRecipe", "");
-        if (string.IsNullOrEmpty(recipeId)) return;
-
-        CraftingRecipeSO recipe = GetRecipe(recipeId);
-        if (recipe == null || !CanAffordRecipe(recipe)) return;
+        if (!CanAffordRecipe(recipe, multiplier))
+        {
+            OnCraftingFailed?.Invoke(recipe);
+            return false;
+        }
 
         foreach (ItemAmount cost in recipe.materialsRequired)
         {
-            InventoryManager.instance.DeductItem(cost.item.itemId, cost.amount);
+            InventoryManager.instance.DeductItem(cost.item.itemId, cost.amount * multiplier);
         }
 
-        int finalYield = Mathf.FloorToInt(recipe.baseOutput.amount * scoreMultiplier);
+        InventoryManager.instance.AddItem(recipe.output.item.itemId, recipe.output.amount * multiplier);
 
-        if (finalYield < 1) finalYield = 1;
+        SaveManager.saveData.inventory = InventoryManager.instance.GetInventoryForSave();
+        SaveManager.instance.SaveGame(SaveManager.saveSlotInUse);
 
-        InventoryManager.instance.AddItem(recipe.baseOutput.item.itemId, finalYield);
+        OnCraftingSucceeded?.Invoke(recipe, multiplier);
 
-        PlayerPrefs.DeleteKey("PendingCraftingRecipe");
-
-        Debug.Log($"<color=green>Crafted successfully! Score Multiplier: {scoreMultiplier}x. Received {finalYield} {recipe.baseOutput.item.displayName}!</color>");
-
-        // SaveManager.saveData.inventory = InventoryManager.instance.GetInventoryForSave();
-        // SaveManager.instance.SaveGame(SaveManager.saveSlotInUse);
+        return true;
     }
 }
