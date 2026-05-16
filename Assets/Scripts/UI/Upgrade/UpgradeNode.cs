@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,20 +7,23 @@ public class UpgradeNode : MonoBehaviour
     public UpgradeSO upgradeData;
 
     [Header("UI References")]
-    public Image nodeIcon;
-    public Image nodeBackground;
     public Button nodeButton;
+    public Image nodeBackground;
+    public Image nodeIcon;
+    public TextMeshProUGUI nodeLabel;
+    public TextMeshProUGUI nodeLevelText;
 
     [Header("Visual States")]
     public Color lockedColor = new Color(0.3f, 0.3f, 0.3f);
-    public Color availableColor = Color.white;             
-    public Color maxedColor = Color.green;                 
+    public Color availableColor = Color.white;
+    public Color maxedColor = Color.green;
 
-    private UpgradeUI treeUI;
+    private UpgradeUI upgradeUI;
 
     void Start()
     {
-        treeUI = FindFirstObjectByType<UpgradeUI>();
+        upgradeUI = FindFirstObjectByType<UpgradeUI>();
+        nodeButton.onClick.RemoveAllListeners();
         nodeButton.onClick.AddListener(OnClick);
         RefreshVisuals();
     }
@@ -28,34 +32,47 @@ public class UpgradeNode : MonoBehaviour
     {
         if (upgradeData == null) return;
 
+        nodeIcon.sprite = upgradeData.icon;
+        nodeLabel.text = upgradeData.upgradeName;
+
         int currentLevel = UpgradeManager.instance.GetUpgradeLevel(upgradeData.id);
         bool hasPrereq = UpgradeManager.instance.HasPrerequisite(upgradeData);
-        bool isMaxed = currentLevel >= upgradeData.tiers.Length;
+
+        int maxLevel = upgradeData.tiers.Length;
+        bool isMaxed = currentLevel >= maxLevel;
 
         if (isMaxed)
         {
-            nodeBackground.color = maxedColor;
-            nodeButton.interactable = true;
+            nodeLevelText.text = "MAX";
+
+            SetColor(maxedColor);
         }
         else if (hasPrereq)
         {
-            nodeBackground.color = availableColor;
-            nodeButton.interactable = true;
+            nodeLevelText.text = currentLevel + " / " + maxLevel;
+
+            SetColor(availableColor);
         }
         else
         {
-            nodeBackground.color = lockedColor;
-            nodeButton.interactable = false;
+            nodeLevelText.text = "LOCKED";
+            SetColor(lockedColor);
         }
-
-        nodeIcon.sprite = upgradeData.icon;
     }
 
     private void OnClick()
     {
-        if (treeUI != null)
+        if (upgradeUI != null)
         {
-            treeUI.SelectNode(this);
+            upgradeUI.SelectNode(this);
         }
+    }
+
+    private void SetColor(Color color)
+    {
+        nodeBackground.color = color;
+        nodeLevelText.color = color;
+        nodeIcon.color = color;
+        nodeLabel.color = color;
     }
 }

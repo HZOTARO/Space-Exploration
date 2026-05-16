@@ -17,13 +17,23 @@ public class UpgradeUI : MonoBehaviour
     public Sprite defaultTabSprite;
     public Sprite selectedTabSprite;
 
+    [Header("Main Reference")]
+    public GameObject infoPanel;
+    public GameObject otherText;
+
     [Header("Side Panel UI")]
     public TextMeshProUGUI titleText;
-    public TextMeshProUGUI descriptionText;
-    public TextMeshProUGUI costText;
-
+    public Image iconImage;
+    public TextMeshProUGUI tier;
+    public TextMeshProUGUI currentDescriptionText;
+    public TextMeshProUGUI upgradeDescriptionText;
     public Button upgradeButton;
+    public Image upgradeButtonImage;
     public TextMeshProUGUI upgradeButtonText;
+
+    [Header("Cost Display")]
+    public Transform costContainer;
+    public GameObject costSlotPrefab;
 
     [Header("Nodes")]
     private UpgradeNode currentlySelectedNode;
@@ -82,44 +92,95 @@ public class UpgradeUI : MonoBehaviour
     public void SelectNode(UpgradeNode node)
     {
         currentlySelectedNode = node;
-        UpgradeSO data = node.upgradeData;
+        UpgradeSO upgradeData = node.upgradeData;
 
-        titleText.text = data.upgradeName;
+        if (infoPanel) infoPanel.SetActive(true);
+        if (otherText) otherText.SetActive(false);
 
-        int level = UpgradeManager.instance.GetUpgradeLevel(data.id);
-        bool isMaxed = level >= data.tiers.Length;
+        bool unlocked = UpgradeManager.instance.IsUpgradeUnlocked(upgradeData.id);
+        int level = UpgradeManager.instance.GetUpgradeLevel(upgradeData.id);
+        bool isMaxed = level >= upgradeData.tiers.Length;
 
-        if (isMaxed)
+        if (titleText) titleText.text = upgradeData.upgradeName;
+        if (iconImage) iconImage.sprite = upgradeData.icon;
+        if (tier)
         {
-            descriptionText.text = data.tiers[data.tiers.Length - 1].description;
-            costText.text = "Max Level Reached";
+            if (isMaxed) tier.text = "<color=green>MAX LEVEL</color>";
+            else tier.text = $"Level {level} -> {level + 1}";
+        }
 
-            upgradeButton.interactable = false;
-            upgradeButtonText.text = "UNLOCKED";
+        if (!unlocked)
+        {
+            currentDescriptionText.gameObject.SetActive(false);
+
+            upgradeDescriptionText.gameObject.SetActive(true);
+            upgradeDescriptionText.text = "Next Upgrade:\n" + upgradeData.tiers[0].description;
+        }
+        else if (isMaxed)
+        {
+            currentDescriptionText.gameObject.SetActive(true);
+            currentDescriptionText.text = "Current Upgrade:\n" + upgradeData.tiers[level - 1].description;
+
+            upgradeDescriptionText.gameObject.SetActive(false);
         }
         else
         {
-            UpgradeTier nextTier = data.tiers[level];
-            descriptionText.text = nextTier.description;
+            currentDescriptionText.gameObject.SetActive(true);
+            currentDescriptionText.text = "Current Upgrade:\n" + upgradeData.tiers[level - 1].description;
+            upgradeDescriptionText.gameObject.SetActive(true);
+            upgradeDescriptionText.text = "Next Upgrade:\n" + upgradeData.tiers[level].description;
+        }
 
-            string costString = "Requires:\n";
-            if (nextTier.costs.Length == 0) costString += "- Free\n";
+        bool canAfford = true;
+        foreach (Transform child in costContainer) Destroy(child.gameObject);
+
+        if (!isMaxed) 
+        { 
+            costContainer.gameObject.SetActive(true);
+            
+            UpgradeTier nextTier = upgradeData.tiers[level];
+
             foreach (ItemAmount cost in nextTier.costs)
             {
-                costString += $"- {cost.amount} {cost.item.displayName}\n";
+                GameObject newSlot = Instantiate(costSlotPrefab, costContainer);
+                ItemSlotUI slotUI = newSlot.GetComponent<ItemSlotUI>();
+                if (slotUI != null)
+                {
+                    slotUI.Setup(cost.item, cost.amount);
+
+                    int playerAmount = InventoryManager.instance.GetAmount(cost.item.itemId);
+                    bool hasEnough = playerAmount >= cost.amount;
+                    if (!hasEnough) canAfford = false;
+
+                    slotUI.amountText.color = !hasEnough ? Color.red : Color.white;
+                }
             }
-            costText.text = costString;
+        }
+        else
+        {
+            costContainer.gameObject.SetActive(false);
+        }
 
-            bool canAfford = UpgradeManager.instance.CanAffordAndUnlock(data);
-            upgradeButton.interactable = canAfford;
+        upgradeButton.onClick.RemoveAllListeners();
 
-            if (!canAfford)
-            {
-                upgradeButtonText.text = "NOT ENOUGH MATERIALS";
-            }
-
-            upgradeButton.onClick.RemoveAllListeners();
+        if (isMaxed)
+        {
+            upgradeButtonText.text = "MAXED";
+            upgradeButton.interactable = false;
+            upgradeButtonImage.color = new Color32(25, 25, 25, 255);
+        }
+        else if (canAfford)
+        {
+            upgradeButtonText.text = unlocked ? "UPGRADE" : "UNLOCK";
+            upgradeButton.interactable = true;
+            upgradeButtonImage.color = Color.white;
             upgradeButton.onClick.AddListener(OnActionClicked);
+        }
+        else
+        {
+            upgradeButtonText.text = "INSUFFICIENT MATERIALS";
+            upgradeButton.interactable = false;
+            upgradeButtonImage.color = new Color32(25, 25, 25, 255);
         }
     }
 
@@ -131,6 +192,11 @@ public class UpgradeUI : MonoBehaviour
 
             RefreshAllNodes();
             SelectNode(currentlySelectedNode);
+
+            if (SaveManager.instance != null)
+            {
+                SaveManager.instance.UpdateAllUI();
+            }
         }
     }
 
@@ -146,10 +212,11 @@ public class UpgradeUI : MonoBehaviour
     public void ClearPanel()
     {
         currentlySelectedNode = null;
-        titleText.text = "Select an Upgrade";
-        descriptionText.text = "";
-        costText.text = "";
+        if (infoPanel != null) infoPanel.SetActive(false);
+        if (otherText != null) otherText.gameObject.SetActive(true);
+
+        foreach (Transform child in costContainer) Destroy(child.gameObject);
+
         upgradeButton.interactable = false;
-        upgradeButtonText.text = "---";
     }
 }

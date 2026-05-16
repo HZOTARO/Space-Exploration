@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ammo Recipe
   m_EditorClassIdentifier: UtilityScriptIWrite::CraftingRecipeSO
   recipeId: ammo
-  requiredUpgrade: {fileID: 0}
+  requiredUpgrade: {fileID: 11400000, guid: e6db52daed5a9b548b35d556d859f5f7, type: 2}
   materialsRequired:
   - item: {fileID: 11400000, guid: e4df0c43eb096624da6b2581c1e6a2df, type: 2}
     amount: 5

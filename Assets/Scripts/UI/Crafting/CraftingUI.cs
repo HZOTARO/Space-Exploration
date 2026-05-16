@@ -9,8 +9,11 @@ public class CraftingUI : MonoBehaviour, IResourceUpdatable
     public Transform recipeListContainer;
     public GameObject recipeNodePrefab;
 
-    [Header("Details Panel Content")]
+    [Header("Main Reference")]
     public Transform infoPanel;
+    public TextMeshProUGUI otherText;
+
+    [Header("Details Panel Content")]
     public TextMeshProUGUI titleText;
     public TextMeshProUGUI descriptionText;
     public Image outputItemIcon;
@@ -77,16 +80,14 @@ public class CraftingUI : MonoBehaviour, IResourceUpdatable
         currentlySelectedNode = node;
         currentCraftAmount = 1;
 
-        CraftingRecipeSO data = node.recipeData;
+        CraftingRecipeSO recipeData = node.recipeData;
 
-        foreach (Transform child in infoPanel)
-        {
-            child.gameObject.SetActive(true);
-        }
+        otherText.gameObject.SetActive(false);
+        infoPanel.gameObject.SetActive(true);
 
-        titleText.text = data.output.item.displayName;
-        descriptionText.text = data.output.item.description;
-        outputItemIcon.sprite = data.output.item.icon;
+        titleText.text = recipeData.output.item.displayName;
+        descriptionText.text = recipeData.output.item.description;
+        outputItemIcon.sprite = recipeData.output.item.icon;
 
         RefreshDetailsPanel();
     }
@@ -123,7 +124,6 @@ public class CraftingUI : MonoBehaviour, IResourceUpdatable
         }
 
         bool canAfford = CraftingManager.instance.CanAffordRecipe(recipe, currentCraftAmount);
-        craftButton.interactable = canAfford;
 
         if (canAfford)
         {
@@ -196,13 +196,10 @@ public class CraftingUI : MonoBehaviour, IResourceUpdatable
     {
         currentlySelectedNode = null;
 
-        if (titleText != null) titleText.text = "Please select a Recipe";
+        otherText.text = "Please select a Recipe";
 
-        foreach (Transform child in infoPanel)
-        {
-            if (child == titleText.transform) continue;
-            child.gameObject.SetActive(false);
-        }
+        otherText.gameObject.SetActive(true);
+        infoPanel.gameObject.SetActive(false);
 
         foreach (Transform child in costContainer) Destroy(child.gameObject);
     }
@@ -214,6 +211,26 @@ public class CraftingUI : MonoBehaviour, IResourceUpdatable
             if (node != null)
             {
                 node.RefreshOwnedCount();
+            }
+        }
+
+        if (currentlySelectedNode != null)
+        {
+            RefreshDetailsPanel();
+        }
+    }
+
+    private void OnEnable()
+    {
+        if (recipeNodes != null)
+        {
+            foreach (CraftingRecipeNode node in recipeNodes)
+            {
+                if (node != null)
+                {
+                    node.RefreshOwnedCount();
+                    node.RefreshLockState();
+                }
             }
         }
 
