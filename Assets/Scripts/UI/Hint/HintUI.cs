@@ -37,6 +37,16 @@ public class HintUI : MonoBehaviour
     private void Start()
     {
         hintPanel.SetActive(false);
+
+        if (nextButton != null)
+        {
+            nextButton.onClick.AddListener(NextPage);
+        }
+
+        if (prevButton != null)
+        {
+            prevButton.onClick.AddListener(PreviousPage);
+        }
     }
 
     private void OpenUIWithHints(List<HintSO> hints, int openedIndex)
@@ -72,18 +82,16 @@ public class HintUI : MonoBehaviour
             }
         }
 
-        bool hasMultiplePages = activeHints.Count > 1;
+bool hasMultiplePages = activeHints.Count > 1;
 
         if (nextButton != null)
         {
-            nextButton.gameObject.SetActive(hasMultiplePages);
-            nextButton.interactable = (currentPageIndex < activeHints.Count - 1);
+            nextButton.gameObject.SetActive(hasMultiplePages && currentPageIndex < activeHints.Count - 1);
         }
 
         if (prevButton != null)
         {
-            prevButton.gameObject.SetActive(hasMultiplePages);
-            prevButton.interactable = (currentPageIndex > 0);
+            prevButton.gameObject.SetActive(hasMultiplePages && currentPageIndex > 0);
         }
 
         if (pageText != null)

@@ -116,23 +116,11 @@ public class UpgradeManager : MonoBehaviour
 
         TierUpgradeConsumeResource(tierToBuy);
         ApplyUnlock(upgrade.id);
-    }
 
-    public void CompletePuzzle()
-    {
-        string upgradeId = PlayerPrefs.GetString("PendingPuzzleUpgrade", "");
-        if (string.IsNullOrEmpty(upgradeId)) return;
-
-        UpgradeSO upgradeData = GetUpgradeData(upgradeId);
-        if (upgradeData == null || !CanAffordAndUnlock(upgradeData)) return;
-
-        int currentLvl = GetUpgradeLevel(upgradeId);
-
-        TierUpgradeConsumeResource(upgradeData.tiers[currentLvl]);
-        ApplyUnlock(upgradeId);
-
-        PlayerPrefs.DeleteKey("PendingPuzzleUpgrade");
-        Debug.Log($"<color=green>Puzzle solved! {upgradeData.upgradeName} unlocked!</color>");
+        if (HintManager.instance != null && upgrade.unlockedHint != null)
+        {
+            HintManager.instance.RequestDisplayHints(new List<HintSO> { upgrade.unlockedHint }, setHasAppeared: false);
+        }
     }
 
     private void TierUpgradeConsumeResource(UpgradeTier tier)

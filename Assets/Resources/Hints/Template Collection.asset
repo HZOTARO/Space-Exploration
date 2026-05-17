@@ -10,7 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e16c12eea6204843a6d7e7405fa6f1e, type: 3}
-  m_Name: HintCollection
+  m_Name: Template Collection
   m_EditorClassIdentifier: UtilityScriptIWrite::HintCollectionSO
+  collectionName: This Is Template Collection
   hints:
   - {fileID: 11400000, guid: 59cbbdab2a7067f4491d9c2acdf138a3, type: 2}
+  - {fileID: 11400000, guid: 906eb6663c2e3a447a4fef9869055d17, type: 2}

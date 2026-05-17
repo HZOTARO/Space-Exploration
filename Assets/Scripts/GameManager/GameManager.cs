@@ -1,5 +1,4 @@
 using UnityEngine;
-using TMPro;
 using System;
 using System.Collections.Generic;
 
@@ -35,14 +34,17 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public List<string> allowedSyntaxNodes = new List<string>();
     [HideInInspector] public List<string> allowedFunctions = new List<string>();
 
+    [Header("Hint")]
+    bool useHintCollection = true;
+    public HintCollectionSO hintCollection;
+    public List<HintSO> hintList;
+
     #region ---UNITY LIFECYCLE---
 
     protected virtual void Awake()
     {
         allowedSyntaxNodes = new List<string>(SyntaxDictionary.Core);
         allowedFunctions = new List<string>(FunctionDictionary.Core);
-
-        SetLevelAllowedSyntax();
     }
 
     protected virtual void Start()
@@ -53,6 +55,7 @@ public class GameManager : MonoBehaviour
         if (!player) player = FindFirstObjectByType<Player>();
         if (!tileManager) tileManager = FindFirstObjectByType<TileManager>();
 
+        SetLevelAllowedSyntax();
         StartValuesSetup();
 
         if (healthComponent != null)
@@ -102,7 +105,17 @@ public class GameManager : MonoBehaviour
         PythonExecutor.instance.CanStepCode = () => !InAction();
         PythonExecutor.instance.OnPythonPrint += PrintToDisplay;
 
-        // Show hint for first time players
+        if (HintManager.instance)
+        {
+            if (useHintCollection && hintCollection)
+            {
+                HintManager.instance.RequestDisplayHints(hintCollection, onlyShowNewOne: true);
+            }
+            else
+            {
+                HintManager.instance.RequestDisplayHints(hintList, onlyShowNewOne: true);
+            }
+        }
     }
 
     protected virtual void StartValuesSetup()

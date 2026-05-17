@@ -41,26 +41,6 @@ public class HintManager : MonoBehaviour
         }
     }
 
-    //public void RequestDisplayHints(List<string> hintIds, string openedHintId = "", bool setHasAppeared = true)
-    //{
-    //    List<HintSO> hintsToDisplay = new List<HintSO>();
-    //    HintSO openedHint = null;
-
-    //    foreach (string id in hintIds)
-    //    {
-    //        if (hintDatabase.TryGetValue(id, out HintSO foundHint))
-    //        {
-    //            hintsToDisplay.Add(foundHint);
-    //            if (foundHint.hintId == openedHintId)
-    //            {
-    //                openedHint = foundHint;
-    //            }
-    //        }
-    //    }
-
-    //    RequestDisplayHints(hintsToDisplay, openedHint);
-    //}
-
     public void RequestDisplayHints(List <HintSO> hintsToDisplay, HintSO openedHint = null, bool setHasAppeared = true, bool onlyShowNewOne = false)
     {
         List<HintSO> validHintsToDisplay = new List<HintSO>();
@@ -71,17 +51,23 @@ public class HintManager : MonoBehaviour
             for (int i = 0; i < hintsToDisplay.Count; i++)
             {
                 HintSO hint = hintsToDisplay[i];
+                if (hint == null) continue;
+                if (!IsHintUnlocked(hint)) continue;
+
                 HintSaveState saveState = GetHintSaveState(hint);
 
-                if (!IsHintUnlocked(hint)) continue;
+                if (onlyShowNewOne && saveState.hasAppeared)
+                {
+                    continue;
+                }
 
                 if (setHasAppeared && !saveState.hasAppeared)
                 {
                     saveState.hasAppeared = true;
+                    saveState.isUnlocked = true;
                     dataWasChanged = true;
                 }
 
-                if (setHasAppeared) saveState.hasAppeared = true;
                 validHintsToDisplay.Add(hint);
             }
 
@@ -122,9 +108,9 @@ public class HintManager : MonoBehaviour
         return newState;
     }
 
-    private bool IsHintUnlocked(HintSO hint)
+    public bool IsHintUnlocked(HintSO hint, bool ignoreDefault = false)
     {
-        if (hint.isUnlockedByDefault) return true;
+        if (hint.isUnlockedByDefault && !ignoreDefault) return true;
 
         if (SaveManager.saveData != null)
         {

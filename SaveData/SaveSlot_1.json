@@ -1,5 +1,5 @@
 {
-    "lastSavedTime": "15-05-2026 15:52",
+    "lastSavedTime": "17-05-2026 16:40",
     "inventory": [],
     "unlockedUpgrades": [],
     "stepDelay": 0.10000000149011612,
@@ -8,6 +8,31 @@
     "hints": [
         {
             "id": "dummy",
+            "hasAppeared": false,
+            "isUnlocked": false
+        },
+        {
+            "id": "template 1",
+            "hasAppeared": false,
+            "isUnlocked": false
+        },
+        {
+            "id": "template 2",
+            "hasAppeared": false,
+            "isUnlocked": false
+        },
+        {
+            "id": "template 3",
+            "hasAppeared": false,
+            "isUnlocked": false
+        },
+        {
+            "id": "template 4",
+            "hasAppeared": false,
+            "isUnlocked": false
+        },
+        {
+            "id": "template 5",
             "hasAppeared": false,
             "isUnlocked": false
         }

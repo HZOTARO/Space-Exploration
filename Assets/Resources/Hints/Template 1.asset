@@ -10,43 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88f6fa2b89436164b8e97b17d82dc9a2, type: 3}
-  m_Name: HintSO
+  m_Name: Template 1
   m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
-  hintId: dummy
-  title: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lorem metus,
-    laoreet a malesuada vel, mollis ac nibh. Orci varius natoque penatibus et magnis
-    dis parturient montes, nascetur ridiculus mus. Aliquam elementum sed tellus a
-    aliquet. Pellentesque et dapibus ligula. Pellentesque nec mauris mi. Nam imperdiet
-    suscipit interdum. Suspendisse potenti.  In bibendum mi id cursus ultrices. Sed
-    aliquam imperdiet arcu, et elementum quam vehicula ac. Vivamus at justo rhoncus,
-    convallis leo viverra, lacinia arcu. Vivamus eu pulvinar dui. Sed tristique quam
-    eget eros volutpat dignissim. Donec mollis felis sit amet fringilla maximus.
-    Quisque id nulla diam. Ut ac vulputate odio, a vulputate ante. Duis quis interdum
-    libero. Nulla laoreet lorem quis sapien semper, quis commodo leo facilisis. Sed
-    vehicula dolor ut gravida gravida. Nam posuere, felis at congue faucibus, dolor
-    elit tincidunt purus, sit amet aliquam leo sem bibendum mauris. Fusce at justo
-    pulvinar, ornare nisl et, luctus est. Nunc gravida tincidunt tincidunt. Donec
-    iaculis lectus velit, non pharetra ex lobortis quis.  Ut lobortis sapien ut sapien
-    ultrices, ut porta mi dapibus. Sed ultrices, magna a porta placerat, massa metus
-    tincidunt justo, in porta felis nisl sit amet dolor. Vivamus ac faucibus lorem,
-    at porta magna. Aliquam efficitur interdum nulla, ut porta arcu sollicitudin
-    et. Nam dapibus, turpis in lobortis bibendum, odio sapien mollis neque, id hendrerit
-    urna augue et nisi. Quisque dictum mi mauris, sit amet maximus lorem ornare eget.
-    Donec dolor justo, convallis non magna gravida, semper rhoncus sapien.  Etiam
-    elit arcu, ultricies at ipsum non, ultricies viverra nisi. Suspendisse non accumsan
-    enim. Duis metus risus, accumsan id ante sit amet, blandit commodo magna. Proin
-    libero erat, convallis vel venenatis in, vestibulum at tellus. Cras ultrices
-    quis arcu et commodo. Aenean sagittis metus a enim interdum mollis. Praesent
-    volutpat nibh nisl, ac commodo eros venenatis id. Praesent consectetur nisl arcu,
-    id rutrum orci iaculis eu. Curabitur aliquet, lectus sed pretium scelerisque,
-    tellus neque porta est, et fermentum elit tellus aliquam turpis.  Suspendisse
-    eu massa in arcu maximus tristique ac id est. Vestibulum cursus mollis libero,
-    et euismod dolor porta sed. Vestibulum at augue ligula. Integer sit amet orci
-    rutrum, vestibulum mauris ut, sodales ipsum. Proin aliquam fringilla ex et bibendum.
-    Sed dignissim facilisis imperdiet. Suspendisse erat ligula, cursus eget varius
-    sit amet, ultrices sed ligula. Sed ac arcu blandit, iaculis enim non, pharetra
-    ligula. Aliquam ullamcorper purus ac sapien tincidunt, ac convallis ante porttitor.
-    Integer ut lorem bibendum, rhoncus ex et, vestibulum tellus.
+  hintId: template 1
+  title: Template 1
   hintBlocks:
   - subtitle: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lorem
       metus, laoreet a malesuada vel, mollis ac nibh. Orci varius natoque penatibus
@@ -90,31 +57,31 @@ MonoBehaviour:
       sed tellus a aliquet. Pellentesque et dapibus ligula. Pellentesque nec mauris
       mi. Nam imperdiet suscipit interdum. Suspendisse potenti.
 
-      
 
-      In
-      bibendum mi id cursus ultrices. Sed aliquam imperdiet arcu, et elementum quam
-      vehicula ac. Vivamus at justo rhoncus, convallis leo viverra, lacinia arcu.
-      Vivamus eu pulvinar dui. Sed tristique quam eget eros volutpat dignissim. Donec
-      mollis felis sit amet fringilla maximus. Quisque id nulla diam. Ut ac vulputate
-      odio, a vulputate ante. Duis quis interdum libero. Nulla laoreet lorem quis
-      sapien semper, quis commodo leo facilisis. Sed vehicula dolor ut gravida gravida.
+
+      In bibendum
+      mi id cursus ultrices. Sed aliquam imperdiet arcu, et elementum quam vehicula
+      ac. Vivamus at justo rhoncus, convallis leo viverra, lacinia arcu. Vivamus
+      eu pulvinar dui. Sed tristique quam eget eros volutpat dignissim. Donec mollis
+      felis sit amet fringilla maximus. Quisque id nulla diam. Ut ac vulputate odio,
+      a vulputate ante. Duis quis interdum libero. Nulla laoreet lorem quis sapien
+      semper, quis commodo leo facilisis. Sed vehicula dolor ut gravida gravida.
       Nam posuere, felis at congue faucibus, dolor elit tincidunt purus, sit amet
       aliquam leo sem bibendum mauris. Fusce at justo pulvinar, ornare nisl et, luctus
       est. Nunc gravida tincidunt tincidunt. Donec iaculis lectus velit, non pharetra
       ex lobortis quis.
 
-      
 
-      Ut lobortis sapien ut sapien ultrices, ut
-      porta mi dapibus. Sed ultrices, magna a porta placerat, massa metus tincidunt
-      justo, in porta felis nisl sit amet dolor. Vivamus ac faucibus lorem, at porta
-      magna. Aliquam efficitur interdum nulla, ut porta arcu sollicitudin et. Nam
-      dapibus, turpis in lobortis bibendum, odio sapien mollis neque, id hendrerit
-      urna augue et nisi. Quisque dictum mi mauris, sit amet maximus lorem ornare
-      eget. Donec dolor justo, convallis non magna gravida, semper rhoncus sapien.
 
-      
+      Ut lobortis sapien ut sapien ultrices, ut porta
+      mi dapibus. Sed ultrices, magna a porta placerat, massa metus tincidunt justo,
+      in porta felis nisl sit amet dolor. Vivamus ac faucibus lorem, at porta magna.
+      Aliquam efficitur interdum nulla, ut porta arcu sollicitudin et. Nam dapibus,
+      turpis in lobortis bibendum, odio sapien mollis neque, id hendrerit urna augue
+      et nisi. Quisque dictum mi mauris, sit amet maximus lorem ornare eget. Donec
+      dolor justo, convallis non magna gravida, semper rhoncus sapien.
+
+
 
       Etiam
       elit arcu, ultricies at ipsum non, ultricies viverra nisi. Suspendisse non
@@ -125,7 +92,7 @@ MonoBehaviour:
       nisl arcu, id rutrum orci iaculis eu. Curabitur aliquet, lectus sed pretium
       scelerisque, tellus neque porta est, et fermentum elit tellus aliquam turpis.
 
-      
+
 
       Suspendisse
       eu massa in arcu maximus tristique ac id est. Vestibulum cursus mollis libero,
@@ -177,31 +144,31 @@ MonoBehaviour:
       sed tellus a aliquet. Pellentesque et dapibus ligula. Pellentesque nec mauris
       mi. Nam imperdiet suscipit interdum. Suspendisse potenti.
 
-      
 
-      In
-      bibendum mi id cursus ultrices. Sed aliquam imperdiet arcu, et elementum quam
-      vehicula ac. Vivamus at justo rhoncus, convallis leo viverra, lacinia arcu.
-      Vivamus eu pulvinar dui. Sed tristique quam eget eros volutpat dignissim. Donec
-      mollis felis sit amet fringilla maximus. Quisque id nulla diam. Ut ac vulputate
-      odio, a vulputate ante. Duis quis interdum libero. Nulla laoreet lorem quis
-      sapien semper, quis commodo leo facilisis. Sed vehicula dolor ut gravida gravida.
+
+      In bibendum
+      mi id cursus ultrices. Sed aliquam imperdiet arcu, et elementum quam vehicula
+      ac. Vivamus at justo rhoncus, convallis leo viverra, lacinia arcu. Vivamus
+      eu pulvinar dui. Sed tristique quam eget eros volutpat dignissim. Donec mollis
+      felis sit amet fringilla maximus. Quisque id nulla diam. Ut ac vulputate odio,
+      a vulputate ante. Duis quis interdum libero. Nulla laoreet lorem quis sapien
+      semper, quis commodo leo facilisis. Sed vehicula dolor ut gravida gravida.
       Nam posuere, felis at congue faucibus, dolor elit tincidunt purus, sit amet
       aliquam leo sem bibendum mauris. Fusce at justo pulvinar, ornare nisl et, luctus
       est. Nunc gravida tincidunt tincidunt. Donec iaculis lectus velit, non pharetra
       ex lobortis quis.
 
-      
 
-      Ut lobortis sapien ut sapien ultrices, ut
-      porta mi dapibus. Sed ultrices, magna a porta placerat, massa metus tincidunt
-      justo, in porta felis nisl sit amet dolor. Vivamus ac faucibus lorem, at porta
-      magna. Aliquam efficitur interdum nulla, ut porta arcu sollicitudin et. Nam
-      dapibus, turpis in lobortis bibendum, odio sapien mollis neque, id hendrerit
-      urna augue et nisi. Quisque dictum mi mauris, sit amet maximus lorem ornare
-      eget. Donec dolor justo, convallis non magna gravida, semper rhoncus sapien.
 
-      
+      Ut lobortis sapien ut sapien ultrices, ut porta
+      mi dapibus. Sed ultrices, magna a porta placerat, massa metus tincidunt justo,
+      in porta felis nisl sit amet dolor. Vivamus ac faucibus lorem, at porta magna.
+      Aliquam efficitur interdum nulla, ut porta arcu sollicitudin et. Nam dapibus,
+      turpis in lobortis bibendum, odio sapien mollis neque, id hendrerit urna augue
+      et nisi. Quisque dictum mi mauris, sit amet maximus lorem ornare eget. Donec
+      dolor justo, convallis non magna gravida, semper rhoncus sapien.
+
+
 
       Etiam
       elit arcu, ultricies at ipsum non, ultricies viverra nisi. Suspendisse non
@@ -212,7 +179,7 @@ MonoBehaviour:
       nisl arcu, id rutrum orci iaculis eu. Curabitur aliquet, lectus sed pretium
       scelerisque, tellus neque porta est, et fermentum elit tellus aliquam turpis.
 
-      
+
 
       Suspendisse
       eu massa in arcu maximus tristique ac id est. Vestibulum cursus mollis libero,
@@ -222,3 +189,4 @@ MonoBehaviour:
       eget varius sit amet, ultrices sed ligula. Sed ac arcu blandit, iaculis enim
       non, pharetra ligula. Aliquam ullamcorper purus ac sapien tincidunt, ac convallis
       ante porttitor. Integer ut lorem bibendum, rhoncus ex et, vestibulum tellus.'
+  isUnlockedByDefault: 1

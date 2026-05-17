@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e16c12eea6204843a6d7e7405fa6f1e, type: 3}
+  m_Name: Template Collection 1
+  m_EditorClassIdentifier: UtilityScriptIWrite::HintCollectionSO
+  collectionName: This Is Template Collection 2
+  hints:
+  - {fileID: 11400000, guid: 92988538674652d4c9d005bb5e3a71c4, type: 2}
+  - {fileID: 11400000, guid: a7320664973a6064eac912e7c483606f, type: 2}
+  - {fileID: 11400000, guid: 0d890b6c429de2b4e912111e1eff55bc, type: 2}

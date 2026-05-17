@@ -47,32 +47,52 @@ public class CheatManager : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        CreateCheatButton("100 White Ore", () =>
+        CreateCheatButton("500 White Ore", () =>
         {
             if (InventoryManager.instance != null)
             {
-                InventoryManager.instance.AddItem("white_ore", 100);
-                Debug.Log("<color=green>CHEAT: Added 100 White Ore!</color>");
+                InventoryManager.instance.AddItem("white_ore", 500);
+                Debug.Log("<color=green>CHEAT: Added 500 White Ore!</color>");
                 SaveManager.instance.UpdateAllUI();
             }
         });
 
-        CreateCheatButton("100 Purple Liquid", () =>
+        CreateCheatButton("500 Purple Liquid", () =>
         {
             if (InventoryManager.instance != null)
             {
-                InventoryManager.instance.AddItem("purple_liquid", 100);
-                Debug.Log("<color=green>CHEAT: Added 100 Purple Liquid!</color>");
+                InventoryManager.instance.AddItem("purple_liquid", 500);
+                Debug.Log("<color=green>CHEAT: Added 500 Purple Liquid!</color>");
                 SaveManager.instance.UpdateAllUI();
             }
         });
 
-        CreateCheatButton("100 Black Ore", () =>
+        CreateCheatButton("500 Black Ore", () =>
         {
             if (InventoryManager.instance != null)
             {
-                InventoryManager.instance.AddItem("black_ore", 100);
-                Debug.Log("<color=green>CHEAT: Added 100 Black Ore!</color>");
+                InventoryManager.instance.AddItem("black_ore", 500);
+                Debug.Log("<color=green>CHEAT: Added 500 Black Ore!</color>");
+                SaveManager.instance.UpdateAllUI();
+            }
+        });
+
+        CreateCheatButton("500 Part A", () =>
+        {
+            if (InventoryManager.instance != null)
+            {
+                InventoryManager.instance.AddItem("part_a", 500);
+                Debug.Log("<color=green>CHEAT: Added 500 Part A!</color>");
+                SaveManager.instance.UpdateAllUI();
+            }
+        });
+
+        CreateCheatButton("500 Part B", () =>
+        {
+            if (InventoryManager.instance != null)
+            {
+                InventoryManager.instance.AddItem("part_b", 500);
+                Debug.Log("<color=green>CHEAT: Added 500 Part B!</color>");
                 SaveManager.instance.UpdateAllUI();
             }
         });

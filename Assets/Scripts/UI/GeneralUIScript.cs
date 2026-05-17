@@ -79,6 +79,11 @@ public class GeneralUIScript : MonoBehaviour
     {
         UI.SetActive(false);
     }
+
+    public void DeleteSaveData()
+    {
+        SaveManager.instance.DeleteSave(SaveManager.saveSlotInUse);
+    }
     public void ExitGame()
     {
 #if UNITY_EDITOR
