@@ -10,8 +10,8 @@ public class CameraController : MonoBehaviour
     public float tileLength = 2.5f;
 
     [Header("UI Padding")]
-    public float uiPaddingLeft = 0.15f;  
-    public float uiPaddingRight = 0.0f; 
+    public float uiPaddingLeft = 0.15f;
+    public float uiPaddingRight = 0.0f;
     public float uiPaddingBottom = 0.2f;
     public float uiPaddingTop = 0.2f;
 
@@ -43,12 +43,17 @@ public class CameraController : MonoBehaviour
         mapMinZ = 6;
         mapMaxZ = gridHeight * tileLength + 10;
 
-        int lowerDimension = Mathf.Min(gridWidth, gridHeight);
-        maxZoom = lowerDimension + 2 + Mathf.Floor(lowerDimension / 10) * 1;
+        int middleDimension = Mathf.Min(gridWidth, gridHeight) + Mathf.Abs(gridWidth - gridHeight) / 2;
+        maxZoom = middleDimension + 2 + Mathf.Floor(middleDimension / 10) * 1;
 
         cameraPitchAngle = childCamera.transform.eulerAngles.x * Mathf.Deg2Rad;
 
-        HandleZooming();
+        float gridXSize = gridWidth * tileWidth;
+        float gridZSize = gridHeight * tileLength;
+
+        float optimalSize = Mathf.Max(gridXSize, gridZSize) * 0.5f;
+        childCamera.orthographicSize = Mathf.Clamp(optimalSize + 3f, minZoom, maxZoom);
+        ClampPosition();
     }
 
     void LateUpdate()

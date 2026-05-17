@@ -313,28 +313,116 @@ def get_line_syntax_map(source_code):
 def check_ast_pattern(source_code, start_line, end_line, pattern, target):
     try:
         tree = ast.parse(source_code)
+
+        def contains_call(body_list, target_func):
+            for stmt in body_list:
+                for child in ast.walk(stmt):
+                    if isinstance(child, ast.Call):
+                        if isinstance(child.func, ast.Name) and child.func.id == target_func:
+                            return True
+                        if isinstance(child.func, ast.Attribute) and isinstance(child.func.value, ast.Name):
+                            full_name = f"{child.func.value.id}.{child.func.attr}"
+                            if full_name == target_func:
+                                return True
+            return False
+            
+        def contains_nested_for(body_list):
+            for stmt in body_list:
+                for child in ast.walk(stmt):
+                    if isinstance(child, ast.For): return True
+            return False
+                            
         for node in ast.walk(tree):
             line = getattr(node, 'lineno', -1)
-            
             if int(start_line) <= line <= int(end_line):
-                
+
                 if pattern == "FunctionCall":
                     if isinstance(node, ast.Call):
-                        if isinstance(node.func, ast.Name) and node.func.id == target:
-                            return "True"
-                        if isinstance(node.func, ast.Attribute) and node.func.attr == target:
-                            return "True"
-                
-                elif pattern == "VarToVar":
+                        if int(start_line) <= line <= int(end_line):
+                            if isinstance(node.func, ast.Name) and node.func.id == target:
+                                return "True"
+
+                elif pattern == "ScanAndPrintVar":
+                    scan_variables = set()
+                    printed_var = None
+                    
+                    sorted_nodes = sorted(
+                        [n for n in ast.walk(tree) if hasattr(n, 'lineno')], 
+                        key=lambda x: x.lineno
+                    )
+                    
+                    for n in sorted_nodes:
+                        if isinstance(n, ast.Assign):
+                            for target in n.targets:
+                                if isinstance(target, ast.Name):
+                                    var_name = target.id
+                                    
+                                    if isinstance(n.value, ast.Call) and getattr(n.value.func, 'id', '') == "scan":
+                                        scan_variables.add(var_name)
+                                    elif isinstance(n.value, ast.Name) and n.value.id in scan_variables:
+                                        scan_variables.add(var_name)
+                                    else:
+                                        if var_name in scan_variables:
+                                            scan_variables.remove(var_name)
+                                            
+                        if isinstance(n, ast.Call) and getattr(n.func, 'id', '') == "print":
+                            if len(n.args) > 0 and isinstance(n.args[0], ast.Name):
+                                printed_var = n.args[0].id
+
+                    if scan_variables and printed_var and (printed_var in scan_variables):
+                        return "True"
+
+                elif pattern == "FuncInsideIfWhiteOre":
+                    scan_variables = set()
+                    for n in ast.walk(tree):
+                        if isinstance(n, ast.Assign) and isinstance(n.value, ast.Call) and getattr(n.value.func, 'id', '') == "scan":
+                            for target_node in n.targets:
+                                if isinstance(target_node, ast.Name):
+                                    scan_variables.add(target_node.id)
+
+                    for node in ast.walk(tree):
+                        if isinstance(node, ast.If):
+                            is_valid_conditional = False
+                            
+                            if isinstance(node.test, ast.Compare) and len(node.test.ops) == 1 and isinstance(node.test.ops[0], ast.Eq):
+                                left = node.test.left
+                                right = node.test.comparators[0]
+                                
+                                has_white_ore_literal = False
+                                comparison_target = None
+                                
+                                if (isinstance(left, ast.Constant) and left.value == "WhiteOre") or (isinstance(left, ast.Str) and left.s == "WhiteOre"):
+                                    has_white_ore_literal = True
+                                    comparison_target = right
+                                elif (isinstance(right, ast.Constant) and right.value == "WhiteOre") or (isinstance(right, ast.Str) and right.s == "WhiteOre"):
+                                    has_white_ore_literal = True
+                                    comparison_target = left
+                                    
+                                if has_white_ore_literal:
+                                    if isinstance(comparison_target, ast.Call) and getattr(comparison_target.func, 'id', '') == "scan":
+                                        is_valid_conditional = True
+                                    elif isinstance(comparison_target, ast.Name) and comparison_target.id in scan_variables:
+                                        is_valid_conditional = True
+
+                            if is_valid_conditional and contains_call(node.body, target):
+                                return "True"
+
+                elif pattern == "FuncInsideFor":
+                    if isinstance(node, ast.For) and contains_call(node.body, target): return "True"
+
+                elif pattern == "FuncInsideWhile":
+                    if isinstance(node, ast.While) and contains_call(node.body, target): return "True"
+
+                elif pattern == "NestedFor":
+                    if isinstance(node, ast.For) and contains_nested_for(node.body): return "True"
+
+                elif pattern == "AssignList":
                     if isinstance(node, ast.Assign):
-                        if isinstance(node.value, ast.Name):
-                            if target:
-                                for t in node.targets:
-                                    if isinstance(t, ast.Name) and t.id == target:
-                                        return "True"
-                            else:
-                                return "True" 
+                        for t in node.targets:
+                            if isinstance(t, ast.Name) and t.id == target:
+                                if isinstance(node.value, ast.List): return "True"
+                                if isinstance(node.value, ast.Call) and getattr(node.value.func, 'id', '') == "list": return "True"
                                 
         return "False"
-    except Exception:
+    except Exception as e:
         return "False"

@@ -58,3 +58,16 @@ public static class FunctionDictionary
         "print", "range", "len", "int", "float", "str", "bool", "type", "abs", "max", "min", "sum", "round", "list"
     };
 }
+
+public static class ErrorDictionary
+{
+    public static readonly Dictionary<string, string> ErrorTranslations = new Dictionary<string, string>()
+    {
+        { "Assign", "Variables are not unlocked yet!" },
+        { "AugAssign", "Variables are not unlocked yet!" },
+        { "If", "If/Else statements are not unlocked yet!" },
+        { "For", "Loops are not unlocked yet!" },
+        { "While", "Loops are not unlocked yet!" },
+        { "List", "Lists are not unlocked yet!" }
+    };
+}

@@ -2,12 +2,72 @@ using UnityEngine;
 
 public class GameManager_Training_2 : GameManager_Training
 {
+    [Header("Level Specifics")]
+    public string expectedScanResult;
+
+    protected override void Start()
+    {
+        base.Start();
+
+        if (tileManager != null && tileManager.objectsArray != null)
+        {
+            TileObject targetTile = tileManager.objectsArray[1, 0];
+            if (targetTile != null)
+            {
+                expectedScanResult = targetTile.type.ToString();
+            }
+        }
+
+        if (PythonExecutor.instance != null)
+        {
+            PythonExecutor.instance.OnPythonPrint += CheckPlayerPrint;
+        }
+    }
+
+    protected override void RegisterLevelSpecificPythonCommands()
+    {
+        BindReturn("scan", Scan);
+    }
+
+    private void CheckPlayerPrint(string printedMessage)
+    {
+        if (printedMessage == expectedScanResult)
+        {
+            int startLine = 1;
+            int endLine = 1;
+
+            if (PythonExecutor.instance != null && !string.IsNullOrEmpty(PythonExecutor.instance.currentCode))
+            {
+                string[] codeLines = PythonExecutor.instance.currentCode.Split('\n');
+                endLine = Mathf.Max(1, codeLines.Length);
+            }
+
+            bool usedVariableCorrectly = PythonExecutor.instance.CheckASTPattern(startLine, endLine, "ScanAndPrintVar", "");
+
+            if (usedVariableCorrectly)
+            {
+                ObjectiveManager.instance.TriggerCustomEvent("PrintedVariable");
+            }
+            else
+            {
+                PrintToDisplay("You must save scan() to a variable, and then print that exact variable! Try: tile = scan()");
+            }
+        }
+    }
+
     protected override void SetLevelAllowedSyntax()
     {
+        base.SetLevelAllowedSyntax();
+
         allowedSyntaxNodes.AddRange(SyntaxDictionary.Variables);
-        //allowedSyntaxNodes.AddRange(SyntaxDictionary.Logic);
-        //allowedSyntaxNodes.AddRange(SyntaxDictionary.Loops);
-        //allowedSyntaxNodes.AddRange(SyntaxDictionary.Lists);
+
+        allowedSyntaxNodes.Remove("Constant");
+        allowedSyntaxNodes.Remove("Num");
+        allowedSyntaxNodes.Remove("Str");
+
+        customLevelErrors["Constant"] = "You cannot type numbers or strings directly! Use scan() instead.";
+        customLevelErrors["Num"] = "You cannot type numbers in this level!";
+        customLevelErrors["Str"] = "You cannot type strings directly! Use scan() instead.";
     }
 
     protected override void SetLevelObjectives()
@@ -16,22 +76,33 @@ public class GameManager_Training_2 : GameManager_Training
 
         ObjectiveManager.instance.objectives.Add(new LevelObjective()
         {
-            description = "Use move_forward() to move the player.",
+            description = "Use scan() to check the tile in front of you.",
             type = ObjectiveType.FunctionCall,
-            targetFunctionName = "move_forward"
+            targetFunctionName = "scan"
         });
 
         ObjectiveManager.instance.objectives.Add(new LevelObjective()
         {
-            description = "Reach the goal!",
+            description = "Store the result of scan() in a variable and print() it!",
             type = ObjectiveType.CustomEvent,
-            customEventId = "ReachedGoal"
+            customEventId = "PrintedVariable"
         });
     }
 
     protected override void StartValuesSetup()
     {
-        levelSize = 3;
-        cargoSize = 4;
+        levelLength = 2;
+        levelWidth = 1;
+        cargoSize = 0;
+    }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+
+        if (PythonExecutor.instance != null)
+        {
+            PythonExecutor.instance.OnPythonPrint -= CheckPlayerPrint;
+        }
     }
 }

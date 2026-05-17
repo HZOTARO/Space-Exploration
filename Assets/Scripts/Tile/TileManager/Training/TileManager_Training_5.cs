@@ -6,11 +6,16 @@ public class TileManager_Training_5 : TileManager_Training
     {
         base.GenerateMap(false);
     }
+
     protected override void GenerateMapContent()
     {
-        SetTile(0, 0, TileType.Floor);
-        SetTile(1, 0, TileType.Floor);
-        SetTile(2, 0, TileType.Floor);
-        SetTile(2, 1, TileType.Goal);
+        for (int x = 0; x < width - 1; x++)
+        {
+            SetTile(0, x, TileType.Floor, asFloorToo: true);
+        }
+
+        int goalX = Random.Range(width / 2, width);
+
+        SetTile(0, goalX, TileType.Goal, asFloorToo: true);
     }
 }

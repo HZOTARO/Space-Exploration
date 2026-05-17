@@ -249,4 +249,19 @@ public class Player : MonoBehaviour
 
         idleCoroutine = StartCoroutine(IdleRandomize());
     }
+
+    public void ResetPlayerState()
+    {
+        StopAllCoroutines();
+
+        isMoving = false;
+        isRotating = false;
+        inAction = false;
+
+        targetPosition = transform.position;
+        targetRotation = transform.rotation;
+
+        ChangeAnimation("Idle_Aggro", 0f, true);
+        idleCoroutine = StartCoroutine(IdleRandomize());
+    }
 }

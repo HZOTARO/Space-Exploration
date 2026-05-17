@@ -420,6 +420,12 @@ public class CodeEditor : MonoBehaviour
         }
 
         if (errorPanel != null) errorPanel.gameObject.SetActive(true);
+
+        if (gameManager != null)
+        {
+            message = gameManager.TranslatePythonError(message);
+        }
+
         if (errorText != null) errorText.text = $"Error on line {line}:\n{message}";
 
         TriggerHighlight(line, line);

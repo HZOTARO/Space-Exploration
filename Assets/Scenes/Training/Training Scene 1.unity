@@ -1285,6 +1285,8 @@ MonoBehaviour:
   availableConsumables: []
   allowedSyntaxNodes: []
   allowedFunctions: []
+  hintCollection: {fileID: 0}
+  hintList: []
   levelCompletePopup: {fileID: 719912971}
 --- !u!4 &1305923947
 Transform:

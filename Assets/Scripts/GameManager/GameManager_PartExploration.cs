@@ -10,7 +10,8 @@ public class GameManager_PartExploration : GameManager
         if (mapSizeUpgrade)
         {
             int upgradeLevel = UpgradeManager.instance.GetUpgradeLevel(mapSizeUpgrade.id);
-            levelSize = 5 * (upgradeLevel + 1);
+            levelLength = 5 * (upgradeLevel + 1);
+            levelWidth = 5 * (upgradeLevel + 1);
         }
         if (cargoSizeUpgrade && cargoComponent)
         {

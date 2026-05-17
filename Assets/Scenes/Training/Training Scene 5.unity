@@ -153,7 +153,9 @@ MonoBehaviour:
   tilesContainer: {fileID: 202872234}
   grid: {fileID: 0}
   floorTile: {fileID: -9208734708896110791, guid: 5b880c3cdeb231146bc576bce7b32fe2, type: 3}
-  tileData: []
+  tileData:
+  - type: 5
+    tilePrefab: {fileID: 98364360411693396, guid: 0c072067696c19e41bd63e7251d67fba, type: 3}
 --- !u!4 &34421529
 Transform:
   m_ObjectHideFlags: 0
@@ -1325,10 +1327,13 @@ MonoBehaviour:
   mapSizeUpgrade: {fileID: 0}
   cargoSizeUpgrade: {fileID: 0}
   healthUpgrade: {fileID: 0}
+  playerGridLoc: {x: 0, y: 0}
   playerFacing: 0
   availableConsumables: []
   allowedSyntaxNodes: []
   allowedFunctions: []
+  hintCollection: {fileID: 0}
+  hintList: []
   levelCompletePopup: {fileID: 6096573076397695218}
 --- !u!4 &1559694830
 Transform:

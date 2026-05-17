@@ -29,10 +29,9 @@ public class PythonExecutor : MonoBehaviour
 
     [Header("Python Settings")]
     PyModule pyScope;
-    dynamic pyPrepareFunc;
-    dynamic pyStepFunc;
-    dynamic pyGetVarFunc;
-    dynamic pyGetLineSyntaxMap;
+    
+    private Dictionary<string, dynamic> pyFunctionCache = new Dictionary<string, dynamic>();
+
     public Dictionary<int, HashSet<string>> currentSyntaxMap = new Dictionary<int, HashSet<string>>();
     public List<string> registeredFunctionNames = new List<string>();
 
@@ -44,6 +43,7 @@ public class PythonExecutor : MonoBehaviour
     public event Action<string> OnPythonPrint;
     public event Action<int, int> OnLineExecuted;
     public event Action<int, string> OnRuntimeError;
+    public event Action OnExecutionAborted;
 
     public Func<bool> CanStepCode;
 
@@ -71,6 +71,18 @@ public class PythonExecutor : MonoBehaviour
         }
     }
 
+    private dynamic GetCachedPyFunction(string functionName)
+    {
+        if (pyScope == null) return null;
+
+        if (!pyFunctionCache.ContainsKey(functionName))
+        {
+            pyFunctionCache[functionName] = pyScope.Get(functionName);
+        }
+
+        return pyFunctionCache[functionName];
+    }
+
     public void InitializePythonAllowed(string[] nodes, string[] functions)
     {
         if (!PythonEngine.IsInitialized || pyScope == null) return;
@@ -84,8 +96,7 @@ public class PythonExecutor : MonoBehaviour
 
         using (Py.GIL())
         {
-            dynamic pyInitFunc = pyScope.Get("initialize_allowed");
-            pyInitFunc(jsonRequest);
+            GetCachedPyFunction("initialize_allowed")(jsonRequest);
         }
     }
 
@@ -95,8 +106,7 @@ public class PythonExecutor : MonoBehaviour
 
         using (Py.GIL())
         {
-            dynamic pyClearFunc = pyScope.Get("clear_ban");
-            pyClearFunc(unlockName);
+            GetCachedPyFunction("clear_ban")(unlockName);
         }
     }
 
@@ -109,8 +119,7 @@ public class PythonExecutor : MonoBehaviour
 
         using (Py.GIL())
         {
-            dynamic pyValidateFunc = pyScope.Get("validate_code");
-            string jsonResponse = pyValidateFunc(playerCode).ToString();
+            string jsonResponse = GetCachedPyFunction("validate_code")(playerCode).ToString();
             return JsonUtility.FromJson<PythonValidationResult>(jsonResponse);
         }
     }
@@ -159,8 +168,7 @@ public class PythonExecutor : MonoBehaviour
                 registeredFunctionNames.Add(pythonName);
             }
 
-            dynamic pyUnlockFunc = pyScope.Get("unlock_syntax");
-            pyUnlockFunc(pythonName);
+            GetCachedPyFunction("unlock_syntax")(pythonName);
         }
     }   
 
@@ -179,6 +187,8 @@ public class PythonExecutor : MonoBehaviour
                 pyScope.Exec("global __gen__\n__gen__ = None");
             }
         }
+
+        OnExecutionAborted?.Invoke();
     }
 
     /// <summary>
@@ -206,10 +216,6 @@ public class PythonExecutor : MonoBehaviour
             using (Py.GIL())
             {
                 pyScope.Exec(File.ReadAllText(filePath));
-                pyPrepareFunc = pyScope.Get("prepare");
-                pyStepFunc = pyScope.Get("step");
-                pyGetVarFunc = pyScope.Get("get_variable_value");
-                pyGetLineSyntaxMap = pyScope.Get("get_line_syntax_map");
             }
         }
     }
@@ -221,7 +227,7 @@ public class PythonExecutor : MonoBehaviour
             currentCode = code;
             using (Py.GIL())
             {
-                pyPrepareFunc(currentCode);
+                GetCachedPyFunction("prepare")(currentCode);
             }
             BuildSyntaxMap(code);
         }
@@ -236,7 +242,7 @@ public class PythonExecutor : MonoBehaviour
 
         using (Py.GIL())
         {
-            var result = pyStepFunc().ToString();
+            var result = GetCachedPyFunction("step")().ToString();
 
             if (result.StartsWith("RUNTIME_ERROR|"))
             {
@@ -328,12 +334,11 @@ __gen__ = None
 ");
                 pyScope.Set("unity_log", null);
 
-                if (pyPrepareFunc is IDisposable p) p.Dispose();
-                if (pyStepFunc is IDisposable s) s.Dispose();
-                if (pyGetVarFunc is IDisposable g) g.Dispose();
-
-                pyPrepareFunc = null;
-                pyStepFunc = null;
+                foreach ((string name, dynamic value) in pyFunctionCache)
+                {
+                    if (value is IDisposable d) d.Dispose();
+                }
+                pyFunctionCache.Clear();
 
                 pyScope.Dispose();
                 pyScope = null;
@@ -348,13 +353,13 @@ __gen__ = None
 
     public string GetVariableValue(string varName)
     {
-        if (pyGetVarFunc == null) return "Undefined";
+        if (pyScope == null) return "Undefined";
 
         using (Py.GIL())
         {
             try
             {
-                return pyGetVarFunc(varName).ToString();
+                return GetCachedPyFunction("get_variable_value")(varName).ToString();
             }
             catch
             {
@@ -365,11 +370,10 @@ __gen__ = None
     private void BuildSyntaxMap(string code)
     {
         currentSyntaxMap.Clear();
-        if (pyGetLineSyntaxMap == null) return;
 
         using (Py.GIL())
         {
-            string mapString = pyGetLineSyntaxMap(code).ToString();
+            string mapString = GetCachedPyFunction("get_line_syntax_map")(code).ToString();
             if (string.IsNullOrEmpty(mapString)) return;
 
             string[] lines = mapString.Split('|');
@@ -411,8 +415,8 @@ __gen__ = None
         {
             try
             {
-                dynamic pyCheckFunc = pyScope.Get("check_ast_pattern");
-                string result = pyCheckFunc(currentCode, startLine, endLine, pattern, target).ToString();
+                string result = GetCachedPyFunction("check_ast_pattern")(currentCode, startLine, endLine, pattern, target).ToString();
+
                 return result == "True";
             }
             catch (System.Exception e)

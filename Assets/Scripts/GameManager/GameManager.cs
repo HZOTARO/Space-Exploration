@@ -17,14 +17,16 @@ public class GameManager : MonoBehaviour
     public UpgradeSO healthUpgrade;
 
     [Header("Player")]
-    Vector2Int playerGridLoc = new();
+    [HideInInspector]
+    public Vector2Int playerGridLoc = new();
     [HideInInspector]
     // 0 = North(N), 1 = East(E), 2 = South(S), 3 = West(W)
     public int playerFacing = 0;
 
     [Header("Component Setup Value")]
-    protected int levelSize = 10;
-    protected int cargoSize = 5;
+    protected int levelWidth = 10;
+    protected int levelLength = 10;
+    protected int cargoSize = 6;
     protected int maxHealth = 100;
 
     [Header("Consumables (Shuffled)")]
@@ -33,6 +35,8 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector] public List<string> allowedSyntaxNodes = new List<string>();
     [HideInInspector] public List<string> allowedFunctions = new List<string>();
+
+    protected Dictionary<string, string> customLevelErrors = new Dictionary<string, string>();
 
     [Header("Hint")]
     bool useHintCollection = true;
@@ -67,17 +71,17 @@ public class GameManager : MonoBehaviour
         }
 
         if (tileManager) 
-        { 
-            tileManager.width = levelSize;
-            tileManager.length = levelSize;
+        {
+            tileManager.width = levelWidth;  
+            tileManager.length = levelLength;
 
             tileManager.GenerateMap();
         }
 
         if (cameraController)
         {
-            cameraController.gridHeight = levelSize;
-            cameraController.gridWidth = levelSize;
+            cameraController.gridHeight = levelLength; 
+            cameraController.gridWidth = levelWidth;   
 
             cameraController.Initialize();
         }
@@ -103,7 +107,8 @@ public class GameManager : MonoBehaviour
         RegisterPythonCommands();
 
         PythonExecutor.instance.CanStepCode = () => !InAction();
-        PythonExecutor.instance.OnPythonPrint += PrintToDisplay;
+        PythonExecutor.instance.OnRuntimeError += HandlePythonError;
+        PythonExecutor.instance.OnPythonPrint += HandlePythonPrint;
 
         if (HintManager.instance)
         {
@@ -131,7 +136,11 @@ public class GameManager : MonoBehaviour
 
     protected virtual void OnDestroy()
     {
-        if (PythonExecutor.instance != null) PythonExecutor.instance.OnPythonPrint -= PrintToDisplay;
+        if (PythonExecutor.instance != null)
+        {
+            PythonExecutor.instance.OnRuntimeError -= HandlePythonError;
+            PythonExecutor.instance.OnPythonPrint -= HandlePythonPrint;
+        }
         if (healthComponent != null) healthComponent.OnPlayerDeath -= LevelGameOver;
     }
 
@@ -140,6 +149,8 @@ public class GameManager : MonoBehaviour
     #region ---SYNTAX & FUNCTION SETUP---
     protected virtual void SetLevelAllowedSyntax()
     {
+        customLevelErrors = new Dictionary<string, string>(ErrorDictionary.ErrorTranslations);
+
         if (UpgradeManager.instance != null)
         {
             if (UpgradeManager.instance.IsUpgradeUnlocked("variable"))
@@ -166,17 +177,13 @@ public class GameManager : MonoBehaviour
 
     private void RegisterPythonCommands()
     {
-        void Bind(string pyName, Action action) => PythonExecutor.instance.RegisterPythonFunction(pyName, action);
-        void BindReturn<TResult>(string pyName, Func<TResult> func) => PythonExecutor.instance.RegisterPythonFunction(pyName, func);
-        void BindWithArg<TArg, TResult>(string pyName, Func<TArg, TResult> func) => PythonExecutor.instance.RegisterPythonFunction(pyName, func);
+        //Bind("move_forward", MoveForward);
+        //Bind("move_backward", MoveBackward);
+        //Bind("turn_right", TurnRight);
+        //Bind("turn_left", TurnLeft);
+        //Bind("go_back", Return);
 
-        Bind("move_forward", MoveForward);
-        Bind("move_backward", MoveBackward);
-        Bind("turn_right", TurnRight);
-        Bind("turn_left", TurnLeft);
-        Bind("go_back", Return);
-
-        BindReturn("scan", Scan);
+        //BindReturn("scan", Scan);
 
         //BindWithArg<int, object>("use_item", UseItem);
         //BindWithArg<int, string>("inspect_item", InspectItem);
@@ -191,9 +198,37 @@ public class GameManager : MonoBehaviour
     }
 
     protected virtual void RegisterLevelSpecificPythonCommands() { }
+
+    protected void Bind(string pyName, Action action)
+    {
+        if (PythonExecutor.instance != null) PythonExecutor.instance.RegisterPythonFunction(pyName, action);
+    }
+
+    protected void BindReturn<TResult>(string pyName, Func<TResult> func)
+    {
+        if (PythonExecutor.instance != null) PythonExecutor.instance.RegisterPythonFunction(pyName, func);
+    }
+
+    protected void BindWithArg<TArg, TResult>(string pyName, Func<TArg, TResult> func)
+    {
+        if (PythonExecutor.instance != null) PythonExecutor.instance.RegisterPythonFunction(pyName, func);
+    }
     #endregion
 
     #region ---UTILITY---
+    private void HandlePythonError(int line, string errorMsg)
+    {
+        string translatedMsg = TranslatePythonError(errorMsg);
+
+        string finalDisplayString = $"Error on line {line}: {translatedMsg}";
+
+        PrintToDisplay(finalDisplayString);
+    }
+
+    private void HandlePythonPrint(string msg)
+    {
+        PrintToDisplay(msg);
+    }
     public void PrintToDisplay(string message)
     {
         Debug.Log(message);
@@ -203,6 +238,36 @@ public class GameManager : MonoBehaviour
             PlayerFloatingText pft = player.GetComponent<PlayerFloatingText>();
             if (pft != null) pft.ShowText(message);
         }
+    }
+
+    public string TranslatePythonError(string rawError)
+    {
+        if (!rawError.Contains("Syntax '") || !rawError.Contains("locked"))
+        {
+            return rawError;
+        }
+
+        int startIndex = rawError.IndexOf("Syntax '") + 8;
+        int endIndex = rawError.IndexOf("'", startIndex);
+
+        if (startIndex >= 8 && endIndex > startIndex)
+        {
+            string nodeName = rawError.Substring(startIndex, endIndex - startIndex);
+
+            if (customLevelErrors.ContainsKey(nodeName))
+            {
+                return customLevelErrors[nodeName];
+            }
+
+            if (ErrorDictionary.ErrorTranslations.ContainsKey(nodeName))
+            {
+                return ErrorDictionary.ErrorTranslations[nodeName];
+            }
+
+            return $"The '{nodeName}' syntax is not allowed!";
+        }
+
+        return rawError;
     }
 
     /// <summary>

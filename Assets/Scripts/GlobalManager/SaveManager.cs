@@ -32,7 +32,7 @@ public class SaveData
     public string lastSavedTime = "Never";
     public List<ItemSaveState> inventory = new List<ItemSaveState>();
     public List<UpgradeSaveState> unlockedUpgrades = new List<UpgradeSaveState>();
-    public float stepDelay = 0.1f;
+    public float stepDelay = 0.2f;
     public float gameSpeed = 1f;
 
     public List<string> levelCompleted = new List<string>();

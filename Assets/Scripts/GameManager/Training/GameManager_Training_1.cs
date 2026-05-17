@@ -1,8 +1,12 @@
 public class GameManager_Training_1 : GameManager_Training
 {
-    protected override void Awake()
+    // Introduction
+    protected override void RegisterLevelSpecificPythonCommands()
     {
-        base.Awake();
+        Bind("move_forward", MoveForward);
+        Bind("move_backward", MoveBackward);
+        Bind("turn_right", TurnRight);
+        Bind("turn_left", TurnLeft);
     }
 
     public override void MoveForward()
@@ -19,14 +23,11 @@ public class GameManager_Training_1 : GameManager_Training
 
     private void CheckGoal()
     {
-        if (GetCurrentTile().type == TileType.Goal)
+        TileObject currentTile = GetCurrentTile();
+        if (currentTile != null && currentTile.type == TileType.Goal)
         {
             ObjectiveManager.instance.TriggerCustomEvent("ReachedGoal");
         }
-    }
-
-    protected override void SetLevelAllowedSyntax()
-    {
     }
 
     protected override void SetLevelObjectives()
@@ -50,7 +51,8 @@ public class GameManager_Training_1 : GameManager_Training
 
     protected override void StartValuesSetup()
     {
-        levelSize = 3;
+        levelLength = 3;
+        levelWidth = 2;
         cargoSize = 0;
     }
 }

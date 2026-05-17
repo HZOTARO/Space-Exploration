@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -19,9 +18,9 @@ public class GeneralUIScript : MonoBehaviour
     public void Start()
     {
         if (stepDelaySlider)
-            stepDelaySlider.value = SaveManager.saveData != null ? SaveManager.saveData.stepDelay * 20f : 0f;
+            stepDelaySlider.value = SaveManager.saveData != null ? SaveManager.saveData.stepDelay * 10f : 0f;
         if (stepDelayText)
-            SetStepDelay(SaveManager.saveData != null ? SaveManager.saveData.stepDelay * 20f : 0f);
+            SetStepDelay(SaveManager.saveData != null ? SaveManager.saveData.stepDelay * 10f : 0f);
         if (gameSpeedSlider)
             gameSpeedSlider.value = SaveManager.saveData != null ? SaveManager.saveData.gameSpeed : 1f;
         if (gameSpeedText)
@@ -95,7 +94,7 @@ public class GeneralUIScript : MonoBehaviour
 
     public void SetStepDelay(float delay)
     {
-        delay = delay / 20f;
+        delay = delay / 10f;
 
         if (stepDelayText != null)
             stepDelayText.text = $"Step Delay: {delay:0.00}s";

@@ -14,6 +14,9 @@ public enum LevelType
     Training_3,
     Training_4,
     Training_5,
+    Training_6,
+    Training_7,
+    Training_8,
 }
 
 public class LevelManager : MonoBehaviour
@@ -76,6 +79,15 @@ public class LevelManager : MonoBehaviour
                 break;
             case LevelType.Training_5:
                 UnityEngine.SceneManagement.SceneManager.LoadScene("Training Scene 5");
+                break;
+            case LevelType.Training_6:
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Training Scene 6");
+                break;
+            case LevelType.Training_7:
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Training Scene 7");
+                break;
+            case LevelType.Training_8:
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Training Scene 8");
                 break;
         }
     }

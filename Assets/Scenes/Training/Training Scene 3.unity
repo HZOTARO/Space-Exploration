@@ -1216,7 +1216,9 @@ MonoBehaviour:
   tilesContainer: {fileID: 202872234}
   grid: {fileID: 0}
   floorTile: {fileID: -9208734708896110791, guid: 5b880c3cdeb231146bc576bce7b32fe2, type: 3}
-  tileData: []
+  tileData:
+  - type: 2
+    tilePrefab: {fileID: 4859144738260387485, guid: d96f59058b0b80a40bcd4aa893bbd79d, type: 3}
 --- !u!4 &1138778626
 Transform:
   m_ObjectHideFlags: 0
@@ -1272,6 +1274,8 @@ MonoBehaviour:
   availableConsumables: []
   allowedSyntaxNodes: []
   allowedFunctions: []
+  hintCollection: {fileID: 0}
+  hintList: []
   levelCompletePopup: {fileID: 6096573076397695218}
 --- !u!4 &1256151993
 Transform:

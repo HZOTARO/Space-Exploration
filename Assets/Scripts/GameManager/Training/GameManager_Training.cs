@@ -1,5 +1,6 @@
-using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class GameManager_Training : GameManager
@@ -22,6 +23,12 @@ public class GameManager_Training : GameManager
             levelCompletePopup.onClick.AddListener(FinishAndLeaveLevel);
         }
     }
+
+    protected override void SetLevelAllowedSyntax()
+    {
+        customLevelErrors = new Dictionary<string, string>(ErrorDictionary.ErrorTranslations);
+    }
+
     protected virtual void SetLevelObjectives()
     {
         if (ObjectiveManager.instance == null) return;

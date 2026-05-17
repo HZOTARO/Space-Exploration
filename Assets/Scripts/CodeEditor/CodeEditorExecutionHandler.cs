@@ -233,8 +233,17 @@ public class CodeExecutionController : MonoBehaviour
 
     private void OnPythonFinished()
     {
-        isPlaying = true;
-        PlayAbort(); 
+        isPlaying = false;
+
+        if (playButtonText != null) playButtonText.text = "Play";
+
+        if (isPaused)
+        {
+            isPaused = false;
+            if (pauseButtonText != null) pauseButtonText.text = "Pause";
+        }
+
+        ui.RemoveHighlight();
     }
 
     #endregion

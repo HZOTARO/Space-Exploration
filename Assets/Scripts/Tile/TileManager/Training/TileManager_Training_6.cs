@@ -1,13 +1,16 @@
-public class TileManager_Training_2 : TileManager_Training
+using UnityEngine;
+
+public class TileManager_Training_6 : TileManager_Training
 {
     public override void GenerateMap(bool setAllFloor = true)
     {
         base.GenerateMap(false);
     }
-
     protected override void GenerateMapContent()
     {
         SetTile(0, 0, TileType.Floor);
-        SetTile(1, 0, TileType.WhiteOre, false); 
+        SetTile(1, 0, TileType.Floor);
+        SetTile(2, 0, TileType.Floor);
+        SetTile(2, 1, TileType.Goal);
     }
 }
