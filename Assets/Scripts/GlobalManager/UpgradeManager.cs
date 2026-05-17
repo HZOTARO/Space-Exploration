@@ -69,16 +69,22 @@ public class UpgradeManager : MonoBehaviour
 
     public bool HasPrerequisite(UpgradeSO upgrade)
     {
-        if (upgrade.prerequisiteUpgrades == null || upgrade.prerequisiteUpgrades.Length == 0)
+        if (!string.IsNullOrEmpty(upgrade.prerequisitePuzzle))
         {
-            return true;
-        }
-
-        foreach (UpgradeSO prereq in upgrade.prerequisiteUpgrades)
-        {
-            if (!IsUpgradeUnlocked(prereq.id))
+            if (!SaveManager.saveData.levelCompleted.Contains(upgrade.prerequisitePuzzle))
             {
                 return false;
+            }
+        }
+
+        if (upgrade.prerequisiteUpgrades != null && upgrade.prerequisiteUpgrades.Length > 0)
+        {
+            foreach (UpgradeSO prereq in upgrade.prerequisiteUpgrades)
+            {
+                if (!IsUpgradeUnlocked(prereq.id))
+                {
+                    return false;
+                }
             }
         }
 

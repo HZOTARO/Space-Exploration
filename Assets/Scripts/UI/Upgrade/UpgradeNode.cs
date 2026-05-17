@@ -41,11 +41,17 @@ public class UpgradeNode : MonoBehaviour
         int maxLevel = upgradeData.tiers.Length;
         bool isMaxed = currentLevel >= maxLevel;
 
+        if (maxLevel <= 1)
+        {
+            nodeLevelText.gameObject.SetActive(false);
+        }
+
         if (isMaxed)
         {
             nodeLevelText.text = "MAX";
 
-            SetColor(maxedColor);
+            nodeBackground.color = maxedColor;
+            //SetColor(maxedColor);
         }
         else if (hasPrereq)
         {

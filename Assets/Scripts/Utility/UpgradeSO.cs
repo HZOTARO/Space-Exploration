@@ -7,11 +7,11 @@ public class UpgradeSO : ScriptableObject
     public string upgradeName;
     public Sprite icon;
 
-    string requiredPuzzle;
-    HintSO hint;
+    public HintSO unlockedHint;
 
     [Header("Requirements")]
     public UpgradeSO[] prerequisiteUpgrades;
+    public string prerequisitePuzzle;
 
     [Header("Levels / Tiers")]
     public UpgradeTier[] tiers;

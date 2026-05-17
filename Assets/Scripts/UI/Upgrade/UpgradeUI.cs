@@ -100,34 +100,57 @@ public class UpgradeUI : MonoBehaviour
         bool unlocked = UpgradeManager.instance.IsUpgradeUnlocked(upgradeData.id);
         int level = UpgradeManager.instance.GetUpgradeLevel(upgradeData.id);
         bool isMaxed = level >= upgradeData.tiers.Length;
+        bool hasPrereqs = UpgradeManager.instance.HasPrerequisite(upgradeData);
 
         if (titleText) titleText.text = upgradeData.upgradeName;
         if (iconImage) iconImage.sprite = upgradeData.icon;
         if (tier)
         {
-            if (isMaxed) tier.text = "<color=green>MAX LEVEL</color>";
+            if (!hasPrereqs) tier.text = "<color=#5D5D5D>LOCKED</color>";
+            else if (isMaxed) tier.text = "<color=green>MAX LEVEL</color>";
             else tier.text = $"Level {level} -> {level + 1}";
         }
 
         if (!unlocked)
         {
-            currentDescriptionText.gameObject.SetActive(false);
+            currentDescriptionText.text = "";
 
-            upgradeDescriptionText.gameObject.SetActive(true);
+            if (!hasPrereqs)
+            {
+                currentDescriptionText.gameObject.SetActive(true);
+
+                string reqString = "";
+
+                if (!string.IsNullOrEmpty(upgradeData.prerequisitePuzzle))
+                {
+                    bool hasPuzzle = SaveManager.saveData.levelCompleted.Contains(upgradeData.prerequisitePuzzle);
+                    string color = hasPuzzle ? "green" : "red";
+                    reqString += $"<color={color}>- Complete required puzzle to unlock</color>\n";
+                }
+
+                if (upgradeData.prerequisiteUpgrades != null && upgradeData.prerequisiteUpgrades.Length > 0)
+                {
+                    foreach (UpgradeSO prereq in upgradeData.prerequisiteUpgrades)
+                    {
+                        bool hasUp = UpgradeManager.instance.IsUpgradeUnlocked(prereq.id);
+                        string color = hasUp ? "green" : "red";
+                        reqString += $"<color={color}>- Require {prereq.upgradeName} upgrade unlocked</color>\n";
+                    }
+                }
+
+                currentDescriptionText.text = "Requirements:\n" + reqString;
+            }
+
             upgradeDescriptionText.text = "Next Upgrade:\n" + upgradeData.tiers[0].description;
         }
         else if (isMaxed)
         {
-            currentDescriptionText.gameObject.SetActive(true);
             currentDescriptionText.text = "Current Upgrade:\n" + upgradeData.tiers[level - 1].description;
-
-            upgradeDescriptionText.gameObject.SetActive(false);
+            upgradeDescriptionText.text = "";
         }
         else
         {
-            currentDescriptionText.gameObject.SetActive(true);
             currentDescriptionText.text = "Current Upgrade:\n" + upgradeData.tiers[level - 1].description;
-            upgradeDescriptionText.gameObject.SetActive(true);
             upgradeDescriptionText.text = "Next Upgrade:\n" + upgradeData.tiers[level].description;
         }
 
@@ -166,6 +189,12 @@ public class UpgradeUI : MonoBehaviour
         if (isMaxed)
         {
             upgradeButtonText.text = "MAXED";
+            upgradeButton.interactable = false;
+            upgradeButtonImage.color = new Color32(25, 25, 25, 255);
+        }
+        else if (!hasPrereqs)
+        {
+            upgradeButtonText.text = "REQUIREMENTS NOT MET";
             upgradeButton.interactable = false;
             upgradeButtonImage.color = new Color32(25, 25, 25, 255);
         }
