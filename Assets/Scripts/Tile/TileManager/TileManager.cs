@@ -124,6 +124,24 @@ public class TileManager : MonoBehaviour
                 }
             }
         }
+        SpawnOuterVisualWalls();
+    }
+
+    private void SpawnOuterVisualWalls()
+    {
+        BaseTile wallPrefab = FindTilePrefab(TileType.Wall);
+        if (!wallPrefab) return;
+
+        for (int z = -1; z <= length; z++)
+        {
+            for (int x = -1; x <= width; x++)
+            {
+                if (z == -1 || z == length || x == -1 || x == width)
+                {
+                    InstantiateTileVisual(z, x, wallPrefab);
+                }
+            }
+        }
     }
 
     protected virtual void GenerateFloorTile(int z, int x, TileObject currentFloorData)

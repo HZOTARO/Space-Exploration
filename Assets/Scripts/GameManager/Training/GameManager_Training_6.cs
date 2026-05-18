@@ -8,8 +8,8 @@ public class GameManager_Training_6 : GameManager_Training
 
     protected override void RegisterLevelSpecificPythonCommands()
     {
-        Bind("move_forward", MoveForward);
-        Bind("move_backward", MoveBackward);
+        BindReturn("move_forward", MoveForward);
+        BindReturn("move_backward", MoveBackward);
         Bind("turn_right", TurnRight);
         Bind("turn_left", TurnLeft);
     }
@@ -55,16 +55,18 @@ public class GameManager_Training_6 : GameManager_Training
         visitedTiles.Add(Vector2Int.zero);
     }
 
-    public override void MoveForward()
+    public override bool MoveForward()
     {
-        base.MoveForward();
+        bool result = base.MoveForward();
         visitedTiles.Add(playerGridLoc);
+        return result;
     }
 
-    public override void MoveBackward()
+    public override bool MoveBackward()
     {
-        base.MoveBackward();
+        bool result = base.MoveBackward();
         visitedTiles.Add(playerGridLoc);
+        return result;
     }
 
     private void CheckGridCompletion()

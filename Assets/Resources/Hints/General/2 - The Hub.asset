@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88f6fa2b89436164b8e97b17d82dc9a2, type: 3}
+  m_Name: 2 - The Hub
+  m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
+  hintId: tutorial_hub
+  title: The Hub Area
+  hintBlocks:
+  - subtitle: The Hub
+    image: {fileID: 0}
+    description: 'This is The Hub of your crashed exploration ship.
+
+      
+
+      The
+      Hub acts as the center of operations where you can manage resources, access
+      systems, and prepare for missions on the planet.'
+  - subtitle: Exploration
+    image: {fileID: 0}
+    description: 'Use the Exploration terminal to travel outside the ship.
+
+      
+
+      Explore
+      dangerous areas, gather resources, discover hidden technology, and complete
+      missions across the planet.'
+  - subtitle: Training
+    image: {fileID: 0}
+    description: 'The Training terminal contains programming exercises and simulation
+      challenges.
+
+      
+
+      Completing training improves your understanding
+      of logic systems and unlocks new capabilities.'
+  - subtitle: Crafting
+    image: {fileID: 0}
+    description: 'The Crafting terminal allows you to create tools, modules, and
+      repair components using collected resources.
+
+      
+
+      Advanced blueprints
+      can be unlocked as you progress.'
+  - subtitle: Upgrade Station
+    image: {fileID: 0}
+    description: 'Use the Upgrade terminal to improve your robot systems.
+
+      
+
+      Upgrades
+      can increase efficiency, unlock new mechanics, and help you survive longer
+      during exploration.'
+  - subtitle: Guide And Settings
+    image: {fileID: 0}
+    description: 'The Guide button opens all discovered tutorials and information
+      logs.
+
+      
+
+      The Settings button allows you to customize audio, graphics,
+      and control options for your experience.'
+  - subtitle: First Objective
+    image: {fileID: 0}
+    description: 'Before beginning exploration, you should complete the training
+      tutorial first.
+
+      
+
+      The tutorial will teach the basic systems,
+      controls, and programming mechanics needed to survive and repair the ship.'
+  isUnlockedByDefault: 1

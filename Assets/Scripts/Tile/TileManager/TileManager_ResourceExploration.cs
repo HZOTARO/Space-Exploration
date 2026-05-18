@@ -71,8 +71,8 @@ public class TileManager_ResourceExploration : TileManager_Cave
 
                     if (objectsArray[randZ, randX].type == TileType.Floor)
                     {
-                        floorArray[randZ, randX].type = TileType.PurpleVein;
-                        objectsArray[randZ, randX].type = TileType.PurpleVein;
+                        floorArray[randZ, randX].type = TileType.PurpleEssence;
+                        objectsArray[randZ, randX].type = TileType.PurpleEssence;
 
                         segmentVeinCount--;
                     }

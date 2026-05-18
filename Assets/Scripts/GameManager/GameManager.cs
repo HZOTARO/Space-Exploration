@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public CameraController cameraController;
     [HideInInspector] public Player player;
     protected TileManager tileManager;
+    [HideInInspector] public CodeEditor codeEditor;
 
     [Header("Upgrades")]
     public UpgradeSO mapSizeUpgrade;
@@ -43,6 +44,7 @@ public class GameManager : MonoBehaviour
     public HintCollectionSO hintCollection;
     public List<HintSO> hintList;
 
+
     #region ---UNITY LIFECYCLE---
 
     protected virtual void Awake()
@@ -58,6 +60,7 @@ public class GameManager : MonoBehaviour
         if (!cameraController) cameraController = FindFirstObjectByType<CameraController>();
         if (!player) player = FindFirstObjectByType<Player>();
         if (!tileManager) tileManager = FindFirstObjectByType<TileManager>();
+        if (!codeEditor) codeEditor = FindFirstObjectByType<CodeEditor>();
 
         SetLevelAllowedSyntax();
         StartValuesSetup();
@@ -193,8 +196,7 @@ public class GameManager : MonoBehaviour
 
         RegisterLevelSpecificPythonCommands();
 
-        CodeEditor editor = FindFirstObjectByType<CodeEditor>();
-        if (editor != null) editor.InitializeSyntaxGroups();
+        if (codeEditor != null) codeEditor.InitializeSyntaxGroups();
     }
 
     protected virtual void RegisterLevelSpecificPythonCommands() { }
@@ -218,25 +220,29 @@ public class GameManager : MonoBehaviour
     #region ---UTILITY---
     private void HandlePythonError(int line, string errorMsg)
     {
-        string translatedMsg = TranslatePythonError(errorMsg);
-
-        string finalDisplayString = $"Error on line {line}: {translatedMsg}";
-
-        PrintToDisplay(finalDisplayString);
+        if (codeEditor != null)
+        {
+            codeEditor.ShowError(line, errorMsg);
+        }
+        else
+        {
+            string translatedMsg = TranslatePythonError(errorMsg);
+            PrintToDisplay($"<color=red>Error on line {line}: {translatedMsg}</color>");
+        }
     }
 
     private void HandlePythonPrint(string msg)
     {
         PrintToDisplay(msg);
     }
+
     public void PrintToDisplay(string message)
     {
         Debug.Log(message);
 
-        if (player != null)
+        if (codeEditor != null)
         {
-            PlayerFloatingText pft = player.GetComponent<PlayerFloatingText>();
-            if (pft != null) pft.ShowText(message);
+            codeEditor.PrintToTerminal(message);
         }
     }
 
@@ -292,7 +298,7 @@ public class GameManager : MonoBehaviour
         return new Vector2Int(targetX, targetY);
     }
 
-    public TileObject GetTileInFront()
+    public virtual TileObject GetTileInFront()
     {
         Vector2Int forwardLoc = GetForwardGridLoc();
 
@@ -327,7 +333,7 @@ public class GameManager : MonoBehaviour
 
     #region ---PLAYER FUNCTIONS---
 
-    public virtual void MoveForward()
+    public virtual bool MoveForward()
     {
         int targetX = playerGridLoc.x;
         int targetY = playerGridLoc.y;
@@ -337,16 +343,17 @@ public class GameManager : MonoBehaviour
         else if (playerFacing == 2) targetY--;
         else if (playerFacing == 3) targetX--;
 
-        if (targetX < 0 || targetX >= tileManager.width || targetY < 0 || targetY >= tileManager.length) return;
-        if (!IsTileWalkable(targetX, targetY)) return;
+        if (targetX < 0 || targetX >= tileManager.width || targetY < 0 || targetY >= tileManager.length) return false;
+        if (!IsTileWalkable(targetX, targetY)) return false;
 
         playerGridLoc.x = targetX;
         playerGridLoc.y = targetY;
 
         player.Move(Direction.Forward);
+        return true;
     }
 
-    public virtual void MoveBackward()
+    public virtual bool MoveBackward()
     {
         int targetX = playerGridLoc.x;
         int targetY = playerGridLoc.y;
@@ -356,13 +363,14 @@ public class GameManager : MonoBehaviour
         else if (playerFacing == 2) targetY++;
         else if (playerFacing == 3) targetX++;
 
-        if (targetX < 0 || targetX >= tileManager.width || targetY < 0 || targetY >= tileManager.length) return;
-        if (!IsTileWalkable(targetX, targetY)) return;
+        if (targetX < 0 || targetX >= tileManager.width || targetY < 0 || targetY >= tileManager.length) return false;
+        if (!IsTileWalkable(targetX, targetY)) return false;
 
         playerGridLoc.x = targetX;
         playerGridLoc.y = targetY;
 
         player.Move(Direction.Backward);
+        return true;
     }
 
     public void TurnRight()
@@ -377,7 +385,7 @@ public class GameManager : MonoBehaviour
         player.Turn(-90f);
     }
 
-    public string Scan()
+    public virtual string Scan()
     {
         TileObject targetTile = GetTileInFront();
 
@@ -387,9 +395,7 @@ public class GameManager : MonoBehaviour
         }
 
         string tileTypeName = targetTile.type.ToString();
-
         Debug.Log($"Player scanned the tile: {tileTypeName}");
-
         return tileTypeName;
     }
 

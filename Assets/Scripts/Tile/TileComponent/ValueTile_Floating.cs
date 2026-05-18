@@ -18,6 +18,7 @@ public class ValueTile_Floating : ValueTile
             startPos = floatingItem.transform.position;
         }
     }
+
     protected virtual void Update()
     {
         if (isFloating && floatingItem)

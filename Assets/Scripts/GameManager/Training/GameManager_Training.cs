@@ -13,6 +13,10 @@ public class GameManager_Training : GameManager
     private Vector3 startingPhysicalPos;
     private Quaternion startingPhysicalRot;
 
+    protected override void RegisterLevelSpecificPythonCommands()
+    {
+    }
+
     protected override void Start()
     {
         SetLevelObjectives();

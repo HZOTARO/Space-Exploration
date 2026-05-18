@@ -3,22 +3,24 @@ public class GameManager_Training_1 : GameManager_Training
     // Introduction
     protected override void RegisterLevelSpecificPythonCommands()
     {
-        Bind("move_forward", MoveForward);
-        Bind("move_backward", MoveBackward);
+        BindReturn("move_forward", MoveForward);
+        BindReturn("move_backward", MoveBackward);
         Bind("turn_right", TurnRight);
         Bind("turn_left", TurnLeft);
     }
 
-    public override void MoveForward()
+    public override bool MoveForward()
     {
-        base.MoveForward();
+        bool result = base.MoveForward();
         CheckGoal();
+        return result;
     }
 
-    public override void MoveBackward()
+    public override bool MoveBackward()
     {
-        base.MoveBackward();
+        bool result = base.MoveBackward();
         CheckGoal();
+        return result;
     }
 
     private void CheckGoal()

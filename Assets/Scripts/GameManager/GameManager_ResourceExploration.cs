@@ -1,5 +1,4 @@
 using UnityEngine;
-using System;
 
 public class GameManager_ResourceExploration : GameManager
 {
@@ -13,20 +12,37 @@ public class GameManager_ResourceExploration : GameManager
             levelWidth = 5 * (upgradeLevel + 1);
             levelLength = 5 * (upgradeLevel + 1);
         }
-        if (cargoSizeUpgrade && cargoComponent) 
-        { 
+        if (cargoSizeUpgrade && cargoComponent)
+        {
             int upgradeLevel = UpgradeManager.instance.GetUpgradeLevel(cargoSizeUpgrade.id);
             cargoComponent.cargoSize = 4 + 2 * upgradeLevel;
         }
     }
     protected override void RegisterLevelSpecificPythonCommands()
     {
+        BindReturn("move_forward", MoveForward);
+        BindReturn("move_backward", MoveBackward);
+        Bind("turn_right", TurnRight);
+        Bind("turn_left", TurnLeft);
+
         Bind("mine", Mine);
         Bind("collect", Collect);
-        Bind("purify", Purify);
-        Bind("drill", Drill);
-        Bind("pump", Pump);
-        BindReturn("measure", Measure);
+
+        if (UpgradeManager.instance)
+        {
+            if (UpgradeManager.instance.IsUpgradeUnlocked("scan")) BindReturn("scan", Scan);
+            if (UpgradeManager.instance.IsUpgradeUnlocked("measure"))
+                BindReturn("measure", Measure);
+            if (UpgradeManager.instance.IsUpgradeUnlocked("purpleliquid"))
+            {
+                Bind("drill", Drill);
+                Bind("pump", Pump);
+            }
+            if (UpgradeManager.instance.IsUpgradeUnlocked("blackore"))
+            {
+                Bind("purify", Purify);
+            }
+        }
     }
 
     public void Mine()
@@ -60,6 +76,18 @@ public class GameManager_ResourceExploration : GameManager
     public void Collect()
     {
         TileObject targetTile = GetTileInFront();
+        if (targetTile == null)
+        {
+            Debug.Log("You are facing the edge of the map!");
+            return;
+        }
+
+        if (cargoComponent && cargoComponent.IsFull())
+        {
+            Debug.Log("Cargo is full. Cannot collect more resources.");
+            return;
+        }
+
         if (targetTile.type == TileType.WhiteOre)
         {
             CaveTile_WhiteOre ore = targetTile.tileInstance as CaveTile_WhiteOre;
@@ -97,7 +125,12 @@ public class GameManager_ResourceExploration : GameManager
     public void Drill()
     {
         TileObject targetTile = GetTileInFront();
-        if (targetTile.type == TileType.PurpleVein)
+        if (targetTile == null)
+        {
+            Debug.Log("You are facing the edge of the map!");
+            return;
+        }
+        if (targetTile.type == TileType.PurpleEssence)
         {
             CaveTile_PurpleVein vein = targetTile.tileInstance as CaveTile_PurpleVein;
             if (!vein.isDrilled) player.PerformAction(PlayerAction.Drill, () => vein.Drill());
@@ -107,7 +140,12 @@ public class GameManager_ResourceExploration : GameManager
     public void Pump()
     {
         TileObject targetTile = GetTileInFront();
-        if (targetTile.type == TileType.PurpleVein)
+        if (targetTile == null)
+        {
+            Debug.Log("You are facing the edge of the map!");
+            return;
+        }
+        if (targetTile.type == TileType.PurpleEssence)
         {
             CaveTile_PurpleVein vein = targetTile.tileInstance as CaveTile_PurpleVein;
             if (vein.isDrilled && !vein.isPumped)

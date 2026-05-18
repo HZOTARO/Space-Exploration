@@ -33,6 +33,11 @@ public class CodeEditor : MonoBehaviour
     [Header("Line Number UI")]
     public TextMeshProUGUI lineNumbersText;
 
+    [Header("Printing")]
+    public TextMeshProUGUI printOutputText;
+    public int maxTerminalLines = 30;
+    private Queue<string> terminalLines = new Queue<string>();
+
     [Header("Error System")]
     public RectTransform errorPanel;
     public TextMeshProUGUI errorText;
@@ -55,6 +60,7 @@ public class CodeEditor : MonoBehaviour
 
         RemoveHighlight();
         HideError();
+        ClearTerminal();
     }
 
     private void Update()
@@ -409,16 +415,30 @@ public class CodeEditor : MonoBehaviour
 
     #endregion
 
-    #region --- ERROR UI ---
+    #region --- PRINTING UI ---
+
+    public void PrintToTerminal(string message)
+    {
+        if (printOutputText == null) return;
+
+        terminalLines.Enqueue("> " + message);
+
+        while (terminalLines.Count > maxTerminalLines)
+        {
+            terminalLines.Dequeue();
+        }
+
+        printOutputText.text = string.Join("\n", terminalLines) + "\n\n> ";
+    }
+
+    public void ClearTerminal()
+    {
+        terminalLines.Clear();
+        if (printOutputText != null) printOutputText.text = "";
+    }
 
     public void ShowError(int line, string message)
     {
-        if (gameManager != null && gameManager.player != null)
-        {
-            PlayerFloatingText pft = gameManager.player.GetComponent<PlayerFloatingText>();
-            if (pft != null) pft.HideText();
-        }
-
         if (errorPanel != null) errorPanel.gameObject.SetActive(true);
 
         if (gameManager != null)
@@ -427,6 +447,8 @@ public class CodeEditor : MonoBehaviour
         }
 
         if (errorText != null) errorText.text = $"Error on line {line}:\n{message}";
+
+        PrintToTerminal($"<color=red>Error on line {line}: {message}</color>");
 
         TriggerHighlight(line, line);
 

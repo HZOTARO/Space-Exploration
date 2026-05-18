@@ -11,10 +11,18 @@ public enum Direction
 public enum TileType
 {
     None,
+
     Floor,
     WhiteOre,
-    PurpleVein,
+    PurpleEssence,
     BlackOre,
+
+    Enemy,
+    EnemyPath,
+    Gear,
+    Screw,
+    Wall,
+
     Goal,
 }
 

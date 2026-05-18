@@ -38,10 +38,10 @@ public class CameraController : MonoBehaviour
         if (childCamera == null) childCamera = GetComponentInChildren<Camera>();
 
         mapMinX = 0;
-        mapMaxX = gridWidth * tileWidth + 2;
+        mapMaxX = (gridWidth + 1) * tileWidth + 2;
 
-        mapMinZ = 6;
-        mapMaxZ = gridHeight * tileLength + 10;
+        mapMinZ = 6 - tileLength;
+        mapMaxZ = (gridHeight + 1) * tileLength + 10;
 
         int middleDimension = Mathf.Min(gridWidth, gridHeight) + Mathf.Abs(gridWidth - gridHeight) / 2;
         maxZoom = middleDimension + 2 + Mathf.Floor(middleDimension / 10) * 1;
