@@ -82,6 +82,11 @@ public class PlayerCargoComponent : MonoBehaviour
         Debug.Log($"<color=green>Added {item.displayName} to Cargo Slot {emptyIndex}.</color>");
     }
 
+    public bool IsFull()
+    {
+        return !levelCargo.Exists(slot => slot.item == null);
+    }
+
     public int GetItemCount(int index)
     {
         if (index < 0 || index >= cargoSize || levelCargo[index].item == null) return 0;

@@ -393,10 +393,16 @@ public class GameManager : MonoBehaviour
         return tileTypeName;
     }
 
-    public void Measure()
+    public int Measure()
     {
         IMeasureable measureableTile = GetTileInFront().tileInstance as IMeasureable;
-        if (measureableTile != null) Debug.Log("Measurement result: " + measureableTile.Measured());
+        if (measureableTile != null)
+        {
+            int result = measureableTile.Measured();
+            Debug.Log("Measurement result: " + result);
+            return result;
+        }
+        return -1;
     }
 
     protected void Return()

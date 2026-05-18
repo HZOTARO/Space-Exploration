@@ -25,6 +25,8 @@ public class TileManager : MonoBehaviour
     {
         if (!tilesContainer) return;
 
+        ClearMap();
+
         objectsArray = new TileObject[length, width];
         floorArray = new TileObject[length, width];
 
@@ -47,6 +49,17 @@ public class TileManager : MonoBehaviour
         objectsArray[0, 0].type = TileType.Floor;
 
         SpawnTilesVisual();
+    }
+
+    public virtual void ClearMap()
+    {
+        if (tilesContainer != null)
+        {
+            for (int i = tilesContainer.transform.childCount - 1; i >= 0; i--)
+            {
+                Destroy(tilesContainer.transform.GetChild(i).gameObject);
+            }
+        }
     }
 
     protected virtual void GenerateMapContent()

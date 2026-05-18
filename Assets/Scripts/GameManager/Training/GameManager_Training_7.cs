@@ -2,36 +2,127 @@ using UnityEngine;
 
 public class GameManager_Training_7 : GameManager_Training
 {
+    protected override void RegisterLevelSpecificPythonCommands()
+    {
+        Bind("move_forward", MoveForward);
+        Bind("move_backward", MoveBackward);
+        Bind("turn_right", TurnRight);
+        Bind("turn_left", TurnLeft);
+
+        Bind("mine", Mine);
+        Bind("collect", Collect);
+        BindReturn("scan", Scan);
+        BindReturn("measure", Measure);
+    }
+
     protected override void SetLevelAllowedSyntax()
     {
+        base.SetLevelAllowedSyntax();
+
         allowedSyntaxNodes.AddRange(SyntaxDictionary.Variables);
-        //allowedSyntaxNodes.AddRange(SyntaxDictionary.Logic);
-        //allowedSyntaxNodes.AddRange(SyntaxDictionary.Loops);
-        //allowedSyntaxNodes.AddRange(SyntaxDictionary.Lists);
+        allowedSyntaxNodes.AddRange(SyntaxDictionary.Logic);
+        allowedSyntaxNodes.AddRange(SyntaxDictionary.Loops);
+        allowedSyntaxNodes.AddRange(SyntaxDictionary.Lists);
+    }
+    protected override void StartValuesSetup()
+    {
+        levelLength = 1;
+        levelWidth = Random.Range(10, 30);
+        cargoSize = 0;
     }
 
     protected override void SetLevelObjectives()
     {
         base.SetLevelObjectives();
-
         ObjectiveManager.instance.objectives.Add(new LevelObjective()
         {
-            description = "Use move_forward() to move the player.",
-            type = ObjectiveType.FunctionCall,
-            targetFunctionName = "move_forward"
-        });
-
-        ObjectiveManager.instance.objectives.Add(new LevelObjective()
-        {
-            description = "Reach the goal!",
+            description = "Create a list named 'inventory'. Measure all the White Ores and append their values to the list in a single run.",
             type = ObjectiveType.CustomEvent,
-            customEventId = "ReachedGoal"
+            customEventId = "ListCompleted"
         });
     }
 
-    protected override void StartValuesSetup()
+    protected override void Start()
     {
-        //levelSize = 3;
-        cargoSize = 4;
+        base.Start();
+
+        TileManager_Training_7 tm = tileManager as TileManager_Training_7;
+        if (tm != null)
+        {
+            cargoSize = tm.numberOfOres;
+
+            if (cargoComponent != null)
+            {
+                cargoComponent.cargoSize = cargoSize;
+                StartCoroutine(cargoComponent.SetupCargoCoroutine());
+            }
+        }
+
+        if (PythonExecutor.instance != null)
+        {
+            PythonExecutor.instance.OnExecutionFinished += CheckListCompletion;
+            PythonExecutor.instance.OnExecutionAborted += HandleAbort;
+            PythonExecutor.instance.OnRuntimeError += HandleRuntimeError;
+        }
+    }
+
+    private void CheckListCompletion()
+    {
+        bool createdList = PythonExecutor.instance.CheckASTPattern(1, 999, "AssignList", "inventory");
+        if (!createdList)
+        {
+            PrintToDisplay("<color=red>Error: You must create a list named 'inventory' (e.g., inventory = [])</color>");
+            ResetPlayerToStart();
+            return;
+        }
+
+        bool usedAppend = PythonExecutor.instance.CheckASTPattern(1, 999, "HasListAppend", "");
+        if (!usedAppend)
+        {
+            PrintToDisplay("<color=red>Error: You must use the .append() function to add ores to your list!</color>");
+            ResetPlayerToStart();
+            return;
+        }
+
+        TileManager_Training_7 tm = tileManager as TileManager_Training_7;
+        if (tm == null) return;
+
+        string inventoryResult = PythonExecutor.instance.GetVariableValue("inventory");
+
+        string expectedListString = "[" + string.Join(", ", tm.expectedOreValues) + "]";
+
+        if (inventoryResult == expectedListString)
+        {
+            PrintToDisplay($"<color=green>Perfect! Your list matched exactly: {expectedListString}</color>");
+            ObjectiveManager.instance.TriggerCustomEvent("ListCompleted");
+            base.OnLevelComplete();
+        }
+        else
+        {
+            PrintToDisplay($"<color=red>Mismatch! Expected {expectedListString} but got {inventoryResult}. Resetting everything...</color>");
+            ResetPlayerToStart();
+        }
+    }
+
+    protected override void ResetPlayerToStart()
+    {
+        base.ResetPlayerToStart();
+
+        if (tileManager != null)
+        {
+            tileManager.GenerateMap();
+        }
+    }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+
+        if (PythonExecutor.instance != null)
+        {
+            PythonExecutor.instance.OnExecutionFinished -= CheckListCompletion;
+            PythonExecutor.instance.OnExecutionAborted -= HandleAbort;
+            PythonExecutor.instance.OnRuntimeError -= HandleRuntimeError;
+        }
     }
 }

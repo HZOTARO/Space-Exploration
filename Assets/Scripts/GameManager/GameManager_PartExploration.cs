@@ -22,10 +22,8 @@ public class GameManager_PartExploration : GameManager
 
     protected override void RegisterLevelSpecificPythonCommands()
     {
-        void Bind(string pyName, Action action) => PythonExecutor.instance.RegisterPythonFunction(pyName, action);
-
         Bind("collect", Collect);
-        Bind("measure", Measure);
+        BindReturn("measure", Measure);
         Bind("wait", Wait);
     }
 

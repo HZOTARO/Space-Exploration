@@ -41,43 +41,4 @@ public class GameManager_Training_3 : GameManager_Training
         levelWidth = 1;
         cargoSize = 2;
     }
-
-    private void Mine()
-    {
-        int startLine = 1;
-        int endLine = 1;
-
-        if (PythonExecutor.instance != null && !string.IsNullOrEmpty(PythonExecutor.instance.currentCode))
-        {
-            string[] codeLines = PythonExecutor.instance.currentCode.Split('\n');
-            endLine = Mathf.Max(1, codeLines.Length);
-        }
-
-        bool passesCheck = PythonExecutor.instance.CheckASTPattern(startLine, endLine, "FuncInsideIfWhiteOre", "mine");
-
-        if (passesCheck)
-        {
-            ObjectiveManager.instance.TriggerCustomEvent("MineInsideIf");
-            PrintToDisplay("Robot action: Excavating target ore node material...");
-        }
-        else
-        {
-            PrintToDisplay("Action Blocked! You must verify the tile equals \"WhiteOre\" using an if statement before mining.");
-        }
-    }
-
-    private void Collect()
-    {
-        bool passesCheck = PythonExecutor.instance.CheckASTPattern(1, 999, "FuncInsideIfWhiteOre", "collect");
-
-        if (passesCheck)
-        {
-            ObjectiveManager.instance.TriggerCustomEvent("CollectInsideIf");
-            PrintToDisplay("Robot action: Securing processed item container into storage cargo slot...");
-        }
-        else
-        {
-            PrintToDisplay("Action Blocked! You must verify the tile equals \"WhiteOre\" using an if statement before collecting.");
-        }
-    }
 }

@@ -21,14 +21,12 @@ public class GameManager_ResourceExploration : GameManager
     }
     protected override void RegisterLevelSpecificPythonCommands()
     {
-        void Bind(string pyName, Action action) => PythonExecutor.instance.RegisterPythonFunction(pyName, action);
-
         Bind("mine", Mine);
         Bind("collect", Collect);
         Bind("purify", Purify);
         Bind("drill", Drill);
         Bind("pump", Pump);
-        Bind("measure", Measure);
+        BindReturn("measure", Measure);
     }
 
     public void Mine()

@@ -2,9 +2,6 @@ using UnityEngine;
 
 public class GameManager_Training_5 : GameManager_Training
 {
-    private Vector3 startingPhysicalPos;
-    private Quaternion startingPhysicalRot;
-
     protected override void RegisterLevelSpecificPythonCommands()
     {
         Bind("move_forward", MoveForward);
@@ -39,15 +36,11 @@ public class GameManager_Training_5 : GameManager_Training
     {
         base.Start();
 
-        if (player != null)
-        {
-            startingPhysicalPos = player.transform.position;
-            startingPhysicalRot = player.transform.rotation;
-        }
-
         if (PythonExecutor.instance != null)
         {
             PythonExecutor.instance.OnExecutionFinished += CheckPrecisionGoal;
+            PythonExecutor.instance.OnRuntimeError += HandleRuntimeError;
+            PythonExecutor.instance.OnExecutionAborted += HandleAbort;
         }
     }
 
@@ -68,24 +61,6 @@ public class GameManager_Training_5 : GameManager_Training
         }
     }
 
-    private void ResetPlayerToStart()
-    {
-        if (PythonExecutor.instance != null)
-        {
-            PythonExecutor.instance.StopRunningCode();
-        }
-
-        playerGridLoc = Vector2Int.zero;
-        playerFacing = 0;
-
-        if (player != null)
-        {
-            player.transform.position = startingPhysicalPos;
-            player.transform.rotation = startingPhysicalRot;
-            player.inAction = false;
-        }
-    }
-
     protected override void StartValuesSetup()
     {
         levelLength = 1;
@@ -99,6 +74,8 @@ public class GameManager_Training_5 : GameManager_Training
         if (PythonExecutor.instance != null)
         {
             PythonExecutor.instance.OnExecutionFinished -= CheckPrecisionGoal;
+            PythonExecutor.instance.OnRuntimeError -= HandleRuntimeError;
+            PythonExecutor.instance.OnExecutionAborted -= HandleAbort;
         }
     }
 }

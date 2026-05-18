@@ -1,10 +1,8 @@
 using UnityEngine;
+using System.Text.RegularExpressions;
 
 public class GameManager_Training_4 : GameManager_Training
 {
-    private Vector3 startingPhysicalPos;
-    private Quaternion startingPhysicalRot;
-
     protected override void RegisterLevelSpecificPythonCommands()
     {
         Bind("move_forward", MoveForward);
@@ -25,9 +23,23 @@ public class GameManager_Training_4 : GameManager_Training
     {
         base.SetLevelObjectives();
 
+        levelLength = 1;
+        levelWidth = Random.Range(100, 201);
+
+        int generatedGoalX = Random.Range(levelWidth / 2, levelWidth);
+
+        if (tileManager)
+        {
+            TileManager_Training_4 tileManager4 = tileManager as TileManager_Training_4;
+            if (tileManager4 != null)
+            {
+                tileManager4.goalX = generatedGoalX;
+            }
+        }
+
         ObjectiveManager.instance.objectives.Add(new LevelObjective()
         {
-            description = "Reach your goal in one play execution(Play)\nAutomate your movement by using move_forward() inside a 'for' loop",
+            description = $"The map is {levelWidth} tiles long.\nThe Goal is precisely on Tile {generatedGoalX}.\nReach it by writing 'move_forward()' only once in your code!",
             type = ObjectiveType.CustomEvent,
             customEventId = "MovedWithLoop"
         });
@@ -37,12 +49,6 @@ public class GameManager_Training_4 : GameManager_Training
     {
         base.Start();
 
-        if (player != null)
-        {
-            startingPhysicalPos = player.transform.position;
-            startingPhysicalRot = player.transform.rotation;
-        }
-
         if (PythonExecutor.instance != null)
         {
             PythonExecutor.instance.OnExecutionFinished += CheckPrecisionGoal;
@@ -51,76 +57,63 @@ public class GameManager_Training_4 : GameManager_Training
         }
     }
 
-    private void HandleAbort()
-    {
-        PrintToDisplay("<color=orange>Program Aborted. Resetting position...</color>");
-        ResetPlayerToStart();
-    }
+    //public override void MoveForward()
+    //{
+    //    int startLine = 1;
+    //    int endLine = 1;
 
-    private void HandleRuntimeError(int line, string message)
-    {
-        PrintToDisplay($"<color=red>Code Error: {message}</color> Resetting...");
-        ResetPlayerToStart();
-    }
+    //    if (PythonExecutor.instance != null && !string.IsNullOrEmpty(PythonExecutor.instance.currentCode))
+    //    {
+    //        string[] codeLines = PythonExecutor.instance.currentCode.Split('\n');
+    //        endLine = Mathf.Max(1, codeLines.Length);
+    //    }
 
-    public override void MoveForward()
-    {
-        int startLine = 1;
-        int endLine = 1;
+    //    bool calledInsideLoop = PythonExecutor.instance.CheckASTPattern(startLine, endLine, "FuncInsideFor", "move_forward");
 
-        if (PythonExecutor.instance != null && !string.IsNullOrEmpty(PythonExecutor.instance.currentCode))
-        {
-            string[] codeLines = PythonExecutor.instance.currentCode.Split('\n');
-            endLine = Mathf.Max(1, codeLines.Length);
-        }
-
-        bool calledInsideLoop = PythonExecutor.instance.CheckASTPattern(startLine, endLine, "FuncInsideFor", "move_forward");
-
-        if (calledInsideLoop)
-        {
-            base.MoveForward();
-        }
-        else
-        {
-            PrintToDisplay("Action Blocked! You must use a 'for' loop to automate your movement on this level.");
-            if (PythonExecutor.instance != null) PythonExecutor.instance.StopRunningCode();
-        }
-    }
+    //    if (calledInsideLoop)
+    //    {
+    //        base.MoveForward();
+    //    }
+    //    else
+    //    {
+    //        PrintToDisplay("Action Blocked! You must use a 'for' loop to automate your movement on this level.");
+    //        if (PythonExecutor.instance != null) PythonExecutor.instance.StopRunningCode();
+    //    }
+    //}
 
     private void CheckPrecisionGoal()
     {
+        string code = PythonExecutor.instance.currentCode;
+
+        if (!string.IsNullOrEmpty(code))
+        {
+            int moveCount = Regex.Matches(code, "move_forward\\(\\)").Count;
+
+            if (moveCount > 1)
+            {
+                PrintToDisplay($"<color=red>Constraint Failed! You wrote move_forward() {moveCount} times. You are only allowed to write it 1 time!</color>");
+                ResetPlayerToStart();
+                return;
+            }
+        }
+
         TileObject finalTile = GetCurrentTile();
 
         if (finalTile != null && finalTile.type == TileType.Goal)
         {
             PrintToDisplay("<color=green>Target Acquired! Precision destination matched perfectly.</color>");
             ObjectiveManager.instance.TriggerCustomEvent("MovedWithLoop");
+            base.OnLevelComplete();
         }
         else
         {
-            PrintToDisplay("<color=red>Missed! You did not stop precisely on the Goal tile (Tile 7). Resetting position...</color>");
+            PrintToDisplay("<color=red>Missed! You did not stop precisely on the Goal tile. Resetting position...</color>");
             ResetPlayerToStart();
-        }
-    }
-
-    private void ResetPlayerToStart()
-    {
-        playerGridLoc = Vector2Int.zero;
-        playerFacing = 0;
-
-        if (player != null)
-        {
-            player.transform.position = startingPhysicalPos;
-            player.transform.rotation = startingPhysicalRot;
-
-            player.ResetPlayerState();
         }
     }
 
     protected override void StartValuesSetup()
     {
-        levelLength = 1;
-        levelWidth = 8;
         cargoSize = 0;
     }
 
