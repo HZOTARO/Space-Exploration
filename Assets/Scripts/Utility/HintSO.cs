@@ -22,4 +22,5 @@ public class HintSO : ScriptableObject
 
     [Header("Unlock Settings")]
     public bool isUnlockedByDefault = false;
+    public bool ignoreLock = false;
 }

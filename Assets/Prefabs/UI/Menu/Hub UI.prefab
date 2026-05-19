@@ -271,10 +271,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d8c6d0c3d1948e49a63048491dd39fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UIScriptIWrite::Button_Id
+  openLevel: 1
   requiredLevelId: Tutorial 6
   levelId: Tutorial 7
   upgradeRequirement: {fileID: 0}
-  levelType: 12
+  levelType: 13
 --- !u!1 &343000716828506764
 GameObject:
   m_ObjectHideFlags: 0
@@ -409,10 +410,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d8c6d0c3d1948e49a63048491dd39fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UIScriptIWrite::Button_Id
+  openLevel: 1
   requiredLevelId: Tutorial 2
   levelId: Tutorial 3
   upgradeRequirement: {fileID: 0}
-  levelType: 8
+  levelType: 9
 --- !u!1 &483959394171442161
 GameObject:
   m_ObjectHideFlags: 0
@@ -720,10 +722,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d8c6d0c3d1948e49a63048491dd39fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UIScriptIWrite::Button_Id
+  openLevel: 1
   requiredLevelId: Tutorial 4
   levelId: Tutorial 5
   upgradeRequirement: {fileID: 0}
-  levelType: 10
+  levelType: 11
 --- !u!1 &952291198039013982
 GameObject:
   m_ObjectHideFlags: 0
@@ -867,6 +870,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d9e968bbf643a4a821088045706dff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UIScriptIWrite::HubMenu
+  firstOpenHint:
+  - {fileID: 11400000, guid: eb5b43de8b4d5b340bdcbd0c1dc65288, type: 2}
+  - {fileID: 11400000, guid: 142dcef612f2ddc40bff07c55d409ebe, type: 2}
 --- !u!1 &1196247241216895446
 GameObject:
   m_ObjectHideFlags: 0
@@ -1150,10 +1156,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d8c6d0c3d1948e49a63048491dd39fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UIScriptIWrite::Button_Id
+  openLevel: 1
   requiredLevelId: 
   levelId: 
   upgradeRequirement: {fileID: 0}
-  levelType: 2
+  levelType: 3
 --- !u!1 &1295377720398422018
 GameObject:
   m_ObjectHideFlags: 0
@@ -1565,10 +1572,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d8c6d0c3d1948e49a63048491dd39fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UIScriptIWrite::Button_Id
+  openLevel: 1
   requiredLevelId: 
   levelId: Tutorial 1
   upgradeRequirement: {fileID: 0}
-  levelType: 6
+  levelType: 7
 --- !u!1 &2133551780301821287
 GameObject:
   m_ObjectHideFlags: 0
@@ -2087,10 +2095,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d8c6d0c3d1948e49a63048491dd39fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UIScriptIWrite::Button_Id
+  openLevel: 1
   requiredLevelId: 
   levelId: 
   upgradeRequirement: {fileID: 11400000, guid: 9a7968dc57ec92049a15f7acf00987e5, type: 2}
-  levelType: 3
+  levelType: 4
 --- !u!1 &2252892717274972381
 GameObject:
   m_ObjectHideFlags: 0
@@ -2240,6 +2249,7 @@ GameObject:
   - component: {fileID: 9054649275827982571}
   - component: {fileID: 5112755563788328036}
   - component: {fileID: 8830630113823263295}
+  - component: {fileID: 8175679384626225553}
   m_Layer: 5
   m_Name: Exploration
   m_TagString: Untagged
@@ -2361,6 +2371,23 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &8175679384626225553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2254496856468323095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d8c6d0c3d1948e49a63048491dd39fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UIScriptIWrite::Button_Id
+  openLevel: 0
+  requiredLevelId: Tutorial 1
+  levelId: 
+  upgradeRequirement: {fileID: 0}
+  levelType: 0
 --- !u!1 &2282117505634143651
 GameObject:
   m_ObjectHideFlags: 0
@@ -3034,13 +3061,14 @@ GameObject:
   - component: {fileID: 5756530504868053605}
   - component: {fileID: 2783551170551511417}
   - component: {fileID: 8899497560423888798}
+  - component: {fileID: 2260429104445724362}
   m_Layer: 5
   m_Name: Crafting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &941336195405296898
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3056,9 +3084,9 @@ RectTransform:
   - {fileID: 225871772153596755}
   m_Father: {fileID: 8205614982543985999}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 556.6666, y: -300}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5756530504868053605
@@ -3155,6 +3183,23 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2260429104445724362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3023173840925921192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d8c6d0c3d1948e49a63048491dd39fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UIScriptIWrite::Button_Id
+  openLevel: 0
+  requiredLevelId: Tutorial 1
+  levelId: 
+  upgradeRequirement: {fileID: 0}
+  levelType: 0
 --- !u!1 &3035996502576789321
 GameObject:
   m_ObjectHideFlags: 0
@@ -6188,10 +6233,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d8c6d0c3d1948e49a63048491dd39fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UIScriptIWrite::Button_Id
+  openLevel: 1
   requiredLevelId: Tutorial 5
   levelId: Tutorial 6
   upgradeRequirement: {fileID: 0}
-  levelType: 11
+  levelType: 12
 --- !u!1 &7014389736175536299
 GameObject:
   m_ObjectHideFlags: 0
@@ -6827,10 +6873,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d8c6d0c3d1948e49a63048491dd39fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UIScriptIWrite::Button_Id
+  openLevel: 1
   requiredLevelId: Tutorial 7
   levelId: Tutorial 8
   upgradeRequirement: {fileID: 0}
-  levelType: 13
+  levelType: 14
 --- !u!1 &8218656755390622916
 GameObject:
   m_ObjectHideFlags: 0
@@ -6879,6 +6926,7 @@ GameObject:
   - component: {fileID: 3325927695152008408}
   - component: {fileID: 7400945171337222225}
   - component: {fileID: 1006767101860184499}
+  - component: {fileID: 942326411440096570}
   m_Layer: 5
   m_Name: Upgrade
   m_TagString: Untagged
@@ -7000,6 +7048,23 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &942326411440096570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8245278615023175524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d8c6d0c3d1948e49a63048491dd39fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UIScriptIWrite::Button_Id
+  openLevel: 0
+  requiredLevelId: Tutorial 1
+  levelId: 
+  upgradeRequirement: {fileID: 0}
+  levelType: 0
 --- !u!1 &8247514561586436228
 GameObject:
   m_ObjectHideFlags: 0
@@ -7330,10 +7395,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d8c6d0c3d1948e49a63048491dd39fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UIScriptIWrite::Button_Id
+  openLevel: 1
   requiredLevelId: Tutorial 1
   levelId: Tutorial 2
   upgradeRequirement: {fileID: 0}
-  levelType: 7
+  levelType: 8
 --- !u!1 &8503168628497612993
 GameObject:
   m_ObjectHideFlags: 0
@@ -7605,10 +7671,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d8c6d0c3d1948e49a63048491dd39fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UIScriptIWrite::Button_Id
+  openLevel: 1
   requiredLevelId: Tutorial 3
   levelId: Tutorial 4
   upgradeRequirement: {fileID: 0}
-  levelType: 9
+  levelType: 10
 --- !u!1 &9158284481340266917
 GameObject:
   m_ObjectHideFlags: 0

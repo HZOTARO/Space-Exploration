@@ -2,6 +2,7 @@ using UnityEngine;
 
 public enum LevelType
 {
+    None,
     MainMenu,
     Hub,
     ResourceExploration,

@@ -40,6 +40,7 @@ public class PythonExecutor : MonoBehaviour
     bool lockDelay = false;
 
     public event Action OnExecutionFinished;
+    public event Action OnExecutionFinishedBefore;
     public event Action<string> OnPythonPrint;
     public event Action<int, int> OnLineExecuted;
     public event Action<int, string> OnRuntimeError;
@@ -130,6 +131,7 @@ public class PythonExecutor : MonoBehaviour
         {
             StopRunningCode();
 
+            OnExecutionFinishedBefore = null;
             OnExecutionFinished = null;
             OnPythonPrint = null;
             CanStepCode = null;
@@ -260,6 +262,7 @@ public class PythonExecutor : MonoBehaviour
 
             if (result == "DONE")
             {
+                OnExecutionFinishedBefore?.Invoke();
                 continuous = false;
                 currentCode = null;
                 OnExecutionFinished?.Invoke();

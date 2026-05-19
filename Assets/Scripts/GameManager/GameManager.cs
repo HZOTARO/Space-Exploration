@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
+    protected List<Enemy> activeEnemies;
+
     [Header("Component")]
     [HideInInspector] public PlayerHealthComponent healthComponent;
     [HideInInspector] public PlayerCargoComponent cargoComponent;
@@ -40,7 +42,6 @@ public class GameManager : MonoBehaviour
     protected Dictionary<string, string> customLevelErrors = new Dictionary<string, string>();
 
     [Header("Hint")]
-    bool useHintCollection = true;
     public HintCollectionSO hintCollection;
     public List<HintSO> hintList;
 
@@ -62,8 +63,8 @@ public class GameManager : MonoBehaviour
         if (!tileManager) tileManager = FindFirstObjectByType<TileManager>();
         if (!codeEditor) codeEditor = FindFirstObjectByType<CodeEditor>();
 
-        SetLevelAllowedSyntax();
         StartValuesSetup();
+        SetLevelAllowedSyntax();
 
         if (healthComponent != null)
         {
@@ -115,14 +116,11 @@ public class GameManager : MonoBehaviour
 
         if (HintManager.instance)
         {
-            if (useHintCollection && hintCollection)
-            {
-                HintManager.instance.RequestDisplayHints(hintCollection, onlyShowNewOne: true);
-            }
-            else
-            {
-                HintManager.instance.RequestDisplayHints(hintList, onlyShowNewOne: true);
-            }
+            List<HintSO> list = new List<HintSO>();
+            if (hintCollection != null) list.AddRange(hintCollection.hints);
+            if (hintList != null) list.AddRange(hintList);
+
+            HintManager.instance.RequestDisplayHints(list, null, true, true);
         }
     }
 
@@ -130,11 +128,12 @@ public class GameManager : MonoBehaviour
     {
         if (!UpgradeManager.instance) return;
 
-        if (healthUpgrade && healthComponent)
-        {
-            int healthLevel = UpgradeManager.instance.GetUpgradeLevel(healthUpgrade.id);
-            maxHealth += 50 + 25 * (healthLevel - 1);
-        }
+        //if (healthUpgrade && healthComponent)
+        //{
+        //    int healthLevel = UpgradeManager.instance.GetUpgradeLevel(healthUpgrade.id);
+        //    maxHealth += 50 + 25 * (healthLevel - 1);
+        //}
+        maxHealth = 100;
     }
 
     protected virtual void OnDestroy()
@@ -399,9 +398,39 @@ public class GameManager : MonoBehaviour
         return tileTypeName;
     }
 
+    public virtual string FarScan()
+    {
+        Vector2Int forwardLoc = GetForwardGridLoc();
+        for (int i = 0; i < 3; i++)
+        {
+            if (forwardLoc.x < 0 || forwardLoc.x >= tileManager.width || forwardLoc.y < 0 || forwardLoc.y >= tileManager.length)
+            {
+                return "Empty";
+            }
+            TileObject targetTile = tileManager.objectsArray[forwardLoc.y, forwardLoc.x];
+            if (targetTile.type != TileType.None)
+            {
+                string tileTypeName = targetTile.type.ToString();
+                Debug.Log($"Player far scanned the tile at distance {i + 1}: {tileTypeName}");
+                return tileTypeName;
+            }
+            if (playerFacing == 0) forwardLoc.y++;
+            else if (playerFacing == 1) forwardLoc.x++;
+            else if (playerFacing == 2) forwardLoc.y--;
+            else if (playerFacing == 3) forwardLoc.x--;
+        }
+        return "Empty";
+    }
+
     public int Measure()
     {
-        IMeasureable measureableTile = GetTileInFront().tileInstance as IMeasureable;
+        TileObject targetTile = GetTileInFront();
+        if (targetTile == null || targetTile.tileInstance == null)
+        {
+            return -1;
+        }
+
+        IMeasureable measureableTile = targetTile.tileInstance as IMeasureable;
         if (measureableTile != null)
         {
             int result = measureableTile.Measured();
@@ -409,6 +438,59 @@ public class GameManager : MonoBehaviour
             return result;
         }
         return -1;
+    }
+
+    public void Shoot()
+    {
+        Vector2Int currentCheckLoc = GetForwardGridLoc();
+        bool hitSomething = false;
+
+        // Play the shooting animation/sound
+        // player.PerformAction(PlayerAction.Shoot); 
+
+        while (currentCheckLoc.x >= 0 && currentCheckLoc.x < tileManager.width &&
+               currentCheckLoc.y >= 0 && currentCheckLoc.y < tileManager.length)
+        {
+            TileObject staticTile = tileManager.objectsArray[currentCheckLoc.y, currentCheckLoc.x];
+            if (staticTile.type == TileType.Wall)
+            {
+                Debug.Log("Your shot hit a Wall.");
+                hitSomething = true;
+                break;
+            }
+
+            Enemy hitEnemy = null;
+            foreach (Enemy enemy in activeEnemies)
+            {
+                if (enemy.gridLoc == currentCheckLoc)
+                {
+                    hitEnemy = enemy;
+                    break;
+                }
+            }
+
+            if (hitEnemy != null)
+            {
+                Debug.Log("<color=orange>Enemy destroyed!</color>");
+
+                activeEnemies.Remove(hitEnemy);
+
+                Destroy(hitEnemy.gameObject);
+
+                hitSomething = true;
+                break;
+            }
+
+            if (playerFacing == 0) currentCheckLoc.y++;
+            else if (playerFacing == 1) currentCheckLoc.x++;
+            else if (playerFacing == 2) currentCheckLoc.y--;
+            else if (playerFacing == 3) currentCheckLoc.x--;
+        }
+
+        if (!hitSomething)
+        {
+            Debug.Log("You shot into empty space.");
+        }
     }
 
     protected void Return()

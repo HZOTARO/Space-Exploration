@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e16c12eea6204843a6d7e7405fa6f1e, type: 3}
   m_Name: HC_General
   m_EditorClassIdentifier: UtilityScriptIWrite::HintCollectionSO
-  collectionName: 
+  collectionName: General
   hints:
   - {fileID: 11400000, guid: eb5b43de8b4d5b340bdcbd0c1dc65288, type: 2}
   - {fileID: 11400000, guid: 142dcef612f2ddc40bff07c55d409ebe, type: 2}

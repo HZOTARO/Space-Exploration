@@ -114,7 +114,7 @@ public class GeneralUIScript : MonoBehaviour
         if (SaveManager.instance)
             SaveManager.saveData.gameSpeed = speed;
 
-        if (SceneManager.GetActiveScene().name != "Hub Scene")
-            Time.timeScale = speed;
+        //if (SceneManager.GetActiveScene().name != "Hub Scene")
+        Time.timeScale = speed;
     }
 }

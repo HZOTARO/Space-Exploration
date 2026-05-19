@@ -6,7 +6,6 @@ using System.Collections.Generic;
 public class LevelHintButton : MonoBehaviour
 {
     [Header("Hint Data")]
-    bool useHintCollection = true;
     public HintCollectionSO hintCollection;
     public List<HintSO> hintList;
     public HintSO openedHint;
@@ -22,14 +21,12 @@ public class LevelHintButton : MonoBehaviour
     private void OnHintButtonClicked()
     {
         if (HintManager.instance == null) return;
-        if (useHintCollection && hintCollection != null)
-        {
-            HintManager.instance.RequestDisplayHints(hintCollection, openedHint, false);
-        }
-        else if (hintList != null && hintList.Count > 0)
-        {
-            HintManager.instance.RequestDisplayHints(hintList, openedHint, false);
-        }
+
+        List<HintSO> list = new List<HintSO>();
+        if (hintCollection != null) list.AddRange(hintCollection.hints);
+        if (hintList != null) list.AddRange(hintList);
+
+        HintManager.instance.RequestDisplayHints(list, openedHint, true, false);
     }
 
     private void OnDestroy()

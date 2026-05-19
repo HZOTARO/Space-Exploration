@@ -25,6 +25,8 @@ public class GameManager_ResourceExploration : GameManager
         Bind("turn_right", TurnRight);
         Bind("turn_left", TurnLeft);
 
+        Bind("go_back", Return);
+
         Bind("mine", Mine);
         Bind("collect", Collect);
 
@@ -33,12 +35,12 @@ public class GameManager_ResourceExploration : GameManager
             if (UpgradeManager.instance.IsUpgradeUnlocked("scan")) BindReturn("scan", Scan);
             if (UpgradeManager.instance.IsUpgradeUnlocked("measure"))
                 BindReturn("measure", Measure);
-            if (UpgradeManager.instance.IsUpgradeUnlocked("purpleliquid"))
+            if (UpgradeManager.instance.IsUpgradeUnlocked("purple_liquid"))
             {
                 Bind("drill", Drill);
                 Bind("pump", Pump);
             }
-            if (UpgradeManager.instance.IsUpgradeUnlocked("blackore"))
+            if (UpgradeManager.instance.IsUpgradeUnlocked("black_ore"))
             {
                 Bind("purify", Purify);
             }

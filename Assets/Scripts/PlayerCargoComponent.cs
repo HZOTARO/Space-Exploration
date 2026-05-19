@@ -16,6 +16,9 @@ public class PlayerCargoComponent : MonoBehaviour
     public IEnumerator SetupCargoCoroutine()
     {
         if (cargoUI == null) yield break;
+        
+        levelCargo.Clear();
+        cargoSlots.Clear();
 
         Transform template = null;
         foreach (Transform slotTransform in cargoUI.transform)

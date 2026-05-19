@@ -709,6 +709,8 @@ MonoBehaviour:
     tilePrefab: {fileID: 98364360411693396, guid: 0c072067696c19e41bd63e7251d67fba, type: 3}
   - type: 4
     tilePrefab: {fileID: -1641081275331433878, guid: b6de4df3f6fee7142be73b985d7acdf3, type: 3}
+  - type: 9
+    tilePrefab: {fileID: 9201390410382802886, guid: 47c2b68f1dbcfd4499f3384d6ed59da5, type: 3}
 --- !u!4 &1025948149
 Transform:
   m_ObjectHideFlags: 0

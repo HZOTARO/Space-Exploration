@@ -1,116 +1,63 @@
 {
-    "lastSavedTime": "18-05-2026 20:17",
-    "inventory": [
-        {
-            "itemId": "map_scanner",
-            "amount": 1
-        }
-    ],
-    "unlockedUpgrades": [
-        {
-            "id": "resourceexploration_mapsize",
-            "currentLevel": 3
-        },
-        {
-            "id": "black_ore",
-            "currentLevel": 5
-        },
-        {
-            "id": "partsexploration_inventorysize",
-            "currentLevel": 2
-        },
-        {
-            "id": "partsexploration_mapsize",
-            "currentLevel": 2
-        },
-        {
-            "id": "purple_liquid",
-            "currentLevel": 5
-        },
-        {
-            "id": "resourceexploration_inventorysize",
-            "currentLevel": 3
-        },
-        {
-            "id": "white_ore",
-            "currentLevel": 4
-        },
-        {
-            "id": "far_scan",
-            "currentLevel": 1
-        },
-        {
-            "id": "measure",
-            "currentLevel": 1
-        },
-        {
-            "id": "scan",
-            "currentLevel": 1
-        },
-        {
-            "id": "shoot",
-            "currentLevel": 1
-        },
-        {
-            "id": "health",
-            "currentLevel": 1
-        },
-        {
-            "id": "ifelse",
-            "currentLevel": 1
-        },
-        {
-            "id": "list",
-            "currentLevel": 1
-        },
-        {
-            "id": "loop",
-            "currentLevel": 1
-        },
-        {
-            "id": "variable",
-            "currentLevel": 1
-        }
-    ],
+    "lastSavedTime": "19-05-2026 14:23",
+    "inventory": [],
+    "unlockedUpgrades": [],
     "stepDelay": 0.0,
-    "gameSpeed": 1.0,
+    "gameSpeed": 4.0,
     "levelCompleted": [
         "Tutorial 1",
         "Tutorial 2",
         "Tutorial 3",
         "Tutorial 4",
-        "Tutorial 5"
+        "Tutorial 5",
+        "Tutorial 6",
+        "Tutorial 7"
     ],
     "hints": [
         {
-            "id": "dummy",
-            "hasAppeared": false,
-            "isUnlocked": false
+            "id": "tutorial_welcome",
+            "hasAppeared": true,
+            "isUnlocked": true
         },
         {
-            "id": "template 1",
-            "hasAppeared": false,
-            "isUnlocked": false
+            "id": "tutorial_hub",
+            "hasAppeared": true,
+            "isUnlocked": true
         },
         {
-            "id": "template 2",
-            "hasAppeared": false,
-            "isUnlocked": false
+            "id": "training 1",
+            "hasAppeared": true,
+            "isUnlocked": true
         },
         {
-            "id": "template 3",
-            "hasAppeared": false,
-            "isUnlocked": false
+            "id": "training 2",
+            "hasAppeared": true,
+            "isUnlocked": true
         },
         {
-            "id": "template 4",
-            "hasAppeared": false,
-            "isUnlocked": false
+            "id": "training 3",
+            "hasAppeared": true,
+            "isUnlocked": true
         },
         {
-            "id": "template 5",
-            "hasAppeared": false,
-            "isUnlocked": false
+            "id": "training 4",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "training 5",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "training 6",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "training 7",
+            "hasAppeared": true,
+            "isUnlocked": true
         }
     ]
 }

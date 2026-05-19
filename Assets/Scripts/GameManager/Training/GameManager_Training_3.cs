@@ -41,4 +41,52 @@ public class GameManager_Training_3 : GameManager_Training
         levelWidth = 1;
         cargoSize = 2;
     }
+
+    public override void Mine()
+    {
+        if (PythonExecutor.instance != null)
+        {
+            if (PythonExecutor.instance.CheckASTPattern(0, 999, "FuncInsideIfWhiteOre", "mine"))
+            {
+                ObjectiveManager.instance.TriggerCustomEvent("MineInsideIf");
+                base.Mine();
+            }
+            else
+            {
+                Debug.Log("<color=red>Error: You must use mine() inside an 'if' block checking for 'WhiteOre'!</color>");
+
+                PythonExecutor.instance.StopRunningCode();
+
+                return;
+            }
+        }
+        else
+        {
+            base.Mine();
+        }
+    }
+
+    public override void Collect()
+    {
+        if (PythonExecutor.instance != null)
+        {
+            if (PythonExecutor.instance.CheckASTPattern(0, 999, "FuncInsideIfWhiteOre", "collect"))
+            {
+                ObjectiveManager.instance.TriggerCustomEvent("CollectInsideIf");
+                base.Collect();
+            }
+            else
+            {
+                Debug.Log("<color=red>Error: You must use collect() inside an 'if' block checking for 'WhiteOre'!</color>");
+
+                PythonExecutor.instance.StopRunningCode();
+
+                return;
+            }
+        }
+        else
+        {
+            base.Collect();
+        }
+    }
 }

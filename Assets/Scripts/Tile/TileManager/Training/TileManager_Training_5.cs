@@ -9,7 +9,7 @@ public class TileManager_Training_5 : TileManager_Training
 
     protected override void GenerateMapContent()
     {
-        for (int x = 0; x < width - 1; x++)
+        for (int x = 0; x < width; x++)
         {
             SetTile(0, x, TileType.Floor, asFloorToo: true);
         }

@@ -52,7 +52,7 @@ public class HintManager : MonoBehaviour
             {
                 HintSO hint = hintsToDisplay[i];
                 if (hint == null) continue;
-                if (!IsHintUnlocked(hint)) continue;
+                if (!hint.ignoreLock && !IsHintUnlocked(hint)) continue;
 
                 HintSaveState saveState = GetHintSaveState(hint);
 
@@ -108,9 +108,9 @@ public class HintManager : MonoBehaviour
         return newState;
     }
 
-    public bool IsHintUnlocked(HintSO hint, bool ignoreDefault = false)
+    public bool IsHintUnlocked(HintSO hint)
     {
-        if (hint.isUnlockedByDefault && !ignoreDefault) return true;
+        if (hint.isUnlockedByDefault) return true;
 
         if (SaveManager.saveData != null)
         {

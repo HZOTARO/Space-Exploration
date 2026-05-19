@@ -60,7 +60,7 @@ public class GameManager_Training_7 : GameManager_Training
 
         if (PythonExecutor.instance != null)
         {
-            PythonExecutor.instance.OnExecutionFinished += CheckListCompletion;
+            PythonExecutor.instance.OnExecutionFinishedBefore += CheckListCompletion;
             PythonExecutor.instance.OnExecutionAborted += HandleAbort;
             PythonExecutor.instance.OnRuntimeError += HandleRuntimeError;
         }
@@ -112,6 +112,11 @@ public class GameManager_Training_7 : GameManager_Training
         {
             tileManager.GenerateMap();
         }
+
+        if (cargoComponent)
+        {
+            StartCoroutine(cargoComponent.SetupCargoCoroutine());
+        }
     }
 
     protected override void OnDestroy()
@@ -120,7 +125,7 @@ public class GameManager_Training_7 : GameManager_Training
 
         if (PythonExecutor.instance != null)
         {
-            PythonExecutor.instance.OnExecutionFinished -= CheckListCompletion;
+            PythonExecutor.instance.OnExecutionFinishedBefore -= CheckListCompletion;
             PythonExecutor.instance.OnExecutionAborted -= HandleAbort;
             PythonExecutor.instance.OnRuntimeError -= HandleRuntimeError;
         }

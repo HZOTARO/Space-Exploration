@@ -205,7 +205,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: UIScriptIWrite::AllHintPage
   hintCollections:
   - {fileID: 11400000, guid: e4699fafd2803c446b8091f1c4779391, type: 2}
-  - {fileID: 11400000, guid: e4699fafd2803c446b8091f1c4779391, type: 2}
+  - {fileID: 11400000, guid: bee40c8f37ee291468e992b50f718bc1, type: 2}
+  - {fileID: 11400000, guid: 131134b8ffa9bcf4f8dde30c5d3f233d, type: 2}
+  - {fileID: 11400000, guid: c315d2567e4c2864195da4d1f29c5f86, type: 2}
   contentContainer: {fileID: 5907392397453301711}
   collectionPrefab: {fileID: 6926038632300480541, guid: 09b95eb4353344749a010cbc634f45af, type: 3}
   hintButtonPrefab: {fileID: 8096765514758001604, guid: ee3b35886658df341b2efcc6284500a7, type: 3}
@@ -252,7 +254,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8632200022296499463
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1023,7 +1025,7 @@ RectTransform:
   m_Father: {fileID: 1977473226567695387}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2019,7 +2021,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3342978474908461688, guid: 09b95eb4353344749a010cbc634f45af, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 820
+      value: 803
       objectReference: {fileID: 0}
     - target: {fileID: 3342978474908461688, guid: 09b95eb4353344749a010cbc634f45af, type: 3}
       propertyPath: m_SizeDelta.y
@@ -2027,7 +2029,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3342978474908461688, guid: 09b95eb4353344749a010cbc634f45af, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 410
+      value: 401.5
       objectReference: {fileID: 0}
     - target: {fileID: 3342978474908461688, guid: 09b95eb4353344749a010cbc634f45af, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2107,7 +2109,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8176845634269144006, guid: 09b95eb4353344749a010cbc634f45af, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 820
+      value: 803
       objectReference: {fileID: 0}
     - target: {fileID: 8176845634269144006, guid: 09b95eb4353344749a010cbc634f45af, type: 3}
       propertyPath: m_SizeDelta.y

@@ -5,6 +5,8 @@ using System.Text.RegularExpressions;
 public class GameManager_Training_6 : GameManager_Training
 {
     private HashSet<Vector2Int> visitedTiles = new HashSet<Vector2Int>();
+    private string lastCheckedCode = "";
+    private bool isWrittenCorrectly = false;
 
     protected override void RegisterLevelSpecificPythonCommands()
     {
@@ -57,6 +59,7 @@ public class GameManager_Training_6 : GameManager_Training
 
     public override bool MoveForward()
     {
+        if (!CheckMoveCount()) return false;
         bool result = base.MoveForward();
         visitedTiles.Add(playerGridLoc);
         return result;
@@ -64,28 +67,40 @@ public class GameManager_Training_6 : GameManager_Training
 
     public override bool MoveBackward()
     {
+        if (!CheckMoveCount()) return false;
         bool result = base.MoveBackward();
         visitedTiles.Add(playerGridLoc);
         return result;
     }
-
-    private void CheckGridCompletion()
+    private bool CheckMoveCount()
     {
-        string code = PythonExecutor.instance.currentCode;
+        if (PythonExecutor.instance == null) return false;
 
-        if (!string.IsNullOrEmpty(code))
+        string currentCode = PythonExecutor.instance.currentCode;
+
+        if (lastCheckedCode != currentCode)
         {
-            int moveCount = Regex.Matches(code, "move_forward\\(\\)").Count;
+            string cleanCode = Regex.Replace(currentCode, @"#.*", "");
+            cleanCode = Regex.Replace(cleanCode, "<.*?>", "");    
+            cleanCode = cleanCode.Replace("\u200B", "");          
 
-            if (moveCount > 2)
-            {
-                PrintToDisplay($"<color=red>Constraint Failed! You called move_forward() {moveCount} times. You are only allowed to write it 2 times!</color>");
-                ResetPlayerToStart();
-                ClearVisitedTiles();
-                return;
-            }
+            int moveCount = Regex.Matches(cleanCode, @"move_forward\s*\(\s*\)").Count;
+
+            isWrittenCorrectly = (moveCount <= 2);
+            lastCheckedCode = currentCode;
         }
 
+        if (!isWrittenCorrectly)
+        {
+            PrintToDisplay("<color=red>Constraint Failed! You are only allowed to write move_forward() a maximum of 2 times!</color>");
+            PythonExecutor.instance.StopRunningCode();
+            return false;
+        }
+
+        return true;
+    }
+    private void CheckGridCompletion()
+    {
         int totalTiles = levelLength * levelWidth;
         if (visitedTiles.Count < totalTiles)
         {
@@ -97,7 +112,6 @@ public class GameManager_Training_6 : GameManager_Training
 
         ObjectiveManager.instance.TriggerCustomEvent("TraversedGrid");
         PrintToDisplay("<color=green>Grid successfully fully traversed efficiently!</color>");
-        base.OnLevelComplete();
     }
 
     protected override void ResetPlayerToStart()

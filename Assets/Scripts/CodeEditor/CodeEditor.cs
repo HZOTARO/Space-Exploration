@@ -428,7 +428,7 @@ public class CodeEditor : MonoBehaviour
             terminalLines.Dequeue();
         }
 
-        printOutputText.text = string.Join("\n", terminalLines) + "\n\n> ";
+        printOutputText.text = string.Join("\n", terminalLines);
     }
 
     public void ClearTerminal()

@@ -56,7 +56,7 @@ public class AllHintPage : MonoBehaviour
 
             if (collectionUI != null)
             {
-                collectionUI.Setup(collection.name, collection, this);
+                collectionUI.Setup(collection.collectionName, collection, this);
                 spawnedCollections.Add(collectionUI);
             }
         }

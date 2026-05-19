@@ -1,9 +1,7 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager_PartExploration : GameManager
 {
-    List<Enemy> activeEnemies;
     protected override void Start()
     {
         base.Start();
@@ -37,6 +35,8 @@ public class GameManager_PartExploration : GameManager
         BindReturn("move_backward", MoveBackward);
         Bind("turn_right", TurnRight);
         Bind("turn_left", TurnLeft);
+
+        Bind("go_back", Return);
 
         Bind("collect", Collect);
 
@@ -136,58 +136,6 @@ public class GameManager_PartExploration : GameManager
         return targetTile.type.ToString();
     }
 
-    public void Shoot()
-    {
-        Vector2Int currentCheckLoc = GetForwardGridLoc();
-        bool hitSomething = false;
-
-        // Play the shooting animation/sound
-        // player.PerformAction(PlayerAction.Shoot); 
-
-        while (currentCheckLoc.x >= 0 && currentCheckLoc.x < tileManager.width &&
-               currentCheckLoc.y >= 0 && currentCheckLoc.y < tileManager.length)
-        {
-            TileObject staticTile = tileManager.objectsArray[currentCheckLoc.y, currentCheckLoc.x];
-            if (staticTile.type == TileType.Wall)
-            {
-                Debug.Log("Your shot hit a Wall.");
-                hitSomething = true;
-                break; 
-            }
-
-            Enemy hitEnemy = null;
-            foreach (Enemy enemy in activeEnemies)
-            {
-                if (enemy.gridLoc == currentCheckLoc)
-                {
-                    hitEnemy = enemy;
-                    break;
-                }
-            }
-
-            if (hitEnemy != null)
-            {
-                Debug.Log("<color=orange>Enemy destroyed!</color>");
-
-                activeEnemies.Remove(hitEnemy);
-
-                Destroy(hitEnemy.gameObject);
-
-                hitSomething = true;
-                break;
-            }
-
-            if (playerFacing == 0) currentCheckLoc.y++; 
-            else if (playerFacing == 1) currentCheckLoc.x++;  
-            else if (playerFacing == 2) currentCheckLoc.y--; 
-            else if (playerFacing == 3) currentCheckLoc.x--;  
-        }
-
-        if (!hitSomething)
-        {
-            Debug.Log("You shot into empty space.");
-        }
-    }
     protected virtual void TriggerEnemyTurns()
     {
         // If there are no enemies, just skip this completely

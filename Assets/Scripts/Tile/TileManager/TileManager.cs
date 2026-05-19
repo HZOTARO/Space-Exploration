@@ -136,8 +136,15 @@ public class TileManager : MonoBehaviour
         {
             for (int x = -1; x <= width; x++)
             {
+                if (x == -1 && z == 0) 
+                {
+                    //InstantiateTileVisual(z, x, floorTile);
+                    continue;
+                }
+
                 if (z == -1 || z == length || x == -1 || x == width)
                 {
+                    InstantiateTileVisual(z, x, floorTile);
                     InstantiateTileVisual(z, x, wallPrefab);
                 }
             }

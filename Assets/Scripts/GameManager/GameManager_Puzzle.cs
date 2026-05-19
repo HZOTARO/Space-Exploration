@@ -22,7 +22,9 @@ public class GameManager_Puzzle : GameManager
         if (UpgradeManager.instance)
         {
             if (UpgradeManager.instance.IsUpgradeUnlocked("scan")) BindReturn("scan", Scan);
+            if (UpgradeManager.instance.IsUpgradeUnlocked("far_scan")) BindReturn("far_scan", FarScan);
             if (UpgradeManager.instance.IsUpgradeUnlocked("measure")) BindReturn("measure", Measure);
+            if (UpgradeManager.instance.IsUpgradeUnlocked("shoot")) Bind("shoot", Shoot);
         }
     }
 

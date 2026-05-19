@@ -5,10 +5,28 @@ public class TileManager_Training_7 : TileManager_Training
 {
     [HideInInspector] public List<int> expectedOreValues = new List<int>();
     [HideInInspector] public int numberOfOres;
+    List<int> chosenSpaces;
 
     public override void GenerateMap(bool setAllFloor = true)
     {
+        expectedOreValues.Clear();
         base.GenerateMap(false);
+        foreach (int x in chosenSpaces)
+        {
+            TileObject spawnedTile = objectsArray[0, x];
+
+            if (spawnedTile != null && spawnedTile.tileInstance is ValueTile valueTile)
+            {
+                valueTile.notRandomized = true;
+                int forcedTutorialValue = Random.Range(1, 11);
+                valueTile.value = forcedTutorialValue;
+                expectedOreValues.Add(forcedTutorialValue);
+            }
+            else
+            {
+                expectedOreValues.Add(10);
+            }
+        }
     }
 
     protected override void GenerateMapContent()
@@ -28,7 +46,7 @@ public class TileManager_Training_7 : TileManager_Training
             availableSpaces.Add(i);
         }
 
-        List<int> chosenSpaces = new List<int>();
+        chosenSpaces = new List<int>();
         for (int i = 0; i < numberOfOres; i++)
         {
             if (availableSpaces.Count == 0) break;
@@ -40,23 +58,9 @@ public class TileManager_Training_7 : TileManager_Training
         }
 
         chosenSpaces.Sort();
-
         foreach (int x in chosenSpaces)
         {
             SetTile(0, x, TileType.WhiteOre, asFloorToo: true);
-
-            TileObject spawnedTile = objectsArray[0, x];
-
-            if (spawnedTile != null && spawnedTile.tileInstance is ValueTile valueTile)
-            {
-                int forcedTutorialValue = Random.Range(1, 11);
-                valueTile.value = forcedTutorialValue;
-                expectedOreValues.Add(forcedTutorialValue);
-            }
-            else
-            {
-                expectedOreValues.Add(10);
-            }
         }
     }
 }

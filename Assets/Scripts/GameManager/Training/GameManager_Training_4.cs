@@ -3,6 +3,10 @@ using System.Text.RegularExpressions;
 
 public class GameManager_Training_4 : GameManager_Training
 {
+    private string lastCheckedCode = "";
+    private bool isLoopValid = false;
+    private bool isWrittenOnce = false;
+
     protected override void RegisterLevelSpecificPythonCommands()
     {
         BindReturn("move_forward", MoveForward);
@@ -28,13 +32,10 @@ public class GameManager_Training_4 : GameManager_Training
 
         int generatedGoalX = Random.Range(levelWidth / 2, levelWidth);
 
-        if (tileManager)
+        TileManager_Training_4 tileManager4 = FindFirstObjectByType<TileManager_Training_4>();
+        if (tileManager4 != null)
         {
-            TileManager_Training_4 tileManager4 = tileManager as TileManager_Training_4;
-            if (tileManager4 != null)
-            {
-                tileManager4.goalX = generatedGoalX;
-            }
+            tileManager4.goalX = generatedGoalX;
         }
 
         ObjectiveManager.instance.objectives.Add(new LevelObjective()
@@ -57,29 +58,39 @@ public class GameManager_Training_4 : GameManager_Training
         }
     }
 
-    //public override void MoveForward()
-    //{
-    //    int startLine = 1;
-    //    int endLine = 1;
+    public override bool MoveForward()
+    {
+        if (PythonExecutor.instance == null) return false;
 
-    //    if (PythonExecutor.instance != null && !string.IsNullOrEmpty(PythonExecutor.instance.currentCode))
-    //    {
-    //        string[] codeLines = PythonExecutor.instance.currentCode.Split('\n');
-    //        endLine = Mathf.Max(1, codeLines.Length);
-    //    }
+        string currentCode = PythonExecutor.instance.currentCode;
 
-    //    bool calledInsideLoop = PythonExecutor.instance.CheckASTPattern(startLine, endLine, "FuncInsideFor", "move_forward");
+        if (lastCheckedCode != currentCode)
+        {
+            int endLine = Mathf.Max(1, currentCode.Split('\n').Length);
 
-    //    if (calledInsideLoop)
-    //    {
-    //        base.MoveForward();
-    //    }
-    //    else
-    //    {
-    //        PrintToDisplay("Action Blocked! You must use a 'for' loop to automate your movement on this level.");
-    //        if (PythonExecutor.instance != null) PythonExecutor.instance.StopRunningCode();
-    //    }
-    //}
+            isLoopValid = PythonExecutor.instance.CheckASTPattern(1, endLine, "FuncInsideFor", "move_forward");
+
+            isWrittenOnce = Regex.Matches(currentCode, @"move_forward\s*\(\s*\)").Count == 1;
+
+            lastCheckedCode = currentCode;
+        }
+
+        if (!isWrittenOnce)
+        {
+            PrintToDisplay("<color=red>Constraint Failed! You wrote move_forward() multiple times. You are only allowed to write it 1 time!</color>");
+            PythonExecutor.instance.StopRunningCode();
+            return false;
+        }
+
+        if (!isLoopValid)
+        {
+            PrintToDisplay("<color=red>Action Blocked! You must use a 'for' loop to automate your movement on this level.</color>");
+            PythonExecutor.instance.StopRunningCode();
+            return false;
+        }
+
+        return base.MoveForward();
+    }
 
     private void CheckPrecisionGoal()
     {

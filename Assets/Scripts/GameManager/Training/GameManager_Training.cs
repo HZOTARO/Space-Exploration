@@ -90,13 +90,6 @@ public class GameManager_Training : GameManager
 
     protected virtual void ResetPlayerToStart()
     {
-        if (PythonExecutor.instance != null)
-        {
-            PythonExecutor.instance.OnExecutionAborted -= ResetPlayerToStart;
-            PythonExecutor.instance.StopRunningCode();
-            PythonExecutor.instance.OnExecutionAborted += ResetPlayerToStart;
-        }
-
         playerGridLoc = Vector2Int.zero;
         playerFacing = 0;
 
@@ -105,6 +98,14 @@ public class GameManager_Training : GameManager
             player.transform.position = startingPhysicalPos;
             player.transform.rotation = startingPhysicalRot;
             player.ResetPlayerState();
+        }
+
+        if (cargoComponent != null)
+        {
+            for (int i = cargoComponent.levelCargo.Count - 1; i >= 0; i--)
+            {
+                cargoComponent.DiscardCargo(i);
+            }
         }
     }
 
@@ -120,7 +121,7 @@ public class GameManager_Training : GameManager
         ResetPlayerToStart();
     }
 
-    public void Mine()
+    public virtual void Mine()
     {
         TileObject targetTile = GetTileInFront();
 
@@ -142,7 +143,7 @@ public class GameManager_Training : GameManager
         }
     }
 
-    public void Collect()
+    public virtual void Collect()
     {
         TileObject targetTile = GetTileInFront();
         if (targetTile != null && targetTile.type == TileType.WhiteOre)

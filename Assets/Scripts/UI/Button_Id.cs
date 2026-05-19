@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Button_Id : MonoBehaviour
 {
     [Header("Level Settings")]
+    public bool openLevel = true;
     public string requiredLevelId;
     public string levelId;
     public UpgradeSO upgradeRequirement;

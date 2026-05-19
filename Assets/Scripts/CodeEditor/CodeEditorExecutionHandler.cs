@@ -52,6 +52,7 @@ public class CodeExecutionController : MonoBehaviour
         PythonExecutor.instance.OnExecutionFinished += OnPythonFinished;
         PythonExecutor.instance.OnLineExecuted += HandleLineExecution;
         PythonExecutor.instance.OnRuntimeError += HandleRuntimeError;
+        PythonExecutor.instance.OnExecutionAborted += HandleExecutionAborted;
 
         if (ui.inputField != null)
         {
@@ -81,6 +82,7 @@ public class CodeExecutionController : MonoBehaviour
             PythonExecutor.instance.OnExecutionFinished -= OnPythonFinished;
             PythonExecutor.instance.OnLineExecuted -= HandleLineExecution;
             PythonExecutor.instance.OnRuntimeError -= HandleRuntimeError;
+            PythonExecutor.instance.OnExecutionAborted -= HandleExecutionAborted;
         }
     }
 
@@ -241,6 +243,27 @@ public class CodeExecutionController : MonoBehaviour
         {
             isPaused = false;
             if (pauseButtonText != null) pauseButtonText.text = "Pause";
+        }
+
+        ui.RemoveHighlight();
+    }
+
+    private void HandleExecutionAborted()
+    {
+        isPlaying = false;
+
+        if (ui.gameManager != null && ui.gameManager.InAction())
+        {
+            aborting = true;
+        }
+        else
+        {
+            if (playButtonText != null) playButtonText.text = "Play";
+            if (isPaused)
+            {
+                isPaused = false;
+                if (pauseButtonText != null) pauseButtonText.text = "Pause";
+            }
         }
 
         ui.RemoveHighlight();

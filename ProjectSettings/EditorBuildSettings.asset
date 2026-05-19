@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Part Exploration Scene.unity
     guid: 1aee2093699215742b5881520e6b2828
   - enabled: 1
+    path: Assets/Scenes/Puzzle Scene.unity
+    guid: 1f424d2b30c6a8645aab06742bd88451
+  - enabled: 0
     path: Assets/Scenes/Crafting Scene.unity
     guid: 633f0a40b5319c641873b02986409294
   - enabled: 1
@@ -25,7 +28,7 @@ EditorBuildSettings:
     guid: 1580210002f66f04795cbd8a3a9607f4
   - enabled: 1
     path: Assets/Scenes/Training/Training Scene 2.unity
-    guid: 25f2976409fb99e4db8d99f7388330f3
+    guid: 797f4064df573be47ab25c84e2f7e751
   - enabled: 1
     path: Assets/Scenes/Training/Training Scene 3.unity
     guid: 3091d9a3051951d4aa3546da62053d2b
@@ -35,5 +38,14 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Training/Training Scene 5.unity
     guid: 11bf254e172b0664fba4742832e6408d
+  - enabled: 1
+    path: Assets/Scenes/Training/Training Scene 6.unity
+    guid: c39669d7076904540b4b08e980b667b6
+  - enabled: 1
+    path: Assets/Scenes/Training/Training Scene 7.unity
+    guid: fcc3dacad5e5dad448f8222e73cf36ea
+  - enabled: 1
+    path: Assets/Scenes/Training/Training Scene 8.unity
+    guid: 681b4c71d9282b5418a1eb1936678eea
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
