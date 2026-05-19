@@ -119,7 +119,7 @@ public class UpgradeManager : MonoBehaviour
 
         if (HintManager.instance != null && upgrade.unlockedHint != null)
         {
-            HintManager.instance.RequestDisplayHints(new List<HintSO> { upgrade.unlockedHint }, setHasAppeared: false);
+            HintManager.instance.UnlockHint(upgrade.unlockedHint, showHint: true, setHasAppeared: false);
         }
     }
 

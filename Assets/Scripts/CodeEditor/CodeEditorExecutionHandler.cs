@@ -94,8 +94,11 @@ public class CodeExecutionController : MonoBehaviour
         {
             if (Play())
             {
-                isPlaying = true;
-                playButtonText.text = "Abort";
+                if (PythonExecutor.instance.currentCode != null)
+                {
+                    isPlaying = true;
+                    playButtonText.text = "Abort";
+                }
             }
         }
         else

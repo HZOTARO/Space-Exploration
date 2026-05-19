@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88f6fa2b89436164b8e97b17d82dc9a2, type: 3}
-  m_Name: 2 - White Ore
+  m_Name: 3 - Training
   m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
-  hintId: white_ore
-  title: White Ore
+  hintId: training
+  title: Training
   hintBlocks: []
-  isUnlockedByDefault: 0
-  ignoreLock: 1
+  isUnlockedByDefault: 1
+  ignoreLock: 0

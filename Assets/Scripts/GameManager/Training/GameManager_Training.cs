@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameManager_Training : GameManager
 {
+    protected string lastCheckedRawCode = "";
+    protected string cachedCleanCode = "";
+
     [Header("UI References")]
     public Button levelCompletePopup;
 
@@ -170,5 +174,40 @@ public class GameManager_Training : GameManager
         {
             PrintToDisplay("Nothing to collect here.");
         }
+    }
+
+    protected bool ValidateFunctionCallCount(string functionName, int targetCount, bool exactMatch = false)
+    {
+        if (PythonExecutor.instance == null) return false;
+
+        string currentCode = PythonExecutor.instance.currentCode;
+        if (string.IsNullOrEmpty(currentCode)) return false;
+
+        if (lastCheckedRawCode != currentCode)
+        {
+            cachedCleanCode = Regex.Replace(currentCode, @"#.*", "");
+            cachedCleanCode = Regex.Replace(cachedCleanCode, "<.*?>", "");
+            cachedCleanCode = cachedCleanCode.Replace("\u200B", "");
+
+            cachedCleanCode = Regex.Replace(cachedCleanCode, "\".*?\"", "");
+            cachedCleanCode = Regex.Replace(cachedCleanCode, "'.*?'", "");
+
+            lastCheckedRawCode = currentCode;
+        }
+
+        string pattern = functionName + @"\s*\(\s*\)";
+        int actualCount = Regex.Matches(cachedCleanCode, pattern).Count;
+
+        bool isValid = exactMatch ? (actualCount == targetCount) : (actualCount <= targetCount);
+
+        if (!isValid)
+        {
+            string conditionText = exactMatch ? $"exactly {targetCount}" : $"a maximum of {targetCount}";
+            PrintToDisplay($"<color=red>Constraint Failed! You are only allowed to write {functionName}() {conditionText} time(s)!</color>");
+            PythonExecutor.instance.StopRunningCode();
+            return false;
+        }
+
+        return true;
     }
 }

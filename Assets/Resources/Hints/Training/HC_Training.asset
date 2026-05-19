@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e16c12eea6204843a6d7e7405fa6f1e, type: 3}
   m_Name: HC_Training
   m_EditorClassIdentifier: UtilityScriptIWrite::HintCollectionSO
-  collectionName: 
+  collectionName: Trainings
   hints:
   - {fileID: 11400000, guid: 8983f529c3c9f7f4c92557271df20d50, type: 2}
   - {fileID: 11400000, guid: 492b3c11bac3f034fb0759a1dc8bf733, type: 2}

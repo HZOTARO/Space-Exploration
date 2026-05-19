@@ -1,12 +1,7 @@
 using UnityEngine;
-using System.Text.RegularExpressions;
 
 public class GameManager_Training_4 : GameManager_Training
 {
-    private string lastCheckedCode = "";
-    private bool isLoopValid = false;
-    private bool isWrittenOnce = false;
-
     protected override void RegisterLevelSpecificPythonCommands()
     {
         BindReturn("move_forward", MoveForward);
@@ -28,7 +23,7 @@ public class GameManager_Training_4 : GameManager_Training
         base.SetLevelObjectives();
 
         levelLength = 1;
-        levelWidth = Random.Range(100, 201);
+        levelWidth = Random.Range(30, 51);
 
         int generatedGoalX = Random.Range(levelWidth / 2, levelWidth);
 
@@ -40,7 +35,7 @@ public class GameManager_Training_4 : GameManager_Training
 
         ObjectiveManager.instance.objectives.Add(new LevelObjective()
         {
-            description = $"The map is {levelWidth} tiles long.\nThe Goal is precisely on Tile {generatedGoalX}.\nReach it by writing 'move_forward()' only once in your code!",
+            description = $"The map is {levelWidth} tiles long.\nThe Goal is precisely on Tile {generatedGoalX + 1}.\nReach it by writing 'move_forward()' only once in your code!",
             type = ObjectiveType.CustomEvent,
             customEventId = "MovedWithLoop"
         });
@@ -64,23 +59,9 @@ public class GameManager_Training_4 : GameManager_Training
 
         string currentCode = PythonExecutor.instance.currentCode;
 
-        if (lastCheckedCode != currentCode)
-        {
-            int endLine = Mathf.Max(1, currentCode.Split('\n').Length);
+        if (!ValidateFunctionCallCount("move_forward", 1, true)) return false;
 
-            isLoopValid = PythonExecutor.instance.CheckASTPattern(1, endLine, "FuncInsideFor", "move_forward");
-
-            isWrittenOnce = Regex.Matches(currentCode, @"move_forward\s*\(\s*\)").Count == 1;
-
-            lastCheckedCode = currentCode;
-        }
-
-        if (!isWrittenOnce)
-        {
-            PrintToDisplay("<color=red>Constraint Failed! You wrote move_forward() multiple times. You are only allowed to write it 1 time!</color>");
-            PythonExecutor.instance.StopRunningCode();
-            return false;
-        }
+        bool isLoopValid = PythonExecutor.instance.CheckASTPattern(1, 999, "FuncInsideFor", "move_forward");
 
         if (!isLoopValid)
         {
@@ -94,27 +75,12 @@ public class GameManager_Training_4 : GameManager_Training
 
     private void CheckPrecisionGoal()
     {
-        string code = PythonExecutor.instance.currentCode;
-
-        if (!string.IsNullOrEmpty(code))
-        {
-            int moveCount = Regex.Matches(code, "move_forward\\(\\)").Count;
-
-            if (moveCount > 1)
-            {
-                PrintToDisplay($"<color=red>Constraint Failed! You wrote move_forward() {moveCount} times. You are only allowed to write it 1 time!</color>");
-                ResetPlayerToStart();
-                return;
-            }
-        }
-
         TileObject finalTile = GetCurrentTile();
 
         if (finalTile != null && finalTile.type == TileType.Goal)
         {
             PrintToDisplay("<color=green>Target Acquired! Precision destination matched perfectly.</color>");
             ObjectiveManager.instance.TriggerCustomEvent("MovedWithLoop");
-            base.OnLevelComplete();
         }
         else
         {

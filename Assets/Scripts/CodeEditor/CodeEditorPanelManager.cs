@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,8 +18,12 @@ public class CodeEditorPanelManager : MonoBehaviour
     public Sprite buttonActive;
     public Sprite buttonInactive;
 
+    private CodeEditor codeEditor;
+
     private void Start()
     {
+        codeEditor = GetComponent<CodeEditor>();
+
         terminalButton.onClick.AddListener(ToggleTerminal);
         variablesButton.onClick.AddListener(ToggleVariables);
 
@@ -42,5 +47,21 @@ public class CodeEditorPanelManager : MonoBehaviour
     {
         buttonImage.sprite = active ? buttonActive : buttonInactive;
         panel.SetActive(active);
+        if (codeEditor != null)
+        {
+            StartCoroutine(RefreshHighlightNextFrame());
+        }
+    }
+
+    private IEnumerator RefreshHighlightNextFrame()
+    {
+        yield return new WaitForEndOfFrame();
+
+        Canvas.ForceUpdateCanvases();
+
+        if (codeEditor.currentStartLine >= 0 && codeEditor.currentEndLine >= 0)
+        {
+            codeEditor.TriggerHighlight(codeEditor.currentStartLine, codeEditor.currentEndLine);
+        }
     }
 }

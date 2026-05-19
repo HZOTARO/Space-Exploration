@@ -15,21 +15,18 @@ MonoBehaviour:
   id: black_ore
   upgradeName: Black Ore Value
   icon: {fileID: 21300000, guid: 56894bf3c2c67964f80788bb0e6c7e46, type: 3}
+  unlockedHint: {fileID: 11400000, guid: 2b5ffb1eb061a9c44921d055cec35e16, type: 2}
   prerequisiteUpgrades:
   - {fileID: 11400000, guid: 8706b81e30eb8b54b96a69d621fcc817, type: 2}
+  prerequisitePuzzle: 
   tiers:
   - description: Unlock black ore in resource exploration with 7-10 yield
-    requiresPuzzleToUnlock: 0
     costs: []
   - description: Raise black ore yield to 10-15 each ore
-    requiresPuzzleToUnlock: 0
     costs: []
   - description: Raise black ore yield to 15-25 each ore
-    requiresPuzzleToUnlock: 0
     costs: []
   - description: Raise black ore yield to 25-50 each ore
-    requiresPuzzleToUnlock: 0
     costs: []
   - description: Raise black ore yield to 50-100 each ore
-    requiresPuzzleToUnlock: 0
     costs: []

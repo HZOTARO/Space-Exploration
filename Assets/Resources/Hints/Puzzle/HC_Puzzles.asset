@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e16c12eea6204843a6d7e7405fa6f1e, type: 3}
   m_Name: HC_Puzzles
   m_EditorClassIdentifier: UtilityScriptIWrite::HintCollectionSO
-  collectionName: 
-  hints: []
+  collectionName: Puzzles
+  hints:
+  - {fileID: 11400000, guid: ed41c4876d11f8f4f8045dfc7f4a0deb, type: 2}
+  - {fileID: 11400000, guid: 2488c845894062b45b532b6a4dd8e4d8, type: 2}

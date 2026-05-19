@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88f6fa2b89436164b8e97b17d82dc9a2, type: 3}
   m_Name: 4 - Black Ore
   m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
-  hintId: 
-  title: 
+  hintId: black_ore
+  title: Black Ore
   hintBlocks: []
   isUnlockedByDefault: 0
   ignoreLock: 0

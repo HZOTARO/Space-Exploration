@@ -1,5 +1,5 @@
 {
-    "lastSavedTime": "19-05-2026 14:23",
+    "lastSavedTime": "19-05-2026 20:48",
     "inventory": [],
     "unlockedUpgrades": [],
     "stepDelay": 0.0,
@@ -56,6 +56,11 @@
         },
         {
             "id": "training 7",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "training 8",
             "hasAppeared": true,
             "isUnlocked": true
         }

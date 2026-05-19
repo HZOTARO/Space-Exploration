@@ -57,6 +57,11 @@ public class TileManager_Training_8 : TileManager_Training
             }
         }
 
-        expectedTotalValue = expectedOreValues.Sum();
+        int targetHalfCount = numberOfOres / 2;
+
+        expectedTotalValue = expectedOreValues
+                    .OrderByDescending(val => val)
+                    .Take(targetHalfCount)        
+                    .Sum();                       
     }
 }

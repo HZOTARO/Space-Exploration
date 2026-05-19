@@ -48,6 +48,9 @@ public class CodeEditor : MonoBehaviour
     private float currentUpdateTimer = 0f;
     private bool needsHeavyUpdate = false;
 
+    [HideInInspector] public int currentStartLine = -1;
+    [HideInInspector] public int currentEndLine = -1;
+
     void Awake()
     {
         if (gameManager == null) gameManager = FindFirstObjectByType<GameManager>();
@@ -200,6 +203,9 @@ public class CodeEditor : MonoBehaviour
 
     public void TriggerHighlight(int startLogicalLine, int endLogicalLine)
     {
+        currentStartLine = startLogicalLine;
+        currentEndLine = endLogicalLine;
+
         if (highlightImage == null || inputField == null) return;
 
         highlightImage.transform.SetAsFirstSibling();
@@ -249,6 +255,9 @@ public class CodeEditor : MonoBehaviour
 
     public void RemoveHighlight()
     {
+        currentStartLine = -1;
+        currentEndLine = -1;
+
         if (highlightImage == null) return;
         Color c = highlightImage.color;
         c.a = 0f;

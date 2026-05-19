@@ -58,13 +58,13 @@ public class PlayerCargoComponent : MonoBehaviour
 
             yield return new WaitForEndOfFrame();
 
-            if (slotRectTransform)
-            {
-                float offset = slotRectTransform.offsetMax.y;
-                RectTransform cargoRectTransform = cargoUI.GetComponent<RectTransform>();
-                cargoRectTransform.anchoredPosition += new Vector2(0f, offset);
-                cargoRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, Mathf.Min(cargoSize * 150, 910));
-            }
+            //if (slotRectTransform)
+            //{
+            //    float offset = slotRectTransform.offsetMax.y;
+            //    RectTransform cargoRectTransform = cargoUI.GetComponent<RectTransform>();
+            //    cargoRectTransform.anchoredPosition += new Vector2(0f, offset);
+            //    cargoRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, Mathf.Min(cargoSize * 150, 910));
+            //}
         }
     }
 

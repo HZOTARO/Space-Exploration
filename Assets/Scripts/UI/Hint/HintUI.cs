@@ -22,13 +22,13 @@ public class HintUI : MonoBehaviour
     private List<HintSO> activeHints = new List<HintSO>();
     private int currentPageIndex = 0;
 
-    private void OnEnable()
+    private void Awake()
     {
         HintManager.OnDisplayHintsRequested += OpenUIWithHints;
         HintManager.OnCloseHintsRequested += CloseHint;
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         HintManager.OnDisplayHintsRequested -= OpenUIWithHints;
         HintManager.OnCloseHintsRequested -= CloseHint;
@@ -82,7 +82,7 @@ public class HintUI : MonoBehaviour
             }
         }
 
-bool hasMultiplePages = activeHints.Count > 1;
+        bool hasMultiplePages = activeHints.Count > 1;
 
         if (nextButton != null)
         {

@@ -15,9 +15,10 @@ MonoBehaviour:
   id: loop
   upgradeName: Loop
   icon: {fileID: 21300000, guid: 425e3872f226ac24d8cbd91335e6da01, type: 3}
+  unlockedHint: {fileID: 11400000, guid: b96cb8ce8fa8cdc409398302347b54b2, type: 2}
   prerequisiteUpgrades:
   - {fileID: 11400000, guid: 847865fe10bc3764bba728d4ba6af7e8, type: 2}
+  prerequisitePuzzle: 
   tiers:
   - description: 
-    requiresPuzzleToUnlock: 0
     costs: []

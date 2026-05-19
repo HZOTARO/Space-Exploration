@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e16c12eea6204843a6d7e7405fa6f1e, type: 3}
   m_Name: HC_Exp_Material
   m_EditorClassIdentifier: UtilityScriptIWrite::HintCollectionSO
-  collectionName: 
-  hints: []
+  collectionName: Exploration - Material
+  hints:
+  - {fileID: 11400000, guid: 560c7843eb5d1d244a8bfd1b891bc9bf, type: 2}
+  - {fileID: 11400000, guid: d86db5dbd4846384ba76247c6f95a167, type: 2}
+  - {fileID: 11400000, guid: 43f9d661d9fc18442b05d6736731e9e8, type: 2}
+  - {fileID: 11400000, guid: f80d8818eed09514c8e217f7855b5e99, type: 2}

@@ -24,11 +24,11 @@ public class GameManager_Training_7 : GameManager_Training
         allowedSyntaxNodes.AddRange(SyntaxDictionary.Loops);
         allowedSyntaxNodes.AddRange(SyntaxDictionary.Lists);
     }
+
     protected override void StartValuesSetup()
     {
         levelLength = 1;
         levelWidth = Random.Range(10, 30);
-        cargoSize = 0;
     }
 
     protected override void SetLevelObjectives()
@@ -88,14 +88,12 @@ public class GameManager_Training_7 : GameManager_Training
         if (tm == null) return;
 
         string inventoryResult = PythonExecutor.instance.GetVariableValue("inventory");
-
         string expectedListString = "[" + string.Join(", ", tm.expectedOreValues) + "]";
 
         if (inventoryResult == expectedListString)
         {
             PrintToDisplay($"<color=green>Perfect! Your list matched exactly: {expectedListString}</color>");
             ObjectiveManager.instance.TriggerCustomEvent("ListCompleted");
-            base.OnLevelComplete();
         }
         else
         {
@@ -113,9 +111,16 @@ public class GameManager_Training_7 : GameManager_Training
             tileManager.GenerateMap();
         }
 
-        if (cargoComponent)
+        TileManager_Training_7 tm = tileManager as TileManager_Training_7;
+        if (tm != null)
         {
-            StartCoroutine(cargoComponent.SetupCargoCoroutine());
+            cargoSize = tm.numberOfOres;
+
+            if (cargoComponent != null)
+            {
+                cargoComponent.cargoSize = cargoSize;
+                StartCoroutine(cargoComponent.SetupCargoCoroutine());
+            }
         }
     }
 

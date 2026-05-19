@@ -39,21 +39,24 @@ public class GameManager_Training_3 : GameManager_Training
     {
         levelLength = 2;
         levelWidth = 1;
-        cargoSize = 2;
+        cargoSize = 1;
     }
 
     public override void Mine()
     {
         if (PythonExecutor.instance != null)
         {
-            if (PythonExecutor.instance.CheckASTPattern(0, 999, "FuncInsideIfWhiteOre", "mine"))
+            if (!ValidateFunctionCallCount("mine", 1, true)) return;
+            bool usedInsideIf = PythonExecutor.instance.CheckASTPattern(1, 999, "FuncInsideIfWhiteOre", "mine");
+
+            if (usedInsideIf)
             {
                 ObjectiveManager.instance.TriggerCustomEvent("MineInsideIf");
                 base.Mine();
             }
             else
             {
-                Debug.Log("<color=red>Error: You must use mine() inside an 'if' block checking for 'WhiteOre'!</color>");
+                PrintToDisplay("<color=red>Error: You must use mine() inside an 'if' block checking for 'WhiteOre'!</color>");
 
                 PythonExecutor.instance.StopRunningCode();
 
@@ -70,15 +73,17 @@ public class GameManager_Training_3 : GameManager_Training
     {
         if (PythonExecutor.instance != null)
         {
-            if (PythonExecutor.instance.CheckASTPattern(0, 999, "FuncInsideIfWhiteOre", "collect"))
+            if (!ValidateFunctionCallCount("collect", 1, true)) return;
+            bool usedInsideIf = PythonExecutor.instance.CheckASTPattern(1, 999, "FuncInsideIfWhiteOre", "collect");
+
+            if (usedInsideIf)
             {
                 ObjectiveManager.instance.TriggerCustomEvent("CollectInsideIf");
                 base.Collect();
             }
             else
             {
-                Debug.Log("<color=red>Error: You must use collect() inside an 'if' block checking for 'WhiteOre'!</color>");
-
+                PrintToDisplay("<color=red>Error: You must use collect() inside an 'if' block checking for 'WhiteOre'!</color>");
                 PythonExecutor.instance.StopRunningCode();
 
                 return;

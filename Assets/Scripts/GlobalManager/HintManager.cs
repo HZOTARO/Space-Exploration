@@ -137,7 +137,5 @@ public class HintManager : MonoBehaviour
 
             RequestDisplayHints(new List<HintSO> { hint }, hint);
         }
-
-        SaveManager.instance.SaveGame(SaveManager.saveSlotInUse);
     }
 }

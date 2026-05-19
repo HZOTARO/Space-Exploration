@@ -4,6 +4,7 @@ public class GameManager_Training_8 : GameManager_Training
 {
     public int randomizedOreCount;
     public int targetTotalValue;
+
     protected override void RegisterLevelSpecificPythonCommands()
     {
         BindReturn("move_forward", MoveForward);
@@ -15,6 +16,17 @@ public class GameManager_Training_8 : GameManager_Training
         Bind("collect", Collect);
         BindReturn("scan", Scan);
         BindReturn("measure", Measure);
+        BindWithArg<int, bool>("discard", Discard);
+    }
+
+    private bool Discard(int slotIndex)
+    {
+        if (cargoComponent != null && slotIndex >= 0 && slotIndex < cargoComponent.levelCargo.Count)
+        {
+            cargoComponent.DiscardCargo(slotIndex);
+            return true;
+        }
+        return false;
     }
 
     protected override void SetLevelAllowedSyntax()
@@ -30,26 +42,28 @@ public class GameManager_Training_8 : GameManager_Training
     protected override void StartValuesSetup()
     {
         levelLength = 1;
+        RandomizeMapData();
+    }
+
+    private void RandomizeMapData()
+    {
+        levelWidth = Random.Range(30, 51);
+        randomizedOreCount = Random.Range(11, 21);
+        cargoSize = randomizedOreCount / 2;
+        TileManager_Training_8 tm = tileManager as TileManager_Training_8;
+        if (tm != null)
+        {
+            tm.numberOfOres = randomizedOreCount;
+        }
     }
 
     protected override void SetLevelObjectives()
     {
         base.SetLevelObjectives();
 
-        levelWidth = Random.Range(30, 51);
-        randomizedOreCount = Random.Range(6, 11);
-
-        cargoSize = randomizedOreCount;
-
-        TileManager_Training_8 tm = FindFirstObjectByType<TileManager_Training_8>();
-        if (tm != null)
-        {
-            tm.numberOfOres = randomizedOreCount;
-        }
-
         ObjectiveManager.instance.objectives.Add(new LevelObjective()
         {
-            description = $"There are {randomizedOreCount} ores. Collect them all and append their values to your 'inventory' list!",
+            description = $"Measure the ores and collect the most valuable ones on the path!",
             type = ObjectiveType.CustomEvent,
             customEventId = "TotalCalculated"
         });
@@ -57,63 +71,53 @@ public class GameManager_Training_8 : GameManager_Training
 
     protected override void Start()
     {
-        base.Start();
+        base.Start(); 
+
+        SetupCargoUI();
 
         if (PythonExecutor.instance != null)
         {
-            PythonExecutor.instance.OnExecutionFinished += CheckInventoryTotal;
+            PythonExecutor.instance.OnExecutionFinishedBefore += CheckInventoryTotal;
             PythonExecutor.instance.OnExecutionAborted += HandleAbort;
             PythonExecutor.instance.OnRuntimeError += HandleRuntimeError;
         }
     }
 
+    private void SetupCargoUI()
+    {
+        if (cargoComponent != null)
+        {
+            cargoComponent.cargoSize = cargoSize;
+            StartCoroutine(cargoComponent.SetupCargoCoroutine());
+        }
+    }
+
     private void CheckInventoryTotal()
     {
-        bool createdList = PythonExecutor.instance.CheckASTPattern(1, 999, "AssignList", "inventory");
-        if (!createdList)
-        {
-            PrintToDisplay("<color=red>Error: You must create a list named 'inventory'!</color>");
-            ResetPlayerToStart();
-            return;
-        }
-
-        bool usedAppend = PythonExecutor.instance.CheckASTPattern(1, 999, "HasListAppend", "");
-        if (!usedAppend)
-        {
-            PrintToDisplay("<color=red>Error: You must use the .append() function to add ores to your list!</color>");
-            ResetPlayerToStart();
-            return;
-        }
-
         TileManager_Training_8 tm = tileManager as TileManager_Training_8;
-        if (tm == null) return;
+        if (tm == null || cargoComponent == null) return;
 
-        string inventoryResult = PythonExecutor.instance.GetVariableValue("inventory");
-        int playerTotal = 0;
-
-        if (!string.IsNullOrEmpty(inventoryResult) && inventoryResult != "[]")
+        int physicalCargoTotal = 0;
+        foreach (ItemAmount collected in cargoComponent.levelCargo)
         {
-            string cleanString = inventoryResult.Replace("[", "").Replace("]", "").Replace(" ", "");
-            string[] stringValues = cleanString.Split(',');
-
-            foreach (string val in stringValues)
-            {
-                if (int.TryParse(val, out int parsedVal))
-                {
-                    playerTotal += parsedVal;
-                }
-            }
+            physicalCargoTotal += collected.amount;
         }
 
-        if (playerTotal == tm.expectedTotalValue && cargoComponent.IsFull())
+        if (cargoComponent.IsFull() && physicalCargoTotal == tm.expectedTotalValue)
         {
-            PrintToDisplay($"<color=green>Success! Your inventory total is exactly {playerTotal}, matching the map perfectly!</color>");
+            PrintToDisplay($"<color=green>Success! You collected the most valuable ores with a total value of {physicalCargoTotal}!</color>");
             ObjectiveManager.instance.TriggerCustomEvent("TotalCalculated");
-            base.OnLevelComplete();
         }
         else
         {
-            PrintToDisplay($"<color=red>Total Mismatch! The map had a total value of {tm.expectedTotalValue}, but your inventory sum is {playerTotal}. Did you miss an ore?</color>");
+            if (!cargoComponent.IsFull())
+            {
+                PrintToDisplay($"<color=red>Incomplete! Your cargo hold is not full. You must fill your inventory with the best ores!</color>");
+            }
+            else
+            {
+                PrintToDisplay($"<color=red>Total Mismatch! You collected a total value of {physicalCargoTotal}, but the top ores had a value of {tm.expectedTotalValue}. You picked up a lower value item!</color>");
+            }
             ResetPlayerToStart();
         }
     }
@@ -122,7 +126,13 @@ public class GameManager_Training_8 : GameManager_Training
     {
         base.ResetPlayerToStart();
 
-        if (tileManager != null) tileManager.GenerateMap();
+        if (tileManager != null)
+        {
+            RandomizeMapData();
+            tileManager.GenerateMap();
+        }
+
+        SetupCargoUI();
     }
 
     protected override void OnDestroy()
@@ -130,7 +140,7 @@ public class GameManager_Training_8 : GameManager_Training
         base.OnDestroy();
         if (PythonExecutor.instance != null)
         {
-            PythonExecutor.instance.OnExecutionFinished -= CheckInventoryTotal;
+            PythonExecutor.instance.OnExecutionFinishedBefore -= CheckInventoryTotal;
             PythonExecutor.instance.OnExecutionAborted -= HandleAbort;
             PythonExecutor.instance.OnRuntimeError -= HandleRuntimeError;
         }

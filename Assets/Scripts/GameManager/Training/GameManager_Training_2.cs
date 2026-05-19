@@ -33,16 +33,7 @@ public class GameManager_Training_2 : GameManager_Training
     {
         if (printedMessage == expectedScanResult)
         {
-            int startLine = 1;
-            int endLine = 1;
-
-            if (PythonExecutor.instance != null && !string.IsNullOrEmpty(PythonExecutor.instance.currentCode))
-            {
-                string[] codeLines = PythonExecutor.instance.currentCode.Split('\n');
-                endLine = Mathf.Max(1, codeLines.Length);
-            }
-
-            bool usedVariableCorrectly = PythonExecutor.instance.CheckASTPattern(startLine, endLine, "ScanAndPrintVar", "");
+            bool usedVariableCorrectly = PythonExecutor.instance != null && PythonExecutor.instance.CheckASTPattern(1, 999, "ScanAndPrintVar", "");
 
             if (usedVariableCorrectly)
             {

@@ -52,7 +52,6 @@ public class GameManager_Training_5 : GameManager_Training
         {
             ObjectiveManager.instance.TriggerCustomEvent("ReachedGoal");
             PrintToDisplay("<color=green>Excellent! You successfully used logic to find the unknown goal distance.</color>");
-            base.OnLevelComplete();
         }
         else
         {
@@ -64,7 +63,7 @@ public class GameManager_Training_5 : GameManager_Training
     protected override void StartValuesSetup()
     {
         levelLength = 1;
-        levelWidth = Random.Range(100, 201);
+        levelWidth = Random.Range(30, 51);
         cargoSize = 0;
     }
 
