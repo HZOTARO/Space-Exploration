@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6571735418174377130, guid: 914139de134736c4ab6801397fa513e1, type: 3}
       propertyPath: m_Name
-      value: CaveTile_Normal
+      value: CaveTile_Floor
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -63,6 +63,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6571735418174377130, guid: 914139de134736c4ab6801397fa513e1, type: 3}
       insertIndex: -1
       addedObject: {fileID: -9208734708896110791}
+    - targetCorrespondingSourceObject: {fileID: 6571735418174377130, guid: 914139de134736c4ab6801397fa513e1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4927368285538401968}
   m_SourcePrefab: {fileID: 100100000, guid: 914139de134736c4ab6801397fa513e1, type: 3}
 --- !u!1 &5246869377959146670 stripped
 GameObject:
@@ -81,6 +84,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c6e3fb5ecef2cf4b8267771be96df00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: TileScriptIWrite::BaseTile
-  haveTile: 0
   z: 0
   x: 0
+  isWalkable: 0
+--- !u!114 &4927368285538401968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5246869377959146670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73631d39346a0a3459a45e03e58e6dbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RandomMaterialOffset
+  texturePropertyName: _BaseMap
+  randomizeX: 1
+  randomizeY: 1

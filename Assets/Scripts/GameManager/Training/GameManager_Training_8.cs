@@ -98,9 +98,11 @@ public class GameManager_Training_8 : GameManager_Training
         if (tm == null || cargoComponent == null) return;
 
         int physicalCargoTotal = 0;
+        string cargoContents = "Cargo Contents:\n";
         foreach (ItemAmount collected in cargoComponent.levelCargo)
         {
             physicalCargoTotal += collected.amount;
+            cargoContents += $" {collected.amount},";
         }
 
         if (cargoComponent.IsFull() && physicalCargoTotal == tm.expectedTotalValue)

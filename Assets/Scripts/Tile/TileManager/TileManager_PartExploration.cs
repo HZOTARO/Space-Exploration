@@ -19,10 +19,15 @@ public class TileManager_PartExploration : TileManager_Cave
 
     protected override void GenerateMapContent()
     {
+        numberOfEnemies = width / 10 * 2;
+        int itemCount = (width * length) / 10;
+        gearCount = itemCount * Random.Range(40, 60) / 100;
+        screwCount = itemCount - gearCount;
+
         spawnedEnemies.Clear();
 
         GenerateEnemyPaths();
-        GenerateWalls();
+        //GenerateWalls();
         GenerateSegmentedItems();
     }
 
