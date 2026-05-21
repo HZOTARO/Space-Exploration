@@ -224,7 +224,6 @@ public class GameManager : MonoBehaviour
 
     public TileObject GetCurrentTile()
     {
-        // x is Z (Row), y is X (Col)
         return tileManager.objectsArray[playerGridLoc.x, playerGridLoc.y];
     }
 
@@ -323,7 +322,7 @@ public class GameManager : MonoBehaviour
     {
         TileObject targetTile = GetTileInFront();
 
-        if (targetTile == null) return "Empty";
+        if (targetTile == null) return "Wall";
 
         string tileTypeName = targetTile.type.ToString();
         Debug.Log($"Player scanned the tile: {tileTypeName}");
@@ -332,28 +331,45 @@ public class GameManager : MonoBehaviour
 
     public virtual string FarScan()
     {
-        Vector2Int forwardLoc = GetForwardGridLoc();
-        for (int i = 0; i < 3; i++)
+        Vector2Int currentCheckLoc = GetForwardGridLoc();
+        int distance = 1;
+
+        while (true)
         {
-            if (forwardLoc.y < 0 || forwardLoc.y >= tileManager.width || forwardLoc.x < 0 || forwardLoc.x >= tileManager.length)
+            if (currentCheckLoc.y < 0 || currentCheckLoc.y >= tileManager.width || currentCheckLoc.x < 0 || currentCheckLoc.x >= tileManager.length)
             {
-                return "Empty";
+                Debug.Log($"Player far scanned the tile at distance {distance}: Wall");
+                return "Wall";
             }
 
-            TileObject targetTile = tileManager.objectsArray[forwardLoc.x, forwardLoc.y];
-            if (targetTile.type != TileType.None)
+            if (activeEnemies != null)
+            {
+                foreach (Enemy enemy in activeEnemies)
+                {
+                    if (!enemy.isDead && enemy.gridLoc == currentCheckLoc)
+                    {
+                        Debug.Log($"Player far scanned the tile at distance {distance}: Enemy");
+                        return "Enemy";
+                    }
+                }
+            }
+
+            TileObject targetTile = tileManager.objectsArray[currentCheckLoc.x, currentCheckLoc.y];
+
+            if (targetTile.type != TileType.None && targetTile.type != TileType.Floor && targetTile.type != TileType.EnemyPath)
             {
                 string tileTypeName = targetTile.type.ToString();
-                Debug.Log($"Player far scanned the tile at distance {i + 1}: {tileTypeName}");
+                Debug.Log($"Player far scanned the tile at distance {distance}: {tileTypeName}");
                 return tileTypeName;
             }
 
-            if (playerFacing == 0) forwardLoc.x++;
-            else if (playerFacing == 1) forwardLoc.y++;
-            else if (playerFacing == 2) forwardLoc.x--;
-            else if (playerFacing == 3) forwardLoc.y--;
+            if (playerFacing == 0) currentCheckLoc.x++;
+            else if (playerFacing == 1) currentCheckLoc.y++;
+            else if (playerFacing == 2) currentCheckLoc.x--;
+            else if (playerFacing == 3) currentCheckLoc.y--;
+
+            distance++;
         }
-        return "Empty";
     }
 
     public int Measure()
@@ -379,9 +395,15 @@ public class GameManager : MonoBehaviour
         // Play the shooting animation/sound
         // player.PerformAction(PlayerAction.Shoot); 
 
-        while (currentCheckLoc.y >= 0 && currentCheckLoc.y < tileManager.width &&
-               currentCheckLoc.x >= 0 && currentCheckLoc.x < tileManager.length)
+        while (true)
         {
+            if (currentCheckLoc.y < 0 || currentCheckLoc.y >= tileManager.width || currentCheckLoc.x < 0 || currentCheckLoc.x >= tileManager.length)
+            {
+                Debug.Log("Your shot hit a Wall.");
+                hitSomething = true;
+                break;
+            }
+
             TileObject staticTile = tileManager.objectsArray[currentCheckLoc.x, currentCheckLoc.y];
             if (staticTile.type == TileType.Wall)
             {
@@ -427,7 +449,7 @@ public class GameManager : MonoBehaviour
     protected void Return()
     {
         if (playerGridLoc.x == 0 && playerGridLoc.y == 0) LevelComplete();
-        else Debug.Log("You must be at the starting location to return!");
+        else PrintToDisplay("You must be at the starting location to return!");
     }
     #endregion
 
@@ -445,44 +467,13 @@ public class GameManager : MonoBehaviour
         SaveManager.saveData.inventory = InventoryManager.instance.GetInventoryForSave();
         SaveManager.instance.SaveGame(SaveManager.saveSlotInUse);
 
-        Debug.Log("<color=green>Level Completed!</color>");
         UnityEngine.SceneManagement.SceneManager.LoadScene("Hub Scene");
     }
     protected void LevelGameOver()
     {
-        PythonExecutor.instance.continuous = false;
-        PythonExecutor.instance.currentCode = null;
+        PythonExecutor.instance.StopRunningCode();
         Debug.Log("<color=red>Lose Level!</color>");
         UnityEngine.SceneManagement.SceneManager.LoadScene("Hub Scene");
-    }
-    #endregion
-
-    #region ---ITEM---
-    public object UseItem(int index)
-    {
-        if (index < 0 || index >= shuffledConsumables.Count) return false;
-
-        ItemSO itemData = shuffledConsumables[index];
-        if (itemData == null || itemData.category != ItemCategory.Consumable) return false;
-        if (InventoryManager.instance.GetAmount(itemData.itemId) <= 0) return false;
-
-        Debug.Log($"Used {itemData.displayName}!");
-        return itemData.itemId;
-    }
-
-    public string InspectItem(int index)
-    {
-        if (index < 0 || index >= shuffledConsumables.Count) return "Invalid";
-
-        ItemSO itemData = shuffledConsumables[index];
-        if (itemData == null) return "None";
-
-        return itemData.itemId;
-    }
-    public int GetConsumablesSize()
-    {
-        if (shuffledConsumables == null) return 0;
-        return shuffledConsumables.Count;
     }
     #endregion
 }

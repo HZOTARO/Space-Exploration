@@ -5,6 +5,14 @@ public class TileManager_Puzzle : TileManager_Cave
 {
     [Header("Maze Settings")]
     public Vector2Int goalCoordinate;
+    public override void GenerateMap(bool setAllfloor = true)
+    {
+        if (width % 2 == 0) width++;
+        if (length % 2 == 0) length++;
+
+        base.GenerateMap(setAllfloor);
+    }
+
     protected override void GenerateMapContent()
     {
         for (int z = 0; z < length; z++)
@@ -22,48 +30,50 @@ public class TileManager_Puzzle : TileManager_Cave
 
     private void CarveMazeDFS(int startZ, int startX)
     {
-        Stack<Vector2Int> cellStack = new Stack<Vector2Int>();
-        Vector2Int current = new Vector2Int(startX, startZ);
+        Stack<Vector2Int> pathStack = new Stack<Vector2Int>();
+        Vector2Int currentLoc = new Vector2Int(startX, startZ);
 
-        objectsArray[current.y, current.x].type = TileType.Floor;
+        objectsArray[currentLoc.y, currentLoc.x].type = TileType.Floor;
 
         List<Vector2Int> neighbors = new List<Vector2Int>();
 
-        int failsafe = 0;
-        while (failsafe < 5000)
+        while (true)
         {
-            failsafe++;
             neighbors.Clear();
 
             Vector2Int[] directions = { new Vector2Int(0, 2), new Vector2Int(0, -2), new Vector2Int(2, 0), new Vector2Int(-2, 0) };
-            foreach (var dir in directions)
+            foreach (Vector2Int dir in directions)
             {
-                Vector2Int check = current + dir;
-                if (check.x >= 0 && check.x < width && check.y >= 0 && check.y < length)
+                Vector2Int targetLoc = currentLoc + dir;
+
+                if (targetLoc.x >= 0 && targetLoc.x < width && targetLoc.y >= 0 && targetLoc.y < length)
                 {
-                    if (objectsArray[check.y, check.x].type == TileType.Wall)
+                    if (objectsArray[targetLoc.y, targetLoc.x].type == TileType.Wall)
                     {
-                        neighbors.Add(check);
+                        neighbors.Add(targetLoc);
                     }
                 }
             }
 
             if (neighbors.Count > 0)
             {
-                Vector2Int chosen = neighbors[Random.Range(0, neighbors.Count)];
+                Vector2Int targetLoc = neighbors[Random.Range(0, neighbors.Count)];
 
-                Vector2Int wallBetween = current + (chosen - current) / 2;
-                objectsArray[wallBetween.y, wallBetween.x].type = TileType.Floor;
+                Vector2Int connectingLoc = currentLoc + (targetLoc - currentLoc) / 2;
 
-                objectsArray[chosen.y, chosen.x].type = TileType.Floor;
+                objectsArray[connectingLoc.y, connectingLoc.x].type = TileType.Floor;
 
-                cellStack.Push(current);
-                current = chosen;
+                objectsArray[targetLoc.y, targetLoc.x].type = TileType.Floor;
+
+                pathStack.Push(currentLoc);
+                currentLoc = targetLoc;
             }
-            else if (cellStack.Count > 0)
+
+            else if (pathStack.Count > 0)
             {
-                current = cellStack.Pop();
+                currentLoc = pathStack.Pop();
             }
+
             else
             {
                 break;
@@ -73,18 +83,47 @@ public class TileManager_Puzzle : TileManager_Cave
 
     private void PlaceGoalTile()
     {
-        for (int z = length - 1; z >= 0; z--)
+        List<Vector2Int> validGoals = new List<Vector2Int>();
+        List<Vector2Int> backupGoals = new List<Vector2Int>();
+
+        float minX = width * 0.75f;
+        float minZ = length * 0.75f;
+
+        for (int z = 0; z < length; z++)
         {
-            for (int x = width - 1; x >= 0; x--)
+            for (int x = 0; x < width; x++)
             {
                 if (objectsArray[z, x].type == TileType.Floor)
                 {
-                    objectsArray[z, x].type = TileType.Goal;
-                    floorArray[z, x].type = TileType.Goal;
-                    goalCoordinate = new Vector2Int(x, z);
-                    return;
+                    if (x == 0 && z == 0) continue;
+
+                    Vector2Int pos = new Vector2Int(x, z);
+                    backupGoals.Add(pos);
+
+                    if (x >= minX || z >= minZ)
+                    {
+                        validGoals.Add(pos);
+                    }
                 }
             }
         }
+
+        Vector2Int chosenGoal;
+
+        if (validGoals.Count > 0)
+        {
+            chosenGoal = validGoals[Random.Range(0, validGoals.Count)];
+        }
+        else if (backupGoals.Count > 0)
+        {
+            chosenGoal = backupGoals[Random.Range(0, backupGoals.Count)];
+        }
+        else
+        {
+            return;
+        }
+
+        objectsArray[chosenGoal.y, chosenGoal.x].type = TileType.Goal;
+        goalCoordinate = chosenGoal;
     }
 }
