@@ -20,6 +20,68 @@ public class TileManager_PartExploration : TileManager_Cave
 
     [HideInInspector] public List<Enemy> spawnedEnemies = new List<Enemy>();
 
+    public override void GenerateMap(bool setAllfloor = true)
+    {
+        base.GenerateMap(setAllfloor);
+
+        EnemyPath tilePrefab = FindTilePrefab(TileType.EnemyPath) as EnemyPath;
+
+        if (tilePrefab == null) return;
+
+        foreach (Enemy enemy in spawnedEnemies)
+        {
+            EnemyPath prevTile = null;
+            Vector2Int prevPos = enemy.patrolPath[0];
+
+            foreach (Vector2Int path in enemy.patrolPath)
+            {
+                EnemyPath currentTile = InstantiateTileVisual(path.x, path.y, tilePrefab) as EnemyPath;
+
+                if (prevTile == null)
+                {
+                    currentTile.SetPathDirection(EnemyMark.Middle);
+
+                    prevTile = currentTile;
+                    prevPos = path;
+                    continue;
+                }
+
+                Vector2Int direction = path - prevPos;
+                EnemyPathDirection pathDirection = EnemyPathDirection.Right;
+
+                if (direction.y > 0) pathDirection = EnemyPathDirection.Right;
+                else if (direction.y < 0) pathDirection = EnemyPathDirection.Left;
+                else if (direction.x > 0) pathDirection = EnemyPathDirection.Up;
+                else if (direction.x < 0) pathDirection = EnemyPathDirection.Down;
+
+                switch (pathDirection)
+                {
+                    case EnemyPathDirection.Left:
+                        prevTile.SetPathDirection(EnemyMark.Right);
+                        currentTile.SetPathDirection(EnemyMark.Left);
+                        break;
+                    case EnemyPathDirection.Right:
+                        prevTile.SetPathDirection(EnemyMark.Left);
+                        currentTile.SetPathDirection(EnemyMark.Right);
+                        break;
+                    case EnemyPathDirection.Up:
+                        prevTile.SetPathDirection(EnemyMark.Down);
+                        currentTile.SetPathDirection(EnemyMark.Up);
+                        break;
+                    case EnemyPathDirection.Down:
+                        prevTile.SetPathDirection(EnemyMark.Up);
+                        currentTile.SetPathDirection(EnemyMark.Down);
+                        break;
+                }
+
+                prevTile = currentTile;
+                prevPos = path;
+            }
+
+            prevTile.SetPathDirection(EnemyMark.Middle);
+        }
+    }
+
     protected override void GenerateMapContent()
     {
         numberOfEnemies = width / 10 * 2;
@@ -31,6 +93,17 @@ public class TileManager_PartExploration : TileManager_Cave
 
         GenerateSegmentedEnemies();
         GenerateSegmentedItems();
+
+        for (int z = 0; z < length; z++)
+        {
+            for (int x = 0; x < length; x++)
+            {
+                if (objectsArray[z, x].type == TileType.EnemyPath)
+                {
+                    objectsArray[z, x].type = TileType.Floor;
+                }
+            }
+        }
     }
 
     private void GenerateSegmentedEnemies()
@@ -212,7 +285,7 @@ public class TileManager_PartExploration : TileManager_Cave
 
                 if (totalValidTiles <= 0) break;
 
-                float proportion = (float) validCountInSegment / totalValidTiles;
+                float proportion = (float)validCountInSegment / totalValidTiles;
 
                 int gearInThisSegment = Mathf.RoundToInt(currentGearCount * proportion);
                 gearInThisSegment = Mathf.Clamp(gearInThisSegment, 0, currentGearCount);

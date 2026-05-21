@@ -18,7 +18,7 @@ public struct EnemyAnimationMapping
     public string animatorStateName;
 }
 
-public class Enemy : MonoBehaviour
+public class Enemy : BaseTile
 {
     [HideInInspector] public Vector2Int gridLoc;
 

@@ -1282,7 +1282,7 @@ MonoBehaviour:
   floorTile: {fileID: -9208734708896110791, guid: 5b880c3cdeb231146bc576bce7b32fe2, type: 3}
   tileData:
   - type: 6
-    tilePrefab: {fileID: 326739389756448499, guid: 4cbeb39783f2a0a449b43708186e026d, type: 3}
+    tilePrefab: {fileID: 4961475935217441140, guid: 45a3dfbd777f6c146b60ae894fbd95f6, type: 3}
   - type: 7
     tilePrefab: {fileID: -7630646789034100663, guid: 7ce78f6f262271a4791022ad2bd6faab, type: 3}
   - type: 8
