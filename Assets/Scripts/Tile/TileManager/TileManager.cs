@@ -75,7 +75,7 @@ public class TileManager : MonoBehaviour
         return null;
     }
 
-    protected BaseTile InstantiateTileVisual(int z, int x, BaseTile prefab)
+    public BaseTile InstantiateTileVisual(int z, int x, BaseTile prefab)
     {
         if (!prefab) return null;
 

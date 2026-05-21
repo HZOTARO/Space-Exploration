@@ -68,11 +68,10 @@ public class GameManager_PartExploration : GameManager
 
         foreach (Enemy enemy in activeEnemies)
         {
-            if (enemy.gridLoc == forwardLoc)
+            if (!enemy.isDead && enemy.gridLoc == forwardLoc)
             {
                 TileObject enemyTile = new TileObject();
                 enemyTile.type = TileType.Enemy;
-
                 return enemyTile;
             }
         }
@@ -131,7 +130,7 @@ public class GameManager_PartExploration : GameManager
         {
             foreach (Enemy enemy in activeEnemies)
             {
-                if (enemy.gridLoc == forwardLoc)
+                if (!enemy.isDead && enemy.gridLoc == forwardLoc)
                 {
                     Debug.Log("<color=red>Scanned: Enemy detected!</color>");
                     return "Enemy";
@@ -144,7 +143,7 @@ public class GameManager_PartExploration : GameManager
         if (targetTile == null)
         {
             Debug.Log("Scanned: Edge of map.");
-            return "Empty";
+            return "Wall";
         }
 
         Debug.Log($"Scanned: {targetTile.type.ToString()}");
@@ -159,33 +158,55 @@ public class GameManager_PartExploration : GameManager
         {
             if (enemy.isDead) continue;
 
-            if (enemy.gridLoc == playerGridLoc)
-            {
-                TriggerEnemyCatch(enemy);
-                continue;
-            }
-
             Vector2Int nextPos = enemy.GetNextPatrolNode();
 
-            enemy.MoveForward(nextPos);
-            enemy.AdvancePathIndex();
+            if (nextPos == playerGridLoc)
+            {
+                enemy.pathDirection *= -1;
+                nextPos = enemy.GetNextPatrolNode();
 
-            if (enemy.gridLoc == playerGridLoc)
+                if (nextPos == playerGridLoc)
+                {
+                    nextPos = enemy.gridLoc;
+                }
+            }
+
+            if (nextPos != enemy.gridLoc)
+            {
+                enemy.MoveForward(nextPos);
+                enemy.AdvancePathIndex();
+            }
+
+            if (IsPlayerAdjacent(enemy.gridLoc))
             {
                 TriggerEnemyCatch(enemy);
             }
         }
     }
 
+    private bool IsPlayerAdjacent(Vector2Int enemyLoc)
+    {
+        int dx = Mathf.Abs(enemyLoc.x - playerGridLoc.x);
+        int dy = Mathf.Abs(enemyLoc.y - playerGridLoc.y);
+
+        return dx <= 1 && dy <= 1;
+    }
+
     private void TriggerEnemyCatch(Enemy enemy)
     {
         Debug.Log("<color=red>An Enemy is attacking!</color>");
+
+        Vector2Int dirToPlayer = playerGridLoc - enemy.gridLoc;
+        if (dirToPlayer != Vector2Int.zero)
+        {
+            enemy.SnapRotationToDirection(dirToPlayer);
+        }
 
         enemy.PerformAction(EnemyAction.Attack, () =>
         {
             if (healthComponent != null)
             {
-                healthComponent.DamagePlayer(9999);
+                healthComponent.DamagePlayer(50);
             }
         });
     }

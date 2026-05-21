@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 
 public class GameManager_Training_6 : GameManager_Training
 {
@@ -53,6 +52,10 @@ public class GameManager_Training_6 : GameManager_Training
     {
         visitedTiles.Clear();
         visitedTiles.Add(Vector2Int.zero);
+        if (player.markPrefab && tileManager)
+        {
+            tileManager.InstantiateTileVisual(playerGridLoc.x, playerGridLoc.y, player.markPrefab);
+        }
     }
 
     public override bool MoveForward()
@@ -61,6 +64,10 @@ public class GameManager_Training_6 : GameManager_Training
 
         bool result = base.MoveForward();
         visitedTiles.Add(playerGridLoc);
+        if (result && player.markPrefab && tileManager)
+        {
+            tileManager.InstantiateTileVisual(playerGridLoc.x, playerGridLoc.y, player.markPrefab);
+        }
         return result;
     }
 
@@ -70,6 +77,10 @@ public class GameManager_Training_6 : GameManager_Training
 
         bool result = base.MoveBackward();
         visitedTiles.Add(playerGridLoc);
+        if (result && player.markPrefab && tileManager)
+        {
+            tileManager.InstantiateTileVisual(playerGridLoc.x, playerGridLoc.y, player.markPrefab);
+        }
         return result;
     }
 

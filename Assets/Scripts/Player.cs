@@ -12,6 +12,13 @@ public struct AnimationMapping
 
 public class Player : MonoBehaviour
 {
+    [Header("Should've Been On Game Manager")]
+    public GameObject scanEffect;
+    public GameObject shootEffect;
+
+    public GameObject grid;
+    public BaseTile markPrefab;
+
     [Header("Movement")]
     public float moveDistance = 2f;
     public float baseMoveSpeed = 5f;

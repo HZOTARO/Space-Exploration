@@ -1,5 +1,5 @@
 {
-    "lastSavedTime": "21-05-2026 17:32",
+    "lastSavedTime": "21-05-2026 21:27",
     "inventory": [],
     "unlockedUpgrades": [
         {
@@ -39,10 +39,15 @@
             "currentLevel": 1
         }
     ],
-    "stepDelay": 0.20000000298023225,
-    "gameSpeed": 1.0,
+    "stepDelay": 0.0,
+    "gameSpeed": 4.0,
     "levelCompleted": [
-        "Tutorial 1"
+        "Tutorial 1",
+        "Tutorial 2",
+        "Tutorial 3",
+        "Tutorial 4",
+        "Tutorial 5",
+        "Tutorial 6"
     ],
     "hints": [
         {
@@ -112,6 +117,31 @@
         },
         {
             "id": "list",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "training 2",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "training 3",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "training 4",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "training 5",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "training 6",
             "hasAppeared": true,
             "isUnlocked": true
         }

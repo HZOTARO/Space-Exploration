@@ -73,13 +73,10 @@ public class TileManager_PartExploration : TileManager_Cave
 
                     Vector2Int startPos = validPos[Random.Range(0, validPos.Count)];
 
-                    //Debug.Log($"Starting Enemy Path at: ({startPos.x},{startPos.y})");
-
                     patrolPath.Add(startPos);
                     validPos.Remove(startPos);
 
                     objectsArray[startPos.x, startPos.y].type = TileType.EnemyPath;
-                    floorArray[startPos.x, startPos.y].type = TileType.EnemyPath;
 
                     Vector2Int currentPos = startPos;
                     int patrolLength = Random.Range(minPatrolLength, maxPatrolLength + 1);
@@ -88,8 +85,6 @@ public class TileManager_PartExploration : TileManager_Cave
                     {
                         List<EnemyPathDirection> validDirections = CheckAdjacent(currentPos, validPos);
 
-                        //Debug.Log($"Valid directions from ({currentPos.x},{currentPos.y}): {string.Join(", ", validDirections)}");
-
                         if (validDirections.Count <= 0)
                         {
                             break;
@@ -97,11 +92,7 @@ public class TileManager_PartExploration : TileManager_Cave
 
                         EnemyPathDirection direction = validDirections[Random.Range(0, validDirections.Count)];
 
-                        //Debug.Log($"Chosen direction: {direction}");
-
                         int preferredLength = Random.Range(3, 9);
-
-                        //Debug.Log($"Preferred length in this direction: {preferredLength}");
 
                         while (preferredLength > 0 && patrolLength > 0)
                         {
@@ -119,7 +110,6 @@ public class TileManager_PartExploration : TileManager_Cave
                                 validPos.Remove(nextPos);
 
                                 objectsArray[nextPos.x, nextPos.y].type = TileType.EnemyPath;
-                                floorArray[nextPos.x, nextPos.y].type = TileType.EnemyPath;
 
                                 currentPos = nextPos;
 
@@ -144,13 +134,6 @@ public class TileManager_PartExploration : TileManager_Cave
 
                         spawnedEnemies.Add(enemyScript);
                     }
-
-                    string debugPath = "Patrol Path: ";
-                    foreach (Vector2Int node in patrolPath)
-                    {
-                        debugPath += $"({node.x},{node.y}) ";
-                    }
-                    Debug.Log(debugPath);
 
                     currentEnemyCount--;
                 }

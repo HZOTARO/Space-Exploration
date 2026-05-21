@@ -1278,7 +1278,7 @@ MonoBehaviour:
   width: 5
   length: 5
   tilesContainer: {fileID: 202872234}
-  grid: {fileID: 0}
+  grid: {fileID: 7561592933734253305, guid: 623c822b7ae4df345afd321fded532bb, type: 3}
   floorTile: {fileID: -9208734708896110791, guid: 5b880c3cdeb231146bc576bce7b32fe2, type: 3}
   tileData:
   - type: 6
@@ -1289,9 +1289,7 @@ MonoBehaviour:
     tilePrefab: {fileID: -7630646789034100663, guid: 495311143f52b024aacfba6161971fa8, type: 3}
   - type: 9
     tilePrefab: {fileID: 9201390410382802886, guid: 47c2b68f1dbcfd4499f3384d6ed59da5, type: 3}
-  wallDensityPercentage: 15
   numberOfEnemies: 2
-  patrolPathLength: 4
   gearCount: 5
   screwCount: 5
   enemyPrefab: {fileID: 1873521129495857410, guid: 5226a8a00d1166548a8a95f24b9426d8, type: 3}

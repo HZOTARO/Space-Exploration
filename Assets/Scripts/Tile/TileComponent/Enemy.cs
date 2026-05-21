@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 
 public enum EnemyAction
@@ -31,7 +30,7 @@ public class Enemy : MonoBehaviour
     public GameObject enemyMesh;
 
     [Header("Movement")]
-    public float moveSpeed = 5f;
+    public float moveSpeed = 2.5f;
     private Vector3 targetPosition;
     private bool isMoving = false;
     public bool inAction = false;
@@ -168,6 +167,8 @@ public class Enemy : MonoBehaviour
 
     public void ChangeAnimation(string newState, float transitionTime = 0.1f, bool forceRestart = false)
     {
+        Debug.Log(newState);
+
         if (currentAnimation == newState && !forceRestart) return;
 
         if (forceRestart)

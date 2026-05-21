@@ -113,7 +113,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &50313869904685319
 Transform:
   m_ObjectHideFlags: 0
@@ -426,7 +426,7 @@ MonoBehaviour:
   currentPathIndex: 0
   pathDirection: 1
   enemyMesh: {fileID: 7521074082765220158}
-  moveSpeed: 5
+  moveSpeed: 2.5
   inAction: 0
   isDead: 0
   animator: {fileID: 3876409056609675774}
