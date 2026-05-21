@@ -1,10 +1,12 @@
 {
-    "lastSavedTime": "21-05-2026 08:46",
+    "lastSavedTime": "21-05-2026 11:07",
     "inventory": [],
     "unlockedUpgrades": [],
     "stepDelay": 0.20000000298023225,
     "gameSpeed": 1.0,
-    "levelCompleted": [],
+    "levelCompleted": [
+        "Tutorial 1"
+    ],
     "hints": [
         {
             "id": "tutorial_welcome",
@@ -40,6 +42,11 @@
             "id": "setting",
             "hasAppeared": false,
             "isUnlocked": false
+        },
+        {
+            "id": "training 1",
+            "hasAppeared": true,
+            "isUnlocked": true
         }
     ]
 }

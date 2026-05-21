@@ -48,7 +48,7 @@ public class PlayerCargoComponent : MonoBehaviour
                 cargoSlots[i].itemIcon.sprite = null;
                 cargoSlots[i].itemIcon.gameObject.SetActive(false);
                 cargoSlots[i].amountText.text = "";
-                cargoSlots[i].amountText.fontSize = 30 + 6 * ((10 - Mathf.Min(Mathf.Max(cargoSize, 6), 10)) / (10 - 6));
+                //cargoSlots[i].amountText.fontSize = 30 + 6 * ((10 - Mathf.Min(Mathf.Max(cargoSize, 6), 10)) / (10 - 6));
 
                 if (i == cargoSize - 1)
                 {

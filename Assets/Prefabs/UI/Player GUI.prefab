@@ -988,6 +988,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemSlot_Inside
       objectReference: {fileID: 0}
+    - target: {fileID: 2694608502700664910, guid: 74442c50b8e689d48b09c56a014abfa8, type: 3}
+      propertyPath: m_fontSize
+      value: 72
+      objectReference: {fileID: 0}
     - target: {fileID: 3002434017858878078, guid: 74442c50b8e689d48b09c56a014abfa8, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
