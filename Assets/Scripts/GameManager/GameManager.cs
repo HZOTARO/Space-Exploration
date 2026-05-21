@@ -278,7 +278,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// In Animation or Moving
     /// </summary>
-    public bool InAction() { return player != null && player.inAction; }
+    public virtual bool InAction() { return player != null && player.inAction; }
     public TileObject GetCurrentTile()
     {
         return tileManager.objectsArray[playerGridLoc.y, playerGridLoc.x];
@@ -475,7 +475,7 @@ public class GameManager : MonoBehaviour
 
                 activeEnemies.Remove(hitEnemy);
 
-                Destroy(hitEnemy.gameObject);
+                hitEnemy.PerformAction(EnemyAction.Death, null);
 
                 hitSomething = true;
                 break;

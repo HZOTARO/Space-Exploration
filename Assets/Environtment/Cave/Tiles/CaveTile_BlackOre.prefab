@@ -252,6 +252,7 @@ MonoBehaviour:
   normalOre: {fileID: 3468593839345182855}
   destroyedOre: {fileID: 7814217362098960561}
   pointLight: {fileID: 8370811348004951404}
+  explosionPrefab: {fileID: 8378648546881499446, guid: 450269d08b6a55a49a22066ab8499b14, type: 3}
 --- !u!1 &2020392785958225326
 GameObject:
   m_ObjectHideFlags: 0

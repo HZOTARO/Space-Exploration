@@ -35,6 +35,7 @@ public class GameManager_PartExploration : GameManager
         BindReturn("move_backward", MoveBackward);
         Bind("turn_right", TurnRight);
         Bind("turn_left", TurnLeft);
+        Bind("wait", Wait);
 
         Bind("go_back", Return);
 
@@ -45,6 +46,20 @@ public class GameManager_PartExploration : GameManager
             if (UpgradeManager.instance.IsUpgradeUnlocked("scan")) BindReturn("scan", Scan);
             if (UpgradeManager.instance.IsUpgradeUnlocked("measure")) BindReturn("measure", Measure);
         }
+    }
+
+    public override bool InAction()
+    {
+        if (base.InAction()) return true;
+
+        if (activeEnemies != null)
+        {
+            foreach (Enemy enemy in activeEnemies)
+            {
+                if (enemy != null && enemy.inAction) return true;
+            }
+        }
+        return false;
     }
 
     public override TileObject GetTileInFront()
@@ -138,54 +153,41 @@ public class GameManager_PartExploration : GameManager
 
     protected virtual void TriggerEnemyTurns()
     {
-        // If there are no enemies, just skip this completely
         if (activeEnemies == null || activeEnemies.Count == 0) return;
 
         foreach (Enemy enemy in activeEnemies)
         {
-            // 1. Check if the player stepped directly ONTO the enemy first
+            if (enemy.isDead) continue;
+
             if (enemy.gridLoc == playerGridLoc)
             {
-                CatchPlayer();
+                TriggerEnemyCatch(enemy);
                 continue;
             }
 
-            // 2. Calculate where the enemy wants to step next
-            Vector2Int nextPos = enemy.gridLoc + enemy.patrolDir;
+            Vector2Int nextPos = enemy.GetNextPatrolNode();
 
-            // 3. Check if the next tile is out of bounds or no longer an EnemyPath
-            if (nextPos.x < 0 || nextPos.x >= tileManager.width ||
-                nextPos.y < 0 || nextPos.y >= tileManager.length ||
-                tileManager.objectsArray[nextPos.y, nextPos.x].type != TileType.EnemyPath)
-            {
-                // Reverse direction 180 degrees!
-                enemy.patrolDir *= -1;
-                nextPos = enemy.gridLoc + enemy.patrolDir;
-            }
+            enemy.MoveForward(nextPos);
+            enemy.AdvancePathIndex();
 
-            // 4. Update the enemy's logic coordinate
-            enemy.gridLoc = nextPos;
-
-            // 5. Tell the enemy to update its 3D model position
-            enemy.UpdateVisualPosition();
-
-            // 6. Check if the enemy just stepped ONTO the player
             if (enemy.gridLoc == playerGridLoc)
             {
-                CatchPlayer();
+                TriggerEnemyCatch(enemy);
             }
         }
     }
 
-    private void CatchPlayer()
+    private void TriggerEnemyCatch(Enemy enemy)
     {
-        Debug.Log("<color=red>The Player was caught by an Enemy!</color>");
+        Debug.Log("<color=red>An Enemy is attacking!</color>");
 
-        // Use the exact damage method you used in your Mine() logic
-        if (healthComponent != null)
+        enemy.PerformAction(EnemyAction.Attack, () =>
         {
-            healthComponent.DamagePlayer(9999);
-        }
+            if (healthComponent != null)
+            {
+                healthComponent.DamagePlayer(9999);
+            }
+        });
     }
 
     public override bool MoveForward()
@@ -194,10 +196,15 @@ public class GameManager_PartExploration : GameManager
         if (result) TriggerEnemyTurns();
         return result;
     }
-    public override bool MoveBackward() 
+    public override bool MoveBackward()
     {
         bool result = base.MoveBackward();
         if (result) TriggerEnemyTurns();
         return result;
+    }
+
+    public void Wait()
+    {
+        TriggerEnemyTurns();
     }
 }

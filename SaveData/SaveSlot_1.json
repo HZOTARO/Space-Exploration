@@ -1,7 +1,44 @@
 {
-    "lastSavedTime": "21-05-2026 11:07",
+    "lastSavedTime": "21-05-2026 17:32",
     "inventory": [],
-    "unlockedUpgrades": [],
+    "unlockedUpgrades": [
+        {
+            "id": "resourceexploration_mapsize",
+            "currentLevel": 1
+        },
+        {
+            "id": "black_ore",
+            "currentLevel": 1
+        },
+        {
+            "id": "purple_liquid",
+            "currentLevel": 1
+        },
+        {
+            "id": "white_ore",
+            "currentLevel": 1
+        },
+        {
+            "id": "partsexploration_mapsize",
+            "currentLevel": 1
+        },
+        {
+            "id": "variable",
+            "currentLevel": 1
+        },
+        {
+            "id": "ifelse",
+            "currentLevel": 1
+        },
+        {
+            "id": "loop",
+            "currentLevel": 1
+        },
+        {
+            "id": "list",
+            "currentLevel": 1
+        }
+    ],
     "stepDelay": 0.20000000298023225,
     "gameSpeed": 1.0,
     "levelCompleted": [
@@ -45,6 +82,36 @@
         },
         {
             "id": "training 1",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "black_ore",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "purple_essence",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "variable",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "conditionals",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "loop",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "list",
             "hasAppeared": true,
             "isUnlocked": true
         }

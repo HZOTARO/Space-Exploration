@@ -1,16 +1,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum EnemyPathDirection
+{
+    Up, Down, Left, Right
+}
+
 public class TileManager_PartExploration : TileManager_Cave
 {
-    [Header("Exploration Settings")]
-    public int wallDensityPercentage = 15;
-    public int numberOfEnemies = 2;
-    public int patrolPathLength = 4;
+    [Header("Enemies Settings")]
+    public int numberOfEnemies;
 
-    [Tooltip("Total amount to spawn across the whole map")]
-    public int gearCount = 5;
-    public int screwCount = 5;
+    [Header("Items Settings")]
+    public int gearCount;
+    public int screwCount;
 
     [Header("Prefabs")]
     public GameObject enemyPrefab;
@@ -20,145 +23,241 @@ public class TileManager_PartExploration : TileManager_Cave
     protected override void GenerateMapContent()
     {
         numberOfEnemies = width / 10 * 2;
-        int itemCount = (width * length) / 10;
-        gearCount = itemCount * Random.Range(40, 60) / 100;
+        int itemCount = (width * length) / 20;
+        gearCount = Mathf.RoundToInt(itemCount * Random.Range(0.4f, 0.6f));
         screwCount = itemCount - gearCount;
 
         spawnedEnemies.Clear();
 
-        GenerateEnemyPaths();
-        //GenerateWalls();
+        GenerateSegmentedEnemies();
         GenerateSegmentedItems();
     }
 
-    private void GenerateEnemyPaths()
+    private void GenerateSegmentedEnemies()
     {
-        for (int i = 0; i < numberOfEnemies; i++)
-        {
-            for (int attempts = 0; attempts < 10; attempts++)
-            {
-                int startX = Random.Range(3, width - patrolPathLength);
-                int startZ = Random.Range(3, length - patrolPathLength);
-                bool isHorizontal = Random.value > 0.5f;
+        int segmentSize = 10;
 
-                bool isClear = true;
-                for (int step = 0; step < patrolPathLength; step++)
-                {
-                    int x = isHorizontal ? startX + step : startX;
-                    int z = isHorizontal ? startZ : startZ + step;
-
-                    if (objectsArray[z, x].type != TileType.Floor)
-                    {
-                        isClear = false;
-                        break;
-                    }
-                }
-
-                if (isClear)
-                {
-                    for (int step = 0; step < patrolPathLength; step++)
-                    {
-                        int x = isHorizontal ? startX + step : startX;
-                        int z = isHorizontal ? startZ : startZ + step;
-
-                        floorArray[z, x].type = TileType.EnemyPath;
-                        objectsArray[z, x].type = TileType.EnemyPath;
-                    }
-
-                    if (enemyPrefab != null)
-                    {
-                        GameObject spawnedEnemy = Instantiate(enemyPrefab);
-                        spawnedEnemy.transform.localScale = Vector3.one;
-                        spawnedEnemy.transform.SetParent(tilesContainer.transform, false);
-                        Enemy enemyScript = spawnedEnemy.GetComponent<Enemy>();
-
-
-                        Vector2Int patrolDirection = isHorizontal ? new Vector2Int(1, 0) : new Vector2Int(0, 1);
-                        enemyScript.Setup(new Vector2Int(startX, startZ), patrolDirection);
-
-                        spawnedEnemies.Add(enemyScript);
-                    }
-                    break;
-                }
-            }
-        }
-    }
-
-    private void GenerateWalls()
-    {
-        int totalTiles = width * length;
-        int targetWallCount = (totalTiles * wallDensityPercentage) / 100;
-        int placedWalls = 0;
-
-        for (int attempts = 0; attempts < 1000 && placedWalls < targetWallCount; attempts++)
-        {
-            int x = Random.Range(0, width);
-            int z = Random.Range(0, length);
-
-            if (x < 2 && z < 2) continue;
-
-            if (objectsArray[z, x].type == TileType.Floor)
-            {
-                objectsArray[z, x].type = TileType.Wall;
-                placedWalls++;
-            }
-        }
-    }
-
-    private void GenerateSegmentedItems()
-    {
-        int currentGearCount = gearCount;
-        int currentScrewCount = screwCount;
-
-        int segmentSize = 5;
         int segmentLength = Mathf.RoundToInt((float)length / segmentSize);
-        int segmentLengthRemainder = length % segmentSize;
         int segmentWidth = Mathf.RoundToInt((float)width / segmentSize);
-        int segmentWidthRemainder = width % segmentSize;
         int segmentCount = segmentLength * segmentWidth;
 
         if (segmentCount <= 0) return;
 
-        int randZ, randX;
-        for (int z = 0; z < segmentLength; z++)
+        int enemyPerSegment = Mathf.Max(1, Mathf.RoundToInt((float)numberOfEnemies / segmentCount));
+        int minPatrolLength = 30 / enemyPerSegment;
+        int maxPatrolLength = 50 / enemyPerSegment;
+
+        for (int segmentZ = 0; segmentZ < segmentLength; segmentZ++)
         {
-            for (int x = 0; x < segmentWidth; x++)
+            for (int segmentX = 0; segmentX < segmentWidth; segmentX++)
             {
-                int segmentGearCount = Mathf.RoundToInt((float)currentGearCount / segmentCount);
-                currentGearCount -= segmentGearCount;
+                int currentEnemyCount = enemyPerSegment;
 
-                int segmentScrewCount = Mathf.RoundToInt((float)currentScrewCount / segmentCount);
-                currentScrewCount -= segmentScrewCount;
-
-                int failsafe = 0;
-                while (segmentGearCount > 0 && failsafe < 50)
+                List<Vector2Int> validPos = new List<Vector2Int>();
+                for (int z = segmentZ * segmentSize; z < (segmentZ + 1) * segmentSize && z < length; z++)
                 {
-                    failsafe++;
-                    randZ = Random.Range(0, z == segmentLength - 1 ? segmentSize + segmentLengthRemainder : segmentSize) + z * segmentSize;
-                    randX = Random.Range(0, x == segmentWidth - 1 ? segmentSize + segmentWidthRemainder : segmentSize) + x * segmentSize;
-
-                    if (objectsArray[randZ, randX].type == TileType.Floor && !(randZ == 0 && randX == 0))
+                    for (int x = segmentX * segmentSize; x < (segmentX + 1) * segmentSize && x < width; x++)
                     {
-                        objectsArray[randZ, randX].type = TileType.Gear;
-                        segmentGearCount--;
+                        if (z < 2 && x < 2) continue;
+
+                        if (objectsArray[z, x].type == TileType.Floor)
+                        {
+                            validPos.Add(new Vector2Int(z, x));
+                        }
                     }
                 }
 
-                failsafe = 0;
-                while (segmentScrewCount > 0 && failsafe < 50)
+                while (currentEnemyCount > 0 && validPos.Count > 0)
                 {
-                    failsafe++;
-                    randZ = Random.Range(0, z == segmentLength - 1 ? segmentSize + segmentLengthRemainder : segmentSize) + z * segmentSize;
-                    randX = Random.Range(0, x == segmentWidth - 1 ? segmentSize + segmentWidthRemainder : segmentSize) + x * segmentSize;
+                    List<Vector2Int> patrolPath = new List<Vector2Int>();
 
-                    if (objectsArray[randZ, randX].type == TileType.Floor && !(randZ == 0 && randX == 0))
+                    Vector2Int startPos = validPos[Random.Range(0, validPos.Count)];
+
+                    //Debug.Log($"Starting Enemy Path at: ({startPos.x},{startPos.y})");
+
+                    patrolPath.Add(startPos);
+                    validPos.Remove(startPos);
+
+                    objectsArray[startPos.x, startPos.y].type = TileType.EnemyPath;
+                    floorArray[startPos.x, startPos.y].type = TileType.EnemyPath;
+
+                    Vector2Int currentPos = startPos;
+                    int patrolLength = Random.Range(minPatrolLength, maxPatrolLength + 1);
+
+                    while (patrolLength > 0)
                     {
-                        objectsArray[randZ, randX].type = TileType.Screw;
-                        segmentScrewCount--;
+                        List<EnemyPathDirection> validDirections = CheckAdjacent(currentPos, validPos);
+
+                        //Debug.Log($"Valid directions from ({currentPos.x},{currentPos.y}): {string.Join(", ", validDirections)}");
+
+                        if (validDirections.Count <= 0)
+                        {
+                            break;
+                        }
+
+                        EnemyPathDirection direction = validDirections[Random.Range(0, validDirections.Count)];
+
+                        //Debug.Log($"Chosen direction: {direction}");
+
+                        int preferredLength = Random.Range(3, 9);
+
+                        //Debug.Log($"Preferred length in this direction: {preferredLength}");
+
+                        while (preferredLength > 0 && patrolLength > 0)
+                        {
+                            Vector2Int nextPos = currentPos;
+                            switch (direction)
+                            {
+                                case EnemyPathDirection.Right: nextPos.y++; break;
+                                case EnemyPathDirection.Up: nextPos.x++; break;
+                                case EnemyPathDirection.Left: nextPos.y--; break;
+                                case EnemyPathDirection.Down: nextPos.x--; break;
+                            }
+                            if (validPos.Contains(nextPos))
+                            {
+                                patrolPath.Add(nextPos);
+                                validPos.Remove(nextPos);
+
+                                objectsArray[nextPos.x, nextPos.y].type = TileType.EnemyPath;
+                                floorArray[nextPos.x, nextPos.y].type = TileType.EnemyPath;
+
+                                currentPos = nextPos;
+
+                                preferredLength--;
+                                patrolLength--;
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                    }
+
+                    if (enemyPrefab != null && patrolPath.Count > 0)
+                    {
+                        GameObject spawnedEnemy = Instantiate(enemyPrefab);
+                        spawnedEnemy.transform.localScale = Vector3.one;
+                        spawnedEnemy.transform.SetParent(tilesContainer.transform, false);
+
+                        Enemy enemyScript = spawnedEnemy.GetComponent<Enemy>();
+                        enemyScript.Setup(patrolPath);
+
+                        spawnedEnemies.Add(enemyScript);
+                    }
+
+                    string debugPath = "Patrol Path: ";
+                    foreach (Vector2Int node in patrolPath)
+                    {
+                        debugPath += $"({node.x},{node.y}) ";
+                    }
+                    Debug.Log(debugPath);
+
+                    currentEnemyCount--;
+                }
+            }
+        }
+    }
+
+    private List<EnemyPathDirection> CheckAdjacent(Vector2Int currentPosition, List<Vector2Int> availablePosition)
+    {
+        List<EnemyPathDirection> validDirections = new List<EnemyPathDirection>();
+
+        if (availablePosition.Contains(new Vector2Int(currentPosition.x, currentPosition.y + 1)))
+        {
+            validDirections.Add(EnemyPathDirection.Right);
+        }
+        if (availablePosition.Contains(new Vector2Int(currentPosition.x, currentPosition.y - 1)))
+        {
+            validDirections.Add(EnemyPathDirection.Left);
+        }
+        if (availablePosition.Contains(new Vector2Int(currentPosition.x + 1, currentPosition.y)))
+        {
+            validDirections.Add(EnemyPathDirection.Up);
+        }
+        if (availablePosition.Contains(new Vector2Int(currentPosition.x - 1, currentPosition.y)))
+        {
+            validDirections.Add(EnemyPathDirection.Down);
+        }
+
+        return validDirections;
+    }
+
+    private void GenerateSegmentedItems()
+    {
+        int segmentSize = 10;
+
+        int segmentLength = Mathf.RoundToInt((float)length / segmentSize);
+        int segmentWidth = Mathf.RoundToInt((float)width / segmentSize);
+
+        if (segmentLength <= 0 || segmentWidth <= 0) return;
+
+        int currentGearCount = gearCount;
+        int currentScrewCount = screwCount;
+
+        List<Vector2Int>[,] segmentValidPos = new List<Vector2Int>[segmentLength, segmentWidth];
+        int totalValidTiles = 0;
+
+        for (int segmentZ = 0; segmentZ < segmentLength; segmentZ++)
+        {
+            for (int segmentX = 0; segmentX < segmentWidth; segmentX++)
+            {
+                List<Vector2Int> validPos = new List<Vector2Int>();
+                for (int z = segmentZ * segmentSize; z < (segmentZ + 1) * segmentSize && z < length; z++)
+                {
+                    for (int x = segmentX * segmentSize; x < (segmentX + 1) * segmentSize && x < width; x++)
+                    {
+                        if (z < 2 && x < 2) continue;
+
+                        if (objectsArray[z, x].type == TileType.Floor)
+                        {
+                            validPos.Add(new Vector2Int(z, x));
+                        }
                     }
                 }
 
-                segmentCount--;
+                segmentValidPos[segmentZ, segmentX] = validPos;
+                totalValidTiles += validPos.Count;
+            }
+        }
+
+        for (int segmentZ = 0; segmentZ < segmentLength; segmentZ++)
+        {
+            for (int segmentX = 0; segmentX < segmentWidth; segmentX++)
+            {
+                List<Vector2Int> validPos = segmentValidPos[segmentZ, segmentX];
+                int validCountInSegment = validPos.Count;
+
+                if (totalValidTiles <= 0) break;
+
+                float proportion = (float) validCountInSegment / totalValidTiles;
+
+                int gearInThisSegment = Mathf.RoundToInt(currentGearCount * proportion);
+                gearInThisSegment = Mathf.Clamp(gearInThisSegment, 0, currentGearCount);
+                currentGearCount -= gearInThisSegment;
+
+                int screwInThisSegment = Mathf.RoundToInt(currentScrewCount * proportion);
+                screwInThisSegment = Mathf.Clamp(screwInThisSegment, 0, currentScrewCount);
+                currentScrewCount -= screwInThisSegment;
+
+                while (gearInThisSegment > 0 && validPos.Count > 0)
+                {
+                    Vector2Int spot = validPos[Random.Range(0, validPos.Count)];
+                    objectsArray[spot.x, spot.y].type = TileType.Gear;
+
+                    validPos.Remove(spot);
+                    gearInThisSegment--;
+                }
+
+                while (screwInThisSegment > 0 && validPos.Count > 0)
+                {
+                    Vector2Int spot = validPos[Random.Range(0, validPos.Count)];
+                    objectsArray[spot.x, spot.y].type = TileType.Screw;
+
+                    validPos.Remove(spot);
+                    screwInThisSegment--;
+                }
+
+                totalValidTiles -= validCountInSegment;
             }
         }
     }

@@ -13,6 +13,8 @@ public class CaveTile_BlackOre : ValueTile_Floating
     public GameObject normalOre;
     public GameObject destroyedOre;
     public GameObject pointLight;
+    public GameObject explosionPrefab;
+
     protected override void Start()
     {
         base.Start();
@@ -51,6 +53,7 @@ public class CaveTile_BlackOre : ValueTile_Floating
             else
             {
                 value /= 2;
+                if(explosionPrefab) Instantiate(explosionPrefab, transform.position + new Vector3(1, 0, 1.25f), Quaternion.identity);
                 Debug.Log("Ore exploded");
                 exploded = true;
             }
