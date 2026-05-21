@@ -73,14 +73,14 @@ public class HintUI : MonoBehaviour
                 Destroy(child.gameObject);
         }
 
-        if (currentHint.hintBlocks != null)
-        {
-            foreach (HintBlock block in currentHint.hintBlocks)
-            {
-                HintContentUI newBlockUI = Instantiate(blockPrefab, contentContainer);
-                newBlockUI.Setup(block);
-            }
-        }
+        //if (currentHint.hintBlocks != null)
+        //{
+        //    foreach (HintBlock block in currentHint.hintBlocks)
+        //    {
+        //        HintContentUI newBlockUI = Instantiate(blockPrefab, contentContainer);
+        //        newBlockUI.Setup(block);
+        //    }
+        //}
 
         bool hasMultiplePages = activeHints.Count > 1;
 

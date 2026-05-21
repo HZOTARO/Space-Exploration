@@ -13,14 +13,16 @@ public struct HintBlock
 [CreateAssetMenu(fileName = "HintSO", menuName = "Scriptable Objects/HintSO")]
 public class HintSO : ScriptableObject
 {
-    [Header("Hint Meta Data")]
     public string hintId;
+    public bool isUnlockedByDefault;
+    public bool ignoreLock;
+
+    [Header("Hint Content")]
     public string title;
+    public Sprite image;
+    [TextArea(3, 10)]
+    public string description;
 
-    [Header("Hint Content (Stacked)")]
-    public List<HintBlock> hintBlocks = new List<HintBlock>();
-
-    [Header("Unlock Settings")]
-    public bool isUnlockedByDefault = false;
-    public bool ignoreLock = false;
+    [Header("Formatting")]
+    public bool isImageBig;
 }

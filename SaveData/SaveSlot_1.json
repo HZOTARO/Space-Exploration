@@ -1,92 +1,11 @@
 {
-    "lastSavedTime": "20-05-2026 12:35",
-    "inventory": [
-        {
-            "itemId": "purple_liquid",
-            "amount": 163
-        },
-        {
-            "itemId": "black_ore",
-            "amount": 33
-        }
-    ],
-    "unlockedUpgrades": [
-        {
-            "id": "resourceexploration_mapsize",
-            "currentLevel": 3
-        },
-        {
-            "id": "white_ore",
-            "currentLevel": 4
-        },
-        {
-            "id": "purple_liquid",
-            "currentLevel": 5
-        },
-        {
-            "id": "black_ore",
-            "currentLevel": 5
-        },
-        {
-            "id": "partsexploration_inventorysize",
-            "currentLevel": 2
-        },
-        {
-            "id": "partsexploration_mapsize",
-            "currentLevel": 2
-        },
-        {
-            "id": "resourceexploration_inventorysize",
-            "currentLevel": 3
-        },
-        {
-            "id": "far_scan",
-            "currentLevel": 1
-        },
-        {
-            "id": "measure",
-            "currentLevel": 1
-        },
-        {
-            "id": "scan",
-            "currentLevel": 1
-        },
-        {
-            "id": "shoot",
-            "currentLevel": 1
-        },
-        {
-            "id": "health",
-            "currentLevel": 1
-        },
-        {
-            "id": "ifelse",
-            "currentLevel": 1
-        },
-        {
-            "id": "list",
-            "currentLevel": 1
-        },
-        {
-            "id": "loop",
-            "currentLevel": 1
-        },
-        {
-            "id": "variable",
-            "currentLevel": 1
-        }
-    ],
+    "lastSavedTime": "21-05-2026 08:46",
+    "inventory": [],
+    "unlockedUpgrades": [],
     "stepDelay": 0.20000000298023225,
     "gameSpeed": 1.0,
-    "levelCompleted": [
-        "Tutorial 1"
-    ],
+    "levelCompleted": [],
     "hints": [
-        {
-            "id": "training 1",
-            "hasAppeared": true,
-            "isUnlocked": true
-        },
         {
             "id": "tutorial_welcome",
             "hasAppeared": true,
@@ -98,19 +17,29 @@
             "isUnlocked": true
         },
         {
-            "id": "purple_essence",
-            "hasAppeared": true,
-            "isUnlocked": true
+            "id": "training",
+            "hasAppeared": false,
+            "isUnlocked": false
         },
         {
-            "id": "black_ore",
-            "hasAppeared": true,
-            "isUnlocked": true
+            "id": "exploration",
+            "hasAppeared": false,
+            "isUnlocked": false
         },
         {
-            "id": "training 2",
-            "hasAppeared": true,
-            "isUnlocked": true
+            "id": "upgrade",
+            "hasAppeared": false,
+            "isUnlocked": false
+        },
+        {
+            "id": "tutorial",
+            "hasAppeared": false,
+            "isUnlocked": false
+        },
+        {
+            "id": "setting",
+            "hasAppeared": false,
+            "isUnlocked": false
         }
     ]
 }

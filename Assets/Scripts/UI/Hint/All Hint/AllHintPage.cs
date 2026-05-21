@@ -97,21 +97,35 @@ public class AllHintPage : MonoBehaviour
 
         if (titleText != null) titleText.text = hintData.title;
 
+        //if (hintImage != null)
+        //{
+        //    Sprite image = null;
+        //    foreach (HintBlock hintBlock in hintData.hintBlocks)
+        //    {
+        //        if (hintBlock.image != null) 
+        //        {
+        //            image = hintBlock.image;
+        //            break;
+        //        }
+        //    }
+        //    if (image)
+        //    {
+        //        hintImage.gameObject.SetActive(true);
+        //        hintImage.sprite = image;
+        //    }
+        //    else
+        //    {
+        //        hintImage.gameObject.SetActive(false);
+        //        hintImage.sprite = null;
+        //    }
+        //}
+
         if (hintImage != null)
         {
-            Sprite image = null;
-            foreach (HintBlock hintBlock in hintData.hintBlocks)
-            {
-                if (hintBlock.image != null) 
-                {
-                    image = hintBlock.image;
-                    break;
-                }
-            }
-            if (image)
+            if (hintData.image != null)
             {
                 hintImage.gameObject.SetActive(true);
-                hintImage.sprite = image;
+                hintImage.sprite = hintData.image;
             }
             else
             {
