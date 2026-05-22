@@ -76,7 +76,13 @@ public class GameManager_PartExploration : GameManager
 
         if (targetTile == null)
         {
-            Debug.Log("Nothing to collect. You are facing the edge of the map!");
+            Debug.Log("You are facing the edge of the map!");
+            return;
+        }
+
+        if (cargoComponent && cargoComponent.IsFull())
+        {
+            Debug.Log("Cargo is full. Cannot collect more resources.");
             return;
         }
 
@@ -89,7 +95,14 @@ public class GameManager_PartExploration : GameManager
                 if (amountCollected > 0)
                 {
                     cargoComponent.AddToCargo(gear.itemOnTile, amountCollected);
-                    Debug.Log("<color=#aaaaaa>Collected 1 Gear.</color>");
+
+                    targetTile.type = TileType.Floor;
+
+                    if (targetTile.tileInstance != null)
+                    {
+                        Destroy(targetTile.tileInstance.gameObject);
+                        targetTile.tileInstance = null;
+                    }
                 }
             });
         }
@@ -103,7 +116,14 @@ public class GameManager_PartExploration : GameManager
                 if (amountCollected > 0)
                 {
                     cargoComponent.AddToCargo(screw.itemOnTile, amountCollected);
-                    Debug.Log("<color=#aaaaaa>Collected 1 Screw.</color>");
+
+                    targetTile.type = TileType.Floor;
+
+                    if (targetTile.tileInstance != null)
+                    {
+                        Destroy(targetTile.tileInstance.gameObject);
+                        targetTile.tileInstance = null;
+                    }
                 }
             });
         }

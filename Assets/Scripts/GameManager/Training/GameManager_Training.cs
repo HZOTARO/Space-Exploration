@@ -150,12 +150,21 @@ public class GameManager_Training : GameManager
     public virtual void Collect()
     {
         TileObject targetTile = GetTileInFront();
-        if (targetTile != null && targetTile.type == TileType.WhiteOre)
+
+        if (targetTile == null)
         {
-            if (cargoComponent.IsFull())
-            {
-                return;
-            }
+            Debug.Log("You are facing the edge of the map!");
+            return;
+        }
+
+        if (cargoComponent && cargoComponent.IsFull())
+        {
+            Debug.Log("Cargo is full. Cannot collect more resources.");
+            return;
+        }
+
+        if (targetTile.type == TileType.WhiteOre)
+        {
             CaveTile_WhiteOre ore = targetTile.tileInstance as CaveTile_WhiteOre;
             if (ore.isMined && !ore.isCollected)
             {
@@ -165,14 +174,18 @@ public class GameManager_Training : GameManager
                     if (amountCollected > 0)
                     {
                         cargoComponent.AddToCargo(ore.itemOnTile, amountCollected);
-                        PrintToDisplay($"<color=white>Collected {amountCollected} White Ore.</color>");
+                        Debug.Log($"<color=white>Collected {amountCollected} White Ore.</color>");
+
+                        targetTile.type = TileType.Floor;
+
+                        if (targetTile.tileInstance != null)
+                        {
+                            Destroy(targetTile.tileInstance.gameObject);
+                            targetTile.tileInstance = null;
+                        }
                     }
                 });
             }
-        }
-        else
-        {
-            PrintToDisplay("Nothing to collect here.");
         }
     }
 

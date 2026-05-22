@@ -74,6 +74,7 @@ public class GameManager_ResourceExploration : GameManager
     public void Collect()
     {
         TileObject targetTile = GetTileInFront();
+
         if (targetTile == null)
         {
             Debug.Log("You are facing the edge of the map!");
@@ -98,6 +99,14 @@ public class GameManager_ResourceExploration : GameManager
                     {
                         cargoComponent.AddToCargo(ore.itemOnTile, amountCollected);
                         Debug.Log($"<color=white>Collected {amountCollected} White Ore.</color>");
+
+                        targetTile.type = TileType.Floor;
+
+                        if (targetTile.tileInstance != null)
+                        {
+                            Destroy(targetTile.tileInstance.gameObject);
+                            targetTile.tileInstance = null;
+                        }
                     }
                 });
             }
@@ -114,6 +123,14 @@ public class GameManager_ResourceExploration : GameManager
                     {
                         cargoComponent.AddToCargo(ore.itemOnTile, amountCollected);
                         Debug.Log($"<color=black>Collected {amountCollected} Black Ore.</color>");
+
+                        targetTile.type = TileType.Floor;
+
+                        if (targetTile.tileInstance != null)
+                        {
+                            Destroy(targetTile.tileInstance.gameObject);
+                            targetTile.tileInstance = null;
+                        }
                     }
                 });
             }
@@ -155,6 +172,13 @@ public class GameManager_ResourceExploration : GameManager
                     {
                         cargoComponent.AddToCargo(vein.itemOnTile, amountPumped);
                         Debug.Log($"<color=purple>Collected {amountPumped} Purple Liquid.</color>");
+
+                        targetTile.type = TileType.Floor;
+
+                        if (targetTile.tileInstance != null)
+                        {
+                            targetTile.tileInstance = null;
+                        }
                     }
                 });
             }
