@@ -3005,10 +3005,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: ScriptIWrite::Player
   scanEffect: {fileID: 7478731271839673279, guid: 103ec9add6ad79b4691f8a40802cf352, type: 3}
-  measureEffect: {fileID: 0}
+  measureEffect: {fileID: 7478731271839673279, guid: b99ef7dd28bf8c64d978c8aaa7648002, type: 3}
   shootEffect: {fileID: 0}
   damagedEffect: {fileID: 358637981425055526, guid: 41827b438cb9d0d4287a4d416ebea5f7, type: 3}
-  grid: {fileID: 0}
+  grid: {fileID: 7561592933734253305, guid: 623c822b7ae4df345afd321fded532bb, type: 3}
   markPrefab: {fileID: 9073953209339260895, guid: f0102a2e4e77f5140a4303d167f2cd50, type: 3}
   moveDistance: 2
   baseMoveSpeed: 5

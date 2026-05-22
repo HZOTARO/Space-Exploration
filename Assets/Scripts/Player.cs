@@ -307,5 +307,24 @@ public class Player : MonoBehaviour
             Instantiate(measureEffect, spawnPos, Quaternion.identity);
         }
     }
+
+    public void PlayFarScanSequence(int maxDistance)
+    {
+        StartCoroutine(FarScanSequenceRoutine(maxDistance));
+    }
+
+    private IEnumerator FarScanSequenceRoutine(int maxDistance)
+    {
+        inAction = true;
+
+        for (int i = 1; i <= maxDistance; i++)
+        {
+            PlayScanEffect(i);
+            yield return new WaitForSeconds(0.15f);
+        }
+
+        inAction = false;
+    }
+
     #endregion
 }

@@ -359,11 +359,10 @@ public class GameManager : MonoBehaviour
 
         while (true)
         {
-            player.PlayScanEffect(distance);
-
             if (currentCheckLoc.y < 0 || currentCheckLoc.y >= tileManager.width || currentCheckLoc.x < 0 || currentCheckLoc.x >= tileManager.length)
             {
                 Debug.Log($"Player far scanned the tile at distance {distance}: Wall");
+                player.PlayFarScanSequence(distance);
                 return "Wall";
             }
 
@@ -374,6 +373,7 @@ public class GameManager : MonoBehaviour
                     if (!enemy.isDead && enemy.gridLoc == currentCheckLoc)
                     {
                         Debug.Log($"Player far scanned the tile at distance {distance}: Enemy");
+                        player.PlayFarScanSequence(distance);
                         return "Enemy";
                     }
                 }
@@ -385,6 +385,7 @@ public class GameManager : MonoBehaviour
             {
                 string tileTypeName = targetTile.type.ToString();
                 Debug.Log($"Player far scanned the tile at distance {distance}: {tileTypeName}");
+                player.PlayFarScanSequence(distance);
                 return tileTypeName;
             }
 
