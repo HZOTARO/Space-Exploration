@@ -27,6 +27,8 @@ public class GameManager_ResourceExploration : GameManager
         Bind("mine", Mine);
         Bind("collect", Collect);
 
+        BindWithArg<int, bool>("discard", Discard);
+
         if (UpgradeManager.instance)
         {
             if (UpgradeManager.instance.IsUpgradeUnlocked("purple_liquid"))

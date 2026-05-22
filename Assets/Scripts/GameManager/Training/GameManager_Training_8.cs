@@ -1,9 +1,12 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager_Training_8 : GameManager_Training
 {
     public int randomizedOreCount;
     public int targetTotalValue;
+
+    private List<int> cargoValues = new List<int>();
 
     protected override void RegisterLevelSpecificPythonCommands()
     {
@@ -14,19 +17,10 @@ public class GameManager_Training_8 : GameManager_Training
 
         Bind("mine", Mine);
         Bind("collect", Collect);
+
         BindReturn("scan", Scan);
         BindReturn("measure", Measure);
         BindWithArg<int, bool>("discard", Discard);
-    }
-
-    private bool Discard(int slotIndex)
-    {
-        if (cargoComponent != null && slotIndex >= 0 && slotIndex < cargoComponent.levelCargo.Count)
-        {
-            cargoComponent.DiscardCargo(slotIndex);
-            return true;
-        }
-        return false;
     }
 
     protected override void SetLevelAllowedSyntax()
@@ -48,8 +42,10 @@ public class GameManager_Training_8 : GameManager_Training
     private void RandomizeMapData()
     {
         levelWidth = Random.Range(30, 51);
-        randomizedOreCount = Random.Range(11, 21);
+        
+        randomizedOreCount = Random.Range(6, 11) * 2;
         cargoSize = randomizedOreCount / 2;
+
         TileManager_Training_8 tm = tileManager as TileManager_Training_8;
         if (tm != null)
         {
@@ -104,6 +100,7 @@ public class GameManager_Training_8 : GameManager_Training
             physicalCargoTotal += collected.amount;
             cargoContents += $" {collected.amount},";
         }
+        Debug.Log(cargoContents);
 
         if (cargoComponent.IsFull() && physicalCargoTotal == tm.expectedTotalValue)
         {

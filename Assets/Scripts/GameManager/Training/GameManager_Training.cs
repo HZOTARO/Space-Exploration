@@ -121,7 +121,7 @@ public class GameManager_Training : GameManager
 
     protected virtual void HandleRuntimeError(int line, string message)
     {
-        PrintToDisplay($"<color=red>Code Error: {message}</color> Resetting...");
+        PrintToDisplay("<color=orange>Error encountered. Resetting position...</color>");
         ResetPlayerToStart();
     }
 

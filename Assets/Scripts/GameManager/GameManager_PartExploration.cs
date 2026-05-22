@@ -35,6 +35,8 @@ public class GameManager_PartExploration : GameManager
 
         Bind("go_back", Return);
         Bind("collect", Collect);
+
+        BindWithArg<int, bool>("discard", Discard);
     }
 
     public override bool InAction()
@@ -127,16 +129,7 @@ public class GameManager_PartExploration : GameManager
             }
         }
 
-        TileObject targetTile = GetTileInFront();
-
-        if (targetTile == null)
-        {
-            Debug.Log("Scanned: Edge of map.");
-            return "Wall";
-        }
-
-        Debug.Log($"Scanned: {targetTile.type.ToString()}");
-        return targetTile.type.ToString();
+        return base.Scan();
     }
 
     protected virtual void TriggerEnemyTurns()

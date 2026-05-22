@@ -112,7 +112,6 @@ public class GameManager : MonoBehaviour
         RegisterPythonCommands();
 
         PythonExecutor.instance.CanStepCode = () => !InAction();
-        PythonExecutor.instance.OnRuntimeError += HandlePythonError;
         PythonExecutor.instance.OnPythonPrint += HandlePythonPrint;
 
         if (HintManager.instance)
@@ -135,7 +134,6 @@ public class GameManager : MonoBehaviour
     {
         if (PythonExecutor.instance != null)
         {
-            PythonExecutor.instance.OnRuntimeError -= HandlePythonError;
             PythonExecutor.instance.OnPythonPrint -= HandlePythonPrint;
         }
         if (healthComponent != null) healthComponent.OnPlayerDeath -= LevelGameOver;
@@ -174,7 +172,7 @@ public class GameManager : MonoBehaviour
         if (UpgradeManager.instance)
         {
             if (UpgradeManager.instance.IsUpgradeUnlocked("scan")) BindReturn("scan", Scan);
-            if (UpgradeManager.instance.IsUpgradeUnlocked("enhanced_scan")) BindReturn("far_scan", FarScan);
+            if (UpgradeManager.instance.IsUpgradeUnlocked("far_scan")) BindReturn("enhanced_scan", FarScan);
             if (UpgradeManager.instance.IsUpgradeUnlocked("measure")) BindReturn("measure", Measure);
             if (UpgradeManager.instance.IsUpgradeUnlocked("shoot")) Bind("shoot", Shoot);
         }
@@ -343,6 +341,8 @@ public class GameManager : MonoBehaviour
 
     public virtual string Scan()
     {
+        player.PlayScanEffect(1);
+
         TileObject targetTile = GetTileInFront();
 
         if (targetTile == null) return "Wall";
@@ -359,6 +359,8 @@ public class GameManager : MonoBehaviour
 
         while (true)
         {
+            player.PlayScanEffect(distance);
+
             if (currentCheckLoc.y < 0 || currentCheckLoc.y >= tileManager.width || currentCheckLoc.x < 0 || currentCheckLoc.x >= tileManager.length)
             {
                 Debug.Log($"Player far scanned the tile at distance {distance}: Wall");
@@ -397,6 +399,8 @@ public class GameManager : MonoBehaviour
 
     public int Measure()
     {
+        player.PlayMeasureEffect(1);
+
         TileObject targetTile = GetTileInFront();
         if (targetTile == null || targetTile.tileInstance == null) return -1;
 
@@ -499,4 +503,14 @@ public class GameManager : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene("Hub Scene");
     }
     #endregion
+
+    public bool Discard(int slotIndex)
+    {
+        if (cargoComponent != null && slotIndex >= 0 && slotIndex < cargoComponent.levelCargo.Count)
+        {
+            cargoComponent.DiscardCargo(slotIndex);
+            return true;
+        }
+        return false;
+    }
 }

@@ -28,7 +28,7 @@ public class GameManager_Training_7 : GameManager_Training
     protected override void StartValuesSetup()
     {
         levelLength = 1;
-        levelWidth = Random.Range(10, 30);
+        levelWidth = Random.Range(20, 31);
     }
 
     protected override void SetLevelObjectives()

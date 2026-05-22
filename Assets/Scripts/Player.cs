@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
 {
     [Header("Should've Been On Game Manager")]
     public GameObject scanEffect;
+    public GameObject measureEffect;
     public GameObject shootEffect;
     public GameObject damagedEffect;
 
@@ -274,6 +275,7 @@ public class Player : MonoBehaviour
         idleCoroutine = StartCoroutine(IdleRandomize());
     }
 
+    #region ---VFX---
     public void PlayDamagedEffect()
     {
         if (damagedEffect != null)
@@ -281,4 +283,29 @@ public class Player : MonoBehaviour
             Instantiate(damagedEffect, transform.position, Quaternion.identity);
         }
     }
+
+    public void PlayScanEffect(int distanceInTiles)
+    {
+        if (scanEffect != null)
+        {
+            Vector3 forwardVector = transform.forward;
+            forwardVector.z *= 1.25f;
+
+            Vector3 spawnPos = transform.position + (forwardVector * (moveDistance * distanceInTiles));
+            Instantiate(scanEffect, spawnPos, Quaternion.identity);
+        }
+    }
+
+    public void PlayMeasureEffect(int distanceInTiles)
+    {
+        if (measureEffect != null)
+        {
+            Vector3 forwardVector = transform.forward;
+            forwardVector.z *= 1.25f;
+
+            Vector3 spawnPos = transform.position + (forwardVector * (moveDistance * distanceInTiles));
+            Instantiate(measureEffect, spawnPos, Quaternion.identity);
+        }
+    }
+    #endregion
 }

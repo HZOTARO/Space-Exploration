@@ -38,7 +38,7 @@ public class TileManager_Training_7 : TileManager_Training
             SetTile(0, x, TileType.Floor, asFloorToo: true);
         }
 
-        numberOfOres = Random.Range(3, 6);
+        numberOfOres = Random.Range(6, 11);
 
         List<int> availableSpaces = new List<int>();
         for (int i = 1; i < width - 1; i++)

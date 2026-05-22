@@ -233,7 +233,13 @@ public class CodeExecutionController : MonoBehaviour
             }
         }
 
-        ui.ShowError(line, "Runtime Error: " + errorMessage);
+        string finalError = errorMessage;
+        if (ui.gameManager != null)
+        {
+            finalError = ui.gameManager.TranslatePythonError(errorMessage);
+        }
+
+        ui.ShowError(line, "Runtime Error: " + finalError);
     }
 
     private void OnPythonFinished()
