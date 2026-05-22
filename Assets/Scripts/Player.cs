@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     [Header("Should've Been On Game Manager")]
     public GameObject scanEffect;
     public GameObject shootEffect;
+    public GameObject damagedEffect;
 
     public GameObject grid;
     public BaseTile markPrefab;
@@ -71,6 +72,7 @@ public class Player : MonoBehaviour
         if (isMoving) MoveTowardTarget();
         if (isRotating) RotateTowardTarget();
     }
+
 
     public void Turn(float angle)
     {
@@ -270,5 +272,13 @@ public class Player : MonoBehaviour
 
         ChangeAnimation("Idle_Aggro", 0f, true);
         idleCoroutine = StartCoroutine(IdleRandomize());
+    }
+
+    public void PlayDamagedEffect()
+    {
+        if (damagedEffect != null)
+        {
+            Instantiate(damagedEffect, transform.position, Quaternion.identity);
+        }
     }
 }

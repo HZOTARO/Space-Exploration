@@ -31,21 +31,10 @@ public class GameManager_PartExploration : GameManager
 
     protected override void RegisterLevelSpecificPythonCommands()
     {
-        BindReturn("move_forward", MoveForward);
-        BindReturn("move_backward", MoveBackward);
-        Bind("turn_right", TurnRight);
-        Bind("turn_left", TurnLeft);
-        Bind("wait", Wait);
+        base.RegisterLevelSpecificPythonCommands();
 
         Bind("go_back", Return);
-
         Bind("collect", Collect);
-
-        if (UpgradeManager.instance)
-        {
-            if (UpgradeManager.instance.IsUpgradeUnlocked("scan")) BindReturn("scan", Scan);
-            if (UpgradeManager.instance.IsUpgradeUnlocked("measure")) BindReturn("measure", Measure);
-        }
     }
 
     public override bool InAction()
@@ -173,11 +162,22 @@ public class GameManager_PartExploration : GameManager
 
             if (nextPos != enemy.gridLoc)
             {
-                enemy.MoveForward(nextPos);
                 enemy.AdvancePathIndex();
-            }
 
-            if (IsPlayerAdjacent(enemy.gridLoc))
+                enemy.MoveForward(nextPos, () =>
+                {
+                    if (IsPlayerAdjacent(enemy.gridLoc) && !enemy.isDead)
+                    {
+                        TriggerEnemyCatch(enemy);
+                    }
+                    else
+                    {
+                        enemy.inAction = false;
+                        enemy.PlayIdle();
+                    }
+                });
+            }
+            else if (IsPlayerAdjacent(enemy.gridLoc))
             {
                 TriggerEnemyCatch(enemy);
             }
@@ -213,18 +213,52 @@ public class GameManager_PartExploration : GameManager
 
     public override bool MoveForward()
     {
+        Vector2Int forwardLoc = GetForwardGridLoc();
+
+        if (activeEnemies != null)
+        {
+            foreach (Enemy enemy in activeEnemies)
+            {
+                if (!enemy.isDead && enemy.gridLoc == forwardLoc)
+                {
+                    return false;
+                }
+            }
+        }
+
         bool result = base.MoveForward();
         if (result) TriggerEnemyTurns();
         return result;
     }
     public override bool MoveBackward()
     {
+        int targetZ = playerGridLoc.x;
+        int targetX = playerGridLoc.y;
+
+        if (playerFacing == 0) targetZ--;
+        else if (playerFacing == 1) targetX--;
+        else if (playerFacing == 2) targetZ++;
+        else if (playerFacing == 3) targetX++;
+
+        Vector2Int backwardLoc = new Vector2Int(targetZ, targetX);
+
+        if (activeEnemies != null)
+        {
+            foreach (Enemy enemy in activeEnemies)
+            {
+                if (!enemy.isDead && enemy.gridLoc == backwardLoc)
+                {
+                    return false;
+                }
+            }
+        }
+
         bool result = base.MoveBackward();
         if (result) TriggerEnemyTurns();
         return result;
     }
 
-    public void Wait()
+    public override void Wait()
     {
         TriggerEnemyTurns();
     }

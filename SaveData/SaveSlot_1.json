@@ -1,5 +1,5 @@
 {
-    "lastSavedTime": "22-05-2026 05:20",
+    "lastSavedTime": "22-05-2026 09:02",
     "inventory": [],
     "unlockedUpgrades": [
         {
@@ -36,6 +36,14 @@
         },
         {
             "id": "list",
+            "currentLevel": 1
+        },
+        {
+            "id": "scan",
+            "currentLevel": 1
+        },
+        {
+            "id": "far_scan",
             "currentLevel": 1
         }
     ],
@@ -142,6 +150,16 @@
         },
         {
             "id": "training 6",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "scan",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "enhanced_scan",
             "hasAppeared": true,
             "isUnlocked": true
         }

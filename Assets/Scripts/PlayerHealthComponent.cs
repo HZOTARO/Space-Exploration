@@ -14,6 +14,7 @@ public class PlayerHealthComponent : MonoBehaviour
 
     public event System.Action OnPlayerDeath;
 
+    [HideInInspector] public Player player;
     public void Initialize()
     {
         currentHealth = maxHealth;
@@ -22,6 +23,7 @@ public class PlayerHealthComponent : MonoBehaviour
 
     public void DamagePlayer(int damage)
     {
+        if (player) player.PlayDamagedEffect();
         Debug.Log($"<color=red>Player took {damage} damage!</color>");
         currentHealth = Mathf.Max(currentHealth - damage, 0);
         UpdateUI();

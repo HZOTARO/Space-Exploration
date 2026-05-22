@@ -12,22 +12,6 @@ public class GameManager_Puzzle : GameManager
         if (cargoComponent) cargoComponent.cargoSize = cargoSize;
     }
 
-    protected override void RegisterLevelSpecificPythonCommands()
-    {
-        BindReturn("move_forward", MoveForward);
-        BindReturn("move_backward", MoveBackward);
-        Bind("turn_right", TurnRight);
-        Bind("turn_left", TurnLeft);
-
-        if (UpgradeManager.instance)
-        {
-            if (UpgradeManager.instance.IsUpgradeUnlocked("scan")) BindReturn("scan", Scan);
-            if (UpgradeManager.instance.IsUpgradeUnlocked("far_scan")) BindReturn("far_scan", FarScan);
-            if (UpgradeManager.instance.IsUpgradeUnlocked("measure")) BindReturn("measure", Measure);
-            if (UpgradeManager.instance.IsUpgradeUnlocked("shoot")) Bind("shoot", Shoot);
-        }
-    }
-
     public override bool MoveForward()
     {
         bool result = base.MoveForward();

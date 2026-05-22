@@ -63,6 +63,12 @@ public class GameManager : MonoBehaviour
         if (!tileManager) tileManager = FindFirstObjectByType<TileManager>();
         if (!codeEditor) codeEditor = FindFirstObjectByType<CodeEditor>();
 
+        if (player)
+        {
+            if (tileManager && player.grid) tileManager.grid = player.grid;
+            if (healthComponent) healthComponent.player = player;
+        }
+
         StartValuesSetup();
         SetLevelAllowedSyntax();
 
@@ -157,7 +163,24 @@ public class GameManager : MonoBehaviour
         if (codeEditor != null) codeEditor.InitializeSyntaxGroups();
     }
 
-    protected virtual void RegisterLevelSpecificPythonCommands() { }
+    protected virtual void RegisterLevelSpecificPythonCommands() 
+    {
+        BindReturn("move_forward", MoveForward);
+        BindReturn("move_backward", MoveBackward);
+        Bind("turn_right", TurnRight);
+        Bind("turn_left", TurnLeft);
+        Bind("wait", Wait);
+
+        if (UpgradeManager.instance)
+        {
+            if (UpgradeManager.instance.IsUpgradeUnlocked("scan")) BindReturn("scan", Scan);
+            if (UpgradeManager.instance.IsUpgradeUnlocked("enhanced_scan")) BindReturn("far_scan", FarScan);
+            if (UpgradeManager.instance.IsUpgradeUnlocked("measure")) BindReturn("measure", Measure);
+            if (UpgradeManager.instance.IsUpgradeUnlocked("shoot")) Bind("shoot", Shoot);
+        }
+    }
+
+    public virtual void Wait() { }
 
     protected void Bind(string pyName, Action action)
     {

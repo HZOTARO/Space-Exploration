@@ -43,6 +43,8 @@ public class Enemy : BaseTile
     public EnemyAnimationMapping[] animationSetup;
     private Dictionary<EnemyAction, string> animationDict = new Dictionary<EnemyAction, string>();
 
+    private Action onMoveComplete;
+
     void Awake()
     {
         foreach (EnemyAnimationMapping map in animationSetup)
@@ -118,9 +120,11 @@ public class Enemy : BaseTile
         return patrolPath[nextIndex];
     }
 
-    public void MoveForward(Vector2Int newGridLoc)
+    public void MoveForward(Vector2Int newGridLoc, Action onComplete = null)
     {
         if (isDead) return;
+
+        onMoveComplete = onComplete;
 
         Vector2Int dir = newGridLoc - gridLoc;
         SnapRotationToDirection(dir);
@@ -159,16 +163,23 @@ public class Enemy : BaseTile
         {
             transform.localPosition = targetPosition;
             isMoving = false;
-            inAction = false;
 
-            PlayIdle();
+            if (onMoveComplete != null)
+            {
+                Action cb = onMoveComplete;
+                onMoveComplete = null;
+                cb.Invoke();
+            }
+            else
+            {
+                inAction = false;
+                PlayIdle();
+            }
         }
     }
 
     public void ChangeAnimation(string newState, float transitionTime = 0.1f, bool forceRestart = false)
     {
-        Debug.Log(newState);
-
         if (currentAnimation == newState && !forceRestart) return;
 
         if (forceRestart)
@@ -183,7 +194,7 @@ public class Enemy : BaseTile
         currentAnimation = newState;
     }
 
-    private void PlayIdle()
+    public void PlayIdle()
     {
         if (isDead) return;
 
@@ -256,6 +267,13 @@ public class Enemy : BaseTile
         inAction = false;
         currentAnimation = "";
 
-        PlayIdle();
+        if (!isMoving)
+        {
+            PlayIdle();
+        }
+        else if (animationDict.TryGetValue(EnemyAction.Move, out string moveAnim))
+        {
+            ChangeAnimation(moveAnim);
+        }
     }
 }

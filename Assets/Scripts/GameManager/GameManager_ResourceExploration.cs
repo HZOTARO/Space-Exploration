@@ -20,10 +20,7 @@ public class GameManager_ResourceExploration : GameManager
     }
     protected override void RegisterLevelSpecificPythonCommands()
     {
-        BindReturn("move_forward", MoveForward);
-        BindReturn("move_backward", MoveBackward);
-        Bind("turn_right", TurnRight);
-        Bind("turn_left", TurnLeft);
+        base.RegisterLevelSpecificPythonCommands();
 
         Bind("go_back", Return);
 
@@ -32,9 +29,6 @@ public class GameManager_ResourceExploration : GameManager
 
         if (UpgradeManager.instance)
         {
-            if (UpgradeManager.instance.IsUpgradeUnlocked("scan")) BindReturn("scan", Scan);
-            if (UpgradeManager.instance.IsUpgradeUnlocked("measure"))
-                BindReturn("measure", Measure);
             if (UpgradeManager.instance.IsUpgradeUnlocked("purple_liquid"))
             {
                 Bind("drill", Drill);

@@ -2965,6 +2965,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: ScriptIWrite::Player
   scanEffect: {fileID: 0}
   shootEffect: {fileID: 0}
+  damagedEffect: {fileID: 358637981425055526, guid: 41827b438cb9d0d4287a4d416ebea5f7, type: 3}
   grid: {fileID: 0}
   markPrefab: {fileID: 9073953209339260895, guid: f0102a2e4e77f5140a4303d167f2cd50, type: 3}
   moveDistance: 2

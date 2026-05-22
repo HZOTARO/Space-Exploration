@@ -8,7 +8,7 @@ public class TileManager_Cave : TileManager
 
         if (grid)
         {
-            GameObject spawnedGrid = Instantiate(grid, new Vector3(0, 0, -0.005f), Quaternion.identity);
+            GameObject spawnedGrid = Instantiate(grid, new Vector3(0, -0.03f, 0f), Quaternion.identity);
             spawnedGrid.transform.SetParent(tilesContainer.transform, false);
             spawnedGrid.transform.localScale = new Vector3(width, 1, length);
             spawnedGrid.name = "Grid";

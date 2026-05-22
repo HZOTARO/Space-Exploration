@@ -421,6 +421,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: defbb39d2f7ad8248af036babf8719e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: TileScriptIWrite::Enemy
+  z: 0
+  x: 0
+  isWalkable: 0
   gridLoc: {x: 0, y: 0}
   patrolPath: []
   currentPathIndex: 0
@@ -432,11 +435,11 @@ MonoBehaviour:
   animator: {fileID: 3876409056609675774}
   animationSetup:
   - action: 0
-    animatorStateName: idle
+    animatorStateName: Idle
   - action: 1
-    animatorStateName: Run_Forward
+    animatorStateName: Run
   - action: 2
-    animatorStateName: Combat_Unarmed_Attack
+    animatorStateName: Attack
   - action: 3
     animatorStateName: Death
 --- !u!1 &2332760623567374655
