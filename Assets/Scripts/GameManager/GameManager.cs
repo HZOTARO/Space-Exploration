@@ -407,7 +407,7 @@ public class GameManager : MonoBehaviour
         Vector2Int currentCheckLoc = GetForwardGridLoc();
         bool hitSomething = false;
 
-        player.PlayShootEffect(1);
+        int shotLength = 1;
 
         while (true)
         {
@@ -452,7 +452,12 @@ public class GameManager : MonoBehaviour
             else if (playerFacing == 1) currentCheckLoc.y++;
             else if (playerFacing == 2) currentCheckLoc.x--;
             else if (playerFacing == 3) currentCheckLoc.y--;
+
+            shotLength++;
         }
+
+        player.PerformAction(PlayerAction.Shoot, null);
+        player.PlayShootEffect(shotLength, playerFacing);
 
         if (!hitSomething)
         {
@@ -481,13 +486,28 @@ public class GameManager : MonoBehaviour
         SaveManager.saveData.inventory = InventoryManager.instance.GetInventoryForSave();
         SaveManager.instance.SaveGame(SaveManager.saveSlotInUse);
 
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Hub Scene");
+        LevelManager.instance.OpenScene(LevelType.Hub);
     }
     protected void LevelGameOver()
     {
-        PythonExecutor.instance.StopRunningCode();
+        if (PythonExecutor.instance != null)
+        {
+            PythonExecutor.instance.StopRunningCode();
+        }
+
         Debug.Log("<color=red>Lose Level!</color>");
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Hub Scene");
+
+        if (player != null)
+        {
+            player.Die(() =>
+            {
+                LevelManager.instance.OpenScene(LevelType.Hub);
+            });
+        }
+        else
+        {
+            LevelManager.instance.OpenScene(LevelType.Hub);
+        }
     }
     #endregion
 

@@ -21,6 +21,9 @@ public class Player : MonoBehaviour
     public GameObject grid;
     public BaseTile markPrefab;
 
+    [Header("Reference")]
+    public GameObject cannon;
+
     [Header("Movement")]
     public float moveDistance = 2f;
     public float baseMoveSpeed = 5f;
@@ -66,6 +69,8 @@ public class Player : MonoBehaviour
         targetRotation = transform.rotation;
 
         idleCoroutine = StartCoroutine(IdleRandomize());
+
+        if (cannon && UpgradeManager.instance) cannon.SetActive(UpgradeManager.instance.IsUpgradeUnlocked("shoot"));
     }
 
     void Update()
@@ -118,7 +123,7 @@ public class Player : MonoBehaviour
 
         currentAnimation = newState;
     }
-    
+
     void StopAnimationCoroutine()
     {
         if (idleCoroutine != null) StopCoroutine(idleCoroutine);
@@ -326,16 +331,70 @@ public class Player : MonoBehaviour
         inAction = false;
     }
 
-    public void PlayShootEffect(int distanceInTiles)
+    public void PlayShootEffect(int distanceInTiles, int playerFacing)
     {
         if (shootEffect != null)
         {
             Vector3 forwardVector = transform.forward;
             forwardVector.z *= 1.25f;
             Vector3 spawnPos = transform.position + (forwardVector * (moveDistance * distanceInTiles));
-            Instantiate(shootEffect, spawnPos, Quaternion.identity);
+            spawnPos.y += 0.75f;
+
+            GameObject spawnedObj = Instantiate(shootEffect, spawnPos, this.transform.rotation);
+            ParticleSystemRenderer psRenderer = spawnedObj.GetComponent<ParticleSystemRenderer>();
+
+            if (psRenderer != null)
+            {
+                if (playerFacing == 1 || playerFacing == 3)
+                {
+                    psRenderer.lengthScale = -2f * distanceInTiles;
+                }
+                else
+                {
+                    psRenderer.lengthScale = -2.5f * distanceInTiles;
+                }
+            }
         }
     }
 
     #endregion
+
+    public void Die(Action onDeathComplete)
+    {
+        StopAllCoroutines();
+
+        isMoving = false;
+        isRotating = false;
+        inAction = true;
+
+        StartCoroutine(DeathRoutine(onDeathComplete));
+    }
+
+    private System.Collections.IEnumerator DeathRoutine(Action onDeathComplete)
+    {
+        string deathAnimName = "Death";
+
+        if (animationDict.TryGetValue(PlayerAction.Death, out string mappedName))
+        {
+            deathAnimName = mappedName;
+        }
+
+        ChangeAnimation(deathAnimName, 0.1f, true);
+
+        yield return null;
+
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        if (stateInfo.IsName(deathAnimName))
+        {
+            yield return new WaitForSeconds(stateInfo.length);
+        }
+        else
+        {
+            yield return new WaitForSeconds(2.5f);
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
+        onDeathComplete?.Invoke();
+    }
 }

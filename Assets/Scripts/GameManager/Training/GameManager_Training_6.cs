@@ -3,7 +3,8 @@ using System.Collections.Generic;
 
 public class GameManager_Training_6 : GameManager_Training
 {
-    private HashSet<Vector2Int> visitedTiles = new HashSet<Vector2Int>();
+    private List<Vector2Int> visitedTiles = new List<Vector2Int>();
+    private List<BaseTile> markings = new List<BaseTile>();
 
     protected override void RegisterLevelSpecificPythonCommands()
     {
@@ -50,11 +51,15 @@ public class GameManager_Training_6 : GameManager_Training
 
     private void ClearVisitedTiles()
     {
+        foreach (BaseTile mark in markings)
+        {
+            Destroy(mark.gameObject);
+        }
         visitedTiles.Clear();
         visitedTiles.Add(Vector2Int.zero);
         if (player.markPrefab && tileManager)
         {
-            tileManager.InstantiateTileVisual(playerGridLoc.x, playerGridLoc.y, player.markPrefab);
+            markings.Add(tileManager.InstantiateTileVisual(playerGridLoc.x, playerGridLoc.y, player.markPrefab));
         }
     }
 

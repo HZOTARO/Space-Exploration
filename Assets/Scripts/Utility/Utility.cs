@@ -32,7 +32,12 @@ public enum PlayerAction
     Collect,
     Purify,
     Drill,
-    Pump
+    Pump,
+
+    Shoot,
+    Hurt,
+    Death,
+    DeathWaits
 }
 
 [System.Serializable]

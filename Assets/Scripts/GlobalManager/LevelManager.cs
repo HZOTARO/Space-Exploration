@@ -18,6 +18,10 @@ public enum LevelType
     Training_6,
     Training_7,
     Training_8,
+    Training_9,
+    Training_10,
+    Training_11,
+    Training_12,
 }
 
 public class LevelManager : MonoBehaviour

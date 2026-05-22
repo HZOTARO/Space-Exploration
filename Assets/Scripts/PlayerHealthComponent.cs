@@ -23,14 +23,19 @@ public class PlayerHealthComponent : MonoBehaviour
 
     public void DamagePlayer(int damage)
     {
-        if (player) player.PlayDamagedEffect();
         Debug.Log($"<color=red>Player took {damage} damage!</color>");
         currentHealth = Mathf.Max(currentHealth - damage, 0);
         UpdateUI();
 
+        if (player) player.PlayDamagedEffect();
+
         if (currentHealth <= 0)
         {
             OnPlayerDeath?.Invoke();
+        }
+        else if (player)
+        {
+            player.PerformAction(PlayerAction.Hurt, null);
         }
     }
 
