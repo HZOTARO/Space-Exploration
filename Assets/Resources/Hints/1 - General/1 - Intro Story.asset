@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88f6fa2b89436164b8e97b17d82dc9a2, type: 3}
+  m_Name: 1 - Intro Story
+  m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
+  hintId: tutorial_welcome
+  isUnlockedByDefault: 1
+  ignoreLock: 0
+  title: Welcome To Space Exploration!
+  image: {fileID: 21300000, guid: 85f74dbebe129ad4c82fbf827ea2dd43, type: 3}
+  description: '<b>Welcome to Space Exploration</b>
+
+
+    You are a robot from a
+    stranded exploration ship on an unknown planet. Your mission is to gather resources,
+    upgrade your systems, and repair the ship to continue the mission.
+
+
+    <b>First
+    Objective</b>
+
+
+    Before starting exploration, complete the Introduction training
+    tutorial to learn the basic systems and programming mechanics.'
+  isImageBig: 1

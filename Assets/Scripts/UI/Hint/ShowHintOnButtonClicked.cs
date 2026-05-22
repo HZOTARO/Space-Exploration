@@ -1,10 +1,11 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Button))]
 public class ShowHintOnButtonClicked : MonoBehaviour
 {
-    HintSO unlockedHint;
+    public HintSO unlockedHint;
     void Start()
     {
         Button button = GetComponent<Button>();
@@ -14,7 +15,7 @@ public class ShowHintOnButtonClicked : MonoBehaviour
             {
                 if (HintManager.instance)
                 {
-                    HintManager.instance.UnlockHint(unlockedHint, true, true);
+                    HintManager.instance.RequestDisplayHints(new List<HintSO> { unlockedHint }, null, true, true);
                 }
             });
         }

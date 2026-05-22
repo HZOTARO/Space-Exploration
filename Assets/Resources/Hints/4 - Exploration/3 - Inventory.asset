@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88f6fa2b89436164b8e97b17d82dc9a2, type: 3}
+  m_Name: 3 - Inventory
+  m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
+  hintId: tutorial_inventory
+  isUnlockedByDefault: 1
+  ignoreLock: 0
+  title: Inventory
+  image: {fileID: 0}
+  description: '<b>Inventory</b>
+
+
+    During exploration, you carry an Inventory
+    that stores collected resources.
+
+
+    The Inventory has a limited number of
+    slots, and each resource occupies one slot regardless of type.
+
+
+    Collected
+    resources will fill empty slots in order from left to right.
+
+
+    Each collected
+    resource will display its value when obtained, allowing you to decide whether
+    it is worth keeping or skipping.
+
+
+    You can discard a stored resource using
+    discard(i), where i is the slot index you want to remove. The index starts from
+    0 up to inventory size - 1.
+
+
+    There are separate Inventory capacities for
+    Mineral Exploration and Material Exploration. Each can be upgraded independently
+    to increase storage capacity.
+
+
+    Manage your Inventory wisely, as space is
+    limited during deeper expeditions.'
+  isImageBig: 0

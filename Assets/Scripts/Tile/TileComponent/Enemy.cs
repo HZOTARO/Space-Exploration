@@ -40,6 +40,10 @@ public class Enemy : BaseTile
     public Animator animator;
     private string currentAnimation;
 
+    [Header("Death Settings")]
+    public float sinkSpeed = 1;
+    public float sinkDistance = 1;
+
     public EnemyAnimationMapping[] animationSetup;
     private Dictionary<EnemyAction, string> animationDict = new Dictionary<EnemyAction, string>();
 
@@ -275,5 +279,21 @@ public class Enemy : BaseTile
         {
             ChangeAnimation(moveAnim);
         }
+    }
+    public void Die()
+    {
+        StartCoroutine(SinkAndDestroyRoutine());
+    }
+    private IEnumerator SinkAndDestroyRoutine()
+    {
+        Vector3 finalPos = transform.localPosition + (Vector3.down * sinkDistance);
+
+        while (Vector3.Distance(transform.localPosition, finalPos) > 0.01f)
+        {
+            transform.localPosition = Vector3.MoveTowards(transform.localPosition, finalPos, sinkSpeed * Time.deltaTime);
+            yield return null;
+        }
+
+        Destroy(gameObject);
     }
 }

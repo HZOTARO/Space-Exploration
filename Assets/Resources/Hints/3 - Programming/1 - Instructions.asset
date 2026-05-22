@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88f6fa2b89436164b8e97b17d82dc9a2, type: 3}
+  m_Name: 1 - Instructions
+  m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
+  hintId: tutorial_instruction
+  isUnlockedByDefault: 0
+  ignoreLock: 0
+  title: Instructions
+  image: {fileID: 0}
+  description: '<b>Instructions</b>
+
+
+    A program is made from multiple instructions
+    executed one at a time from top to bottom.
+
+
+    Each line of code is considered
+    an instruction.
+
+
+    Example:
+
+
+    moveForward()
+
+    turnLeft()
+
+    collect()
+
+
+    When
+    the robot starts executing a program, it follows the instructions in order exactly
+    as written.
+
+
+    Changing the order of instructions can produce completely different
+    results.
+
+
+    Learning how instructions flow step-by-step is an important foundation
+    in programming and problem solving.'
+  isImageBig: 0

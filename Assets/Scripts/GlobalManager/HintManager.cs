@@ -9,7 +9,7 @@ public class HintManager : MonoBehaviour
     public static event Action<List<HintSO>, int> OnDisplayHintsRequested;
     public static event Action OnCloseHintsRequested;
 
-    private Dictionary<string, HintSO> hintDatabase = new Dictionary<string, HintSO>();
+    [HideInInspector] public Dictionary<string, HintSO> hintDatabase = new Dictionary<string, HintSO>();
 
     private void Awake()
     {

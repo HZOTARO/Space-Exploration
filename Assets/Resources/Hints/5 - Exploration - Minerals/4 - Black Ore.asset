@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88f6fa2b89436164b8e97b17d82dc9a2, type: 3}
+  m_Name: 4 - Black Ore
+  m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
+  hintId: tutorial_black_ore
+  isUnlockedByDefault: 0
+  ignoreLock: 0
+  title: Black Ore
+  image: {fileID: 0}
+  description: "<b>Black Ore</b>\n\nBlack Ore is a dangerous mineral that emits malicious
+    energy and must be handled carefully.\n\nBefore mining it, the ore must first
+    be purified using purify().\n\nAfter purification, Black Ore can be processed
+    like other ores by using mine() followed by collect().\n\nMining Black Ore without
+    purifying it first will cause the ore to explode, damaging the robot and reducing
+    the ore\u2019s value by half."
+  isImageBig: 0

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88f6fa2b89436164b8e97b17d82dc9a2, type: 3}
+  m_Name: 2 - Code Editor
+  m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
+  hintId: tutorial_code_editor
+  isUnlockedByDefault: 0
+  ignoreLock: 0
+  title: Code Editor
+  image: {fileID: 0}
+  description: "The Code Editor is used to write and execute programs for the robot.\n\nYou
+    can use the Play button to continuously execute instructions from top to bottom
+    until the program finishes or is interrupted.\n\nExecution can be paused at any
+    time to observe the robot\u2019s current state and behavior.\n\nUse Abort to
+    stop the current execution and restart the program from the beginning.\n\nYou
+    can also use Step to execute the program one instruction at a time. This is useful
+    for debugging, understanding program flow, and observing how each instruction
+    affects the robot and environment."
+  isImageBig: 0

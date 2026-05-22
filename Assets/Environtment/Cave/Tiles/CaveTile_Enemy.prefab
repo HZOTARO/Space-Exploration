@@ -433,6 +433,8 @@ MonoBehaviour:
   inAction: 0
   isDead: 0
   animator: {fileID: 3876409056609675774}
+  sinkSpeed: 1
+  sinkDistance: 1
   animationSetup:
   - action: 0
     animatorStateName: Idle

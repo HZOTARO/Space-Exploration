@@ -420,8 +420,7 @@ public class GameManager : MonoBehaviour
         Vector2Int currentCheckLoc = GetForwardGridLoc();
         bool hitSomething = false;
 
-        // Play the shooting animation/sound
-        // player.PerformAction(PlayerAction.Shoot); 
+        player.PlayShootEffect(1);
 
         while (true)
         {
@@ -457,7 +456,7 @@ public class GameManager : MonoBehaviour
             {
                 Debug.Log("<color=orange>Enemy destroyed!</color>");
                 activeEnemies.Remove(hitEnemy);
-                hitEnemy.PerformAction(EnemyAction.Death, null);
+                hitEnemy.PerformAction(EnemyAction.Death, hitEnemy.Die);
                 hitSomething = true;
                 break;
             }

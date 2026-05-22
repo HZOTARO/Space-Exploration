@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88f6fa2b89436164b8e97b17d82dc9a2, type: 3}
+  m_Name: 3 - Cave Monster
+  m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
+  hintId: tutorial_cave_monster
+  isUnlockedByDefault: 0
+  ignoreLock: 1
+  title: Cave Monsters
+  image: {fileID: 0}
+  description: '<b>Cave Monsters</b>
+
+
+    Cave Monsters are indigenous creatures
+    that inhabit the underground caves of this planet.
+
+
+    They naturally consume
+    minerals, but for some reason they have also developed a strange interest in
+    artificial materials such as gears and screws.
+
+
+    Although they are not very
+    intelligent, they are still dangerous. Most Cave Monsters repeatedly patrol the
+    same path and only move when you move.
+
+
+    If their path is blocked, they will
+    simply change direction and continue patrolling.
+
+
+    Be careful when moving
+    near them. A Cave Monster will attack if you end your movement adjacent to it.'
+  isImageBig: 0

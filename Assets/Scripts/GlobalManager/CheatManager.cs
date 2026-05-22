@@ -162,6 +162,34 @@ public class CheatManager : MonoBehaviour
                 Debug.Log("<color=magenta>Cheat Activated: All Upgrades Maxed Out!</color>");
             }
         });
+
+        CreateCheatButton("Unlock All Hints", () =>
+        {
+            if (SaveManager.instance != null && HintManager.instance != null)
+            {
+                foreach (string hintId in HintManager.instance.hintDatabase.Keys)
+                {
+                    HintSaveState newHint = new HintSaveState { id = hintId, isUnlocked = true, hasAppeared = true };
+                    if (!SaveManager.saveData.hints.Contains(newHint))
+                    {
+                        SaveManager.saveData.hints.Add(newHint);
+                    }
+                }
+                SaveManager.instance.UpdateAllUI();
+                Debug.Log("<color=magenta>Cheat Activated: All Hints Unlocked!</color>");
+            }
+        });
+
+        CreateCheatButton("Unlock Tutorials", () =>
+        {
+            if (SaveManager.instance != null)
+            {
+                for (int i = 1; i < 21; i++)
+                {
+                    SaveManager.saveData.levelCompleted.Add($"Tutorial {i}");
+                }
+            }
+        });
     }
 
     void CreateCheatButton(string buttonText, UnityEngine.Events.UnityAction onClickAction)

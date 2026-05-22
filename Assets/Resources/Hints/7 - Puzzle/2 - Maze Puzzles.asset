@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88f6fa2b89436164b8e97b17d82dc9a2, type: 3}
+  m_Name: 2 - Maze Puzzles
+  m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
+  hintId: tutorial_maze_puzzle
+  isUnlockedByDefault: 0
+  ignoreLock: 0
+  title: Maze Puzzle
+  image: {fileID: 0}
+  description: '<b>Maze Puzzle</b>
+
+
+    The objective of a Maze Puzzle is to guide
+    the robot through a maze and reach the Goal Tile.
+
+
+    You must write a program
+    that correctly navigates the robot around walls, obstacles, and other hazards
+    within the maze.
+
+
+    Careful planning and proper instruction order are important,
+    as incorrect movement may cause the robot to become stuck or take unnecessary
+    paths.
+
+
+    Maze Puzzles are designed to test movement control, sequencing,
+    and logical problem solving.'
+  isImageBig: 0

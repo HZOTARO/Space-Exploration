@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e16c12eea6204843a6d7e7405fa6f1e, type: 3}
+  m_Name: HC_Exploration
+  m_EditorClassIdentifier: UtilityScriptIWrite::HintCollectionSO
+  collectionName: Exploration
+  hints:
+  - {fileID: 11400000, guid: ca0e188b4d1114b4daf27a97abf61200, type: 2}
+  - {fileID: 11400000, guid: 8a2643a07c446c84c9ca7c7e538ed7b0, type: 2}
+  - {fileID: 11400000, guid: c810d66eee65b6a4189dd2c2ed7fa57e, type: 2}

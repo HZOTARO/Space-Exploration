@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88f6fa2b89436164b8e97b17d82dc9a2, type: 3}
+  m_Name: 3 - Commands
+  m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
+  hintId: tutorial_command
+  isUnlockedByDefault: 0
+  ignoreLock: 0
+  title: Commands
+  image: {fileID: 0}
+  description: 'Commands are pre-programmed functions that allow the robot to perform
+    specific tasks.
+
+
+    In programming, a function is a reusable instruction that
+    performs an action when called. Commands in the robot system are functions.
+
+
+    A
+    function is executed by writing its name followed by (). For example:
+
+
+    moveForward()
+
+    collect()
+
+    wait()
+
+
+    Some
+    functions require additional information called parameters. Parameters are written
+    inside the parentheses and are used to control how the function behaves.
+
+
+    Example:
+
+
+    discard(0)
+
+
+    In
+    this example, discard is the function name, while 0 is the parameter representing
+    the inventory slot index to discard.
+
+
+    Different functions may require different
+    types of parameters such as numbers or text depending on their purpose.'
+  isImageBig: 0

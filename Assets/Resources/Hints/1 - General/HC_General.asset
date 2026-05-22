@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e16c12eea6204843a6d7e7405fa6f1e, type: 3}
+  m_Name: HC_General
+  m_EditorClassIdentifier: UtilityScriptIWrite::HintCollectionSO
+  collectionName: General
+  hints:
+  - {fileID: 11400000, guid: eb5b43de8b4d5b340bdcbd0c1dc65288, type: 2}
+  - {fileID: 11400000, guid: 142dcef612f2ddc40bff07c55d409ebe, type: 2}
+  - {fileID: 11400000, guid: a4e7cc3fb6a506e4d9e887c5d530b6cf, type: 2}
+  - {fileID: 11400000, guid: 57f5f7b8431a8e14dbd8b447eb7e0bcf, type: 2}
+  - {fileID: 11400000, guid: b2f86a4168a95c240856059e4cb50597, type: 2}
+  - {fileID: 11400000, guid: 83a07631145960d46b7d983c1f8d63cf, type: 2}
+  - {fileID: 11400000, guid: ade482eecd77a0f4c82977720a130318, type: 2}

@@ -326,5 +326,16 @@ public class Player : MonoBehaviour
         inAction = false;
     }
 
+    public void PlayShootEffect(int distanceInTiles)
+    {
+        if (shootEffect != null)
+        {
+            Vector3 forwardVector = transform.forward;
+            forwardVector.z *= 1.25f;
+            Vector3 spawnPos = transform.position + (forwardVector * (moveDistance * distanceInTiles));
+            Instantiate(shootEffect, spawnPos, Quaternion.identity);
+        }
+    }
+
     #endregion
 }
