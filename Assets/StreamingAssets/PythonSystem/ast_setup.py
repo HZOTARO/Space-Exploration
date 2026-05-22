@@ -53,7 +53,7 @@ def validate_code(source_code):
         if node_type not in current_allowed_nodes:
             return json.dumps({
                 "is_valid": False, 
-                "error_msg": f"Syntax '{node_type}' is locked or not allowed!", 
+                "error_msg": f"Syntax '{node_type}' is not allowed!", 
                 "line": line_no
             })
             
@@ -62,9 +62,27 @@ def validate_code(source_code):
             if func_name not in current_allowed_functions:
                 return json.dumps({
                     "is_valid": False, 
-                    "error_msg": f"Function '{func_name}()' is locked or not allowed!", 
+                    "error_msg": f"Function '{func_name}()' is not allowed!", 
                     "line": line_no
                 })
+            
+        if isinstance(node, ast.Expr) and isinstance(node.value, ast.Name):
+            word_typed = node.value.id
+            if word_typed in current_allowed_functions: 
+                return json.dumps({
+                    "is_valid": False,
+                    "error_msg": f"You forgot the brackets! Use {word_typed}() to execute the action.",
+                    "line": line_no
+                })
+        
+        if isinstance(node, ast.Assign):
+            for target in node.targets:
+                if isinstance(target, ast.Name) and target.id in current_allowed_functions:
+                    return json.dumps({
+                        "is_valid": False,
+                        "error_msg": f"You cannot use '{target.id}' as a variable name! It is a command.",
+                        "line": line_no
+                    })
 
     return json.dumps({"is_valid": True, "error_msg": "Success", "line": -1})
 

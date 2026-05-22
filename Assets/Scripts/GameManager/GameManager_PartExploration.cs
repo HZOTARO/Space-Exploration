@@ -215,13 +215,19 @@ public class GameManager_PartExploration : GameManager
             enemy.SnapRotationToDirection(dirToPlayer);
         }
 
-        enemy.PerformAction(EnemyAction.Attack, () =>
+        enemy.PerformAction(EnemyAction.Attack, null);
+
+        StartCoroutine(DamagePlayerAfterDelay(0.5f));
+    }
+
+    private System.Collections.IEnumerator DamagePlayerAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (healthComponent != null)
         {
-            if (healthComponent != null)
-            {
-                healthComponent.DamagePlayer(50);
-            }
-        });
+            healthComponent.DamagePlayer(50);
+        }
     }
 
     public override bool MoveForward()

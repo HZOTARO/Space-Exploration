@@ -497,7 +497,7 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("<color=red>Lose Level!</color>");
 
-        if (player != null)
+        if (player)
         {
             player.Die(() =>
             {

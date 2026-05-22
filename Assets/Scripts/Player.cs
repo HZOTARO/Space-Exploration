@@ -370,13 +370,18 @@ public class Player : MonoBehaviour
         StartCoroutine(DeathRoutine(onDeathComplete));
     }
 
-    private System.Collections.IEnumerator DeathRoutine(Action onDeathComplete)
+    private IEnumerator DeathRoutine(Action onDeathComplete)
     {
         string deathAnimName = "Death";
-
-        if (animationDict.TryGetValue(PlayerAction.Death, out string mappedName))
+        if (animationDict.TryGetValue(PlayerAction.Death, out string mappedDeathName))
         {
-            deathAnimName = mappedName;
+            deathAnimName = mappedDeathName;
+        }
+
+        string deathWaitAnimName = "Death_Wait";
+        if (animationDict.TryGetValue(PlayerAction.DeathWaits, out string mappedWaitName))
+        {
+            deathWaitAnimName = mappedWaitName;
         }
 
         ChangeAnimation(deathAnimName, 0.1f, true);
@@ -393,7 +398,14 @@ public class Player : MonoBehaviour
             yield return new WaitForSeconds(2.5f);
         }
 
-        yield return new WaitForSeconds(0.5f);
+        ChangeAnimation(deathWaitAnimName, 0f, true);
+
+        if (stateInfo.IsName(deathWaitAnimName))
+        {
+            yield return new WaitForSeconds(stateInfo.length);
+        }
+
+        yield return new WaitForSeconds(2.5f);
 
         onDeathComplete?.Invoke();
     }

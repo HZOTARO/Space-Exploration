@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GeneralUIScript : MonoBehaviour
@@ -15,16 +14,90 @@ public class GeneralUIScript : MonoBehaviour
     public TextMeshProUGUI gameSpeedText;
     public Slider gameSpeedSlider;
 
+    [Header("Slider Mapping Settings")]
+    private Vector2 delaySliderRange = new Vector2(0f, 8f);
+    private Vector2 actualDelayRange = new Vector2(0f, 0.8f);
+    [Space]
+    public float[] allowedGameSpeeds = { 0.25f, 0.5f, 0.75f, 1f, 2f, 4f, 8f };
+
     public void Start()
     {
+        float currentStepDelay = 0f;
+        float currentGameSpeed = 1f;
+
+        if (SaveManager.saveData != null)
+        {
+            currentStepDelay = SaveManager.saveData.stepDelay;
+            currentGameSpeed = SaveManager.saveData.gameSpeed;
+        }
+
         if (stepDelaySlider)
-            stepDelaySlider.value = SaveManager.saveData != null ? SaveManager.saveData.stepDelay * 10f : 0f;
-        if (stepDelayText)
-            SetStepDelay(SaveManager.saveData != null ? SaveManager.saveData.stepDelay * 10f : 0f);
+        {
+            float sliderVal = Remap(currentStepDelay, actualDelayRange.x, actualDelayRange.y, delaySliderRange.x, delaySliderRange.y);
+            stepDelaySlider.value = Mathf.Round(sliderVal);
+            SetStepDelay(sliderVal);
+        }
+
         if (gameSpeedSlider)
-            gameSpeedSlider.value = SaveManager.saveData != null ? SaveManager.saveData.gameSpeed : 1f;
-        if (gameSpeedText)
-            SetGameSpeed(SaveManager.saveData != null ? SaveManager.saveData.gameSpeed : 1f);
+        {
+            int closestIndex = 3;
+            float smallestDiff = Mathf.Abs(currentGameSpeed - allowedGameSpeeds[0]);
+            for (int i = 0; i < allowedGameSpeeds.Length; i++)
+            {
+                float diff = Mathf.Abs(currentGameSpeed - allowedGameSpeeds[i]);
+                if (diff < smallestDiff)
+                {
+                    smallestDiff = diff;
+                    closestIndex = i;
+                }
+            }
+            gameSpeedSlider.value = closestIndex;
+            SetGameSpeed(closestIndex);
+        }
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && enableEscape && pauseUI)
+        {
+            if (pauseUI.activeSelf) UnPauseGame();
+            else PauseGame();
+        }
+    }
+
+
+    public void SetStepDelay(float sliderValue)
+    {
+        float delay = Remap(sliderValue, delaySliderRange.x, delaySliderRange.y, actualDelayRange.x, actualDelayRange.y);
+
+        if (stepDelayText != null)
+            stepDelayText.text = $"Step Delay: {delay:0.00}s";
+
+        if (SaveManager.saveData != null)
+            SaveManager.saveData.stepDelay = delay;
+
+        if (PythonExecutor.instance)
+            PythonExecutor.instance.stepDelay = delay;
+    }
+
+    public void SetGameSpeed(float sliderValue)
+    {
+        int index = Mathf.Clamp(Mathf.RoundToInt(sliderValue), 0, allowedGameSpeeds.Length - 1);
+
+        float speed = allowedGameSpeeds[index];
+
+        if (gameSpeedText != null)
+            gameSpeedText.text = $"Game Speed: {speed}x";
+
+        if (SaveManager.saveData != null)
+            SaveManager.saveData.gameSpeed = speed;
+
+        Time.timeScale = speed;
+    }
+    private float Remap(float value, float fromMin, float fromMax, float toMin, float toMax)
+    {
+        float percentage = Mathf.InverseLerp(fromMin, fromMax, value);
+        return Mathf.Lerp(toMin, toMax, percentage);
     }
 
     public void PlayGame()
@@ -47,21 +120,7 @@ public class GeneralUIScript : MonoBehaviour
             Debug.LogError("LevelManager instance not found!");
     }
     public void OpenHubScene() => OpenScene(LevelType.Hub);
-    public void OpenResourceExplorationScene() => OpenScene(LevelType.ResourceExploration);
-    public void OpenPartsExplorationScene() => OpenScene(LevelType.PartsExploration);
-    public void OpenCraftingScene() => OpenScene(LevelType.CraftingLevel);
-    public void OpenUpgradeScene() => OpenScene(LevelType.UpgradeLevel);
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape) && enableEscape && pauseUI)
-        {
-            if (pauseUI.activeSelf)
-                UnPauseGame();
-            else
-                PauseGame();
-        }
-    }
     public void PauseGame()
     {
         pauseUI.SetActive(true);
@@ -83,6 +142,7 @@ public class GeneralUIScript : MonoBehaviour
     {
         SaveManager.instance.DeleteSave(SaveManager.saveSlotInUse);
     }
+
     public void ExitGame()
     {
 #if UNITY_EDITOR
@@ -90,31 +150,5 @@ public class GeneralUIScript : MonoBehaviour
 #else
         Application.Quit();
 #endif
-    }
-
-    public void SetStepDelay(float delay)
-    {
-        delay = delay / 10f;
-
-        if (stepDelayText != null)
-            stepDelayText.text = $"Step Delay: {delay:0.00}s";
-
-        if (SaveManager.instance)
-            SaveManager.saveData.stepDelay = delay;
-
-        if (PythonExecutor.instance)
-            PythonExecutor.instance.stepDelay = delay;
-    }
-
-    public void SetGameSpeed(float speed)
-    {
-        if (gameSpeedText != null)
-            gameSpeedText.text = $"Game Speed: {speed:0.00}x";
-
-        if (SaveManager.instance)
-            SaveManager.saveData.gameSpeed = speed;
-
-        //if (SceneManager.GetActiveScene().name != "Hub Scene")
-        Time.timeScale = speed;
     }
 }
