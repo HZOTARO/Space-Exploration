@@ -19,5 +19,6 @@ MonoBehaviour:
   prerequisiteUpgrades: []
   prerequisitePuzzle: 
   tiers:
-  - description: Measure value of an object
+  - description: Unlocks measure() to determine the value of the resource in front
+      of the robot.
     costs: []

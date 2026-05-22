@@ -32,10 +32,6 @@ public class GameManager : MonoBehaviour
     protected int cargoSize = 6;
     protected int maxHealth = 100;
 
-    [Header("Consumables (Shuffled)")]
-    public List<ItemSO> availableConsumables = new List<ItemSO>();
-    protected List<ItemSO> shuffledConsumables = new List<ItemSO>();
-
     [HideInInspector] public List<string> allowedSyntaxNodes = new List<string>();
     [HideInInspector] public List<string> allowedFunctions = new List<string>();
 
@@ -97,15 +93,6 @@ public class GameManager : MonoBehaviour
         {
             cargoComponent.cargoSize = cargoSize;
             StartCoroutine(cargoComponent.SetupCargoCoroutine());
-        }
-
-        shuffledConsumables = new List<ItemSO>(availableConsumables);
-        for (int i = 0; i < shuffledConsumables.Count; i++)
-        {
-            ItemSO temp = shuffledConsumables[i];
-            int randomIndex = UnityEngine.Random.Range(i, shuffledConsumables.Count);
-            shuffledConsumables[i] = shuffledConsumables[randomIndex];
-            shuffledConsumables[randomIndex] = temp;
         }
 
         PythonExecutor.instance.InitializePythonAllowed(allowedSyntaxNodes.ToArray(), allowedFunctions.ToArray());

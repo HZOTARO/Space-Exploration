@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 6 - Variable Watch
   m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
   hintId: tutorial_variable_watch
-  isUnlockedByDefault: 0
+  isUnlockedByDefault: 1
   ignoreLock: 0
   title: Variable Watch
   image: {fileID: 0}

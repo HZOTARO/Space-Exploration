@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 1 - Instructions
   m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
   hintId: tutorial_instruction
-  isUnlockedByDefault: 0
+  isUnlockedByDefault: 1
   ignoreLock: 0
   title: Instructions
   image: {fileID: 0}

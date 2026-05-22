@@ -20,5 +20,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 847865fe10bc3764bba728d4ba6af7e8, type: 2}
   prerequisitePuzzle: 
   tiers:
-  - description: 
+  - description: Unlocks the ability to use loop statements such as for and while
+      to repeatedly execute instructions.
     costs: []

@@ -19,5 +19,6 @@ MonoBehaviour:
   prerequisiteUpgrades: []
   prerequisitePuzzle: 
   tiers:
-  - description: Scan in front
+  - description: Unlocks the ability to use scan() to identify the type of tile in
+      front of the robot.
     costs: []

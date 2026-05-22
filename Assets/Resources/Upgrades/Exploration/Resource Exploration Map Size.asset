@@ -13,16 +13,15 @@ MonoBehaviour:
   m_Name: Resource Exploration Map Size
   m_EditorClassIdentifier: UtilityScriptIWrite::UpgradeSO
   id: resourceexploration_mapsize
-  upgradeName: Resource Exploration Map Size
+  upgradeName: Map Size (Exploration - Mineral)
   icon: {fileID: 21300000, guid: 2178131416879b648922ec344e820711, type: 3}
+  unlockedHint: {fileID: 0}
   prerequisiteUpgrades: []
+  prerequisitePuzzle: 
   tiers:
-  - description: Expand resource exploration level map size to 10 x 10
-    requiresPuzzleToUnlock: 0
+  - description: "Expand mineral exploration level map size to 10 \xD7 10."
     costs: []
-  - description: Expand resource exploration level map size to 15 x 15
-    requiresPuzzleToUnlock: 0
+  - description: "Expand mineral exploration level map size to 15 \xD7 15."
     costs: []
-  - description: Expand resource exploration level map size to 20 x 20
-    requiresPuzzleToUnlock: 0
+  - description: "Expand mineral exploration level map size to 20 \xD7 20."
     costs: []

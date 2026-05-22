@@ -19,5 +19,6 @@ MonoBehaviour:
   prerequisiteUpgrades: []
   prerequisitePuzzle: 
   tiers:
-  - description: 
+  - description: Unlocks shoot() to attack the nearest enemy in a straight line in
+      front of the robot. Projectiles can be blocked by walls.
     costs: []

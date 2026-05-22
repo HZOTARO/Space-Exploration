@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 4 - Syntax
   m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
   hintId: tutorial_syntax
-  isUnlockedByDefault: 0
+  isUnlockedByDefault: 1
   ignoreLock: 0
   title: Syntax
   image: {fileID: 0}

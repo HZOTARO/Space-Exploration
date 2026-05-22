@@ -41,7 +41,7 @@ public class HintManager : MonoBehaviour
         }
     }
 
-    public void RequestDisplayHints(List <HintSO> hintsToDisplay, HintSO openedHint = null, bool setHasAppeared = true, bool onlyShowNewOne = false)
+    public void RequestDisplayHints(List <HintSO> hintsToDisplay, HintSO openedHint = null, bool setHasAppeared = true, bool onlyShowNewOne = false, bool useIgnoreLock = true)
     {
         List<HintSO> validHintsToDisplay = new List<HintSO>();
         bool dataWasChanged = false;
@@ -52,7 +52,7 @@ public class HintManager : MonoBehaviour
             {
                 HintSO hint = hintsToDisplay[i];
                 if (hint == null) continue;
-                if (!hint.ignoreLock && !IsHintUnlocked(hint)) continue;
+                if ((!useIgnoreLock || !hint.ignoreLock) && !IsHintUnlocked(hint)) continue;
 
                 HintSaveState saveState = GetHintSaveState(hint);
 
@@ -83,9 +83,9 @@ public class HintManager : MonoBehaviour
         }
     }
 
-    public void RequestDisplayHints(HintCollectionSO hintCollection, HintSO openedHint = null, bool setHasAppeared = true, bool onlyShowNewOne = false)
+    public void RequestDisplayHints(HintCollectionSO hintCollection, HintSO openedHint = null, bool setHasAppeared = true, bool onlyShowNewOne = false, bool useIgnoreLock = true)
     {
-        RequestDisplayHints(hintCollection.hints, openedHint, setHasAppeared, onlyShowNewOne);
+        RequestDisplayHints(hintCollection.hints, openedHint, setHasAppeared, onlyShowNewOne, useIgnoreLock);
     }
 
     public void RequestCloseHints()
@@ -133,9 +133,7 @@ public class HintManager : MonoBehaviour
 
         if (showHint)
         {
-            if (setHasAppeared) state.hasAppeared = true;
-
-            RequestDisplayHints(new List<HintSO> { hint }, hint);
+            RequestDisplayHints(new List<HintSO> { hint }, hint, setHasAppeared);
         }
     }
 }

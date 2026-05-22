@@ -117,7 +117,7 @@ public class UpgradeManager : MonoBehaviour
         TierUpgradeConsumeResource(tierToBuy);
         ApplyUnlock(upgrade.id);
 
-        if (HintManager.instance != null && upgrade.unlockedHint != null)
+        if (currentLvl == 0 && HintManager.instance != null && upgrade.unlockedHint != null)
         {
             HintManager.instance.UnlockHint(upgrade.unlockedHint, showHint: true, setHasAppeared: false);
         }

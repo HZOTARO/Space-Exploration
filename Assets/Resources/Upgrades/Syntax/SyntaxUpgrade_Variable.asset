@@ -19,5 +19,5 @@ MonoBehaviour:
   prerequisiteUpgrades: []
   prerequisitePuzzle: 
   tiers:
-  - description: 
+  - description: Unlocks the ability to create and use variables in programs.
     costs: []

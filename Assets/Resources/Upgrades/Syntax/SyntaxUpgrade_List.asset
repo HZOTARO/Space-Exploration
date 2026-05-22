@@ -20,5 +20,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: caf723ee798328347ac470e8a5eab3a4, type: 2}
   prerequisitePuzzle: 
   tiers:
-  - description: 
+  - description: Unlocks the ability to create and use lists, access values by index,
+      and use list methods to manage multiple values in a single variable.
     costs: []

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 5 - Terminal
   m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
   hintId: tutorial_terminal
-  isUnlockedByDefault: 0
+  isUnlockedByDefault: 1
   ignoreLock: 0
   title: Terminal
   image: {fileID: 0}

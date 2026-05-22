@@ -73,7 +73,7 @@ public class AllHintPage : MonoBehaviour
     {
         if (currentlySelectedHint != null && HintManager.instance != null)
         {
-            HintManager.instance.RequestDisplayHints(currentlySelectedHint.hintCollection, currentlySelectedHint.hintData, false, false);
+            HintManager.instance.RequestDisplayHints(currentlySelectedHint.hintCollection, currentlySelectedHint.hintData, false, false, false);
         }
     }
 

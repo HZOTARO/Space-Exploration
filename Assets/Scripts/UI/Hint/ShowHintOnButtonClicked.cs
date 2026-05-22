@@ -11,13 +11,13 @@ public class ShowHintOnButtonClicked : MonoBehaviour
         Button button = GetComponent<Button>();
         if (unlockedHint)
         {
-            button.onClick.AddListener(() =>
-            {
-                if (HintManager.instance)
-                {
-                    HintManager.instance.RequestDisplayHints(new List<HintSO> { unlockedHint }, null, true, true);
-                }
-            });
+            button.onClick.AddListener(OnClick);
         }
+    }
+
+    void OnClick()
+    {
+        Debug.Log("Button clicked, unlocking hint: " + unlockedHint.hintId);
+        if (HintManager.instance) HintManager.instance.RequestDisplayHints(new List<HintSO> { unlockedHint }, null, true, true);
     }
 }
