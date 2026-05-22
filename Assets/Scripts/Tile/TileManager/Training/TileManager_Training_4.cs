@@ -15,6 +15,6 @@ public class TileManager_Training_4 : TileManager_Training
             SetTile(0, x, TileType.Floor, asFloorToo: true);
         }
 
-        SetTile(0, goalX, TileType.Goal, asFloorToo: true);
+        SetTile(0, goalX, TileType.Goal, false);
     }
 }

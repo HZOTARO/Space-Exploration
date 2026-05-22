@@ -16,6 +16,6 @@ public class TileManager_Training_5 : TileManager_Training
 
         int goalX = Random.Range(width / 2, width);
 
-        SetTile(0, goalX, TileType.Goal, asFloorToo: true);
+        SetTile(0, goalX, TileType.Goal, asFloorToo: false);
     }
 }

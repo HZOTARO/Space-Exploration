@@ -6,6 +6,6 @@ public class TileManager_Training_1 : TileManager_Training
     }
     protected override void GenerateMapContent()
     {
-        SetTile(2, 1, TileType.Goal);
+        SetTile(2, 1, TileType.Goal, false);
     }
 }
