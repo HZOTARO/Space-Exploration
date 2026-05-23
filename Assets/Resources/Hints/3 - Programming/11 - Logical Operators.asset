@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88f6fa2b89436164b8e97b17d82dc9a2, type: 3}
+  m_Name: 11 - Logical Operators
+  m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
+  hintId: tutorial_logical_operators
+  isUnlockedByDefault: 0
+  ignoreLock: 1
+  title: Logical Operators
+  image: {fileID: 0}
+  description: "Logical operators are used to combine or modify Boolean values.\nThey
+    work with values that are either <color=#E57373>True</color> or <color=#E57373>False</color>.\n\n<font=\"JetBrainsMono
+    SDF\"><color=#7FDFFF>and</color></font> \u2192 returns True if both conditions
+    are True\n<font=\"JetBrainsMono SDF\"><color=#7FDFFF>or</color></font> \u2192
+    returns True if at least one condition is True\n<font=\"JetBrainsMono SDF\"><color=#7FDFFF>not</color></font>
+    \u2192 inverts a Boolean value\n\nExample:\n<font=\"JetBrainsMono SDF\"><color=#7FDFFF>condition</color>
+    = (<color=#55FF55>scan</color>() <color=#7FDFFF>==</color> <color=#FF6EC7>\"WhiteOre\"</color>)
+    <color=#7FDFFF>and</color> (<color=#55FF55>measure</color>() <color=#7FDFFF>></color>
+    <color=#7FDFFF>0</color>)</font>\n\nThis means:\n- The tile must be \"WhiteOre\"\n-
+    AND it must have a valid measurable value\n\nResult:\nIf both conditions are
+    True, then <font=\"JetBrainsMono SDF\"><color=#7FDFFF>condition</color></font>
+    is <color=#E57373>True</color>.  \nOtherwise, <font=\"JetBrainsMono SDF\"><color=#7FDFFF>condition</color></font>
+    is <color=#E57373>False</color>."
+  isImageBig: 0

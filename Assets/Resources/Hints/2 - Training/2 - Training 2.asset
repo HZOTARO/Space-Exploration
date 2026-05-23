@@ -15,12 +15,11 @@ MonoBehaviour:
   hintId: tutorial_training_2
   isUnlockedByDefault: 0
   ignoreLock: 1
-  title: Training - Variables
+  title: Training - Storing Data
   image: {fileID: 0}
   description: 'For the second training, we will learn about variables and a new
     command: <font="JetBrainsMono SDF"><color=#55FF55>scan</color>()</font>.
 
-    
 
     <font="JetBrainsMono
     SDF"><color=#55FF55>scan</color>()</font> scans the tile in front of the robot

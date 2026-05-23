@@ -15,15 +15,17 @@ MonoBehaviour:
   hintId: tutorial_training_3
   isUnlockedByDefault: 0
   ignoreLock: 1
-  title: Training - Operators
+  title: Training - Processing Data
   image: {fileID: 0}
   description: 'Sometimes you need to use calculations to process information from
     the environment. Operators are used to combine or modify values during execution.
 
+    
 
     For
     this simulation, calculate the total value of the ores in this level.
 
+    
 
     Use
     <font="JetBrainsMono SDF"><color=#55FF55>measure()</color></font> on both ores

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88f6fa2b89436164b8e97b17d82dc9a2, type: 3}
-  m_Name: 12 - 2
+  m_Name: 7 - Variablle Name
   m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
   hintId: tutorial_variables
-  isUnlockedByDefault: 1
-  ignoreLock: 0
+  isUnlockedByDefault: 0
+  ignoreLock: 1
   title: Variables
   image: {fileID: 0}
   description: 'A variable is a named storage used in a program to hold a value.
@@ -24,26 +24,13 @@ MonoBehaviour:
     later in your program.
 
 
-
-    Example:
-
-    <font="JetBrainsMono SDF"><color=#7FDFFF>energy</color>
-    = 10</font>
-
-    <font="JetBrainsMono SDF"><color=#7FDFFF>tile</color> = "wall"</font>
-
-    <font="JetBrainsMono
-    SDF"><color=#7FDFFF>isBlocked</color> = True</font>
-
-
-
     Rules for naming variables:
 
-    <indent=2em>-
-    Must start with a letter or underscore ( _ )</indent>
+    <indent=2em>- Must
+    start with a letter or underscore ( _ )</indent>
 
-    <indent=2em>- Cannot
-    start with a number</indent>
+    <indent=2em>- Cannot start
+    with a number</indent>
 
     <indent=2em>- Can only contain letters, numbers,
     and underscores</indent>
@@ -54,13 +41,40 @@ MonoBehaviour:
     Should not use reserved keywords</indent>
 
 
+    Correct naming examples:
 
-    Correct naming examples:<font="JetBrainsMono
+    <font="JetBrainsMono
     SDF"><color=#7FDFFF>energy_level</color>, <color=#7FDFFF>currentTile</color>,
     <color=#7FDFFF>is_blocked</color></font>
 
-    Wrong naming examples:<font="JetBrainsMono
-    SDF"><color=#FF6B6B>1energy</color></font> (starts with a number), <font="JetBrainsMono
-    SDF"><color=#FF6B6B>current tile</color></font> (contains space), <font="JetBrainsMono
-    SDF"><color=#FF6B6B>class</color></font> (reserved keyword)'
+
+    Wrong naming examples:
+
+    <font="JetBrainsMono
+    SDF"><color=#FF6B6B>1energy</color></font> (starts with a number),
+
+    <font="JetBrainsMono
+    SDF"><color=#FF6B6B>current tile</color></font> (contains space),
+
+    <font="JetBrainsMono
+    SDF"><color=#FF6B6B>class</color></font> (reserved keyword)
+
+
+    The <font="JetBrainsMono
+    SDF"><color=#7FDFFF>=</color></font> symbol is called assignment.
+
+    It is
+    used to store a value inside a variable.
+
+
+    Example:
+
+    <font="JetBrainsMono
+    SDF"><color=#7FDFFF>energy</color> = 10</font>
+
+    <font="JetBrainsMono SDF"><color=#7FDFFF>tile</color>
+    = "wall"</font>
+
+    <font="JetBrainsMono SDF"><color=#7FDFFF>isBlocked</color>
+    = True</font>'
   isImageBig: 0

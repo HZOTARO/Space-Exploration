@@ -13,13 +13,12 @@ MonoBehaviour:
   m_Name: 4 - Syntax
   m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
   hintId: tutorial_syntax
-  isUnlockedByDefault: 1
-  ignoreLock: 0
+  isUnlockedByDefault: 0
+  ignoreLock: 1
   title: Syntax
   image: {fileID: 0}
   description: 'Syntax is the set of rules used to write instructions for processing
     data and controlling robotic systems.
-
 
     Every command must follow the correct
     structure in order to be understood and executed properly by the robot.
@@ -43,7 +42,6 @@ MonoBehaviour:
 
     Even
     small syntax mistakes may cause commands to fail or produce unexpected results.
-
 
     Understanding
     syntax is an important step in learning programming, as it teaches how instructions

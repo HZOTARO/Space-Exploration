@@ -6,6 +6,7 @@ public class HubUI : MonoBehaviour, IResourceUpdatable
     private Button_Id[] buttons;
     public List<HintSO> firstOpenHint;
     public List<HintSO> afterTraining1;
+    public List<HintSO> afterTraining10;
 
     private void Awake()
     {
@@ -22,6 +23,10 @@ public class HubUI : MonoBehaviour, IResourceUpdatable
         if (afterTraining1 != null && HintManager.instance != null && SaveManager.saveData.levelCompleted.Contains("Tutorial 1"))
         {
             HintManager.instance.RequestDisplayHints(afterTraining1, null, true, true);
+        }
+        if (afterTraining10 != null && HintManager.instance != null && SaveManager.saveData.levelCompleted.Contains("Tutorial 10"))
+        {
+            HintManager.instance.RequestDisplayHints(afterTraining10, null, true, true);
         }
     }
 

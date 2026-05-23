@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88f6fa2b89436164b8e97b17d82dc9a2, type: 3}
+  m_Name: 12 - If
+  m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
+  hintId: tutorial_if
+  isUnlockedByDefault: 0
+  ignoreLock: 1
+  title: If
+  image: {fileID: 0}
+  description: "The <font=\"JetBrainsMono SDF\"><color=#7FDFFF>if</color></font>
+    statement is used to make decisions based on conditions.\n\nFormat:\n<font=\"JetBrainsMono
+    SDF\"><color=#7FDFFF>if</color> (condition):</font>\n<indent=2em>code</indent>\n\nIf
+    the condition is <color=#E57373>True</color>, the code inside will be executed. 
+    \nIf it is <color=#E57373>False</color>, it will be skipped.\n\nExample:\n<font=\"JetBrainsMono
+    SDF\"><color=#7FDFFF>if</color> <color=#7FDFFF>condition</color>:</font>\n<indent=2em><font=\"JetBrainsMono
+    SDF\"><color=#55FF55>mine</color>()</font></indent>\n\nYou can also use conditions
+    directly:\n<font=\"JetBrainsMono SDF\"><color=#7FDFFF>if</color> <color=#55FF55>scan</color>()
+    <color=#7FDFFF>==</color> <color=#FF6EC7>\"WhiteOre\"</color>:</font>\n<indent=2em><font=\"JetBrainsMono
+    SDF\"><color=#55FF55>mine</color>()</font></indent>\n\nNote:\nIndentation is
+    required.  \nAll code inside an <font=\"JetBrainsMono SDF\"><color=#7FDFFF>if</color></font>
+    statement must use the same indentation level."
+  isImageBig: 0
