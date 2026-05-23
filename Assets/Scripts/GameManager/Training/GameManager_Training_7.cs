@@ -35,7 +35,7 @@ public class GameManager_Training_7 : GameManager_Training
 
         ObjectiveManager.instance.objectives.Add(new LevelObjective()
         {
-            description = $"The map is {levelWidth} tiles long.\nThe Goal is precisely on Tile {generatedGoalX + 1}.\nReach it by writing 'move_forward()' only once in your code!",
+            description = $"The map is {levelWidth} tiles long.\nThe goal is located on Tile {generatedGoalX + 1}.\nReach it in a single run and writing 'move_forward()' only once in your code!",
             type = ObjectiveType.CustomEvent,
             customEventId = "MovedWithLoop"
         });

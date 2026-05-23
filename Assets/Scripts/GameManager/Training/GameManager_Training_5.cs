@@ -40,7 +40,7 @@ public class GameManager_Training_5 : GameManager_Training
         base.SetLevelObjectives();
         ObjectiveManager.instance.objectives.Add(new LevelObjective()
         {
-            description = "Check both ores! Mine if value > 5. Collect if value > 10.",
+            description = "Check both ores in a single run! Mine ores if value > 5, then collect them if value > 10.",
             type = ObjectiveType.CustomEvent,
             customEventId = "LevelSolved"
         });

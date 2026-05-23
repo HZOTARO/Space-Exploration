@@ -1349,7 +1349,7 @@ GameObject:
   - component: {fileID: 1224861974}
   - component: {fileID: 1224861973}
   m_Layer: 0
-  m_Name: GameManager_Training_4
+  m_Name: GameManager_Training_7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1466,7 +1466,7 @@ GameObject:
   - component: {fileID: 2022990520}
   - component: {fileID: 2022990519}
   m_Layer: 0
-  m_Name: TileManager_Training_4
+  m_Name: TileManager_Training_7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1755,8 +1755,8 @@ SceneRoots:
   - {fileID: 235617477}
   - {fileID: 818802477}
   - {fileID: 373270355}
-  - {fileID: 202872235}
   - {fileID: 1224861974}
   - {fileID: 2022990520}
+  - {fileID: 202872235}
   - {fileID: 1400094151}
   - {fileID: 6096573076397695217}

@@ -35,14 +35,14 @@ public class GameManager_Training_4 : GameManager_Training
 
         ObjectiveManager.instance.objectives.Add(new LevelObjective()
         {
-            description = "Use mine() function inside an 'if == \"WhiteOre\"' block.",
+            description = "Use mine() inside an 'if scan() == \"WhiteOre\"' block.",
             type = ObjectiveType.CustomEvent,
             customEventId = "MineInsideIf"
         });
 
         ObjectiveManager.instance.objectives.Add(new LevelObjective()
         {
-            description = "Use collect() function inside that same 'if' block.",
+            description = "Use collect() inside an 'if scan() == \"WhiteOre\"' block.",
             type = ObjectiveType.CustomEvent,
             customEventId = "CollectInsideIf"
         });

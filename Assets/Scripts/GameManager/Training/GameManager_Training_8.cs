@@ -26,7 +26,7 @@ public class GameManager_Training_8 : GameManager_Training
 
         ObjectiveManager.instance.objectives.Add(new LevelObjective()
         {
-            description = "The goal is at an unknown distance! Use a 'while' loop and scan() to reach it.",
+            description = "The goal is at an unknown distance! Use a while loop and scan() to reach it.",
             type = ObjectiveType.CustomEvent,
             customEventId = "ReachedGoal"
         });

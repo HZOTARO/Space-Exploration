@@ -1305,7 +1305,7 @@ GameObject:
   - component: {fileID: 1021393016}
   - component: {fileID: 1021393015}
   m_Layer: 0
-  m_Name: GameManager_Training_7
+  m_Name: GameManager_Training_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1333,7 +1333,6 @@ MonoBehaviour:
   healthUpgrade: {fileID: 0}
   playerGridLoc: {x: 0, y: 0}
   playerFacing: 0
-  availableConsumables: []
   allowedSyntaxNodes: []
   allowedFunctions: []
   hintCollection: {fileID: 0}
@@ -1366,7 +1365,7 @@ GameObject:
   - component: {fileID: 1032686959}
   - component: {fileID: 1032686958}
   m_Layer: 0
-  m_Name: TileManager_Training_7
+  m_Name: TileManager_Training_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

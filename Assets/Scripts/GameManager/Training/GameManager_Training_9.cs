@@ -28,7 +28,7 @@ public class GameManager_Training_9 : GameManager_Training
         base.SetLevelObjectives();
         ObjectiveManager.instance.objectives.Add(new LevelObjective()
         {
-            description = "Traverse every tile on the map. You may only write 'move_forward()' a maximum of 2 times!",
+            description = "Traverse every tile on the map in a single run. You may only write 'move_forward()' a maximum of 2 times!",
             type = ObjectiveType.CustomEvent,
             customEventId = "TraversedGrid"
         });

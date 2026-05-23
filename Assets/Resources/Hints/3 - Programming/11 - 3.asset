@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88f6fa2b89436164b8e97b17d82dc9a2, type: 3}
+  m_Name: 11 - 3
+  m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
+  hintId: tutorial_variables
+  isUnlockedByDefault: 1
+  ignoreLock: 0
+  title: Variables
+  image: {fileID: 0}
+  description: 'A variable is a named storage used in a program to hold a value.
+
+    Variables
+    allow you to store data such as numbers, text, or boolean values and reuse them
+    later in your program.
+
+
+
+    Example:
+
+    <font="JetBrainsMono SDF"><color=#7FDFFF>energy</color>
+    = 10</font>
+
+    <font="JetBrainsMono SDF"><color=#7FDFFF>tile</color> = "wall"</font>
+
+    <font="JetBrainsMono
+    SDF"><color=#7FDFFF>isBlocked</color> = True</font>
+
+
+
+    Rules for naming variables:
+
+    <indent=2em>-
+    Must start with a letter or underscore ( _ )</indent>
+
+    <indent=2em>- Cannot
+    start with a number</indent>
+
+    <indent=2em>- Can only contain letters, numbers,
+    and underscores</indent>
+
+    <indent=2em>- No spaces allowed</indent>
+
+    <indent=2em>-
+    Should not use reserved keywords</indent>
+
+
+
+    Correct naming examples:<font="JetBrainsMono
+    SDF"><color=#7FDFFF>energy_level</color>, <color=#7FDFFF>currentTile</color>,
+    <color=#7FDFFF>is_blocked</color></font>
+
+    Wrong naming examples:<font="JetBrainsMono
+    SDF"><color=#FF6B6B>1energy</color></font> (starts with a number), <font="JetBrainsMono
+    SDF"><color=#FF6B6B>current tile</color></font> (contains space), <font="JetBrainsMono
+    SDF"><color=#FF6B6B>class</color></font> (reserved keyword)'
+  isImageBig: 0

@@ -38,7 +38,7 @@ public class GameManager_Training_1 : GameManager_Training
 
         ObjectiveManager.instance.objectives.Add(new LevelObjective()
         {
-            description = "Use move_forward() to move the player.",
+            description = "Move the player using move_forward().",
             type = ObjectiveType.FunctionCall,
             targetFunctionName = "move_forward"
         });

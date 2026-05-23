@@ -75,7 +75,7 @@ public class GameManager_Training_2 : GameManager_Training
 
         ObjectiveManager.instance.objectives.Add(new LevelObjective()
         {
-            description = "Store the result of scan() in a variable and print() it!",
+            description = "Store the result of scan() in a variable and print it using print().",
             type = ObjectiveType.CustomEvent,
             customEventId = "PrintedVariable"
         });

@@ -33,7 +33,7 @@ public class GameManager_Training_3 : GameManager_Training
 
         ObjectiveManager.instance.objectives.Add(new LevelObjective()
         {
-            description = "measure() both ores and add them together in a variable named 'total'!",
+            description = "Use measure() on both ores and store their sum in a variable named 'total' in a single run.",
             type = ObjectiveType.CustomEvent,
             customEventId = "TotalCalculated"
         });

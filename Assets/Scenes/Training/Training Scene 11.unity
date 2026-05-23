@@ -803,7 +803,7 @@ GameObject:
   - component: {fileID: 714997569}
   - component: {fileID: 714997568}
   m_Layer: 0
-  m_Name: TileManager_Training_8
+  m_Name: TileManager_Training_11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1419,7 +1419,7 @@ GameObject:
   - component: {fileID: 1731148330}
   - component: {fileID: 1731148329}
   m_Layer: 0
-  m_Name: GameManager_Training_8
+  m_Name: GameManager_Training_11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1447,7 +1447,6 @@ MonoBehaviour:
   healthUpgrade: {fileID: 0}
   playerGridLoc: {x: 0, y: 0}
   playerFacing: 0
-  availableConsumables: []
   allowedSyntaxNodes: []
   allowedFunctions: []
   hintCollection: {fileID: 0}

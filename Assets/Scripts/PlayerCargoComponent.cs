@@ -16,7 +16,16 @@ public class PlayerCargoComponent : MonoBehaviour
     public IEnumerator SetupCargoCoroutine()
     {
         if (cargoUI == null) yield break;
-        
+
+        if (cargoSize <= 0)
+        {
+            cargoUI.gameObject.SetActive(false);
+            levelCargo.Clear();
+            cargoSlots.Clear();
+            yield break;
+        }
+
+        cargoUI.gameObject.SetActive(true);
         levelCargo.Clear();
         cargoSlots.Clear();
 

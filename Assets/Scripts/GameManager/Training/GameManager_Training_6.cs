@@ -29,9 +29,10 @@ public class GameManager_Training_6 : GameManager_Training
     protected override void SetLevelObjectives()
     {
         base.SetLevelObjectives();
+
         ObjectiveManager.instance.objectives.Add(new LevelObjective()
         {
-            description = "Unstable Environment! Use match/case to handle the random resources.",
+            description = "Unstable Environment! Use match/case to handle the random resources and collect them all in a single run.",
             type = ObjectiveType.CustomEvent,
             customEventId = "LevelSolved"
         });
@@ -74,7 +75,7 @@ public class GameManager_Training_6 : GameManager_Training
         else if (targetTile.type == TileType.BlackOre)
         {
             CaveTile_BlackOre ore = targetTile.tileInstance as CaveTile_BlackOre;
-            if (!ore.isMined) player.PerformAction(PlayerAction.Mine, () => { if (ore.Mine()) healthComponent.DamagePlayer(60); });
+            if (!ore.isMined) player.PerformAction(PlayerAction.Mine, () => { if (ore.Mine()) healthComponent.DamagePlayer(100); });
             else PrintToDisplay("This Black Ore has already been mined.");
         }
         else { PrintToDisplay("No mineable resource in front of you."); }

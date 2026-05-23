@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 34421529}
   - component: {fileID: 34421528}
   m_Layer: 0
-  m_Name: TileManager_Training_5
+  m_Name: TileManager_Training_8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1416,7 +1416,7 @@ GameObject:
   - component: {fileID: 1559694830}
   - component: {fileID: 1559694829}
   m_Layer: 0
-  m_Name: GameManager_Training_5
+  m_Name: GameManager_Training_8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

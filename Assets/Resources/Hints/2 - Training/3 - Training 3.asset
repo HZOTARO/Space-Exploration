@@ -12,8 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88f6fa2b89436164b8e97b17d82dc9a2, type: 3}
   m_Name: 3 - Training 3
   m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
-  hintId: training 3
-  title: training 3
-  hintBlocks: []
+  hintId: tutorial_training_3
   isUnlockedByDefault: 0
   ignoreLock: 1
+  title: Training - Operators
+  image: {fileID: 0}
+  description: 'Sometimes you need to use calculations to process information from
+    the environment. Operators are used to combine or modify values during execution.
+
+
+    For
+    this simulation, calculate the total value of the ores in this level.
+
+
+    Use
+    <font="JetBrainsMono SDF"><color=#55FF55>measure()</color></font> on both ores
+    and store their sum in a variable named <font="JetBrainsMono SDF">total</font>
+    in a single run.'
+  isImageBig: 0
