@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88f6fa2b89436164b8e97b17d82dc9a2, type: 3}
   m_Name: 3 - Measure
   m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
-  hintId: measure
-  title: Measure
-  hintBlocks: []
+  hintId: tutorial_measure
   isUnlockedByDefault: 0
+  ignoreLock: 1
+  title: Measure
+  image: {fileID: 0}
+  description: 
+  isImageBig: 0

@@ -52,6 +52,13 @@ public class GameManager : MonoBehaviour
 
     protected virtual void Start()
     {
+        LevelHintButton hintButton = FindFirstObjectByType<LevelHintButton>();
+        if (hintButton)
+        {
+            hintButton.hintCollection = hintCollection;
+            hintButton.hintList = hintList;
+        }
+
         if (!healthComponent) healthComponent = FindFirstObjectByType<PlayerHealthComponent>();
         if (!cargoComponent) cargoComponent = FindFirstObjectByType<PlayerCargoComponent>();
         if (!cameraController) cameraController = FindFirstObjectByType<CameraController>();

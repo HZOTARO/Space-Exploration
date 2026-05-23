@@ -14,10 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: GlobalManagerScriptIWrite::UpgradeSO
   id: variable
   upgradeName: Variable
-  icon: {fileID: 21300000, guid: 6e9f03b4ba0ef2947827bb0d85f25b0e, type: 3}
+  icon: {fileID: 21300000, guid: ddcfca5550f51cc4091808a387fd0f24, type: 3}
   unlockedHint: {fileID: 11400000, guid: 0c069d62098b9f84bb15a0e32a600fbd, type: 2}
   prerequisiteUpgrades: []
-  prerequisitePuzzle: 
+  prerequisitePuzzles: []
   tiers:
   - description: Unlocks the ability to create and use variables in programs.
-    costs: []
+    costs:
+    - item: {fileID: 11400000, guid: 350a3dc53def83941a8d8d4444a74578, type: 2}
+      amount: 5

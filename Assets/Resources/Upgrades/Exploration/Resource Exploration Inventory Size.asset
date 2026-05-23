@@ -14,15 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: UtilityScriptIWrite::UpgradeSO
   id: resourceexploration_inventorysize
   upgradeName: Inventory Size (Exploration - Mineral)
-  icon: {fileID: 21300000, guid: 2178131416879b648922ec344e820711, type: 3}
+  icon: {fileID: 21300000, guid: a1c66e5e5a71a7b46acba69108cebe23, type: 3}
   unlockedHint: {fileID: 0}
   prerequisiteUpgrades:
   - {fileID: 11400000, guid: 8706b81e30eb8b54b96a69d621fcc817, type: 2}
   prerequisitePuzzles: []
   tiers:
   - description: Expand mineral exploration inventory size to 6 slots.
-    costs: []
+    costs:
+    - item: {fileID: 11400000, guid: 350a3dc53def83941a8d8d4444a74578, type: 2}
+      amount: 50
   - description: Expand mineral exploration inventory size to 8 slots.
-    costs: []
+    costs:
+    - item: {fileID: 11400000, guid: 6fd164fd5d34a6c4dae656987cf93902, type: 2}
+      amount: 50
   - description: Expand mineral exploration inventory size to 10 slots.
-    costs: []
+    costs:
+    - item: {fileID: 11400000, guid: e4df0c43eb096624da6b2581c1e6a2df, type: 2}
+      amount: 50

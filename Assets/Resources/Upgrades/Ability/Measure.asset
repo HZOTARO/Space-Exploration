@@ -14,11 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: UtilityScriptIWrite::UpgradeSO
   id: measure
   upgradeName: Measurement Tool
-  icon: {fileID: 21300000, guid: 943657b15c7ad414488304e8275d6db3, type: 3}
+  icon: {fileID: 21300000, guid: 3f601159a6e9aa64eb031c3f9c4bedc7, type: 3}
   unlockedHint: {fileID: 11400000, guid: 8d2d3962c34ec9b4d9bfbbe0353b7a72, type: 2}
   prerequisiteUpgrades: []
   prerequisitePuzzles: []
   tiers:
   - description: Unlocks measure() to determine the value of the resource in front
       of the robot.
-    costs: []
+    costs:
+    - item: {fileID: 11400000, guid: 350a3dc53def83941a8d8d4444a74578, type: 2}
+      amount: 25
+    - item: {fileID: 11400000, guid: 6fd164fd5d34a6c4dae656987cf93902, type: 2}
+      amount: 20

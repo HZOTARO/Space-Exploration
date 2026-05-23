@@ -14,12 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: GlobalManagerScriptIWrite::UpgradeSO
   id: loop
   upgradeName: Loop
-  icon: {fileID: 21300000, guid: 425e3872f226ac24d8cbd91335e6da01, type: 3}
+  icon: {fileID: 21300000, guid: 696326cc1c2e7424586d103f6bc0ad71, type: 3}
   unlockedHint: {fileID: 11400000, guid: b96cb8ce8fa8cdc409398302347b54b2, type: 2}
   prerequisiteUpgrades:
   - {fileID: 11400000, guid: 847865fe10bc3764bba728d4ba6af7e8, type: 2}
-  prerequisitePuzzle: 
+  prerequisitePuzzles: []
   tiers:
   - description: Unlocks the ability to use loop statements such as for and while
       to repeatedly execute instructions.
-    costs: []
+    costs:
+    - item: {fileID: 11400000, guid: 350a3dc53def83941a8d8d4444a74578, type: 2}
+      amount: 15
+    - item: {fileID: 11400000, guid: 6fd164fd5d34a6c4dae656987cf93902, type: 2}
+      amount: 15

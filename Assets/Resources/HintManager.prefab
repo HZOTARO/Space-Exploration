@@ -369,7 +369,7 @@ MonoBehaviour:
   m_IgnoreLayout: 0
   m_MinWidth: -1
   m_MinHeight: -1
-  m_PreferredWidth: 400
+  m_PreferredWidth: 600
   m_PreferredHeight: -1
   m_FlexibleWidth: 0
   m_FlexibleHeight: -1
@@ -440,30 +440,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras in magna
-    vitae nunc fringilla semper ac et leo. Proin dictum maximus metus quis aliquet.
-    Donec pellentesque ligula in est fringilla lobortis. Donec interdum tincidunt
-    tortor, malesuada suscipit dui. Phasellus eu tempor orci. Maecenas id velit eu
-    velit maximus iaculis. Ut eget enim in enim finibus varius. Nunc arcu lorem,
-    pulvinar eu sem ut, placerat dapibus nisl. Ut egestas, ante at venenatis scelerisque,
-    libero enim consectetur neque, egestas sollicitudin neque lectus id massa. Vivamus
-    lorem risus, dapibus ac faucibus vitae, sagittis vitae orci. Suspendisse vulputate
-    orci massa, ac ultricies lacus vestibulum sit amet. Ut faucibus, tellus vel dictum
-    tristique, orci lectus tempus massa, eget consequat lectus neque ut magna. Curabitur
-    et augue non metus consequat consectetur. Curabitur egestas pellentesque massa
-    non scelerisque. Maecenas ut commodo urna, placerat condimentum orci
-
-    <b>Title</b>.
-
-    Suspendisse
-    pellentesque mauris id tincidunt viverra. Donec blandit sem in tempus pellentesque.
-    Vestibulum fermentum, velit id porta tristique, purus libero lobortis nibh, sed
-    lobortis ipsum quam non nisl. Phasellus non justo at purus cursus aliquet. Proin
-    nec ante et arcu dapibus tincidunt. Quisque in est eu elit molestie gravida.
-    Cras non lectus volutpat, euismod ipsum vel, sodales velit. Vestibulum blandit
-    massa ac eros consectetur, pellentesque ultrices velit rutrum. Integer eu ex
-    vel urna ullamcorper venenatis. Suspendisse suscipit rhoncus risus. Mauris scelerisque
-    dui elit, in hendrerit felis venenatis volutpat.'
+  m_text: small
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -490,12 +467,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 31.2
+  m_fontSize: 42
   m_fontSizeBase: 28
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 32
+  m_fontSizeMax: 42
   m_fontStyle: 0
   m_HorizontalAlignment: 8
   m_VerticalAlignment: 512
@@ -550,7 +527,7 @@ MonoBehaviour:
   m_IgnoreLayout: 0
   m_MinWidth: -1
   m_MinHeight: -1
-  m_PreferredWidth: 1220
+  m_PreferredWidth: 1020
   m_PreferredHeight: -1
   m_FlexibleWidth: 1
   m_FlexibleHeight: -1
@@ -1213,8 +1190,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278252287
+  m_fontColor: {r: 1, g: 0.95093346, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

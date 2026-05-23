@@ -17,28 +17,17 @@ MonoBehaviour:
   ignoreLock: 0
   title: Upgrade System
   image: {fileID: 0}
-  description: '<b>Upgrade System</b>
+  description: 'You can unlock or improve multiple systems through the Upgrade menu.
+    Some upgrades are multi-tiered and can be improved over time, while others are
+    one-time unlocks that grant new abilities.
 
 
-    You can unlock or improve multiple systems
-    through the Upgrade menu.
+    To perform an upgrade, you must
+    first meet its requirements. These may include completing other upgrades or finishing
+    puzzle levels. In addition, each upgrade requires a sufficient amount of collected
+    resources.
 
 
-    To perform an upgrade, you must first meet its
-    requirements. These may include completing other upgrades, finishing puzzle levels,
-    or progressing through exploration content.
-
-
-    In addition, each upgrade requires
-    a sufficient amount of collected resources.
-
-
-    Some upgrades are multi-tiered
-    and can be improved over time, while others are one-time unlocks that grant new
-    abilities or systems.
-
-
-    Most importantly, upgrades are used to unlock essential
-    technologies required to repair and restore your ship, enabling further progression
-    in your journey.'
+    Most importantly, you can repair your ship through the Upgrade
+    System.'
   isImageBig: 0

@@ -1,34 +1,9 @@
 {
-    "lastSavedTime": "23-05-2026 12:23",
+    "lastSavedTime": "23-05-2026 18:12",
     "inventory": [],
-    "unlockedUpgrades": [
-        {
-            "id": "shoot",
-            "currentLevel": 1
-        },
-        {
-            "id": "variable",
-            "currentLevel": 1
-        },
-        {
-            "id": "ifelse",
-            "currentLevel": 1
-        },
-        {
-            "id": "loop",
-            "currentLevel": 1
-        },
-        {
-            "id": "list",
-            "currentLevel": 1
-        },
-        {
-            "id": "scan",
-            "currentLevel": 1
-        }
-    ],
-    "stepDelay": 0.0,
-    "gameSpeed": 8.0,
+    "unlockedUpgrades": [],
+    "stepDelay": 0.20000000298023225,
+    "gameSpeed": 1.0,
     "levelCompleted": [
         "Tutorial 1",
         "Tutorial 2",
@@ -49,10 +24,7 @@
         "Tutorial 17",
         "Tutorial 18",
         "Tutorial 19",
-        "Tutorial 20",
-        "puzzle 1",
-        "puzzle 2",
-        "puzzle 3"
+        "Tutorial 20"
     ],
     "hints": [
         {
@@ -66,33 +38,53 @@
             "isUnlocked": true
         },
         {
-            "id": "shoot",
-            "hasAppeared": false,
+            "id": "tutorial_training",
+            "hasAppeared": true,
             "isUnlocked": true
         },
         {
-            "id": "variable",
-            "hasAppeared": false,
+            "id": "tutorial_training_1",
+            "hasAppeared": true,
             "isUnlocked": true
         },
         {
-            "id": "conditionals",
-            "hasAppeared": false,
+            "id": "tutorial_instruction",
+            "hasAppeared": true,
             "isUnlocked": true
         },
         {
-            "id": "loop",
-            "hasAppeared": false,
+            "id": "tutorial_code_editor",
+            "hasAppeared": true,
             "isUnlocked": true
         },
         {
-            "id": "list",
-            "hasAppeared": false,
+            "id": "tutorial_command",
+            "hasAppeared": true,
             "isUnlocked": true
         },
         {
-            "id": "scan",
-            "hasAppeared": false,
+            "id": "tutorial_movement",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_tutorial",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_resources",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_training_2",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_syntax",
+            "hasAppeared": true,
             "isUnlocked": true
         }
     ]

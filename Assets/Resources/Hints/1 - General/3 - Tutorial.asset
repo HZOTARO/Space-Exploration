@@ -16,24 +16,12 @@ MonoBehaviour:
   isUnlockedByDefault: 1
   ignoreLock: 0
   title: Tutorial
-  image: {fileID: 21300000, guid: 8a30f7041ca6df44f9f6a6cafc1f798f, type: 3}
-  description: '<b>Tutorial</b>
-
-
-    The Tutorial system stores useful information
-    gathered during exploration and continues to research new technologies and discoveries.
-
-
-    It
-    contains exploration records, resource information, creature data, upgrade details,
-    and other important knowledge required for progression.
+  image: {fileID: 0}
+  description: 'The Tutorial system stores useful information gathered during exploration
+    and continues to record new technologies and discoveries.
 
 
     You can access
     all stored information from the Main Hub. During exploration levels, only a limited
-    amount of information may be available depending on the level.
-
-
-    As you progress
-    further, new information and tutorials will gradually become unlocked.'
+    amount of information may be available depending on the level.'
   isImageBig: 0

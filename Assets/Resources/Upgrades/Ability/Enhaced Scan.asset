@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UtilityScriptIWrite::UpgradeSO
   id: far_scan
   upgradeName: Enhanced Scanning Device
-  icon: {fileID: 21300000, guid: ed95eebba7887cf4bba6d0229e2bd232, type: 3}
+  icon: {fileID: 21300000, guid: d5a072f1fc7a65a4594d0f562348a89a, type: 3}
   unlockedHint: {fileID: 11400000, guid: db6375f889ff50c4bbbb97625d358cab, type: 2}
   prerequisiteUpgrades: []
   prerequisitePuzzles:
@@ -22,4 +22,8 @@ MonoBehaviour:
   tiers:
   - description: Unlocks enhanced_scan() to detect the nearest non-floor tile in
       a straight line in front of the robot.
-    costs: []
+    costs:
+    - item: {fileID: 11400000, guid: 6fd164fd5d34a6c4dae656987cf93902, type: 2}
+      amount: 100
+    - item: {fileID: 11400000, guid: 39fd9a425c511724984a4bbee9f2538e, type: 2}
+      amount: 10

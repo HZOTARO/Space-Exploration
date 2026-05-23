@@ -14,11 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: UtilityScriptIWrite::UpgradeSO
   id: scan
   upgradeName: Scanning Device
-  icon: {fileID: 21300000, guid: 943657b15c7ad414488304e8275d6db3, type: 3}
+  icon: {fileID: 21300000, guid: 3fe30268f8a629247930afdd2be5e815, type: 3}
   unlockedHint: {fileID: 11400000, guid: 6a68800457ab8ee4fba5e49a0b0e887f, type: 2}
   prerequisiteUpgrades: []
   prerequisitePuzzles: []
   tiers:
   - description: Unlocks the ability to use scan() to identify the type of tile in
       front of the robot.
-    costs: []
+    costs:
+    - item: {fileID: 11400000, guid: 350a3dc53def83941a8d8d4444a74578, type: 2}
+      amount: 20

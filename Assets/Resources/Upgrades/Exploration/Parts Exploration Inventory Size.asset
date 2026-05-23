@@ -14,13 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: UtilityScriptIWrite::UpgradeSO
   id: partsexploration_inventorysize
   upgradeName: Inventory Size (Exploration - Material)
-  icon: {fileID: 21300000, guid: 2178131416879b648922ec344e820711, type: 3}
+  icon: {fileID: 21300000, guid: af773b18169e9e641b0269f03fc0e80f, type: 3}
   unlockedHint: {fileID: 0}
   prerequisiteUpgrades:
   - {fileID: 11400000, guid: 9a7968dc57ec92049a15f7acf00987e5, type: 2}
   prerequisitePuzzles: []
   tiers:
   - description: Expand material exploration inventory size to 8 slots.
-    costs: []
+    costs:
+    - item: {fileID: 11400000, guid: 39fd9a425c511724984a4bbee9f2538e, type: 2}
+      amount: 25
   - description: Expand material exploration inventory size to 10 slots.
-    costs: []
+    costs:
+    - item: {fileID: 11400000, guid: 68119bf8f88c188458c513903e3fd17b, type: 2}
+      amount: 25

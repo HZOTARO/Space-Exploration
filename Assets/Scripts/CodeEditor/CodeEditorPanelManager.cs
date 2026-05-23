@@ -27,8 +27,8 @@ public class CodeEditorPanelManager : MonoBehaviour
         terminalButton.onClick.AddListener(ToggleTerminal);
         variablesButton.onClick.AddListener(ToggleVariables);
 
-        SetActive(false, terminalPanel, terminalButtonImage);
-        SetActive(false, variablesPanel, variablesButtonImage);
+        SetActive(true, terminalPanel, terminalButtonImage);
+        SetActive(true, variablesPanel, variablesButtonImage);
     }
 
     public void ToggleTerminal()

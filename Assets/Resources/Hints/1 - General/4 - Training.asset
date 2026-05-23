@@ -17,5 +17,12 @@ MonoBehaviour:
   ignoreLock: 0
   title: Training
   image: {fileID: 0}
-  description: 
+  description: 'Training levels are simulations designed to teach programming concepts,
+    robot controls, and game mechanics in a controlled environment.
+
+    
+
+    Completing
+    training levels will help you understand the systems required for exploration
+    and more advanced puzzle challenges.'
   isImageBig: 0

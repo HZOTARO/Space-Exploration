@@ -17,36 +17,12 @@ MonoBehaviour:
   ignoreLock: 0
   title: Instructions
   image: {fileID: 0}
-  description: '<b>Instructions</b>
-
-
-    A program is made from multiple instructions
-    executed one at a time from top to bottom.
-
-
-    Each line of code is considered
-    an instruction.
-
-
-    Example:
-
-
-    moveForward()
-
-    turnLeft()
-
-    collect()
-
-
-    When
-    the robot starts executing a program, it follows the instructions in order exactly
-    as written.
-
-
-    Changing the order of instructions can produce completely different
-    results.
-
-
-    Learning how instructions flow step-by-step is an important foundation
-    in programming and problem solving.'
+  description: "A program is made from multiple instructions. Each line of code is
+    considered an instruction.\nWhen the robot starts executing a program, it follows
+    the instructions in order exactly as written. \r\nChanging the order of instructions
+    can produce completely different results. \r\n\nEach instruction must be written
+    on its own line and cannot be stacked horizontally. One line equals one instruction.\r\n\nExample:\r\n<font=\"JetBrainsMono
+    SDF\"><color=#55FF55>move_forward</color>()</font>\r\n<font=\"JetBrainsMono SDF\"><color=#55FF55>turn_left</color>()</font>\r\n<font=\"JetBrainsMono
+    SDF\"><color=#55FF55>collect</color>()</font>\n\nLearning how instructions flow
+    step-by-step is an important foundation in programming."
   isImageBig: 0

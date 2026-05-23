@@ -8,37 +8,36 @@ public class GameManager_Training_7 : GameManager_Training
         BindReturn("move_backward", MoveBackward);
         Bind("turn_right", TurnRight);
         Bind("turn_left", TurnLeft);
-
-        Bind("mine", Mine);
-        Bind("collect", Collect);
-        BindReturn("scan", Scan);
-        BindReturn("measure", Measure);
     }
-
     protected override void SetLevelAllowedSyntax()
     {
         base.SetLevelAllowedSyntax();
-
+        
         allowedSyntaxNodes.AddRange(SyntaxDictionary.Variables);
         allowedSyntaxNodes.AddRange(SyntaxDictionary.Logic);
         allowedSyntaxNodes.AddRange(SyntaxDictionary.Loops);
-        allowedSyntaxNodes.AddRange(SyntaxDictionary.Lists);
-    }
-
-    protected override void StartValuesSetup()
-    {
-        levelLength = 1;
-        levelWidth = Random.Range(20, 31);
     }
 
     protected override void SetLevelObjectives()
     {
         base.SetLevelObjectives();
+
+        levelLength = 1;
+        levelWidth = Random.Range(30, 51);
+
+        int generatedGoalX = Random.Range(levelWidth / 2, levelWidth);
+
+        TileManager_Training_7 tileManager4 = FindFirstObjectByType<TileManager_Training_7>();
+        if (tileManager4 != null)
+        {
+            tileManager4.goalX = generatedGoalX;
+        }
+
         ObjectiveManager.instance.objectives.Add(new LevelObjective()
         {
-            description = "Create a list named 'inventory'. Measure all the White Ores and append their values to the list in a single run.",
+            description = $"The map is {levelWidth} tiles long.\nThe Goal is precisely on Tile {generatedGoalX + 1}.\nReach it by writing 'move_forward()' only once in your code!",
             type = ObjectiveType.CustomEvent,
-            customEventId = "ListCompleted"
+            customEventId = "MovedWithLoop"
         });
     }
 
@@ -46,93 +45,63 @@ public class GameManager_Training_7 : GameManager_Training
     {
         base.Start();
 
-        TileManager_Training_7 tm = tileManager as TileManager_Training_7;
-        if (tm != null)
-        {
-            cargoSize = tm.numberOfOres;
-
-            if (cargoComponent != null)
-            {
-                cargoComponent.cargoSize = cargoSize;
-                StartCoroutine(cargoComponent.SetupCargoCoroutine());
-            }
-        }
-
         if (PythonExecutor.instance != null)
         {
-            PythonExecutor.instance.OnExecutionFinishedBefore += CheckListCompletion;
-            PythonExecutor.instance.OnExecutionAborted += HandleAbort;
+            PythonExecutor.instance.OnExecutionFinished += CheckPrecisionGoal;
             PythonExecutor.instance.OnRuntimeError += HandleRuntimeError;
+            PythonExecutor.instance.OnExecutionAborted += HandleAbort;
         }
     }
 
-    private void CheckListCompletion()
+    public override bool MoveForward()
     {
-        bool createdList = PythonExecutor.instance.CheckASTPattern(1, 999, "AssignList", "inventory");
-        if (!createdList)
+        if (PythonExecutor.instance == null) return false;
+
+        string currentCode = PythonExecutor.instance.currentCode;
+
+        if (!ValidateFunctionCallCount("move_forward", 1, true)) return false;
+
+        bool isLoopValid = PythonExecutor.instance.CheckASTPattern(1, 999, "FuncInsideFor", "move_forward");
+
+        if (!isLoopValid)
         {
-            PrintToDisplay("<color=red>Error: You must create a list named 'inventory' (e.g., inventory = [])</color>");
-            ResetPlayerToStart();
-            return;
+            PrintToDisplay("<color=red>Action Blocked! You must use a 'for' loop to automate your movement on this level.</color>");
+            PythonExecutor.instance.StopRunningCode();
+            return false;
         }
 
-        bool usedAppend = PythonExecutor.instance.CheckASTPattern(1, 999, "HasListAppend", "");
-        if (!usedAppend)
+        return base.MoveForward();
+    }
+
+    private void CheckPrecisionGoal()
+    {
+        TileObject finalTile = GetCurrentTile();
+
+        if (finalTile != null && finalTile.type == TileType.Goal)
         {
-            PrintToDisplay("<color=red>Error: You must use the .append() function to add ores to your list!</color>");
-            ResetPlayerToStart();
-            return;
-        }
-
-        TileManager_Training_7 tm = tileManager as TileManager_Training_7;
-        if (tm == null) return;
-
-        string inventoryResult = PythonExecutor.instance.GetVariableValue("inventory");
-        string expectedListString = "[" + string.Join(", ", tm.expectedOreValues) + "]";
-
-        if (inventoryResult == expectedListString)
-        {
-            PrintToDisplay($"<color=green>Perfect! Your list matched exactly: {expectedListString}</color>");
-            ObjectiveManager.instance.TriggerCustomEvent("ListCompleted");
+            PrintToDisplay("<color=green>Target Acquired! Precision destination matched perfectly.</color>");
+            ObjectiveManager.instance.TriggerCustomEvent("MovedWithLoop");
         }
         else
         {
-            PrintToDisplay($"<color=red>Mismatch! Expected {expectedListString} but got {inventoryResult}. Resetting everything...</color>");
+            PrintToDisplay("<color=red>Missed! You did not stop precisely on the Goal tile. Resetting position...</color>");
             ResetPlayerToStart();
         }
     }
 
-    protected override void ResetPlayerToStart()
+    protected override void StartValuesSetup()
     {
-        base.ResetPlayerToStart();
-
-        if (tileManager != null)
-        {
-            tileManager.GenerateMap();
-        }
-
-        TileManager_Training_7 tm = tileManager as TileManager_Training_7;
-        if (tm != null)
-        {
-            cargoSize = tm.numberOfOres;
-
-            if (cargoComponent != null)
-            {
-                cargoComponent.cargoSize = cargoSize;
-                StartCoroutine(cargoComponent.SetupCargoCoroutine());
-            }
-        }
+        cargoSize = 0;
     }
 
     protected override void OnDestroy()
     {
         base.OnDestroy();
-
         if (PythonExecutor.instance != null)
         {
-            PythonExecutor.instance.OnExecutionFinishedBefore -= CheckListCompletion;
-            PythonExecutor.instance.OnExecutionAborted -= HandleAbort;
+            PythonExecutor.instance.OnExecutionFinished -= CheckPrecisionGoal;
             PythonExecutor.instance.OnRuntimeError -= HandleRuntimeError;
+            PythonExecutor.instance.OnExecutionAborted -= HandleAbort;
         }
     }
 }

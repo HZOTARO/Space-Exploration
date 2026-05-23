@@ -21,12 +21,22 @@ MonoBehaviour:
   prerequisitePuzzles: []
   tiers:
   - description: Unlock Purple Essence in mineral exploration with 7-10 yield.
-    costs: []
+    costs:
+    - item: {fileID: 11400000, guid: 350a3dc53def83941a8d8d4444a74578, type: 2}
+      amount: 25
   - description: Raise Purple Essence yield to 10-15 per vein.
-    costs: []
+    costs:
+    - item: {fileID: 11400000, guid: 6fd164fd5d34a6c4dae656987cf93902, type: 2}
+      amount: 25
   - description: "Raise Purple Essence yield to 15\u201325 per vein."
-    costs: []
+    costs:
+    - item: {fileID: 11400000, guid: e4df0c43eb096624da6b2581c1e6a2df, type: 2}
+      amount: 25
   - description: Raise Purple Essence yield to 25-50 per vein.
-    costs: []
-  - description: Raise Purple Essence yield to 50-100 per vein.
-    costs: []
+    costs:
+    - item: {fileID: 11400000, guid: 350a3dc53def83941a8d8d4444a74578, type: 2}
+      amount: 50
+    - item: {fileID: 11400000, guid: 6fd164fd5d34a6c4dae656987cf93902, type: 2}
+      amount: 50
+    - item: {fileID: 11400000, guid: e4df0c43eb096624da6b2581c1e6a2df, type: 2}
+      amount: 50

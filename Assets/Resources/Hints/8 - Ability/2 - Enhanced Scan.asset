@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88f6fa2b89436164b8e97b17d82dc9a2, type: 3}
   m_Name: 2 - Enhanced Scan
   m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
-  hintId: enhanced_scan
-  title: Enhanced Scan
-  hintBlocks: []
+  hintId: tutorial_enhanced_scan
   isUnlockedByDefault: 0
+  ignoreLock: 0
+  title: Enhanced Scan
+  image: {fileID: 0}
+  description: 
+  isImageBig: 0

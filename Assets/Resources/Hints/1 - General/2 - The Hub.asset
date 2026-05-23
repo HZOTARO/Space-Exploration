@@ -16,24 +16,12 @@ MonoBehaviour:
   isUnlockedByDefault: 1
   ignoreLock: 0
   title: The Hub Area
-  image: {fileID: 21300000, guid: 8a30f7041ca6df44f9f6a6cafc1f798f, type: 3}
-  description: '<b>Main Hub</b>
+  image: {fileID: 0}
+  description: 'From the Hub, you can access exploration, upgrades, training, and
+    information gathered throughout your journey.
 
 
-    The Main Hub is the central area where you
-    manage exploration, upgrades, and ship recovery.
-
-
-    From the Hub, you can
-    access exploration levels, puzzle levels, upgrades, tutorials, and stored information
-    gathered during your journey.
-
-
-    Collected resources are brought back to the
-    Hub and can be used to unlock technologies, improve systems, and repair the ship.
-
-
-    As
-    progress is made, additional systems and functionalities within the Hub will
-    gradually become available.'
-  isImageBig: 0
+    Collected resources are brought
+    back to the Hub and can be used to unlock new technologies, improve systems,
+    and repair the ship.'
+  isImageBig: 1

@@ -21,12 +21,28 @@ MonoBehaviour:
   prerequisitePuzzles: []
   tiers:
   - description: "Unlock Black Ore in mineral exploration with 7\u201310 yield."
-    costs: []
+    costs:
+    - item: {fileID: 11400000, guid: 350a3dc53def83941a8d8d4444a74578, type: 2}
+      amount: 25
+    - item: {fileID: 11400000, guid: 6fd164fd5d34a6c4dae656987cf93902, type: 2}
+      amount: 25
   - description: Raise Black Ore yield to 10-15 per ore.
-    costs: []
+    costs:
+    - item: {fileID: 11400000, guid: 350a3dc53def83941a8d8d4444a74578, type: 2}
+      amount: 25
+    - item: {fileID: 11400000, guid: e4df0c43eb096624da6b2581c1e6a2df, type: 2}
+      amount: 25
   - description: Raise Black Ore yield to 15-25 per ore.
-    costs: []
+    costs:
+    - item: {fileID: 11400000, guid: 6fd164fd5d34a6c4dae656987cf93902, type: 2}
+      amount: 35
+    - item: {fileID: 11400000, guid: e4df0c43eb096624da6b2581c1e6a2df, type: 2}
+      amount: 35
   - description: Raise Black Ore yield to 25-50 per ore.
-    costs: []
-  - description: Raise Black Ore yield to 50-100 per ore.
-    costs: []
+    costs:
+    - item: {fileID: 11400000, guid: 350a3dc53def83941a8d8d4444a74578, type: 2}
+      amount: 75
+    - item: {fileID: 11400000, guid: 6fd164fd5d34a6c4dae656987cf93902, type: 2}
+      amount: 50
+    - item: {fileID: 11400000, guid: e4df0c43eb096624da6b2581c1e6a2df, type: 2}
+      amount: 75

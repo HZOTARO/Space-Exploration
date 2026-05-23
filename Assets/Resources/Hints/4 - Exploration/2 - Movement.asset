@@ -17,11 +17,13 @@ MonoBehaviour:
   ignoreLock: 0
   title: Movement
   image: {fileID: 0}
-  description: "<b>Movement</b>\n\nMovement commands are used to control the robot\u2019s
-    position and direction during exploration.\n\nAvailable movement commands:\n\nmoveForward()
-    \u2192 Move one tile forward\nmoveBackward() \u2192 Move one tile backward\nturnRight()
-    \u2192 Rotate the robot to the right\nturnLeft() \u2192 Rotate the robot to the
-    left\nwait() \u2192 Do nothing for one turn\n\nMost objects and interactions
+  description: "Movement commands are used to control the robot\u2019s position and
+    direction during exploration.\n\nAvailable movement commands:\n<font=\"JetBrainsMono
+    SDF\">move_forward()</font> \u2192 Move one tile forward\n<font=\"JetBrainsMono
+    SDF\">move_backward()</font> \u2192 Move one tile backward\n<font=\"JetBrainsMono
+    SDF\">turn_right()</font> \u2192 Rotate the robot to the right\n<font=\"JetBrainsMono
+    SDF\">turn_left()</font> \u2192 Rotate the robot to the left\n<font=\"JetBrainsMono
+    SDF\">wait()</font> \u2192 Do nothing for one turn\n\nMost objects and interactions
     require proper positioning, so careful movement is important while exploring
     dangerous areas."
   isImageBig: 0

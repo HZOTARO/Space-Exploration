@@ -12,10 +12,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88f6fa2b89436164b8e97b17d82dc9a2, type: 3}
   m_Name: 1 - Scan
   m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
-  hintId: scan
-  title: Scan
-  hintBlocks:
-  - subtitle: 
-    image: {fileID: 0}
-    description: 
+  hintId: tutorial_scan
   isUnlockedByDefault: 0
+  ignoreLock: 1
+  title: Scan
+  image: {fileID: 0}
+  description: 'The <font="JetBrainsMono SDF"><color=#55FF55>scan()</color></font>
+    command detects the tile directly in front of the robot.
+
+    <font="JetBrainsMono
+    SDF"><color=#55FF55>scan()</color></font> is a command that returns a result.
+    The result is a <color=#81C784>string</color> value describing what is detected.
+
+    
+
+    Some
+    example usage:
+
+    You can store the result in a variable:
+
+    <font="JetBrainsMono
+    SDF">tile = scan()</font>
+
+    Or print it directly:
+
+    <font="JetBrainsMono
+    SDF">print(scan())</font>
+
+    
+
+    scan() is useful because it allows the
+    robot to gather information about the environment before making decisions.'
+  isImageBig: 0

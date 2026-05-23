@@ -17,41 +17,14 @@ MonoBehaviour:
   ignoreLock: 0
   title: Commands
   image: {fileID: 0}
-  description: 'Commands are pre-programmed functions that allow the robot to perform
-    specific tasks.
-
-
-    In programming, a function is a reusable instruction that
-    performs an action when called. Commands in the robot system are functions.
-
-
-    A
-    function is executed by writing its name followed by (). For example:
-
-
-    moveForward()
-
-    collect()
-
-    wait()
-
-
-    Some
-    functions require additional information called parameters. Parameters are written
-    inside the parentheses and are used to control how the function behaves.
-
-
-    Example:
-
-
-    discard(0)
-
-
-    In
-    this example, discard is the function name, while 0 is the parameter representing
-    the inventory slot index to discard.
-
-
-    Different functions may require different
-    types of parameters such as numbers or text depending on their purpose.'
+  description: "Commands are pre-programmed actions that allow the robot to perform
+    specific tasks.\n\nA command is executed by writing its name followed by ().
+    \nFor example: <font=\"JetBrainsMono SDF\"><color=#55FF55>move_forward</color>()</font>\n\nSome
+    commands require additional information called parameters. Parameters are written
+    inside the parentheses and are used to control how the command behaves. \nFor
+    example: <font=\"JetBrainsMono SDF\"><color=#55FF55>discard</color>(0)</font>\n\nIn
+    this example, <font=\"JetBrainsMono SDF\"><color=#55FF55>discard</color></font>
+    is the command name, while <font=\"JetBrainsMono SDF\">0</font> is the parameter
+    representing the inventory slot index to discard.\n\nDifferent commands may require
+    different types of parameters such as numbers or text depending on their purpose."
   isImageBig: 0

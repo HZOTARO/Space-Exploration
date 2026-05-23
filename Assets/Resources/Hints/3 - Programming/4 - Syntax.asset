@@ -17,40 +17,35 @@ MonoBehaviour:
   ignoreLock: 0
   title: Syntax
   image: {fileID: 0}
-  description: '<b>Syntax</b>
+  description: 'Syntax is the set of rules used to write instructions for processing
+    data and controlling robotic systems.
 
 
-    Syntax is the set of rules used to write instructions
-    for processing data and controlling robotic systems.
+    Every command must follow the correct
+    structure in order to be understood and executed properly by the robot.
 
 
-    Every command must
-    follow the correct structure in order to be understood and executed properly
-    by the robot.
+    Using
+    syntax correctly allows you to:
+
+    <indent=2em>- Process information from the
+    environment</indent>
+
+    <indent=2em>- Make decisions using logic and conditions</indent>
+
+    <indent=2em>-
+    Automate complex behaviors</indent>
 
 
-    Using syntax correctly allows you to:
+    Syntax examples include variables,
+    conditionals, loops, and lists, along with many other programming structures.
 
 
-    Control robot
-    movement
-
-    Collect and manage resources
-
-    Process information from the
-    environment
-
-    Make decisions using logic and conditions
-
-    Automate complex
-    behaviors
+    Even
+    small syntax mistakes may cause commands to fail or produce unexpected results.
 
 
-    Even small syntax mistakes may cause commands to fail or produce
-    unexpected results.
-
-
-    Understanding syntax is an important step in learning
-    programming, as it teaches how instructions are structured and interpreted by
-    a system.'
+    Understanding
+    syntax is an important step in learning programming, as it teaches how instructions
+    are structured and interpreted by a system.'
   isImageBig: 0

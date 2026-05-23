@@ -20,10 +20,16 @@ MonoBehaviour:
   prerequisitePuzzles: []
   tiers:
   - description: Raise White Ore yield to 10-15 per ore.
-    costs: []
+    costs:
+    - item: {fileID: 11400000, guid: 350a3dc53def83941a8d8d4444a74578, type: 2}
+      amount: 25
   - description: Raise White Ore yield to 15-25 per ore.
-    costs: []
+    costs:
+    - item: {fileID: 11400000, guid: 350a3dc53def83941a8d8d4444a74578, type: 2}
+      amount: 50
   - description: Raise White Ore yield to 25-50 per ore.
-    costs: []
-  - description: Raise White Ore yield to 50-100 per ore.
-    costs: []
+    costs:
+    - item: {fileID: 11400000, guid: 350a3dc53def83941a8d8d4444a74578, type: 2}
+      amount: 50
+    - item: {fileID: 11400000, guid: e4df0c43eb096624da6b2581c1e6a2df, type: 2}
+      amount: 50

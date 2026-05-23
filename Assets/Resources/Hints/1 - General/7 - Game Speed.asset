@@ -17,27 +17,15 @@ MonoBehaviour:
   ignoreLock: 0
   title: Game Speed
   image: {fileID: 0}
-  description: '<b>Game Speed</b>
+  description: 'Game Speed controls the animation speed, making robot actions and
+    environmental events play faster or slower.
 
 
-    Game Speed controls how fast animations and
-    program execution are displayed.
+    You can also change the Step
+    Delay, which determines the amount of time between each instruction during execution.
 
 
-    You can adjust the animation speed to
-    make robot actions and environmental events play faster or slower.
-
-
-    You
-    can also change the Step Delay, which determines the amount of time between each
-    instruction during execution.
-
-
-    Lower Step Delay values make the program
-    execute more quickly, while higher values make it easier to observe instructions
-    one step at a time.
-
-
-    Adjusting Game Speed can help with debugging, learning
-    program flow, and speeding up repetitive tasks.'
+    Adjusting
+    Game Speed and Step Delay can help with debugging, understanding program flow,
+    and speeding up repetitive tasks.'
   isImageBig: 0

@@ -14,12 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: GlobalManagerScriptIWrite::UpgradeSO
   id: this_is_final_repair_ship
   upgradeName: Repair Spaceship
-  icon: {fileID: 21300000, guid: 8b03244818d4514459d590b9251ea8ce, type: 3}
-  unlockedHint: {fileID: 0}
+  icon: {fileID: 21300000, guid: b83f450189d918c4893f280423b80c6d, type: 3}
+  unlockedHint: {fileID: 11400000, guid: b437c7206be6799479988b05587ce7df, type: 2}
   prerequisiteUpgrades: []
   prerequisitePuzzles:
   - {fileID: 11400000, guid: fe484c71969596242933afae810d1aa1, type: 2}
   tiers:
   - description: Repair critical ship systems and restore operational capabilities
       required for travel, allowing you to continue your journey...
-    costs: []
+    costs:
+    - item: {fileID: 11400000, guid: 350a3dc53def83941a8d8d4444a74578, type: 2}
+      amount: 3500
+    - item: {fileID: 11400000, guid: 6fd164fd5d34a6c4dae656987cf93902, type: 2}
+      amount: 3500
+    - item: {fileID: 11400000, guid: 39fd9a425c511724984a4bbee9f2538e, type: 2}
+      amount: 750
+    - item: {fileID: 11400000, guid: 68119bf8f88c188458c513903e3fd17b, type: 2}
+      amount: 750

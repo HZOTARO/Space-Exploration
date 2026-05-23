@@ -12,8 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88f6fa2b89436164b8e97b17d82dc9a2, type: 3}
   m_Name: 1 - Training 1
   m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
-  hintId: training 1
-  title: training 1
-  hintBlocks: []
+  hintId: tutorial_training_1
   isUnlockedByDefault: 0
   ignoreLock: 1
+  title: Training - Introduction
+  image: {fileID: 0}
+  description: "<color=yellow><b>Welcome to the Training Module</b></color>\n\nFirst,
+    let\u2019s familiarize ourselves with the way we control our robot.\n\nThe objective
+    of the current training will be displayed in the interface during each level.\n\nFor
+    the first training, simply reach the goal indicated by the <color=green>green
+    tile</color> on the map."
+  isImageBig: 0

@@ -1,13 +1,12 @@
 fileFormatVersion: 2
-guid: 7192d1edd50b6b744a9c467b8c35c5fd
+guid: 4f1ffea6427166844b760f12a35a5aa0
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
   - tilesContainer: {instanceID: 0}
   - grid: {instanceID: 0}
-  - floorTile: {fileID: -9208734708896110791, guid: 5b880c3cdeb231146bc576bce7b32fe2,
-      type: 3}
+  - floorTile: {fileID: -9208734708896110791, guid: 5b880c3cdeb231146bc576bce7b32fe2, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

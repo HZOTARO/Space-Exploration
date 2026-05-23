@@ -12,8 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88f6fa2b89436164b8e97b17d82dc9a2, type: 3}
   m_Name: 2 - Training 2
   m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
-  hintId: training 2
-  title: training 2
-  hintBlocks: []
+  hintId: tutorial_training_2
   isUnlockedByDefault: 0
   ignoreLock: 1
+  title: Training - Variables
+  image: {fileID: 0}
+  description: 'For the second training, we will learn about variables and a new
+    command: <font="JetBrainsMono SDF"><color=#55FF55>scan</color>()</font>.
+
+    
+
+    <font="JetBrainsMono
+    SDF"><color=#55FF55>scan</color>()</font> scans the tile in front of the robot
+    and stores its value in a variable, then prints its value using <font="JetBrainsMono
+    SDF"><color=#55FF55>print</color>(variable_name)</font>.'
+  isImageBig: 0
