@@ -1,6 +1,7 @@
 
 public class GameManager_Training_4 : GameManager_Training
 {
+    // Only mine and collect inside if white ore
     protected override void RegisterLevelSpecificPythonCommands()
     {
         BindReturn("scan", Scan);
@@ -10,9 +11,22 @@ public class GameManager_Training_4 : GameManager_Training
     protected override void SetLevelAllowedSyntax()
     {
         base.SetLevelAllowedSyntax();
-
         allowedSyntaxNodes.AddRange(SyntaxDictionary.Variables);
         allowedSyntaxNodes.AddRange(SyntaxDictionary.Logic);
+
+        allowedSyntaxNodes.Remove("Match");
+        allowedSyntaxNodes.Remove("match_case");
+        allowedSyntaxNodes.Remove("MatchValue");
+        allowedSyntaxNodes.Remove("MatchAs");
+        allowedSyntaxNodes.Remove("MatchOr");
+
+        string matchErrorMsg = "Match/Case is locked for now! You must use 'if' and 'else' to solve this level.";
+
+        customLevelErrors["Match"] = matchErrorMsg;
+        customLevelErrors["match_case"] = matchErrorMsg;
+        customLevelErrors["MatchValue"] = matchErrorMsg;
+        customLevelErrors["MatchAs"] = matchErrorMsg;
+        customLevelErrors["MatchOr"] = matchErrorMsg;
     }
 
     protected override void SetLevelObjectives()

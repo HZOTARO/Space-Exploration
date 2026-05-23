@@ -184,7 +184,7 @@ public class CheatManager : MonoBehaviour
         {
             if (SaveManager.instance != null)
             {
-                for (int i = 1; i < 21; i++)
+                for (int i = 1; i <= 11; i++)
                 {
                     SaveManager.saveData.levelCompleted.Add($"Tutorial {i}");
                 }
@@ -195,7 +195,7 @@ public class CheatManager : MonoBehaviour
         {
             if (SaveManager.instance != null)
             {
-                for (int i = 1; i <= 20; i++)
+                for (int i = 1; i <= 3; i++)
                 {
                     SaveManager.saveData.levelCompleted.Add($"puzzle {i}");
                 }

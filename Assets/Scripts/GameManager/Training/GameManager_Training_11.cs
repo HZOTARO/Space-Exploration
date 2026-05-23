@@ -1,12 +1,10 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager_Training_11 : GameManager_Training
 {
+    // Get highest value ores. It doesnt force list but very hard to do without
     public int randomizedOreCount;
     public int targetTotalValue;
-
-    private List<int> cargoValues = new List<int>();
 
     protected override void RegisterLevelSpecificPythonCommands()
     {

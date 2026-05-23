@@ -543,60 +543,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8868754854781818377, guid: 8babe53297bdc9d48906d641441331a5, type: 3}
   m_PrefabInstance: {fileID: 235617477}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &356506211
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 356506213}
-  - component: {fileID: 356506212}
-  m_Layer: 0
-  m_Name: TileManager_Training_2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &356506212
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 356506211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48eb5629d1af7f24f801ca5db63ff2b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: TileManagerScriptIWrite::TileManager_Training_2
-  width: 5
-  length: 5
-  tilesContainer: {fileID: 202872234}
-  grid: {fileID: 0}
-  floorTile: {fileID: -9208734708896110791, guid: 5b880c3cdeb231146bc576bce7b32fe2, type: 3}
-  tileData:
-  - type: 2
-    tilePrefab: {fileID: 4859144738260387485, guid: d96f59058b0b80a40bcd4aa893bbd79d, type: 3}
-  - type: 9
-    tilePrefab: {fileID: 9201390410382802886, guid: 47c2b68f1dbcfd4499f3384d6ed59da5, type: 3}
---- !u!4 &356506213
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 356506211}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 880.0395, y: 447.73822, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &373270355
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1405,68 +1351,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86c74cb2b99e66540b8b16c0f14b006b, type: 3}
---- !u!1 &1735910226
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1735910228}
-  - component: {fileID: 1735910227}
-  m_Layer: 0
-  m_Name: GameManager_Training_2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1735910227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1735910226}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee8f8e4737b732a4d97a43d8252d497b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: ScriptIWrite::GameManager_Training_2
-  healthComponent: {fileID: 0}
-  cargoComponent: {fileID: 0}
-  cameraController: {fileID: 0}
-  player: {fileID: 0}
-  codeEditor: {fileID: 0}
-  mapSizeUpgrade: {fileID: 0}
-  cargoSizeUpgrade: {fileID: 0}
-  healthUpgrade: {fileID: 0}
-  playerGridLoc: {x: 0, y: 0}
-  playerFacing: 0
-  availableConsumables: []
-  allowedSyntaxNodes: []
-  allowedFunctions: []
-  hintCollection: {fileID: 0}
-  hintList:
-  - {fileID: 11400000, guid: 492b3c11bac3f034fb0759a1dc8bf733, type: 2}
-  levelCompletePopup: {fileID: 6096573076397695218}
-  expectedScanResult: WhiteOre
---- !u!4 &1735910228
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1735910226}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 880.0395, y: 447.73822, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3767577136402537788
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1689,17 +1573,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31630860cad4b7144ba8896773436368, type: 3}
---- !u!114 &6096573076397695218 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 152535840563119052, guid: 31630860cad4b7144ba8896773436368, type: 3}
-  m_PrefabInstance: {fileID: 6096573076397695217}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1713,7 +1586,5 @@ SceneRoots:
   - {fileID: 818802477}
   - {fileID: 373270355}
   - {fileID: 202872235}
-  - {fileID: 1735910228}
-  - {fileID: 356506213}
   - {fileID: 1400094151}
   - {fileID: 6096573076397695217}

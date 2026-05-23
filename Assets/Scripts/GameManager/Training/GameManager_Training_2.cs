@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class GameManager_Training_2 : GameManager_Training
 {
+    // Variable, scan and print
     [Header("Level Specifics")]
     public string expectedScanResult;
 

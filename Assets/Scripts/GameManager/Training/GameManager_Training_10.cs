@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class GameManager_Training_10 : GameManager_Training
 {
+    // Append List
     protected override void RegisterLevelSpecificPythonCommands()
     {
         BindReturn("move_forward", MoveForward);

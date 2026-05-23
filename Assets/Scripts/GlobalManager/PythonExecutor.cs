@@ -39,6 +39,7 @@ public class PythonExecutor : MonoBehaviour
     public bool continuous = false;
     bool lockDelay = false;
 
+    public event Action OnExecutionStarted;
     public event Action OnExecutionFinished;
     public event Action OnExecutionFinishedBefore;
     public event Action<string> OnPythonPrint;
@@ -131,6 +132,7 @@ public class PythonExecutor : MonoBehaviour
         {
             StopRunningCode();
 
+            OnExecutionStarted = null;
             OnExecutionFinishedBefore = null;
             OnExecutionFinished = null;
             OnPythonPrint = null;
@@ -232,6 +234,8 @@ public class PythonExecutor : MonoBehaviour
                 GetCachedPyFunction("prepare")(currentCode);
             }
             BuildSyntaxMap(code);
+
+            OnExecutionStarted?.Invoke();
         }
 
         Step();
