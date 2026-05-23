@@ -6,8 +6,13 @@ public class GameManager_Puzzle : GameManager
     {
         base.StartValuesSetup();
 
-        levelWidth = Random.Range(5, 9) * 2 + 1;
-        levelLength = Random.Range(5, 9) * 2 + 1;
+        int levelSize = PlayerPrefs.GetInt("PuzzleSize", 11);
+        levelWidth = levelSize;
+        levelLength = levelSize;
+
+        string puzzleId = PlayerPrefs.GetString("PuzzleID", "Unknown Puzzle");
+
+        Debug.Log($"<color=cyan>Loaded Puzzle: {puzzleId} ({levelWidth}x{levelLength})</color>");
 
         if (cargoComponent) cargoComponent.cargoSize = cargoSize;
     }
@@ -28,14 +33,24 @@ public class GameManager_Puzzle : GameManager
 
     private void CheckMazeObjective()
     {
-        if (playerGridLoc.x >= 0 && playerGridLoc.x < tileManager.width &&
-            playerGridLoc.y >= 0 && playerGridLoc.y < tileManager.length)
+        if (playerGridLoc.y >= 0 && playerGridLoc.y < tileManager.width &&
+            playerGridLoc.x >= 0 && playerGridLoc.x < tileManager.length)
         {
-            TileObject currentTile = tileManager.objectsArray[playerGridLoc.y, playerGridLoc.x];
+            TileObject currentTile = tileManager.objectsArray[playerGridLoc.x, playerGridLoc.y];
 
-            if (currentTile.type == TileType.Goal)
+            if (currentTile != null && currentTile.type == TileType.Goal)
             {
                 Debug.Log("<color=green>Maze cleared successfully!</color>");
+
+                string completedPuzzleId = PlayerPrefs.GetString("PuzzleID", "");
+                if (!string.IsNullOrEmpty(completedPuzzleId))
+                {
+                    if (!SaveManager.saveData.levelCompleted.Contains(completedPuzzleId))
+                    {
+                        SaveManager.saveData.levelCompleted.Add(completedPuzzleId);
+                    }
+                }
+
                 LevelComplete();
             }
         }

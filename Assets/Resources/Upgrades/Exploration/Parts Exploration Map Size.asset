@@ -16,11 +16,9 @@ MonoBehaviour:
   upgradeName: Map Size (Exploration - Material)
   icon: {fileID: 21300000, guid: 2178131416879b648922ec344e820711, type: 3}
   unlockedHint: {fileID: 0}
-  prerequisiteUpgrades:
-  - {fileID: 11400000, guid: 030761fac7aa4ca4e9fe6f12ab3ea149, type: 2}
-  - {fileID: 11400000, guid: 7ca1cd75362b7374d94e810f34ccd958, type: 2}
-  - {fileID: 11400000, guid: 99c40490193a1ce4f81e49a3aa8eeb62, type: 2}
-  prerequisitePuzzle: 
+  prerequisiteUpgrades: []
+  prerequisitePuzzles:
+  - {fileID: 11400000, guid: 5e5d9b04208d3384da14f0d7afb0ca2a, type: 2}
   tiers:
   - description: "Unlock material exploration levels with map size 10 \xD7 10."
     costs: []

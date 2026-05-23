@@ -17,7 +17,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 2178131416879b648922ec344e820711, type: 3}
   unlockedHint: {fileID: 0}
   prerequisiteUpgrades: []
-  prerequisitePuzzle: 
+  prerequisitePuzzles: []
   tiers:
   - description: "Expand mineral exploration level map size to 10 \xD7 10."
     costs: []

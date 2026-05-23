@@ -16,8 +16,9 @@ MonoBehaviour:
   upgradeName: Inventory Size (Exploration - Mineral)
   icon: {fileID: 21300000, guid: 2178131416879b648922ec344e820711, type: 3}
   unlockedHint: {fileID: 0}
-  prerequisiteUpgrades: []
-  prerequisitePuzzle: 
+  prerequisiteUpgrades:
+  - {fileID: 11400000, guid: 8706b81e30eb8b54b96a69d621fcc817, type: 2}
+  prerequisitePuzzles: []
   tiers:
   - description: Expand mineral exploration inventory size to 6 slots.
     costs: []

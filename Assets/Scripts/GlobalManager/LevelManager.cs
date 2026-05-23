@@ -67,7 +67,7 @@ public class LevelManager : MonoBehaviour
                 UnityEngine.SceneManagement.SceneManager.LoadScene("Crafting Scene");
                 break;
             case LevelType.UpgradeLevel:
-                UnityEngine.SceneManagement.SceneManager.LoadScene("Upgrade Scene");
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Puzzle Scene");
                 break;
 
             case LevelType.Training_1:

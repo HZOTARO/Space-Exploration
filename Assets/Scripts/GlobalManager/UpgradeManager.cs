@@ -69,22 +69,44 @@ public class UpgradeManager : MonoBehaviour
 
     public bool HasPrerequisite(UpgradeSO upgrade)
     {
-        if (!string.IsNullOrEmpty(upgrade.prerequisitePuzzle))
-        {
-            if (!SaveManager.saveData.levelCompleted.Contains(upgrade.prerequisitePuzzle))
-            {
-                return false;
-            }
-        }
-
         if (upgrade.prerequisiteUpgrades != null && upgrade.prerequisiteUpgrades.Length > 0)
         {
             foreach (UpgradeSO prereq in upgrade.prerequisiteUpgrades)
             {
-                if (!IsUpgradeUnlocked(prereq.id))
-                {
-                    return false;
-                }
+                if (prereq == null) continue;
+                if (!IsUpgradeUnlocked(prereq.id)) return false;
+            }
+        }
+
+        if (upgrade.prerequisitePuzzles != null && upgrade.prerequisitePuzzles.Length > 0)
+        {
+            foreach (PuzzleSO prereqPuzzle in upgrade.prerequisitePuzzles)
+            {
+                if (prereqPuzzle == null) continue;
+                if (!SaveManager.saveData.levelCompleted.Contains(prereqPuzzle.id)) return false;
+            }
+        }
+
+        return true;
+    }
+
+    public bool HasPrerequisite(PuzzleSO puzzle)
+    {
+        if (puzzle.prerequisiteUpgrades != null && puzzle.prerequisiteUpgrades.Length > 0)
+        {
+            foreach (UpgradeSO prereq in puzzle.prerequisiteUpgrades)
+            {
+                if (prereq == null) continue;
+                if (!IsUpgradeUnlocked(prereq.id)) return false;
+            }
+        }
+
+        if (puzzle.prerequisitePuzzles != null && puzzle.prerequisitePuzzles.Length > 0)
+        {
+            foreach (PuzzleSO prereqPuzzle in puzzle.prerequisitePuzzles)
+            {
+                if (prereqPuzzle == null) continue;
+                if (!SaveManager.saveData.levelCompleted.Contains(prereqPuzzle.id)) return false;
             }
         }
 

@@ -16,9 +16,8 @@ MonoBehaviour:
   upgradeName: White Ore
   icon: {fileID: 21300000, guid: 99f318e7059fcac48ab338fd3f8ee4ff, type: 3}
   unlockedHint: {fileID: 0}
-  prerequisiteUpgrades:
-  - {fileID: 11400000, guid: 8706b81e30eb8b54b96a69d621fcc817, type: 2}
-  prerequisitePuzzle: 
+  prerequisiteUpgrades: []
+  prerequisitePuzzles: []
   tiers:
   - description: Raise White Ore yield to 10-15 per ore.
     costs: []

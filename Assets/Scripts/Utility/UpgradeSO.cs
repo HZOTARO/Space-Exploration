@@ -11,7 +11,7 @@ public class UpgradeSO : ScriptableObject
 
     [Header("Requirements")]
     public UpgradeSO[] prerequisiteUpgrades;
-    public string prerequisitePuzzle;
+    public PuzzleSO[] prerequisitePuzzles;
 
     [Header("Levels / Tiers")]
     public UpgradeTier[] tiers;

@@ -180,7 +180,7 @@ public class CheatManager : MonoBehaviour
             }
         });
 
-        CreateCheatButton("Unlock Tutorials", () =>
+        CreateCheatButton("Complete All Tutorials", () =>
         {
             if (SaveManager.instance != null)
             {
@@ -190,6 +190,18 @@ public class CheatManager : MonoBehaviour
                 }
             }
         });
+
+        CreateCheatButton("Complete All Puzzle", () =>
+        {
+            if (SaveManager.instance != null)
+            {
+                for (int i = 1; i <= 20; i++)
+                {
+                    SaveManager.saveData.levelCompleted.Add($"puzzle {i}");
+                }
+            }
+        });
+
     }
 
     void CreateCheatButton(string buttonText, UnityEngine.Events.UnityAction onClickAction)

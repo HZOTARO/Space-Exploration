@@ -17,16 +17,16 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: d332fc14a85818f4bb724e2f01ffb46b, type: 3}
   unlockedHint: {fileID: 11400000, guid: 2b5ffb1eb061a9c44921d055cec35e16, type: 2}
   prerequisiteUpgrades:
-  - {fileID: 11400000, guid: 8706b81e30eb8b54b96a69d621fcc817, type: 2}
-  prerequisitePuzzle: 
+  - {fileID: 11400000, guid: 7ca1cd75362b7374d94e810f34ccd958, type: 2}
+  prerequisitePuzzles: []
   tiers:
   - description: "Unlock Black Ore in mineral exploration with 7\u201310 yield."
     costs: []
-  - description: "Raise Black Ore yield to 10\u201315 per ore."
+  - description: Raise Black Ore yield to 10-15 per ore.
     costs: []
-  - description: "Raise Black Ore yield to 15\u201325 per ore."
+  - description: Raise Black Ore yield to 15-25 per ore.
     costs: []
-  - description: "Raise Black Ore yield to 25\u201350 per ore."
+  - description: Raise Black Ore yield to 25-50 per ore.
     costs: []
-  - description: "Raise Black Ore yield to 50\u2013100 per ore."
+  - description: Raise Black Ore yield to 50-100 per ore.
     costs: []

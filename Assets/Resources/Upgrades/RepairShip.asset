@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 510a7592fff21df42be2ebd983fd262c, type: 3}
+  m_Name: RepairShip
+  m_EditorClassIdentifier: GlobalManagerScriptIWrite::UpgradeSO
+  id: this_is_final_repair_ship
+  upgradeName: Repair Spaceship
+  icon: {fileID: 21300000, guid: 8b03244818d4514459d590b9251ea8ce, type: 3}
+  unlockedHint: {fileID: 0}
+  prerequisiteUpgrades: []
+  prerequisitePuzzles:
+  - {fileID: 11400000, guid: fe484c71969596242933afae810d1aa1, type: 2}
+  tiers:
+  - description: Repair critical ship systems and restore operational capabilities
+      required for travel, allowing you to continue your journey...
+    costs: []

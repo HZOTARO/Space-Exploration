@@ -17,8 +17,8 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 2178131416879b648922ec344e820711, type: 3}
   unlockedHint: {fileID: 0}
   prerequisiteUpgrades:
-  - {fileID: 11400000, guid: 1b94911b126e347409011dcafb761c2b, type: 2}
-  prerequisitePuzzle: 
+  - {fileID: 11400000, guid: 9a7968dc57ec92049a15f7acf00987e5, type: 2}
+  prerequisitePuzzles: []
   tiers:
   - description: Expand material exploration inventory size to 8 slots.
     costs: []
