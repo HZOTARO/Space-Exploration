@@ -1417,6 +1417,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8983f529c3c9f7f4c92557271df20d50, type: 2}
   - {fileID: 11400000, guid: a9fa07da7abb4284a87190a26092158d, type: 2}
   - {fileID: 11400000, guid: 0123a6778416ba643804c5f9a08a6576, type: 2}
+  - {fileID: 11400000, guid: 6ac39bdd6fe2e5a45bed21cc87dcc066, type: 2}
+  - {fileID: 11400000, guid: 027784cd69e30314bb10fe2d2a68fc07, type: 2}
   - {fileID: 11400000, guid: b65d366bdbb8f954ca3b828c87a2bd61, type: 2}
   - {fileID: 11400000, guid: 8a2643a07c446c84c9ca7c7e538ed7b0, type: 2}
   levelCompletePopup: {fileID: 719912971}

@@ -1345,7 +1345,9 @@ MonoBehaviour:
   allowedFunctions: []
   hintCollection: {fileID: 0}
   hintList:
-  - {fileID: 11400000, guid: 3aa0d6238cb15d449a93a673bc9c1904, type: 2}
+  - {fileID: 11400000, guid: 754588adebf16ac4c86349c404c15447, type: 2}
+  - {fileID: 11400000, guid: fefeb0d3b0f84f54e95932014f4fdd9b, type: 2}
+  - {fileID: 11400000, guid: fdc51ea13c6a49946b5d9b4c4253d8de, type: 2}
   levelCompletePopup: {fileID: 6096573076397695218}
 --- !u!4 &1021393016
 Transform:

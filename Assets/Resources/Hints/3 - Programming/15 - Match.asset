@@ -32,33 +32,26 @@ MonoBehaviour:
     <font="JetBrainsMono
     SDF"><color=#D96DD3>match</color> tile:</font>
 
-    <indent=2em><font="JetBrainsMono
-    SDF"><color=#D96DD3>case</color> <color=#CE9178>"wall"</color>:</font>
-
     <indent=3em><font="JetBrainsMono
+    SDF"><color=#D96DD3>case</color> <color=#CE9178>"Wall"</color>:</font>
+
+    <indent=5em><font="JetBrainsMono
     SDF"><color=#33CC66>turn_left</color><color=#D4D4D4>()</color></font></indent>
 
     <font="JetBrainsMono
-    SDF"><color=#D96DD3>case</color> <color=#CE9178>"white_ore"</color>:</font>
+    SDF"><color=#D96DD3>case</color> <color=#CE9178>"WhiteOre"</color>:</font>
 
-    <indent=3em><font="JetBrainsMono
-    SDF"><color=#33CC66>mine</color><color=#D4D4D4>()</color></font></indent>
-
-    <font="JetBrainsMono
-    SDF"><color=#D96DD3>case</color> <color=#CE9178>"empty"</color>:</font>
-
-    <indent=3em><font="JetBrainsMono
+    <indent=5em><font="JetBrainsMono
     SDF"><color=#33CC66>move_forward</color><color=#D4D4D4>()</color></font></indent>
 
     <font="JetBrainsMono
-    SDF"><color=#D96DD3>case</color> <color=#55AAFF>_</color>:</font>
+    SDF"><color=#D96DD3>case</color> _:</font>
 
-    <indent=3em><font="JetBrainsMono
-    SDF"><color=#F5F5AB>print</color><color=#D4D4D4">(</color><color=#CE9178>"Unknown
-    Tile"</color><color=#D4D4D4">)</color></font></indent></indent></indent>
+    <indent=5em><font="JetBrainsMono
+    SDF"><color=#F5F5AB>print</color>(<color=#CE9178>"Unknown Tile"</color>)</font></indent></indent></indent>
 
 
     The
-    <font="JetBrainsMono SDF"><color=#D96DD3>case</color> <color=#55AAFF>_</color></font>
-    block is called the default case. It executes when no other cases match the value.'
+    <font="JetBrainsMono SDF"><color=#D96DD3>case</color> _</font> block is called
+    the default case. It executes when no other cases match the value.'
   isImageBig: 0

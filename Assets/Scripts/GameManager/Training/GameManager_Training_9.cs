@@ -51,15 +51,12 @@ public class GameManager_Training_9 : GameManager_Training
 
     private void ClearVisitedTiles()
     {
-        foreach (BaseTile mark in markings)
-        {
-            Destroy(mark.gameObject);
-        }
+        if (tileManager) tileManager.GenerateMap();
         visitedTiles.Clear();
         visitedTiles.Add(Vector2Int.zero);
         if (player.markPrefab && tileManager)
         {
-            markings.Add(tileManager.InstantiateTileVisual(playerGridLoc.x, playerGridLoc.y, player.markPrefab));
+            tileManager.InstantiateTileVisual(playerGridLoc.x, playerGridLoc.y, player.markPrefab);
         }
     }
 

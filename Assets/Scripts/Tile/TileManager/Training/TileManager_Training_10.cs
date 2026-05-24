@@ -60,7 +60,7 @@ public class TileManager_Training_10 : TileManager_Training
         chosenSpaces.Sort();
         foreach (int x in chosenSpaces)
         {
-            SetTile(0, x, TileType.WhiteOre, asFloorToo: true);
+            SetTile(0, x, TileType.WhiteOre, asFloorToo: false);
         }
     }
 }

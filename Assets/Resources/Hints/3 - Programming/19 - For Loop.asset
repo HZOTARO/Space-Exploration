@@ -20,26 +20,36 @@ MonoBehaviour:
   description: 'A <font="JetBrainsMono SDF"><color=#D96DD3>for</color></font> loop
     is used to repeat instructions a specific number of times.
 
+    
 
     A <font="JetBrainsMono
     SDF"><color=#D96DD3>for</color></font> loop commonly uses <font="JetBrainsMono
-    SDF"><color=#F5F5AB>range</color><color=#D4D4D4>()</color></font> to determine
-    how many times the loop should repeat.
+    SDF"><color=#F5F5AB>range</color>()</font> to determine how many times the loop
+    should repeat.
 
+    
+
+    The letter <font="JetBrainsMono SDF">i</font> is
+    a <color=yellow>local variable</color> that tracks the loop''s progress. It only
+    exists inside the loop and is removed after the loop finishes. It is a standard
+    naming convention, but you are free to name it anything you want!
+
+    
 
     Example:
 
     <indent=1em><font="JetBrainsMono
-    SDF"><color=#6A9955># Move forward 3 times</color></font>
+    SDF"><color=#6A9955># Move forward 3 times</color></font></indent>
 
-    <font="JetBrainsMono
-    SDF"><color=#D96DD3>for</color> i <color=#D96DD3>in</color> <color=#F5F5AB>range</color><color=#D4D4D4">(</color><color=#B5CEA8>3</color><color=#D4D4D4">)</color>:</font>
+    <indent=1em><font="JetBrainsMono
+    SDF"><color=#D96DD3>for</color> i <color=#D96DD3>in</color> <color=#F5F5AB>range</color>(<color=#B5CEA8>3</color>)<color=#D4D4D4>:</color></font></indent>
 
-    <indent=2em><font="JetBrainsMono
-    SDF"><color=#33CC66>move_forward</color><color=#D4D4D4>()</color></font></indent></indent>
+    <indent=3em><font="JetBrainsMono
+    SDF"><color=#33CC66>move_forward</color>()</font></indent>
 
+    
 
-    In
-    this example, <font="JetBrainsMono SDF"><color=#33CC66>move_forward</color><color=#D4D4D4>()</color></font>
+    In this
+    example, <font="JetBrainsMono SDF"><color=#33CC66>move_forward</color>()</font>
     executes 3 times.'
   isImageBig: 0

@@ -1393,7 +1393,11 @@ MonoBehaviour:
   allowedFunctions: []
   hintCollection: {fileID: 0}
   hintList:
-  - {fileID: 11400000, guid: 1a5d606efba969f4ead01e354fc6a406, type: 2}
+  - {fileID: 11400000, guid: 3aa0d6238cb15d449a93a673bc9c1904, type: 2}
+  - {fileID: 11400000, guid: 0bee4dbf9d133474db778db7e9b0b965, type: 2}
+  - {fileID: 11400000, guid: 521898fadf00d164ea4b861ab58e6751, type: 2}
+  - {fileID: 11400000, guid: 07240805cee9a604c839444a2bebdecb, type: 2}
+  - {fileID: 11400000, guid: ade482eecd77a0f4c82977720a130318, type: 2}
   levelCompletePopup: {fileID: 6096573076397695218}
 --- !u!4 &1224861974
 Transform:

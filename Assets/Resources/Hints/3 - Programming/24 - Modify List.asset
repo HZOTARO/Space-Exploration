@@ -24,20 +24,18 @@ MonoBehaviour:
   image: {fileID: 0}
   description: "Programs can change existing elements, add new elements, or remove
     elements from a list.\nTo change a value, use the element index. Example:\n<indent=1em><font=\"JetBrainsMono
-    SDF\">minerals <color=#D4D4D4>=</color> <color=#D4D4D4\">[</color><color=#CE9178>\"WhiteOre\"</color><color=#D4D4D4\">,</color>
-    <color=#CE9178>\"BlackOre\"</color><color=#D4D4D4\">]</color></font>\n<font=\"JetBrainsMono
-    SDF\">minerals<color=#D4D4D4\">[</color><color=#B5CEA8>1</color><color=#D4D4D4\">]</color>
-    <color=#D4D4D4>=</color> <color=#CE9178>\"PurpleEssence\"</color></font></indent>\n\nThe
-    list now contains:\n<indent=2em>- <font=\"JetBrainsMono SDF\"><color=#CE9178>\"WhiteOre\"</color></font></indent>\n<indent=2em>-
-    <font=\"JetBrainsMono SDF\"><color=#CE9178>\"PurpleEssence\"</color></font></indent>\n\nLists
-    can also use special list methods. A method is a function that belongs to a specific
-    object or data type. List methods allow programs to organize and update data
-    dynamically during execution. Methods are called using a dot <font=\"JetBrainsMono
-    SDF\"><color=#D4D4D4>.</color></font> after the variable name.\n\nCommon list
-    methods:\n<indent=2em>- <font=\"JetBrainsMono SDF\">minerals<color=#D4D4D4\">.</color><color=#DBDBAB>append</color><color=#D4D4D4\">(</color><color=#CE9178>\"gear\"</color><color=#D4D4D4\">)</color></font>
-    \u2192 Add a new element to the end of the list</indent>\n<indent=2em>- <font=\"JetBrainsMono
-    SDF\">minerals<color=#D4D4D4\">.</color><color=#DBDBAB>remove</color><color=#D4D4D4\">(</color><color=#CE9178>\"white_ore\"</color><color=#D4D4D4\">)</color></font>
-    \u2192 Remove an element from the list</indent>\n<indent=2em>- <font=\"JetBrainsMono
-    SDF\">minerals<color=#D4D4D4\">.</color><color=#DBDBAB>pop</color><color=#D4D4D4\">(</color><color=#B5CEA8>0</color><color=#D4D4D4\">)</color></font>
-    \u2192 Remove the element at a specific index</indent>"
+    SDF\">minerals = [<color=#CE9178>\"WhiteOre\"</color>, <color=#CE9178>\"BlackOre\"</color>]</font>\n<font=\"JetBrainsMono
+    SDF\">minerals[<color=#B5CEA8>1</color>] <color=#D4D4D4>=</color> <color=#CE9178>\"PurpleEssence\"</color></font></indent>\nThe
+    list now contains: <font=\"JetBrainsMono SDF\">[<color=#CE9178>\"WhiteOre\"</color></font></indent>,
+    <color=#CE9178>\"PurpleEssence\"</color>]</font>\n\nLists can also use special
+    list methods. A method is a function that belongs to a specific object or data
+    type. List methods allow programs to organize and update data dynamically during
+    execution. Methods are called using a dot <font=\"JetBrainsMono SDF\"><color=#D4D4D4>.</color></font>
+    after the variable name.\n\nCommon list methods:\n<indent=1em><font=\"JetBrainsMono
+    SDF\">minerals.<color=#DBDBAB>append</color>(<color=#CE9178>\"Gear\"</color>)</font>
+    \u2192 Add a new element to the end of the list</indent>\n<indent=1em><font=\"JetBrainsMono
+    SDF\">minerals.<color=#DBDBAB>remove</color>(<color=#CE9178>\"WhiteOre\"</color>)</font>
+    \u2192 Remove an element from the list</indent>\n<indent=1em><font=\"JetBrainsMono
+    SDF\">minerals.<color=#DBDBAB>pop</color>(<color=#B5CEA8>0</color>)</font> \u2192
+    Remove the element at a specific index</indent>"
   isImageBig: 0

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 1 - Exploration
   m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
   hintId: tutorial_exploration
-  isUnlockedByDefault: 1
-  ignoreLock: 0
+  isUnlockedByDefault: 0
+  ignoreLock: 1
   title: Exploration
   image: {fileID: 0}
   description: 

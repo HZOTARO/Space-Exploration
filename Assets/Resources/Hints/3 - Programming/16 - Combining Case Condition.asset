@@ -18,10 +18,12 @@ MonoBehaviour:
   title: Combining Case Condition
   image: {fileID: 0}
   description: 'Multiple cases can be combined into a single condition inside a <font="JetBrainsMono
-    SDF"><color=#D96DD3>match</color></font> statement.
+    SDF"><color=#D96DD3>match</color></font> statement. This is useful when different
+    values should perform the same action.
 
-    This is useful when
-    different values should perform the same action.
+    You can also add additional conditions
+    using <font="JetBrainsMono SDF"><color=#D96DD3>if</color></font> inside a <font="JetBrainsMono
+    SDF"><color=#D96DD3>case</color></font> statement.
 
 
     Example:
@@ -29,22 +31,35 @@ MonoBehaviour:
     <indent=1em><font="JetBrainsMono
     SDF"><color=#D96DD3>match</color> tile:</font>
 
-    <indent=2em><font="JetBrainsMono
-    SDF"><color=#D96DD3>case</color> <color=#CE9178>"Wall"</color> <color=#55AAFF>or</color>
-    <color=#CE9178>"BlackOre"</color>:</font>
-
     <indent=3em><font="JetBrainsMono
-    SDF"><color=#33CC66>turn_left</color><color=#D4D4D4>()</color></font></indent>
+    SDF"><color=#D96DD3>case</color> <color=#CE9178>"WhiteOre"</color> | <color=#CE9178>"BlackOre"</color>:</font>
+
+    <indent=5em><font="JetBrainsMono
+    SDF"><color=#33CC66>mine</color><color=#D4D4D4>()</color></font></indent>
 
     <font="JetBrainsMono
-    SDF"><color=#D96DD3>case</color> <color=#D4D4D4">_</color>:</font>
+    SDF"><color=#D96DD3>case</color> <color=#CE9178>"PurpleEssence"</color> <color=#D96DD3>if</color>
+    <color=#33CC66>measure</color><color=#D4D4D4>()</color> <color=#D4D4D4>></color>
+    <color=#B5CEA8>5</color>:</font>
 
-    <indent=3em><font="JetBrainsMono
+    <indent=5em><font="JetBrainsMono SDF"><color=#33CC66>collect</color><color=#D4D4D4>()</color></font></indent>
+
+    <font="JetBrainsMono
+    SDF"><color=#D96DD3>case</color> _:</font>
+
+    <indent=5em><font="JetBrainsMono
     SDF"><color=#33CC66>move_forward</color><color=#D4D4D4>()</color></font></indent></indent></indent>
 
-
     In
-    this example, both <font="JetBrainsMono SDF"><color=#CE9178>"Wall"</color></font>
-    and <font="JetBrainsMono SDF"><color=#CE9178>"BlackOre"</color></font> execute
-    the same action.'
+    this example:
+
+    <indent=2em>- Multiple values can share the same action using
+    <font="JetBrainsMono SDF">|</font></indent>
+
+    <indent=2em>- A <font="JetBrainsMono
+    SDF"><color=#D96DD3>case</color></font> can include additional checks using <font="JetBrainsMono
+    SDF"><color=#D96DD3>if</color></font></indent>
+
+    <indent=2em>- <font="JetBrainsMono
+    SDF">_</font> acts as the default case when no other case matches</indent>'
   isImageBig: 0

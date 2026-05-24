@@ -17,21 +17,24 @@ MonoBehaviour:
   ignoreLock: 1
   title: Range
   image: {fileID: 0}
-  description: "The <font=\"JetBrainsMono SDF\"><color=#F5F5AB>range</color><color=#D4D4D4>()</color></font>
-    function can also receive parameters to control the generated sequence of numbers.\n\nExamples:\n<indent=2em>-
-    <font=\"JetBrainsMono SDF\"><color=#F5F5AB>range</color><color=#D4D4D4\">(</color><color=#B5CEA8>5</color><color=#D4D4D4\">)</color></font>
+  description: "The <font=\"JetBrainsMono SDF\"><color=#F5F5AB>range</color>()</font>
+    function can also receive <color=yellow>parameters</color> to control the generated
+    sequence of numbers. If the parameter is only one, then it's <font=\"JetBrainsMono
+    SDF\">End value</font>\n\n<font=\"JetBrainsMono SDF\"><color=#F5F5AB>range</color>(Start
+    value<color=#D4D4D4>,</color> End value<color=#D4D4D4>,</color> Step value)</font>\n\nExamples:\n<indent=2em>-
+    <font=\"JetBrainsMono SDF\"><color=#F5F5AB>range</color>(<color=#B5CEA8>5</color>)</font>
     \u2192 Generate numbers from <font=\"JetBrainsMono SDF\"><color=#B5CEA8>0</color></font>
     to <font=\"JetBrainsMono SDF\"><color=#B5CEA8>4</color></font></indent>\n<indent=2em>-
-    <font=\"JetBrainsMono SDF\"><color=#F5F5AB>range</color><color=#D4D4D4\">(</color><color=#B5CEA8>2</color><color=#D4D4D4\">,</color>
-    <color=#B5CEA8>5</color><color=#D4D4D4\">)</color></font> \u2192 Generate numbers
-    from <font=\"JetBrainsMono SDF\"><color=#B5CEA8>2</color></font> to <font=\"JetBrainsMono
-    SDF\"><color=#B5CEA8>4</color></font></indent>\n<indent=2em>- <font=\"JetBrainsMono
-    SDF\"><color=#F5F5AB>range</color><color=#D4D4D4\">(</color><color=#B5CEA8>0</color><color=#D4D4D4\">,</color>
-    <color=#B5CEA8>10</color><color=#D4D4D4\">,</color> <color=#B5CEA8>2</color><color=#D4D4D4\">)</color></font>
+    <font=\"JetBrainsMono SDF\"><color=#F5F5AB>range</color>(<color=#B5CEA8>2</color><color=#D4D4D4>,</color>
+    <color=#B5CEA8>5</color>)</font> \u2192 Generate numbers from <font=\"JetBrainsMono
+    SDF\"><color=#B5CEA8>2</color></font> to <font=\"JetBrainsMono SDF\"><color=#B5CEA8>4</color></font></indent>\n<indent=2em>-
+    <font=\"JetBrainsMono SDF\"><color=#F5F5AB>range</color>(<color=#B5CEA8>0</color><color=#D4D4D4>,</color>
+    <color=#B5CEA8>10</color><color=#D4D4D4>,</color> <color=#B5CEA8>2</color>)</font>
     \u2192 Generate numbers from <font=\"JetBrainsMono SDF\"><color=#B5CEA8>0</color></font>
     to <font=\"JetBrainsMono SDF\"><color=#B5CEA8>8</color></font> with a step of
-    <font=\"JetBrainsMono SDF\"><color=#B5CEA8>2</color></font></indent>\n\nThe parameters
-    are commonly interpreted as:\n<indent=2em>- Start value</indent>\n<indent=2em>-
-    End value</indent>\n<indent=2em>- Step value</indent>\n\nThese parameters allow
-    loops to repeat in more flexible ways."
+    <font=\"JetBrainsMono SDF\"><color=#B5CEA8>2</color></font></indent>\n\nThe first
+    iteration starts with the Start value, then the next iteration adds the Step
+    value (<font=\"JetBrainsMono SDF\">i <color=#D4D4D4>+=</color> step</font>).
+    The loop will stop if (<font=\"JetBrainsMono SDF\">i <color=#D4D4D4>>=</color></font>
+    End value)."
   isImageBig: 0

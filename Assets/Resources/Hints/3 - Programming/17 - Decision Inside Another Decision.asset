@@ -20,7 +20,6 @@ MonoBehaviour:
   description: 'Sometimes one condition is not enough to decide what the robot should
     do.
 
-
     A program can place an <font="JetBrainsMono SDF"><color=#D96DD3>if</color></font>
     statement inside another <font="JetBrainsMono SDF"><color=#D96DD3>if</color></font>
     statement. This is called <color=yellow>nesting</color> and allows the robot
@@ -33,15 +32,15 @@ MonoBehaviour:
     SDF">tile <color=#D4D4D4>=</color> <color=#33CC66>scan</color><color=#D4D4D4>()</color></font>
 
     <font="JetBrainsMono
-    SDF"><color=#D96DD3>if</color> tile <color=#D4D4D4>==</color> <color=#CE9178>"white_ore"</color>:</font>
+    SDF"><color=#D96DD3>if</color> tile <color=#D4D4D4>==</color> <color=#CE9178>"WhiteOre"</color>:</font>
 
-    <indent=2em><font="JetBrainsMono
+    <indent=3em><font="JetBrainsMono
     SDF">value <color=#D4D4D4>=</color> <color=#33CC66>measure</color><color=#D4D4D4>()</color></font>
 
     <font="JetBrainsMono
     SDF"><color=#D96DD3>if</color> value <color=#D4D4D4>></color> <color=#B5CEA8>10</color>:</font>
 
-    <indent=3em><font="JetBrainsMono
+    <indent=5em><font="JetBrainsMono
     SDF"><color=#33CC66>mine</color><color=#D4D4D4>()</color></font></indent></indent></indent>
 
     The

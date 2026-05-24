@@ -34,13 +34,13 @@ MonoBehaviour:
     <indent=1em><font="JetBrainsMono SDF"><color=#D96DD3>if</color>
     value1 <color=#D4D4D4>></color> value2:</font>
 
-    <indent=2em><font="JetBrainsMono
+    <indent=3em><font="JetBrainsMono
     SDF"><color=#33CC66>collect</color><color=#D4D4D4>()</color></font></indent>
 
     <font="JetBrainsMono
     SDF"><color=#D96DD3>else</color>:</font>
 
-    <indent=2em><font="JetBrainsMono
+    <indent=3em><font="JetBrainsMono
     SDF"><color=#F5F5AB>print</color>(<color=#CE9178>"Value 1 is Lower"</color>)</font></indent></indent>
 
 

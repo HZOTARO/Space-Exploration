@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 3 - Tutorial
   m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
   hintId: tutorial_tutorial
-  isUnlockedByDefault: 1
-  ignoreLock: 0
+  isUnlockedByDefault: 0
+  ignoreLock: 1
   title: Tutorial
   image: {fileID: 0}
   description: 'The Tutorial system stores useful information gathered during exploration

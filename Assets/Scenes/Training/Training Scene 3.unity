@@ -837,6 +837,7 @@ MonoBehaviour:
   hintList:
   - {fileID: 11400000, guid: dba6ea3d0b6527a48b3177841e9a6321, type: 2}
   - {fileID: 11400000, guid: 9611fcd74f3d10e44a6491f995498433, type: 2}
+  - {fileID: 11400000, guid: 62c6fac402df0ed41ad7a021d55dad33, type: 2}
   - {fileID: 11400000, guid: 8d2d3962c34ec9b4d9bfbbe0353b7a72, type: 2}
   - {fileID: 11400000, guid: 6a3cca4da970cc34dad9a045c48b4f97, type: 2}
   levelCompletePopup: {fileID: 6096573076397695218}

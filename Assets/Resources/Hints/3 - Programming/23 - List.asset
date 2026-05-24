@@ -19,18 +19,18 @@ MonoBehaviour:
   image: {fileID: 0}
   description: "A list is a data structure used to store multiple values inside a
     single variable.\nLists are useful when a program needs to manage a collection
-    of data such as numbers, text, or detected objects.\n\nA list is created using
-    square brackets <font=\"JetBrainsMono SDF\"><color=#D4D4D4\">[ ]</color></font>,
-    with values separated by commas.\n\nExample:\n<indent=1em><font=\"JetBrainsMono
-    SDF\">minerals <color=#D4D4D4>=</color> <color=#D4D4D4\">[</color><color=#CE9178>\"WhiteOre\"</color><color=#D4D4D4\">,</color>
-    <color=#CE9178>\"BlackOre\"</color><color=#D4D4D4\">,</color> <color=#CE9178>\"PurpleEssence\"</color><color=#D4D4D4\">]</color></font></indent>\n\nEach
-    value inside a list is called an element.\nEvery element has an index number
-    that represents its position inside the list.\nList indexes start from <font=\"JetBrainsMono
-    SDF\"><color=#B5CEA8>0</color></font>.\n\nExample:\n<indent=2em>- <font=\"JetBrainsMono
-    SDF\">minerals<color=#D4D4D4\">[</color><color=#B5CEA8>0</color><color=#D4D4D4\">]</color></font>
-    \u2192 <font=\"JetBrainsMono SDF\"><color=#CE9178>\"WhiteOre\"</color></font></indent>\n<indent=2em>-
-    <font=\"JetBrainsMono SDF\">minerals<color=#D4D4D4\">[</color><color=#B5CEA8>1</color><color=#D4D4D4\">]</color></font>
-    \u2192 <font=\"JetBrainsMono SDF\"><color=#CE9178>\"BlackOre\"</color></font></indent>\n<indent=2em>-
-    <font=\"JetBrainsMono SDF\">minerals<color=#D4D4D4\">[</color><color=#B5CEA8>2</color><color=#D4D4D4\">]</color></font>
-    \u2192 <font=\"JetBrainsMono SDF\"><color=#CE9178>\"PurpleEssence\"</color></font></indent>"
+    of data such as numbers, text, or detected objects. A list is created using square
+    brackets <font=\"JetBrainsMono SDF\">[]</font>, with values separated by commas.\n\nExample:\n<indent=1em><font=\"JetBrainsMono
+    SDF\">minerals = [<color=#CE9178>\"WhiteOre\"</color>, <color=#CE9178>\"BlackOre\"</color>,
+    <color=#CE9178>\"PurpleEssence\"</color>]</font></indent>\n\nEach value inside
+    a list is called an element.\nEvery element has an index number that represents
+    its position inside the list.\nList indexes start from <font=\"JetBrainsMono
+    SDF\"><color=#B5CEA8>0</color></font>.\n\nTo access a list element, write the
+    list name followed by its index inside square brackets:\n<indent=1em><font=\"JetBrainsMono
+    SDF\">minerals[<color=#B5CEA8>0</color>]</font> \u2192 <font=\"JetBrainsMono
+    SDF\"><color=#CE9178>\"WhiteOre\"</color></font></indent>\n<indent=1em><font=\"JetBrainsMono
+    SDF\">minerals[<color=#B5CEA8>1</color>]</font> \u2192 <font=\"JetBrainsMono
+    SDF\"><color=#CE9178>\"BlackOre\"</color></font></indent>\n<indent=1em><font=\"JetBrainsMono
+    SDF\">minerals[<color=#B5CEA8>2</color>]</font> \u2192 <font=\"JetBrainsMono
+    SDF\"><color=#CE9178>\"PurpleEssence\"</color></font></indent>"
   isImageBig: 0

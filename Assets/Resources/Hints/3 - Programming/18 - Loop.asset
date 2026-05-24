@@ -19,15 +19,13 @@ MonoBehaviour:
   image: {fileID: 0}
   description: "A loop is used to repeat a group of instructions multiple times.
     Loops are useful when the same task must be performed repeatedly without rewriting
-    the same code again and again.\n\nPrograms execute the instructions inside the
-    loop from top to bottom during each repetition. Each repetition of a loop is
-    called an <color=yellow>iteration</color>.\n\nLike other code blocks, loops also
-    require proper indentation. All instructions inside the loop must use the same
-    indentation level.\n\nExample:\n<indent=1em><font=\"JetBrainsMono SDF\"><color=#6A9955>#
-    Repeat the movement multiple times</color></font>\n<font=\"JetBrainsMono SDF\">LOOP_STATEMENT:
-    <color=#6A9955># Will be explained later</color></font>\n<indent=2em><font=\"JetBrainsMono
+    the same code again and again. Like other code blocks, loops also require proper
+    indentation. All instructions inside the loop must use the same indentation level.\n\nPrograms
+    execute the instructions inside the loop from top to bottom during each repetition.
+    Each repetition of a loop is called an <color=yellow>iteration</color>.\n\nExample:\n<indent=1em><font=\"JetBrainsMono
+    SDF\">LOOP_STATEMENT: <color=#6A9955># Will be explained later</color></font>\n<indent=3em><font=\"JetBrainsMono
     SDF\"><color=#33CC66>scan</color><color=#D4D4D4>()</color></font>\n<font=\"JetBrainsMono
-    SDF\"><color=#33CC66>move_forward</color><color=#D4D4D4>()</color></font></indent></indent>\n\nDuring
+    SDF\"><color=#33CC66>move_forward</color><color=#D4D4D4>()</color></font></indent></indent>\nDuring
     an iteration, the program may also control the loop using special statements:\n<indent=2em>-
     <font=\"JetBrainsMono SDF\"><color=#D96DD3>continue</color></font> \u2192 Skip
     the remaining instructions in the current iteration and move to the next iteration</indent>\n<indent=2em>-

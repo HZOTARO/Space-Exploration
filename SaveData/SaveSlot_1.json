@@ -1,10 +1,21 @@
 {
-    "lastSavedTime": "24-05-2026 13:16",
+    "lastSavedTime": "24-05-2026 17:00",
     "inventory": [],
     "unlockedUpgrades": [],
-    "stepDelay": 0.20000000298023225,
-    "gameSpeed": 1.0,
-    "levelCompleted": [],
+    "stepDelay": 0.0,
+    "gameSpeed": 8.0,
+    "levelCompleted": [
+        "Tutorial 1",
+        "Tutorial 2",
+        "Tutorial 3",
+        "Tutorial 4",
+        "Tutorial 5",
+        "Tutorial 6",
+        "Tutorial 7",
+        "Tutorial 8",
+        "Tutorial 9",
+        "Tutorial 10"
+    ],
     "hints": [
         {
             "id": "tutorial_welcome",
@@ -13,6 +24,241 @@
         },
         {
             "id": "tutorial_hub",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_movement",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_inventory",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_training",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_training_1",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_instruction",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_code_editor",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_syntax",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_functions",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_command",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_tutorial",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_training_2",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_data_types",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_variables",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_variable_name",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_scan",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_terminal",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_training_3",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_arithmetic_operators",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_augmented_assignment",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_measure",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_variable_watch",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_training_4",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_comparison_operators",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_logical_operators",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_if",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_indentation",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_white_ore",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_training_5",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_else",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_elif",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "training 6",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_match",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_match_cont",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_nested_statement",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "training 7",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_loop",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_for",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_range",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_game_speed",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "training 8",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_while",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_nested_loop",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_list",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_instruction tutorial_syntax tutorial_functions tutorial_command tutorial_data_types tutorial_variables tutorial_variable_name tutorial_arithmetic_operators tutorial_augmented_assignment tutorial_comparison_operators tutorial_logical_operators tutorial_if tutorial_indentation tutorial_else tutorial_elif tutorial_match tutorial_match_cont tutorial_nested_statement tutorial_loop tutorial_for tutorial_range tutorial_while tutorial_nested_loop tutorial_list tutorial_modify_list",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_resources",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_exploration",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_upgrade",
             "hasAppeared": true,
             "isUnlocked": true
         }

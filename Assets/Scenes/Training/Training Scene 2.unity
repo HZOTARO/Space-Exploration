@@ -1461,9 +1461,9 @@ MonoBehaviour:
   hintCollection: {fileID: 0}
   hintList:
   - {fileID: 11400000, guid: 492b3c11bac3f034fb0759a1dc8bf733, type: 2}
-  - {fileID: 11400000, guid: 6ac39bdd6fe2e5a45bed21cc87dcc066, type: 2}
   - {fileID: 11400000, guid: 54a2b325ab2d09d4fa626381bf7c4d6d, type: 2}
   - {fileID: 11400000, guid: eba4f3402e853404d9ae22e69729477c, type: 2}
+  - {fileID: 11400000, guid: 2c338e9180f1f9a459347fc3d2442d38, type: 2}
   - {fileID: 11400000, guid: 6a68800457ab8ee4fba5e49a0b0e887f, type: 2}
   - {fileID: 11400000, guid: 12224fd06ae88b54fae5ce097b3cfecd, type: 2}
   levelCompletePopup: {fileID: 6096573076397695218}

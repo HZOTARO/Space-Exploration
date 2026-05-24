@@ -156,10 +156,13 @@ MonoBehaviour:
   tileData:
   - type: 2
     tilePrefab: {fileID: 4859144738260387485, guid: d96f59058b0b80a40bcd4aa893bbd79d, type: 3}
+  - type: 3
+    tilePrefab: {fileID: 98364360411693396, guid: 0c072067696c19e41bd63e7251d67fba, type: 3}
+  - type: 4
+    tilePrefab: {fileID: -1641081275331433878, guid: b6de4df3f6fee7142be73b985d7acdf3, type: 3}
   - type: 9
     tilePrefab: {fileID: 9201390410382802886, guid: 47c2b68f1dbcfd4499f3384d6ed59da5, type: 3}
-  expectedMines: 0
-  expectedCollects: 0
+  highestValue: 0
 --- !u!4 &189761012
 Transform:
   m_ObjectHideFlags: 0
@@ -1457,7 +1460,12 @@ MonoBehaviour:
   allowedSyntaxNodes: []
   allowedFunctions: []
   hintCollection: {fileID: 0}
-  hintList: []
+  hintList:
+  - {fileID: 11400000, guid: ec916c8e346473746980ebc408a7bb0c, type: 2}
+  - {fileID: 11400000, guid: 1e963accb2bb75045a3c15c22d832b17, type: 2}
+  - {fileID: 11400000, guid: 6343e42c8b8e8f441b6d1a6f7c648890, type: 2}
+  - {fileID: 11400000, guid: ac4ad61fcc5997e489d183953d652a36, type: 2}
+  - {fileID: 11400000, guid: 2b5ffb1eb061a9c44921d055cec35e16, type: 2}
   levelCompletePopup: {fileID: 6096573076397695218}
 --- !u!4 &1666053568
 Transform:

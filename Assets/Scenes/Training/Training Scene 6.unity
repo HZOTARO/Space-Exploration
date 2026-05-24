@@ -1459,7 +1459,11 @@ MonoBehaviour:
   allowedSyntaxNodes: []
   allowedFunctions: []
   hintCollection: {fileID: 0}
-  hintList: []
+  hintList:
+  - {fileID: 11400000, guid: f488ced928b4e95458fb786e48b0f146, type: 2}
+  - {fileID: 11400000, guid: 6b14eaaffa1625946bbd50674d16a9bb, type: 2}
+  - {fileID: 11400000, guid: d27d4d87640968648b331f8f60001846, type: 2}
+  - {fileID: 11400000, guid: 6d13bf6f87f12274287fbc5561b59a29, type: 2}
   levelCompletePopup: {fileID: 6096573076397695218}
 --- !u!4 &1676438473
 Transform:

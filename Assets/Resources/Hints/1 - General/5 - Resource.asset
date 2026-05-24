@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 5 - Resource
   m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
   hintId: tutorial_resources
-  isUnlockedByDefault: 1
-  ignoreLock: 0
+  isUnlockedByDefault: 0
+  ignoreLock: 1
   title: Resources
   image: {fileID: 0}
   description: "There are five types of resources that can be collected during exploration.\n\r\n<indent=1em>\u2022

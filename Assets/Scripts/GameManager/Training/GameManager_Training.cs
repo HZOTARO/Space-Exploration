@@ -122,7 +122,6 @@ public class GameManager_Training : GameManager
     protected virtual void HandleRuntimeError(int line, string message)
     {
         PrintToDisplay("<color=orange>Error encountered. Resetting position...</color>");
-        ResetPlayerToStart();
     }
 
     public virtual void Mine()

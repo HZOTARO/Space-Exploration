@@ -1459,7 +1459,8 @@ MonoBehaviour:
   allowedFunctions: []
   hintCollection: {fileID: 0}
   hintList:
-  - {fileID: 11400000, guid: 65d9c8e7d254d0c499203ca67e2da460, type: 2}
+  - {fileID: 11400000, guid: efb046c6302b6ed49b72f68299581f00, type: 2}
+  - {fileID: 11400000, guid: c810d66eee65b6a4189dd2c2ed7fa57e, type: 2}
   levelCompletePopup: {fileID: 6096573076397695218}
   randomizedOreCount: 0
   targetTotalValue: 0

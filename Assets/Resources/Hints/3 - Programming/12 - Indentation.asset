@@ -23,30 +23,33 @@ MonoBehaviour:
     Indentation is the space at the beginning
     of a line that shows which code belongs together.
 
+    
 
-    Some parts of a program,
-    like an <font="JetBrainsMono SDF"><color=#D291FF>if</color></font> statement,
-    use indentation to group multiple instructions into a single block.
+    Some parts of
+    a program, like an <font="JetBrainsMono SDF"><color=#D96DD3>if</color></font>
+    statement, use indentation to group multiple instructions into a single block.
 
     All
-    code inside an <font="JetBrainsMono SDF"><color=#D291FF>if</color></font> statement
+    code inside an <font="JetBrainsMono SDF"><color=#D96DD3>if</color></font> statement
     must use the same indentation level.
 
+    
 
     Example:
 
     <indent=1em><font="JetBrainsMono
-    SDF"><color=#D291FF>if</color> condition:</font></indent>
+    SDF"><color=#D96DD3>if</color> condition<color=#D4D4D4>:</color></font></indent>
 
     <indent=3em><font="JetBrainsMono
-    SDF"><color=#55FF55>mine</color><color=#D4D4D4>()</color></font></indent>
+    SDF"><color=#33CC66>mine</color>()</font></indent>
 
     <indent=3em><font="JetBrainsMono
-    SDF"><color=#55FF55>move</color><color=#D4D4D4>()</color></font></indent>
+    SDF"><color=#33CC66>move</color>()</font></indent>
 
+    
 
-    If
-    indentation is not correct, the program may not understand which instructions
-    belong inside the <font="JetBrainsMono SDF"><color=#D291FF>if</color></font>
-    statement, which can cause errors or unexpected behavior.'
+    If indentation
+    is not correct, the program may not understand which instructions belong inside
+    the <font="JetBrainsMono SDF"><color=#D96DD3>if</color></font> statement, which
+    can cause errors or unexpected behavior.'
   isImageBig: 0
