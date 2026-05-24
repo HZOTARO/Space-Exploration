@@ -205,6 +205,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UIScriptIWrite::AllHintPage
   hintCollections:
   - {fileID: 11400000, guid: e4699fafd2803c446b8091f1c4779391, type: 2}
+  - {fileID: 11400000, guid: 60a944877fd932a4e9efb3c2d2ff4534, type: 2}
   - {fileID: 11400000, guid: 131134b8ffa9bcf4f8dde30c5d3f233d, type: 2}
   - {fileID: 11400000, guid: 44b8ff829c00e664da9d89ba1c2f581d, type: 2}
   - {fileID: 11400000, guid: c315d2567e4c2864195da4d1f29c5f86, type: 2}

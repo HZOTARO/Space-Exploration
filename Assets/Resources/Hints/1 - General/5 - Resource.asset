@@ -18,10 +18,10 @@ MonoBehaviour:
   title: Resources
   image: {fileID: 0}
   description: "There are five types of resources that can be collected during exploration.\n\r\n<indent=1em>\u2022
-    Mineral resources:</indent>\r\n<indent=2em>- <color=#D0D0D0>White Ore</color></indent>\r\n<indent=2em>-
-    <color=#C86BFF>Purple Essence</color></indent>\r\n<indent=2em>- <color=#999999>Black
+    Mineral resources:</indent>\r\n<indent=2em>- <color=#DDDDDD>White Ore</color></indent>\r\n<indent=2em>-
+    <color=#C86BFF>Purple Essence</color></indent>\r\n<indent=2em>- <color=#888888>Black
     Ore</color></indent>\r\n<indent=1em>\u2022 Material resources:</indent>\r\n<indent=2em>-
-    <color=#D8B56A>Gear</color></indent>\r\n<indent=2em>- <color=#B0B0B0>Screw</color></indent>\n\r\nResources
+    <color=#D8B56A>Gear</color></indent>\r\n<indent=2em>- <color=#BBBBBB>Screw</color></indent>\n\r\nResources
     are used for upgrades and repairing the ship.\r\nYou can also research resources
     through upgrades to increase their yield during exploration."
   isImageBig: 0

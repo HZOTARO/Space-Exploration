@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88f6fa2b89436164b8e97b17d82dc9a2, type: 3}
+  m_Name: 22 - Nested Loop
+  m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
+  hintId: tutorial_nested_loop
+  isUnlockedByDefault: 0
+  ignoreLock: 1
+  title: Nested Loop
+  image: {fileID: 0}
+  description: 'A loop can also be placed inside another loop. This is called a nested
+    loop.
+
+    Nested loops are useful when a program must repeat a group of instructions
+    multiple times inside another repetition.
+
+
+    Example:
+
+    <indent=1em><font="JetBrainsMono
+    SDF"><color=#6A9955># Repeat the outer loop 3 times</color></font>
+
+    <font="JetBrainsMono
+    SDF"><color=#D96DD3>for</color> i <color=#D96DD3>in</color> <color=#F5F5AB>range</color><color=#D4D4D4">(</color><color=#B5CEA8>3</color><color=#D4D4D4">)</color>:</font>
+
+    <indent=2em><font="JetBrainsMono
+    SDF"><color=#6A9955># Repeat the inner loop 2 times</color></font>
+
+    <font="JetBrainsMono
+    SDF"><color=#D96DD3>for</color> j <color=#D96DD3>in</color> <color=#F5F5AB>range</color><color=#D4D4D4">(</color><color=#B5CEA8>2</color><color=#D4D4D4">)</color>:</font>
+
+    <indent=3em><font="JetBrainsMono
+    SDF"><color=#33CC66>move_forward</color><color=#D4D4D4>()</color></font></indent></indent></indent>
+
+
+    The
+    inner loop fully executes every time the outer loop repeats.
+
+
+    In this example:
+
+    <indent=2em>-
+    The outer loop repeats 3 times</indent>
+
+    <indent=2em>- The inner loop repeats
+    2 times during each outer repetition</indent>
+
+    <indent=2em>- <font="JetBrainsMono
+    SDF"><color=#33CC66>move_forward</color><color=#D4D4D4>()</color></font> executes
+    a total of 6 times</indent>
+
+
+    Nested loops can also combine different types
+    of loops, such as placing a <font="JetBrainsMono SDF"><color=#D96DD3>while</color></font>
+    loop inside a <font="JetBrainsMono SDF"><color=#D96DD3>for</color></font> loop,
+    or vice versa.'
+  isImageBig: 0

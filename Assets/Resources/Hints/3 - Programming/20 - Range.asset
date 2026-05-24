@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88f6fa2b89436164b8e97b17d82dc9a2, type: 3}
+  m_Name: 20 - Range
+  m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
+  hintId: tutorial_range
+  isUnlockedByDefault: 0
+  ignoreLock: 1
+  title: Range
+  image: {fileID: 0}
+  description: "The <font=\"JetBrainsMono SDF\"><color=#F5F5AB>range</color><color=#D4D4D4>()</color></font>
+    function can also receive parameters to control the generated sequence of numbers.\n\nExamples:\n<indent=2em>-
+    <font=\"JetBrainsMono SDF\"><color=#F5F5AB>range</color><color=#D4D4D4\">(</color><color=#B5CEA8>5</color><color=#D4D4D4\">)</color></font>
+    \u2192 Generate numbers from <font=\"JetBrainsMono SDF\"><color=#B5CEA8>0</color></font>
+    to <font=\"JetBrainsMono SDF\"><color=#B5CEA8>4</color></font></indent>\n<indent=2em>-
+    <font=\"JetBrainsMono SDF\"><color=#F5F5AB>range</color><color=#D4D4D4\">(</color><color=#B5CEA8>2</color><color=#D4D4D4\">,</color>
+    <color=#B5CEA8>5</color><color=#D4D4D4\">)</color></font> \u2192 Generate numbers
+    from <font=\"JetBrainsMono SDF\"><color=#B5CEA8>2</color></font> to <font=\"JetBrainsMono
+    SDF\"><color=#B5CEA8>4</color></font></indent>\n<indent=2em>- <font=\"JetBrainsMono
+    SDF\"><color=#F5F5AB>range</color><color=#D4D4D4\">(</color><color=#B5CEA8>0</color><color=#D4D4D4\">,</color>
+    <color=#B5CEA8>10</color><color=#D4D4D4\">,</color> <color=#B5CEA8>2</color><color=#D4D4D4\">)</color></font>
+    \u2192 Generate numbers from <font=\"JetBrainsMono SDF\"><color=#B5CEA8>0</color></font>
+    to <font=\"JetBrainsMono SDF\"><color=#B5CEA8>8</color></font> with a step of
+    <font=\"JetBrainsMono SDF\"><color=#B5CEA8>2</color></font></indent>\n\nThe parameters
+    are commonly interpreted as:\n<indent=2em>- Start value</indent>\n<indent=2em>-
+    End value</indent>\n<indent=2em>- Step value</indent>\n\nThese parameters allow
+    loops to repeat in more flexible ways."
+  isImageBig: 0

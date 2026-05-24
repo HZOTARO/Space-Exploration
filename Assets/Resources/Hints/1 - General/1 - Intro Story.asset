@@ -18,13 +18,13 @@ MonoBehaviour:
   title: Welcome To Space Exploration!
   image: {fileID: 21300000, guid: ddbca1bf797613b42a8fceab7e5622d2, type: 3}
   description: 'You are a robot from a stranded exploration ship on an unknown planet.
-    Your mission is to gather resources, upgrade your systems, and repair the ship
-    to continue the mission.
+    Your mission is to gather <color=yellow>resources</color>, <color=yellow>upgrade</color>
+    your systems, and <color=yellow>repair</color> the ship to continue the mission.
 
 
-    <color=yellow><b>First Objective</b></color>
+    <color=yellow><b>First
+    Objective</b></color>
 
-    Before
-    starting your exploration, complete the Introduction training tutorial to learn
-    the basic systems and programming mechanics.'
+    Before starting your exploration, complete the Introduction
+    training tutorial to learn the basic systems and programming mechanics.'
   isImageBig: 0

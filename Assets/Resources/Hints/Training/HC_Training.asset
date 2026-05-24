@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e16c12eea6204843a6d7e7405fa6f1e, type: 3}
+  m_Name: HC_Training
+  m_EditorClassIdentifier: UtilityScriptIWrite::HintCollectionSO
+  collectionName: Training
+  hints:
+  - {fileID: 11400000, guid: 8983f529c3c9f7f4c92557271df20d50, type: 2}
+  - {fileID: 11400000, guid: 492b3c11bac3f034fb0759a1dc8bf733, type: 2}
+  - {fileID: 11400000, guid: dba6ea3d0b6527a48b3177841e9a6321, type: 2}
+  - {fileID: 11400000, guid: 1a5d606efba969f4ead01e354fc6a406, type: 2}
+  - {fileID: 11400000, guid: ec916c8e346473746980ebc408a7bb0c, type: 2}
+  - {fileID: 11400000, guid: f488ced928b4e95458fb786e48b0f146, type: 2}
+  - {fileID: 11400000, guid: 3aa0d6238cb15d449a93a673bc9c1904, type: 2}
+  - {fileID: 11400000, guid: 65d9c8e7d254d0c499203ca67e2da460, type: 2}
+  - {fileID: 11400000, guid: 0e7ff172c55e10a4385aa02ce2c032f3, type: 2}
+  - {fileID: 11400000, guid: 754588adebf16ac4c86349c404c15447, type: 2}
+  - {fileID: 11400000, guid: efb046c6302b6ed49b72f68299581f00, type: 2}

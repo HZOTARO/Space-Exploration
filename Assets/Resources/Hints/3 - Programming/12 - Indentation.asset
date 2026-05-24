@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88f6fa2b89436164b8e97b17d82dc9a2, type: 3}
+  m_Name: 12 - Indentation
+  m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
+  hintId: tutorial_indentation
+  isUnlockedByDefault: 0
+  ignoreLock: 1
+  title: Indentation
+  image: {fileID: 0}
+  description: 'You can use the <color=yellow>Tab key</color> on your keyboard to
+    add indentation automatically.
+
+    Indentation is the space at the beginning
+    of a line that shows which code belongs together.
+
+
+    Some parts of a program,
+    like an <font="JetBrainsMono SDF"><color=#D291FF>if</color></font> statement,
+    use indentation to group multiple instructions into a single block.
+
+    All
+    code inside an <font="JetBrainsMono SDF"><color=#D291FF>if</color></font> statement
+    must use the same indentation level.
+
+
+    Example:
+
+    <indent=1em><font="JetBrainsMono
+    SDF"><color=#D291FF>if</color> condition:</font></indent>
+
+    <indent=3em><font="JetBrainsMono
+    SDF"><color=#55FF55>mine</color><color=#D4D4D4>()</color></font></indent>
+
+    <indent=3em><font="JetBrainsMono
+    SDF"><color=#55FF55>move</color><color=#D4D4D4>()</color></font></indent>
+
+
+    If
+    indentation is not correct, the program may not understand which instructions
+    belong inside the <font="JetBrainsMono SDF"><color=#D291FF>if</color></font>
+    statement, which can cause errors or unexpected behavior.'
+  isImageBig: 0

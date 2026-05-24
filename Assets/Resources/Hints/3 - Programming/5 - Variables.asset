@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88f6fa2b89436164b8e97b17d82dc9a2, type: 3}
+  m_Name: 5 - Variables
+  m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
+  hintId: tutorial_variables
+  isUnlockedByDefault: 0
+  ignoreLock: 1
+  title: Variables
+  image: {fileID: 0}
+  description: 'A variable is a named storage used in a program to hold a value.
+
+    Variables
+    allow you to store data such as numbers, text, or boolean values and reuse them
+    later in your program.
+
+
+    The = symbol is called assignment.
+
+    It is used
+    to store a value inside a variable.
+
+
+    Example:
+
+    <indent=1em><font="JetBrainsMono
+    SDF">energy = <color=#B5CEA8>10</color></font>
+
+    <font="JetBrainsMono SDF">tile
+    = <color=#CE9178>"wall"</color></font>
+
+    <font="JetBrainsMono SDF">is_blocked
+    = <color=#55AAFF>True</color></font></indent>'
+  isImageBig: 0

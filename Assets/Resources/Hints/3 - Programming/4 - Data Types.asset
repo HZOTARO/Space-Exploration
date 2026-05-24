@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88f6fa2b89436164b8e97b17d82dc9a2, type: 3}
+  m_Name: 4 - Data Types
+  m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
+  hintId: tutorial_data_types
+  isUnlockedByDefault: 0
+  ignoreLock: 1
+  title: Data Types
+  image: {fileID: 0}
+  description: "Data types define the kind of value used in the program.\r\nDifferent
+    data types are used for different kinds of information such as numbers, text,
+    or logical values.\r\n\r\nExamples of common data types:\r\n<indent=2em>- <font=\"JetBrainsMono
+    SDF\"><color=#4FC3F7>int</color></font> (Integer) \u2192 whole numbers \u2192
+    <font=\"JetBrainsMono SDF\"><color=#B5CEA8>10</color>, <color=#B5CEA8>-3</color>,
+    <color=#B5CEA8>42</color></font></indent>\r\n<indent=2em>- <font=\"JetBrainsMono
+    SDF\"><color=#4FC3F7>float</color></font> (Float) \u2192 decimal numbers \u2192
+    <font=\"JetBrainsMono SDF\"><color=#B5CEA8>2.5</color>, <color=#B5CEA8>0.75</color>,
+    <color=#B5CEA8>-1.0</color></font></indent>\r\n<indent=2em>- <font=\"JetBrainsMono
+    SDF\"><color=#4FC3F7>str</color></font> (String) \u2192 text values \u2192 <font=\"JetBrainsMono
+    SDF\"><color=#CE9178>\"wall\"</color>, <color=#CE9178>\"robot\"</color>, <color=#CE9178>\"hello\"</color></font></indent>\r\n<indent=2em>-
+    <font=\"JetBrainsMono SDF\"><color=#4FC3F7>bool</color></font> (Boolean) \u2192
+    true or false values \u2192 <font=\"JetBrainsMono SDF\"><color=#55AAFF>True</color>,
+    <color=#55AAFF>False</color></font></indent>\r\n\r\nUsing the correct data type
+    is important because different operations and commands may only work with specific
+    types of data."
+  isImageBig: 0

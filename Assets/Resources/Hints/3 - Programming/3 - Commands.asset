@@ -17,15 +17,33 @@ MonoBehaviour:
   ignoreLock: 1
   title: Commands
   image: {fileID: 0}
-  description: "Commands are pre-programmed actions that allow the robot to perform
-    specific tasks.\n\nA command is executed by writing its name followed by ().
-    \nFor example: <font=\"JetBrainsMono SDF\"><color=#33CC66>move_forward</color>()</font>\n\nSome
-    commands require additional information called parameters. Parameters are written
-    inside the parentheses and are used to control how the command behaves. \nFor
-    example: <font=\"JetBrainsMono SDF\"><color=#33CC66>discard</color>(<color=#B5CEA8>0</color>)</font>\n\nIn
-    this example, <font=\"JetBrainsMono SDF\"><color=#33CC66>discard</color></font>
-    is the command name, while <font=\"JetBrainsMono SDF\"><color=#B5CEA8>0</color></font>
-    is the parameter representing the inventory slot index to discard.\n\nDifferent
-    commands may require different types of parameters such as numbers or text depending
-    on their purpose."
+  description: 'Commands are functions that allow the robot to perform specific actions
+    and interact with the environment.
+
+
+    Examples of command functions:
+
+    <indent=2em>-
+    <font="JetBrainsMono SDF"><color=#33CC66>move_forward</color><color=#D4D4D4>()</color></font></indent>
+
+    <indent=2em>-
+    <font="JetBrainsMono SDF"><color=#33CC66>collect</color><color=#D4D4D4>()</color></font></indent>
+
+    <indent=2em>-
+    <font="JetBrainsMono SDF"><color=#33CC66>scan</color><color=#D4D4D4>()</color></font></indent>
+
+
+    Commands
+    follow the same function rules and may also use parameters.
+
+
+    Example:
+
+    <indent=1em><font="JetBrainsMono
+    SDF"><color=#33CC66>discard</color>(<color=#B5CEA8>0</color>)</font></indent>
+
+    In
+    this example: <font="JetBrainsMono SDF"><color=#33CC66>discard</color></font>
+    is the command name and <font="JetBrainsMono SDF"><color=#B5CEA8>0</color></font>
+    is the parameter representing the inventory slot index to discard'
   isImageBig: 0

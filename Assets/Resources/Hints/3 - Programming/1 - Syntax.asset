@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88f6fa2b89436164b8e97b17d82dc9a2, type: 3}
+  m_Name: 1 - Syntax
+  m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
+  hintId: tutorial_syntax
+  isUnlockedByDefault: 0
+  ignoreLock: 1
+  title: Syntax
+  image: {fileID: 0}
+  description: 'Syntax is the set of rules used to write instructions for processing
+    data and controlling robotic systems. Every command must follow the correct structure
+    in order to be understood and executed properly by the robot.
+
+
+    Using syntax
+    correctly allows you to:
+
+    <indent=2em>- Process information from the environment</indent>
+
+    <indent=2em>-
+    Make decisions using logic and conditions</indent>
+
+    <indent=2em>- Automate
+    complex behaviors</indent>
+
+
+    Syntax examples include <color=yellow>variables</color>,
+    <color=yellow>conditionals</color>, <color=yellow>loops</color>, and <color=yellow>lists</color>,
+    along with many other programming structures.
+
+
+    Even small syntax mistakes
+    may cause commands to fail or produce unexpected results.
+
+    Understanding
+    syntax is an important step in learning programming, as it teaches how instructions
+    are structured and interpreted by a system.'
+  isImageBig: 0

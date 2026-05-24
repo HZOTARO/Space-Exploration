@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88f6fa2b89436164b8e97b17d82dc9a2, type: 3}
+  m_Name: 10 - Logical Operators
+  m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
+  hintId: tutorial_logical_operators
+  isUnlockedByDefault: 0
+  ignoreLock: 1
+  title: Logical Operators
+  image: {fileID: 0}
+  description: "Logical operators are used to combine or modify Boolean values.\nThey
+    work with values that are either <font=\"JetBrainsMono SDF\"><color=#55AAFF>True</color></font>
+    or <font=\"JetBrainsMono SDF\"><color=#55AAFF>False</color></font>.\n<indent=2em><font=\"JetBrainsMono
+    SDF\"><color=#55AAFF>and</color></font> \u2192 returns <font=\"JetBrainsMono
+    SDF\"><color=#55AAFF>True</color></font> if both conditions are <font=\"JetBrainsMono
+    SDF\"><color=#55AAFF>True</color></font>\n<font=\"JetBrainsMono SDF\"><color=#55AAFF>or
+    </color></font> \u2192 returns <font=\"JetBrainsMono SDF\"><color=#55AAFF>True</color></font>
+    if at least one condition is <font=\"JetBrainsMono SDF\"><color=#55AAFF>True</color></font>\n<font=\"JetBrainsMono
+    SDF\"><color=#55AAFF>not</color></font> \u2192 inverts a Boolean value</indent>\nExample:\n<indent=1em><font=\"JetBrainsMono
+    SDF\">condition = (<color=#55FF55>scan</color>() == <color=#CE9178>\"WhiteOre\"</color>)
+    <color=#55AAFF>and</color> (<color=#55FF55>measure</color>() > <color=#B5CEA8>0</color>)</font></indent>\nThis
+    means:\n<indent=2em>- The tile must be <font=\"JetBrainsMono SDF\"><color=#CE9178>\"WhiteOre\"</color></font>\n-
+    AND it must have a valid measurable value</indent>\nResult:\n<indent=2em>If both
+    conditions are <font=\"JetBrainsMono SDF\"><color=#55AAFF>True</color></font>,
+    then <font=\"JetBrainsMono SDF\">condition</font> is <font=\"JetBrainsMono SDF\"><color=#55AAFF>True</color></font>.\nOtherwise,
+    <font=\"JetBrainsMono SDF\">condition</font> is <font=\"JetBrainsMono SDF\"><color=#55AAFF>False</color></font>.</indent>"
+  isImageBig: 0

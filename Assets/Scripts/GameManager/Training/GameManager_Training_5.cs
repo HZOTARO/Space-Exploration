@@ -1,10 +1,6 @@
 public class GameManager_Training_5 : GameManager_Training
 {
-    // Randomized value so we need to use if else
-
-    private int playerValidMines = 0;
-    private int playerValidCollects = 0;
-
+    // Get higher valued ore
     protected override void RegisterLevelSpecificPythonCommands()
     {
         BindReturn("measure", Measure);
@@ -40,7 +36,7 @@ public class GameManager_Training_5 : GameManager_Training
         base.SetLevelObjectives();
         ObjectiveManager.instance.objectives.Add(new LevelObjective()
         {
-            description = "Check both ores in a single run! Mine ores if value > 5, then collect them if value > 10.",
+            description = "Measure both ores and collect the one with the higher value in a single run!",
             type = ObjectiveType.CustomEvent,
             customEventId = "LevelSolved"
         });
@@ -50,7 +46,7 @@ public class GameManager_Training_5 : GameManager_Training
     {
         levelLength = 2;
         levelWidth = 2;
-        cargoSize = 2;
+        cargoSize = 1;
     }
 
     protected override void Start()
@@ -64,73 +60,31 @@ public class GameManager_Training_5 : GameManager_Training
         }
     }
 
-    public override void Mine()
-    {
-        TileObject targetTile = GetTileInFront();
-        if (targetTile != null && targetTile.type == TileType.WhiteOre)
-        {
-            if (targetTile.tileInstance is ValueTile vTile)
-            {
-                if (vTile.value <= 5)
-                {
-                    PrintToDisplay($"<color=red>Error: You mined an ore with value {vTile.value}! Only mine if > 5.</color>");
-                    if (PythonExecutor.instance != null) PythonExecutor.instance.StopRunningCode();
-                    ResetPlayerToStart();
-                    return;
-                }
-
-                CaveTile_WhiteOre ore = targetTile.tileInstance as CaveTile_WhiteOre;
-                if (ore != null && !ore.isMined) playerValidMines++;
-            }
-        }
-        base.Mine();
-    }
-
-    public override void Collect()
-    {
-        TileObject targetTile = GetTileInFront();
-        if (targetTile != null && targetTile.type == TileType.WhiteOre)
-        {
-            if (targetTile.tileInstance is ValueTile vTile)
-            {
-                if (vTile.value <= 10)
-                {
-                    PrintToDisplay($"<color=red>Error: You collected an ore with value {vTile.value}! Only collect if > 10.</color>");
-                    if (PythonExecutor.instance != null) PythonExecutor.instance.StopRunningCode();
-                    ResetPlayerToStart();
-                    return;
-                }
-
-                CaveTile_WhiteOre ore = targetTile.tileInstance as CaveTile_WhiteOre;
-                if (ore != null && ore.isMined && !ore.isCollected) playerValidCollects++;
-            }
-        }
-        base.Collect();
-    }
-
     private void CheckWinCondition()
     {
         TileManager_Training_5 tm = tileManager as TileManager_Training_5;
-        if (tm == null) return;
+        if (tm == null || cargoComponent == null) return;
 
-        if (playerValidMines == tm.expectedMines && playerValidCollects == tm.expectedCollects)
+        if (cargoComponent.levelCargo.Count > 0 && cargoComponent.levelCargo[0].item != null)
         {
-            PrintToDisplay("<color=green>Perfect! You filtered both ores perfectly using logic!</color>");
-            ObjectiveManager.instance.TriggerCustomEvent("LevelSolved");
-        }
-        else
-        {
-            PrintToDisplay($"<color=orange>Incomplete! You missed some valid ores. You needed to mine {tm.expectedMines} and collect {tm.expectedCollects}.</color>");
-            ResetPlayerToStart();
+            int collectedValue = cargoComponent.levelCargo[0].amount;
+
+            if (collectedValue == tm.highestValue)
+            {
+                PrintToDisplay($"<color=green>Success! You collected the highest value ore: {collectedValue}!</color>");
+                ObjectiveManager.instance.TriggerCustomEvent("LevelSolved");
+            }
+            else
+            {
+                PrintToDisplay($"<color=orange>You collected value {collectedValue}, but the better ore was {tm.highestValue}!</color>");
+                ResetPlayerToStart();
+            }
         }
     }
 
     protected override void ResetPlayerToStart()
     {
         base.ResetPlayerToStart();
-
-        playerValidMines = 0;
-        playerValidCollects = 0;
 
         if (tileManager != null) tileManager.GenerateMap();
         if (cargoComponent != null) cargoComponent.cargoSize = cargoSize;

@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88f6fa2b89436164b8e97b17d82dc9a2, type: 3}
+  m_Name: 19 - For Loop
+  m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
+  hintId: tutorial_for
+  isUnlockedByDefault: 0
+  ignoreLock: 1
+  title: For Loop
+  image: {fileID: 0}
+  description: 'A <font="JetBrainsMono SDF"><color=#D96DD3>for</color></font> loop
+    is used to repeat instructions a specific number of times.
+
+
+    A <font="JetBrainsMono
+    SDF"><color=#D96DD3>for</color></font> loop commonly uses <font="JetBrainsMono
+    SDF"><color=#F5F5AB>range</color><color=#D4D4D4>()</color></font> to determine
+    how many times the loop should repeat.
+
+
+    Example:
+
+    <indent=1em><font="JetBrainsMono
+    SDF"><color=#6A9955># Move forward 3 times</color></font>
+
+    <font="JetBrainsMono
+    SDF"><color=#D96DD3>for</color> i <color=#D96DD3>in</color> <color=#F5F5AB>range</color><color=#D4D4D4">(</color><color=#B5CEA8>3</color><color=#D4D4D4">)</color>:</font>
+
+    <indent=2em><font="JetBrainsMono
+    SDF"><color=#33CC66>move_forward</color><color=#D4D4D4>()</color></font></indent></indent>
+
+
+    In
+    this example, <font="JetBrainsMono SDF"><color=#33CC66>move_forward</color><color=#D4D4D4>()</color></font>
+    executes 3 times.'
+  isImageBig: 0

@@ -17,33 +17,34 @@ MonoBehaviour:
   ignoreLock: 1
   title: Measure
   image: {fileID: 0}
-  description: 'The <font="JetBrainsMono SDF"><color=#55FF55>measure()</color></font>
+  description: 'The <font="JetBrainsMono SDF"><color=#55FF55>measure</color>()</font>
     command reads the value of a resource tile in front of you.
 
+    It returns an
+    <font="JetBrainsMono SDF"><color=#4FC3F7>int</color></font> representing the
+    value of the resource.
 
-    It returns
-    a <color=#81C784>number</color> representing the value of the resource.
 
-
-    If
-    a tile cannot be measured, it returns: <font="JetBrainsMono SDF"><color=#7FDFFF>-1</color></font>
+    If a tile cannot be measured, it returns a number:
+    <font="JetBrainsMono SDF"><color=#B5CEA8>-1</color></font>
 
 
     Example:
 
     <font="JetBrainsMono
-    SDF"><color=#7FDFFF>value</color> = <color=#55FF55>measure</color>()</font>
+    SDF">value = <font="JetBrainsMono SDF"><color=#55FF55>measure</color></font>()</font>
 
     <font="JetBrainsMono
-    SDF"><color=#55FF55>print</color>(<color=#7FDFFF>value</color>)</font>
+    SDF"><color=#F5F5AB>print</color>(value)</font>
 
 
-    You
-    can use it with operators to combine values:
+    You can use it with operators
+    to combine values:
 
-    <font="JetBrainsMono SDF"><color=#7FDFFF>value</color>
-    = <color=#55FF55>measure</color>()</font>
+    <font="JetBrainsMono SDF">value = <font="JetBrainsMono
+    SDF"><color=#55FF55>measure</color></font>()</font>
 
-    <font="JetBrainsMono SDF"><color=#7FDFFF>double_value</color>
-    = <color=#55FF55>measure</color>() + <color=#7FDFFF>value</color></font>'
+    <font="JetBrainsMono
+    SDF">double_value = <font="JetBrainsMono SDF"><color=#55FF55>measure</color></font>()
+    + value</font>'
   isImageBig: 0

@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88f6fa2b89436164b8e97b17d82dc9a2, type: 3}
+  m_Name: 15 - Match
+  m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
+  hintId: tutorial_match
+  isUnlockedByDefault: 0
+  ignoreLock: 1
+  title: Match
+  image: {fileID: 0}
+  description: '<font="JetBrainsMono SDF"><color=#D96DD3>match</color></font> is
+    another form of decision making used in programming. It is used to compare one
+    value against multiple possible results. Instead of writing many <font="JetBrainsMono
+    SDF"><color=#D96DD3>if</color></font> and <font="JetBrainsMono SDF"><color=#D96DD3>elif</color></font>
+    statements, we can use <font="JetBrainsMono SDF"><color=#D96DD3>match</color></font>.
+
+
+    Example:
+
+    <indent=1em><font="JetBrainsMono
+    SDF">tile <color=#D4D4D4>=</color> <color=#33CC66>scan</color><color=#D4D4D4>()</color></font>
+
+    <font="JetBrainsMono
+    SDF"><color=#D96DD3>match</color> tile:</font>
+
+    <indent=2em><font="JetBrainsMono
+    SDF"><color=#D96DD3>case</color> <color=#CE9178>"wall"</color>:</font>
+
+    <indent=3em><font="JetBrainsMono
+    SDF"><color=#33CC66>turn_left</color><color=#D4D4D4>()</color></font></indent>
+
+    <font="JetBrainsMono
+    SDF"><color=#D96DD3>case</color> <color=#CE9178>"white_ore"</color>:</font>
+
+    <indent=3em><font="JetBrainsMono
+    SDF"><color=#33CC66>mine</color><color=#D4D4D4>()</color></font></indent>
+
+    <font="JetBrainsMono
+    SDF"><color=#D96DD3>case</color> <color=#CE9178>"empty"</color>:</font>
+
+    <indent=3em><font="JetBrainsMono
+    SDF"><color=#33CC66>move_forward</color><color=#D4D4D4>()</color></font></indent>
+
+    <font="JetBrainsMono
+    SDF"><color=#D96DD3>case</color> <color=#55AAFF>_</color>:</font>
+
+    <indent=3em><font="JetBrainsMono
+    SDF"><color=#F5F5AB>print</color><color=#D4D4D4">(</color><color=#CE9178>"Unknown
+    Tile"</color><color=#D4D4D4">)</color></font></indent></indent></indent>
+
+
+    The
+    <font="JetBrainsMono SDF"><color=#D96DD3>case</color> <color=#55AAFF>_</color></font>
+    block is called the default case. It executes when no other cases match the value.'
+  isImageBig: 0

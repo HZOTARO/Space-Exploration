@@ -17,22 +17,27 @@ MonoBehaviour:
   ignoreLock: 0
   title: Purple Essence
   image: {fileID: 0}
-  description: '<b>Purple Essence</b>
+  description: 'Purple Essence is a strange underground substance commonly found
+    within Purple Veins.
+
+    Because Purple Essence is located underground, the
+    robot may safely move across a Purple Vein without interacting with it.
 
 
-    Purple Essence is a strange underground
-    substance commonly found within Purple Veins.
+    To
+    collect it, you must first use <font="JetBrainsMono SDF"><color=#33CC66>drill</color><color=#D4D4D4>()</color></font>
+    on the Purple Vein to expose the essence beneath the surface.
+
+    After the
+    essence has been exposed, use <font="JetBrainsMono SDF"><color=#33CC66>pump</color><color=#D4D4D4>()</color></font>
+    to extract it for collection.
 
 
-    To collect it, you must first
-    use drill() on the Purple Vein to expose the essence beneath the surface.
+    Example:
 
+    <indent=1em><font="JetBrainsMono
+    SDF"><color=#33CC66>drill</color><color=#D4D4D4>()</color></font>
 
-    After
-    the essence has been exposed, use pump() to extract it for collection.
-
-
-    Because
-    Purple Essence remains underground before extraction, you may safely pass over
-    a Purple Vein without interacting with it if you do not wish to collect it.'
+    <font="JetBrainsMono
+    SDF"><color=#33CC66>pump</color><color=#D4D4D4>()</color></font></indent>'
   isImageBig: 0

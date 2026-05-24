@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e16c12eea6204843a6d7e7405fa6f1e, type: 3}
   m_Name: HC_Syntax
   m_EditorClassIdentifier: UtilityScriptIWrite::HintCollectionSO
-  collectionName: Syntax
+  collectionName: Programming
   hints:
   - {fileID: 11400000, guid: a9fa07da7abb4284a87190a26092158d, type: 2}
-  - {fileID: 11400000, guid: b65d366bdbb8f954ca3b828c87a2bd61, type: 2}
   - {fileID: 11400000, guid: 6ac39bdd6fe2e5a45bed21cc87dcc066, type: 2}
+  - {fileID: 11400000, guid: 027784cd69e30314bb10fe2d2a68fc07, type: 2}
+  - {fileID: 11400000, guid: b65d366bdbb8f954ca3b828c87a2bd61, type: 2}
   - {fileID: 11400000, guid: 54a2b325ab2d09d4fa626381bf7c4d6d, type: 2}
   - {fileID: 11400000, guid: eba4f3402e853404d9ae22e69729477c, type: 2}
   - {fileID: 11400000, guid: 2c338e9180f1f9a459347fc3d2442d38, type: 2}
@@ -25,3 +26,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b4b2a5a9546cb3140a31f6dd34bdf8ec, type: 2}
   - {fileID: 11400000, guid: 5c94df642df1d0247a630970cae6b5a8, type: 2}
   - {fileID: 11400000, guid: 8a5571628f8767a4da8c1942d76341c5, type: 2}
+  - {fileID: 11400000, guid: 17a35a2d00bfc9845a0e8c9de7841230, type: 2}
+  - {fileID: 11400000, guid: 1e963accb2bb75045a3c15c22d832b17, type: 2}
+  - {fileID: 11400000, guid: 6343e42c8b8e8f441b6d1a6f7c648890, type: 2}
+  - {fileID: 11400000, guid: 6b14eaaffa1625946bbd50674d16a9bb, type: 2}
+  - {fileID: 11400000, guid: d27d4d87640968648b331f8f60001846, type: 2}
+  - {fileID: 11400000, guid: 6d13bf6f87f12274287fbc5561b59a29, type: 2}
+  - {fileID: 11400000, guid: 0bee4dbf9d133474db778db7e9b0b965, type: 2}

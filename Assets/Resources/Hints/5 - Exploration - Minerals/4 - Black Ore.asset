@@ -17,10 +17,15 @@ MonoBehaviour:
   ignoreLock: 0
   title: Black Ore
   image: {fileID: 0}
-  description: "<b>Black Ore</b>\n\nBlack Ore is a dangerous mineral that emits malicious
-    energy and must be handled carefully.\n\nBefore mining it, the ore must first
-    be purified using purify().\n\nAfter purification, Black Ore can be processed
-    like other ores by using mine() followed by collect().\n\nMining Black Ore without
-    purifying it first will cause the ore to explode, damaging the robot and reducing
-    the ore\u2019s value by half."
+  description: "Black Ore is a dangerous mineral that emits malicious energy and
+    must be handled carefully.\n\nBefore mining it, the ore must first be purified
+    using <font=\"JetBrainsMono SDF\"><color=#33CC66>purify</color><color=#D4D4D4>()</color></font>.\nAfter
+    purification, Black Ore can be processed like other ores by using <font=\"JetBrainsMono
+    SDF\"><color=#33CC66>mine</color><color=#D4D4D4>()</color></font> followed by
+    <font=\"JetBrainsMono SDF\"><color=#33CC66>collect</color><color=#D4D4D4>()</color></font>.\n\nExample:\n<indent=1em><font=\"JetBrainsMono
+    SDF\"><color=#33CC66>purify</color><color=#D4D4D4>()</color></font>\n<font=\"JetBrainsMono
+    SDF\"><color=#33CC66>mine</color><color=#D4D4D4>()</color></font>\n<font=\"JetBrainsMono
+    SDF\"><color=#33CC66>collect</color><color=#D4D4D4>()</color></font></indent>\n\nMining
+    Black Ore without purifying it first will cause the ore to explode, damaging
+    the robot and reducing the ore\u2019s value by half."
   isImageBig: 0

@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88f6fa2b89436164b8e97b17d82dc9a2, type: 3}
+  m_Name: 24 - Modify List
+  m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
+  hintId: tutorial_instruction tutorial_syntax tutorial_functions tutorial_command
+    tutorial_data_types tutorial_variables tutorial_variable_name tutorial_arithmetic_operators
+    tutorial_augmented_assignment tutorial_comparison_operators tutorial_logical_operators
+    tutorial_if tutorial_indentation tutorial_else tutorial_elif tutorial_match tutorial_match_cont
+    tutorial_nested_statement tutorial_loop tutorial_for tutorial_range tutorial_while
+    tutorial_nested_loop tutorial_list tutorial_modify_list
+  isUnlockedByDefault: 0
+  ignoreLock: 1
+  title: Modifying List
+  image: {fileID: 0}
+  description: "Programs can change existing elements, add new elements, or remove
+    elements from a list.\nTo change a value, use the element index. Example:\n<indent=1em><font=\"JetBrainsMono
+    SDF\">minerals <color=#D4D4D4>=</color> <color=#D4D4D4\">[</color><color=#CE9178>\"WhiteOre\"</color><color=#D4D4D4\">,</color>
+    <color=#CE9178>\"BlackOre\"</color><color=#D4D4D4\">]</color></font>\n<font=\"JetBrainsMono
+    SDF\">minerals<color=#D4D4D4\">[</color><color=#B5CEA8>1</color><color=#D4D4D4\">]</color>
+    <color=#D4D4D4>=</color> <color=#CE9178>\"PurpleEssence\"</color></font></indent>\n\nThe
+    list now contains:\n<indent=2em>- <font=\"JetBrainsMono SDF\"><color=#CE9178>\"WhiteOre\"</color></font></indent>\n<indent=2em>-
+    <font=\"JetBrainsMono SDF\"><color=#CE9178>\"PurpleEssence\"</color></font></indent>\n\nLists
+    can also use special list methods. A method is a function that belongs to a specific
+    object or data type. List methods allow programs to organize and update data
+    dynamically during execution. Methods are called using a dot <font=\"JetBrainsMono
+    SDF\"><color=#D4D4D4>.</color></font> after the variable name.\n\nCommon list
+    methods:\n<indent=2em>- <font=\"JetBrainsMono SDF\">minerals<color=#D4D4D4\">.</color><color=#DBDBAB>append</color><color=#D4D4D4\">(</color><color=#CE9178>\"gear\"</color><color=#D4D4D4\">)</color></font>
+    \u2192 Add a new element to the end of the list</indent>\n<indent=2em>- <font=\"JetBrainsMono
+    SDF\">minerals<color=#D4D4D4\">.</color><color=#DBDBAB>remove</color><color=#D4D4D4\">(</color><color=#CE9178>\"white_ore\"</color><color=#D4D4D4\">)</color></font>
+    \u2192 Remove an element from the list</indent>\n<indent=2em>- <font=\"JetBrainsMono
+    SDF\">minerals<color=#D4D4D4\">.</color><color=#DBDBAB>pop</color><color=#D4D4D4\">(</color><color=#B5CEA8>0</color><color=#D4D4D4\">)</color></font>
+    \u2192 Remove the element at a specific index</indent>"
+  isImageBig: 0

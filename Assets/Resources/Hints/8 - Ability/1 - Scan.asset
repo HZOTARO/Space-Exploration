@@ -17,30 +17,27 @@ MonoBehaviour:
   ignoreLock: 1
   title: Scan
   image: {fileID: 0}
-  description: 'The <font="JetBrainsMono SDF"><color=#55FF55>scan()</color></font>
+  description: 'The <font="JetBrainsMono SDF"><color=#33CC66>scan</color>()</font>
     command detects the tile directly in front of the robot.
 
     <font="JetBrainsMono
-    SDF"><color=#55FF55>scan()</color></font> is a command that returns a result.
-    The result is a <color=#81C784>string</color> value describing what is detected.
+    SDF"><color=#33CC66>scan</color>()</font> is a command that returns a result.
+    The result is a <font="JetBrainsMono SDF"><color=#4FC3F7>str</color></font> (String)
+    value describing what is currently detected.
 
-    
 
-    Some
-    example usage:
+    Examples of common usage:
 
-    You can store the result in a variable:
+    <indent=2em>-
+    Store the result in a variable: <font="JetBrainsMono SDF">tile <color=#D4D4D4>=</color>
+    <color=#33CC66>scan</color>()</font></indent>
 
-    <font="JetBrainsMono
-    SDF">tile = scan()</font>
+    <indent=2em>- Print the result
+    directly: <font="JetBrainsMono SDF"><color=#F5F5AB>print</color>(<color=#33CC66>scan</color>())</font></indent>
 
-    Or print it directly:
 
-    <font="JetBrainsMono
-    SDF">print(scan())</font>
-
-    
-
-    scan() is useful because it allows the
-    robot to gather information about the environment before making decisions.'
+    Using
+    <font="JetBrainsMono SDF"><color=#33CC66>scan</color>()</font> is important because
+    it allows the robot to gather information about the environment before making
+    any decisions.'
   isImageBig: 0

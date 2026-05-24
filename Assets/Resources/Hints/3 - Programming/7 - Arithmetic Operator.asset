@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88f6fa2b89436164b8e97b17d82dc9a2, type: 3}
+  m_Name: 7 - Arithmetic Operator
+  m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
+  hintId: tutorial_arithmetic_operators
+  isUnlockedByDefault: 0
+  ignoreLock: 1
+  title: Arithmetic Operators
+  image: {fileID: 0}
+  description: "Arithmetic Operators are symbols used to perform calculations on
+    values.\n<indent=2em><font=\"JetBrainsMono SDF\"><color=#D4D4D4>+ </color></font>
+    \u2192 addition\n<font=\"JetBrainsMono SDF\"><color=#D4D4D4>- </color></font>
+    \u2192 subtraction\n<font=\"JetBrainsMono SDF\"><color=#D4D4D4>* </color></font>
+    \u2192 multiplication\n<font=\"JetBrainsMono SDF\"><color=#D4D4D4>/ </color></font>
+    \u2192 division\n<font=\"JetBrainsMono SDF\"><color=#D4D4D4>% </color></font>
+    \u2192 modulo (remainder)\n<font=\"JetBrainsMono SDF\"><color=#D4D4D4>//</color></font>
+    \u2192 floor division\n<font=\"JetBrainsMono SDF\"><color=#D4D4D4>**</color></font>
+    \u2192 exponent</indent>\nParentheses can be used to control calculation order:
+    Example: <font=\"JetBrainsMono SDF\"><color=#D4D4D4>(</color><color=#B5CEA8>10</color>
+    <color=#D4D4D4>+</color> <color=#B5CEA8>8</color><color=#D4D4D4>)</color> <color=#D4D4D4>*</color>
+    <color=#B5CEA8>2</color></font>\nThis ensures the addition happens first. Result:
+    <font=\"JetBrainsMono SDF\"><color=#B5CEA8>36</color></font>\nThe <font=\"JetBrainsMono
+    SDF\"><color=#D4D4D4>+</color></font> operator can also combine text (string
+    values). Example: <font=\"JetBrainsMono SDF\"><color=#CE9178>\"Hello \"</color>
+    <color=#D4D4D4>+</color> <color=#CE9178>\"Robot\"</color></font>. Result: <font=\"JetBrainsMono
+    SDF\"><color=#CE9178>\"Hello Robot\"</color></font>"
+  isImageBig: 0

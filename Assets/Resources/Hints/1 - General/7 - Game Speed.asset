@@ -17,15 +17,16 @@ MonoBehaviour:
   ignoreLock: 0
   title: Game Speed
   image: {fileID: 0}
-  description: 'Game Speed controls the animation speed, making robot actions and
-    environmental events play faster or slower.
+  description: '<color=yellow>Game Speed</color> controls the animation speed, making
+    robot actions and environmental events play faster or slower.
 
 
-    You can also change the Step
-    Delay, which determines the amount of time between each instruction during execution.
+    You can also
+    change the <color=yellow>Step Delay</color>, which determines the amount of time
+    between each instruction during execution.
 
 
-    Adjusting
-    Game Speed and Step Delay can help with debugging, understanding program flow,
-    and speeding up repetitive tasks.'
+    Adjusting Game Speed and Step
+    Delay can help with debugging, understanding program flow, and speeding up repetitive
+    tasks.'
   isImageBig: 0

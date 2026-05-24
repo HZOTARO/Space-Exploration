@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88f6fa2b89436164b8e97b17d82dc9a2, type: 3}
+  m_Name: 18 - Loop
+  m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
+  hintId: tutorial_loop
+  isUnlockedByDefault: 0
+  ignoreLock: 1
+  title: Loop
+  image: {fileID: 0}
+  description: "A loop is used to repeat a group of instructions multiple times.
+    Loops are useful when the same task must be performed repeatedly without rewriting
+    the same code again and again.\n\nPrograms execute the instructions inside the
+    loop from top to bottom during each repetition. Each repetition of a loop is
+    called an <color=yellow>iteration</color>.\n\nLike other code blocks, loops also
+    require proper indentation. All instructions inside the loop must use the same
+    indentation level.\n\nExample:\n<indent=1em><font=\"JetBrainsMono SDF\"><color=#6A9955>#
+    Repeat the movement multiple times</color></font>\n<font=\"JetBrainsMono SDF\">LOOP_STATEMENT:
+    <color=#6A9955># Will be explained later</color></font>\n<indent=2em><font=\"JetBrainsMono
+    SDF\"><color=#33CC66>scan</color><color=#D4D4D4>()</color></font>\n<font=\"JetBrainsMono
+    SDF\"><color=#33CC66>move_forward</color><color=#D4D4D4>()</color></font></indent></indent>\n\nDuring
+    an iteration, the program may also control the loop using special statements:\n<indent=2em>-
+    <font=\"JetBrainsMono SDF\"><color=#D96DD3>continue</color></font> \u2192 Skip
+    the remaining instructions in the current iteration and move to the next iteration</indent>\n<indent=2em>-
+    <font=\"JetBrainsMono SDF\"><color=#D96DD3>break</color></font> \u2192 Stop the
+    loop completely</indent>"
+  isImageBig: 0

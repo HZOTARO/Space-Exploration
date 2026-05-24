@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88f6fa2b89436164b8e97b17d82dc9a2, type: 3}
+  m_Name: 23 - List
+  m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
+  hintId: tutorial_list
+  isUnlockedByDefault: 0
+  ignoreLock: 1
+  title: List
+  image: {fileID: 0}
+  description: "A list is a data structure used to store multiple values inside a
+    single variable.\nLists are useful when a program needs to manage a collection
+    of data such as numbers, text, or detected objects.\n\nA list is created using
+    square brackets <font=\"JetBrainsMono SDF\"><color=#D4D4D4\">[ ]</color></font>,
+    with values separated by commas.\n\nExample:\n<indent=1em><font=\"JetBrainsMono
+    SDF\">minerals <color=#D4D4D4>=</color> <color=#D4D4D4\">[</color><color=#CE9178>\"WhiteOre\"</color><color=#D4D4D4\">,</color>
+    <color=#CE9178>\"BlackOre\"</color><color=#D4D4D4\">,</color> <color=#CE9178>\"PurpleEssence\"</color><color=#D4D4D4\">]</color></font></indent>\n\nEach
+    value inside a list is called an element.\nEvery element has an index number
+    that represents its position inside the list.\nList indexes start from <font=\"JetBrainsMono
+    SDF\"><color=#B5CEA8>0</color></font>.\n\nExample:\n<indent=2em>- <font=\"JetBrainsMono
+    SDF\">minerals<color=#D4D4D4\">[</color><color=#B5CEA8>0</color><color=#D4D4D4\">]</color></font>
+    \u2192 <font=\"JetBrainsMono SDF\"><color=#CE9178>\"WhiteOre\"</color></font></indent>\n<indent=2em>-
+    <font=\"JetBrainsMono SDF\">minerals<color=#D4D4D4\">[</color><color=#B5CEA8>1</color><color=#D4D4D4\">]</color></font>
+    \u2192 <font=\"JetBrainsMono SDF\"><color=#CE9178>\"BlackOre\"</color></font></indent>\n<indent=2em>-
+    <font=\"JetBrainsMono SDF\">minerals<color=#D4D4D4\">[</color><color=#B5CEA8>2</color><color=#D4D4D4\">]</color></font>
+    \u2192 <font=\"JetBrainsMono SDF\"><color=#CE9178>\"PurpleEssence\"</color></font></indent>"
+  isImageBig: 0

@@ -17,21 +17,12 @@ MonoBehaviour:
   ignoreLock: 1
   title: White Ore
   image: {fileID: 0}
-  description: '<b>White Ore</b>
-
-
-    White Ore is a simple glowing mineral filled
-    with energy.
-
-
-    Before it can be collected, the ore must first be mined using
-    mine().
-
-
-    After mining, use collect() to store the resource in your Inventory.
-
-
-    Once
-    the ore has been mined, you may also choose to leave it behind and continue exploring
-    without collecting it.'
+  description: "White Ore is a mineral filled with energy. \nThe robot cannot move
+    into a tile occupied by White Ore. Before the robot can pass through the tile
+    or collect the resource, the ore must first be mined.\n\nTo break the ore, use
+    the <font=\"JetBrainsMono SDF\"><color=#33CC66>mine</color><color=#D4D4D4>()</color></font>
+    command.\nAfter mining the ore, use <font=\"JetBrainsMono SDF\"><color=#33CC66>collect</color><color=#D4D4D4>()</color></font>
+    to store the resource inside the Inventory.\n\nExample:\n<indent=1em><font=\"JetBrainsMono
+    SDF\"><color=#33CC66>mine</color><color=#D4D4D4>()</color></font>\n<font=\"JetBrainsMono
+    SDF\"><color=#33CC66>collect</color><color=#D4D4D4>()</color></font></indent>"
   isImageBig: 0
