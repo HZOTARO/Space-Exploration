@@ -17,26 +17,19 @@ MonoBehaviour:
   ignoreLock: 1
   title: Puzzle Levels
   image: {fileID: 21300000, guid: 2ec8a0fac1322fb40a9219c83f665f77, type: 3}
-  description: '<b>Puzzle Levels</b>
+  description: 'Some upgrades and technologies require advanced computing capabilities
+    before they can be unlocked.
 
 
-    Some upgrades and technologies require
-    advanced computing capabilities before they can be unlocked.
+    These capabilities are tested through <color=yellow>Puzzle
+    Levels</color>.
 
 
-    These capabilities
-    are tested through Puzzle Levels.
-
-
-    Puzzle Levels challenge your understanding
-    of programming concepts such as movement, logic, sequencing, and problem solving.
+    Puzzle Levels challenge your understanding of programming
+    concepts such as movement, logic, sequencing, and problem solving.
 
 
     Completing
-    puzzles may unlock new upgrades, systems, technologies, or progression paths
-    required to continue repairing the ship.
-
-
-    Different puzzles may introduce
-    new mechanics and programming concepts as difficulty increases.'
+    puzzles will unlock progression paths required to expand upgrade options and
+    repair the ship.'
   isImageBig: 0

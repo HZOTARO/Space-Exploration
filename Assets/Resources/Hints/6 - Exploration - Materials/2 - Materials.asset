@@ -17,22 +17,16 @@ MonoBehaviour:
   ignoreLock: 1
   title: Materials
   image: {fileID: 21300000, guid: 9d3d0ebb76faa10459ff731032deed57, type: 3}
-  description: '<b>Materials</b>
+  description: 'There are two types of materials that can be collected during exploration:
+    <color=yellow>Gear</color> and <color=yellow>Screw</color>.
 
 
-    There are two types of materials that can
-    be collected during exploration: Gears and Screws.
+    To collect
+    a material, move in front of it and use the <font="JetBrainsMono SDF"><color=#33CC66>collect</color><color=#D4D4D4>()</color></font>
+    command.
 
 
-    To collect a material,
-    move in front of it and use the collect() command.
-
-
-    Some materials are more
-    valuable than others depending on their condition. You can check the material
-    value by using measure() before collecting it.
-
-
-    If a material is not useful
-    or has low value, you can safely ignore it and continue exploring.'
+    Some materials are more valuable than others depending on their
+    condition. You can check the material value by using <font="JetBrainsMono SDF"><color=#33CC66>measure</color><color=#D4D4D4>()</color></font>
+    before collecting it.'
   isImageBig: 0

@@ -20,16 +20,14 @@ MonoBehaviour:
   description: 'The <font="JetBrainsMono SDF"><color=#55FF55>measure</color>()</font>
     command reads the value of a resource tile directly in front of the robot.
 
+
     It
     returns an <font="JetBrainsMono SDF"><color=#4FC3F7>int</color></font> representing
     the value of that resource.
 
-    
+    If a tile cannot be measured, it returns: <font="JetBrainsMono
+    SDF"><color=#B5CEA8>-1</color></font>
 
-    If a tile cannot be measured, it returns:
-    <font="JetBrainsMono SDF"><color=#B5CEA8>-1</color></font>
-
-    
 
     Example:
 
@@ -39,10 +37,9 @@ MonoBehaviour:
     <indent=1em><font="JetBrainsMono
     SDF"><color=#F5F5AB>print</color>(value)</font></indent>
 
-    
 
-    You can
-    also use it with operators to combine or compare values:
+    You can also use
+    it with operators to combine or compare values:
 
     <indent=1em><font="JetBrainsMono
     SDF">value = <color=#55FF55>measure</color>()</font></indent>

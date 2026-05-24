@@ -17,23 +17,15 @@ MonoBehaviour:
   ignoreLock: 1
   title: Maze Puzzle
   image: {fileID: 21300000, guid: 9517dc5ae319b944aa18c771df4a47b3, type: 3}
-  description: '<b>Maze Puzzle</b>
-
-
-    The objective of a Maze Puzzle is to guide
-    the robot through a maze and reach the Goal Tile.
+  description: 'The objective of a Maze Puzzle is to guide the robot through a maze
+    and reach the <color=green>Goal Tile</color>.
 
 
     You must write a program
-    that correctly navigates the robot around walls, obstacles, and other hazards
-    within the maze.
+    that correctly navigates the robot around walls within the maze.
 
 
-    Careful planning and proper instruction order are important,
-    as incorrect movement may cause the robot to become stuck or take unnecessary
-    paths.
-
-
-    Maze Puzzles are designed to test movement control, sequencing,
-    and logical problem solving.'
+    Careful
+    planning and proper instruction order are important, as incorrect movement may
+    cause the robot to become stuck or take unnecessary paths.'
   isImageBig: 0

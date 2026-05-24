@@ -1,5 +1,5 @@
 {
-    "lastSavedTime": "24-05-2026 20:22",
+    "lastSavedTime": "24-05-2026 23:26",
     "inventory": [],
     "unlockedUpgrades": [],
     "stepDelay": 0.20000000298023225,
@@ -7,12 +7,52 @@
     "levelCompleted": [],
     "hints": [
         {
-            "id": "tutorial_puzzle",
+            "id": "tutorial_welcome",
             "hasAppeared": true,
             "isUnlocked": true
         },
         {
-            "id": "tutorial_maze_puzzle",
+            "id": "tutorial_hub",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_training",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_training_1",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_instruction",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_code_editor",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_syntax",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_functions",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_command",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_movement",
             "hasAppeared": true,
             "isUnlocked": true
         }

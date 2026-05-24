@@ -1260,11 +1260,16 @@ MonoBehaviour:
   healthUpgrade: {fileID: 11400000, guid: ae3488b8fd4e60540b9aa5962265df86, type: 2}
   playerGridLoc: {x: 0, y: 0}
   playerFacing: 0
-  availableConsumables: []
   allowedSyntaxNodes: []
   allowedFunctions: []
-  hintCollection: {fileID: 0}
-  hintList: []
+  hintCollection: {fileID: 11400000, guid: 44b8ff829c00e664da9d89ba1c2f581d, type: 2}
+  hintList:
+  - {fileID: 11400000, guid: 16e53092e534d814fb1b9836c2fe41f3, type: 2}
+  - {fileID: 11400000, guid: ac4ad61fcc5997e489d183953d652a36, type: 2}
+  - {fileID: 11400000, guid: 2b5ffb1eb061a9c44921d055cec35e16, type: 2}
+  - {fileID: 11400000, guid: 6a68800457ab8ee4fba5e49a0b0e887f, type: 2}
+  - {fileID: 11400000, guid: db6375f889ff50c4bbbb97625d358cab, type: 2}
+  - {fileID: 11400000, guid: 8d2d3962c34ec9b4d9bfbbe0353b7a72, type: 2}
 --- !u!4 &2140633901
 Transform:
   m_ObjectHideFlags: 0

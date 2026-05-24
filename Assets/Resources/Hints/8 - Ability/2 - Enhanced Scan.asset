@@ -17,5 +17,23 @@ MonoBehaviour:
   ignoreLock: 0
   title: Enhanced Scan
   image: {fileID: 21300000, guid: 36a9e58a46f0b6f48880ebf33709c385, type: 3}
-  description: 
+  description: 'The <font="JetBrainsMono SDF"><color=#33CC66>enhanced_scan</color><color=#D4D4D4>()</color></font>
+    command is an improved version of <font="JetBrainsMono SDF"><color=#33CC66>scan</color><color=#D4D4D4>()</color></font>.
+
+
+    It
+    extends its range in front of the robot until it hits a tile that is not a floor.
+    This means the robot can detect objects that are further away without needing
+    to move step by step.
+
+
+    Example:
+
+    <indent=1em><font="JetBrainsMono SDF">result
+    <color=#D4D4D4>=</color> <font="JetBrainsMono SDF"><color=#33CC66>enhanced_scan</color><color=#D4D4D4>()</color></font></font></indent>
+
+
+    The
+    returned value can be used like a normal scan result to decide what action the
+    robot should take next.</indent>'
   isImageBig: 0

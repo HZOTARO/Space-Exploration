@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
   hintId: tutorial_black_ore
   isUnlockedByDefault: 0
-  ignoreLock: 0
+  ignoreLock: 1
   title: Black Ore
   image: {fileID: 21300000, guid: bb82760e35cfbf84a87ad60e3596b28d, type: 3}
   description: "Black Ore is a dangerous mineral that emits malicious energy and
