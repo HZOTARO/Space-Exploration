@@ -52,6 +52,8 @@ public class GameManager_Training_6 : GameManager_Training
         {
             PythonExecutor.instance.OnExecutionStarted += RandomizeUnstableEnvironment;
             PythonExecutor.instance.OnExecutionFinishedBefore += CheckWinCondition;
+            PythonExecutor.instance.OnRuntimeError += HandleRuntimeError;
+            PythonExecutor.instance.OnExecutionAborted += HandleAbort;
         }
     }
 
@@ -201,6 +203,8 @@ public class GameManager_Training_6 : GameManager_Training
         {
             PythonExecutor.instance.OnExecutionStarted -= RandomizeUnstableEnvironment;
             PythonExecutor.instance.OnExecutionFinishedBefore -= CheckWinCondition;
+            PythonExecutor.instance.OnRuntimeError -= HandleRuntimeError;
+            PythonExecutor.instance.OnExecutionAborted -= HandleAbort;
         }
     }
 }

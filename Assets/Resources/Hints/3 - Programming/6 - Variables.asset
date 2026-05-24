@@ -23,58 +23,25 @@ MonoBehaviour:
     allow you to store data such as numbers, text, or boolean values and reuse them
     later in your program.
 
+    
 
-    Rules for naming variables:
+    The = symbol is called assignment.
 
-    <indent=2em>- Must
-    start with a letter or underscore ( _ )</indent>
+    It
+    is used to store a value inside a variable.
 
-    <indent=2em>- Cannot start
-    with a number</indent>
-
-    <indent=2em>- Can only contain letters, numbers,
-    and underscores</indent>
-
-    <indent=2em>- No spaces allowed</indent>
-
-    <indent=2em>-
-    Should not use reserved keywords</indent>
-
-
-    Correct naming examples:
-
-    <font="JetBrainsMono
-    SDF"><color=#7FDFFF>energy_level</color>, <color=#7FDFFF>currentTile</color>,
-    <color=#7FDFFF>is_blocked</color></font>
-
-
-    Wrong naming examples:
-
-    <font="JetBrainsMono
-    SDF"><color=#FF6B6B>1energy</color></font> (starts with a number),
-
-    <font="JetBrainsMono
-    SDF"><color=#FF6B6B>current tile</color></font> (contains space),
-
-    <font="JetBrainsMono
-    SDF"><color=#FF6B6B>class</color></font> (reserved keyword)
-
-
-    The <font="JetBrainsMono
-    SDF"><color=#7FDFFF>=</color></font> symbol is called assignment.
-
-    It is
-    used to store a value inside a variable.
-
+    
 
     Example:
 
+    
+
     <font="JetBrainsMono
-    SDF"><color=#7FDFFF>energy</color> = 10</font>
+    SDF">energy = <color=#B5CEA8>10</color></font>
 
-    <font="JetBrainsMono SDF"><color=#7FDFFF>tile</color>
-    = "wall"</font>
+    <font="JetBrainsMono SDF">tile
+    = <color=#CE9178>"wall"</color></font>
 
-    <font="JetBrainsMono SDF"><color=#7FDFFF>isBlocked</color>
-    = True</font>'
+    <font="JetBrainsMono SDF">isBlocked
+    = <color=#55AAFF>True</color></font>'
   isImageBig: 0

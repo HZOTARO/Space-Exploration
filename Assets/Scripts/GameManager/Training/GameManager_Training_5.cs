@@ -59,6 +59,8 @@ public class GameManager_Training_5 : GameManager_Training
         if (PythonExecutor.instance != null)
         {
             PythonExecutor.instance.OnExecutionFinishedBefore += CheckWinCondition;
+            PythonExecutor.instance.OnRuntimeError += HandleRuntimeError;
+            PythonExecutor.instance.OnExecutionAborted += HandleAbort;
         }
     }
 
@@ -140,6 +142,8 @@ public class GameManager_Training_5 : GameManager_Training
         if (PythonExecutor.instance != null)
         {
             PythonExecutor.instance.OnExecutionFinishedBefore -= CheckWinCondition;
+            PythonExecutor.instance.OnRuntimeError -= HandleRuntimeError;
+            PythonExecutor.instance.OnExecutionAborted -= HandleAbort;
         }
     }
 }

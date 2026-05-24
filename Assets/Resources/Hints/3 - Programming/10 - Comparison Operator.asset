@@ -17,17 +17,14 @@ MonoBehaviour:
   ignoreLock: 1
   title: Comparison Operators
   image: {fileID: 0}
-  description: "Comparison operators are used to compare two values.\nThey return
-    a Boolean value: <color=#E57373>True</color> or <color=#E57373>False</color>.\n\n<font=\"JetBrainsMono
-    SDF\"><color=#7FDFFF>==</color></font> \u2192 equal to\n<font=\"JetBrainsMono
-    SDF\"><color=#7FDFFF>!=</color></font> \u2192 not equal to\n<font=\"JetBrainsMono
-    SDF\"><color=#7FDFFF>></color></font> \u2192 greater than\n<font=\"JetBrainsMono
-    SDF\"><color=#7FDFFF><</color></font> \u2192 less than\n<font=\"JetBrainsMono
-    SDF\"><color=#7FDFFF>>=</color></font> \u2192 greater or equal\n<font=\"JetBrainsMono
-    SDF\"><color=#7FDFFF><=</color></font> \u2192 less or equal\n\nExample:\n<font=\"JetBrainsMono
-    SDF\"><color=#7FDFFF>condition</color> = <color=#55FF55>scan</color>() <color=#7FDFFF>==</color>
-    <color=#FF6EC7>\"WhiteOre\"</color></font>\n\nIf the tile in front is \"WhiteOre\",
-    then:\nthe value of <font=\"JetBrainsMono SDF\"><color=#7FDFFF>condition</color></font>
-    is <color=#E57373>True</color>.\nOtherwise:\nthe value of <font=\"JetBrainsMono
-    SDF\"><color=#7FDFFF>condition</color></font> is <color=#E57373>False</color>."
+  description: "Comparison operators are used to compare two values.\r\nThey return
+    a Boolean value: <color=#55AAFF>True</color> or <color=#55AAFF>False</color>.\r\n\n<font=\"JetBrainsMono
+    SDF\">==</font> \u2192 equal to\r\n<font=\"JetBrainsMono SDF\">!=</font> \u2192
+    not equal to\r\n<font=\"JetBrainsMono SDF\">> </font> \u2192 greater than\r\n<font=\"JetBrainsMono
+    SDF\">< </font> \u2192 less than\r\n<font=\"JetBrainsMono SDF\">>=</font> \u2192
+    greater or equal\r\n<font=\"JetBrainsMono SDF\"><=</font> \u2192 less or equal\r\n\nExample:\r\n<font=\"JetBrainsMono
+    SDF\">condition = <color=#55FF55>scan</color>() == <color=#CE9178>\"WhiteOre\"</color></font>\r\n\nIf
+    the tile in front is <font=\"JetBrainsMono SDF\"><color=#CE9178>\"WhiteOre\"</color></font>,
+    then:\r\nthe value of <font=\"JetBrainsMono SDF\">condition</font> is <color=#55AAFF>True</color>.\r\nOtherwise:\r\nthe
+    value of <font=\"JetBrainsMono SDF\">condition</font> is <color=#55AAFF>False</color>."
   isImageBig: 0

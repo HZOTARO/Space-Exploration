@@ -17,16 +17,41 @@ MonoBehaviour:
   ignoreLock: 1
   title: If
   image: {fileID: 0}
-  description: "The <font=\"JetBrainsMono SDF\"><color=#7FDFFF>if</color></font>
-    statement is used to make decisions based on conditions.\n\nFormat:\n<font=\"JetBrainsMono
-    SDF\"><color=#7FDFFF>if</color> (condition):</font>\n<indent=2em>code</indent>\n\nIf
-    the condition is <color=#E57373>True</color>, the code inside will be executed. 
-    \nIf it is <color=#E57373>False</color>, it will be skipped.\n\nExample:\n<font=\"JetBrainsMono
-    SDF\"><color=#7FDFFF>if</color> <color=#7FDFFF>condition</color>:</font>\n<indent=2em><font=\"JetBrainsMono
-    SDF\"><color=#55FF55>mine</color>()</font></indent>\n\nYou can also use conditions
-    directly:\n<font=\"JetBrainsMono SDF\"><color=#7FDFFF>if</color> <color=#55FF55>scan</color>()
-    <color=#7FDFFF>==</color> <color=#FF6EC7>\"WhiteOre\"</color>:</font>\n<indent=2em><font=\"JetBrainsMono
-    SDF\"><color=#55FF55>mine</color>()</font></indent>\n\nNote:\nIndentation is
-    required.  \nAll code inside an <font=\"JetBrainsMono SDF\"><color=#7FDFFF>if</color></font>
-    statement must use the same indentation level."
+  description: 'The <font="JetBrainsMono SDF"><color=#D291FF>if</color></font> statement
+    is used to make decisions based on conditions.
+
+    
+
+    Format:
+
+    <font="JetBrainsMono
+    SDF"><color=#D291FF>if</color> condition:</font>
+
+    <indent=2em><font="JetBrainsMono
+    SDF">code</font></indent>
+
+
+    If the condition is <font="JetBrainsMono SDF"><color=#55AAFF>True</color></font>,
+    the code inside will be executed.
+
+    If it is <font="JetBrainsMono SDF"><color=#55AAFF>False</color></font>,
+    it will be skipped.
+
+
+    Example:
+
+    <font="JetBrainsMono SDF"><color=#D291FF>if</color>
+    condition:</font>
+
+    <indent=2em><font="JetBrainsMono SDF"><color=#55FF55>mine</color>()</font></indent>
+
+
+    You
+    can also use conditions directly:
+
+    <font="JetBrainsMono SDF"><color=#D291FF>if</color>
+    <color=#55FF55>scan</color>() == <color=#CE9178>"WhiteOre"</color>:</font>
+
+    <indent=2em><font="JetBrainsMono
+    SDF"><color=#55FF55>mine</color>()</font></indent>'
   isImageBig: 0

@@ -18,20 +18,20 @@ MonoBehaviour:
   title: Arithmetic Operators
   image: {fileID: 0}
   description: "Arithmetic Operators are symbols used to perform calculations on
-    values.\n\nCommon arithmetic operators:\n<font=\"JetBrainsMono SDF\"><color=#7FDFFF>+</color></font>
-    \u2192 addition\n<font=\"JetBrainsMono SDF\"><color=#7FDFFF>-</color></font>
-    \u2192 subtraction\n<font=\"JetBrainsMono SDF\"><color=#7FDFFF>*</color></font>
-    \u2192 multiplication\n<font=\"JetBrainsMono SDF\"><color=#7FDFFF>/</color></font>
-    \u2192 division\n<font=\"JetBrainsMono SDF\"><color=#7FDFFF>%</color></font>
-    \u2192 modulo (remainder)\n<font=\"JetBrainsMono SDF\"><color=#7FDFFF>//</color></font>
-    \u2192 floor division\n<font=\"JetBrainsMono SDF\"><color=#7FDFFF>**</color></font>
-    \u2192 exponent\n\nParentheses can be used to control calculation order:\n<font=\"JetBrainsMono
-    SDF\"><color=#7FDFFF>(</color> <color=#7FDFFF>10</color> <color=#7FDFFF>+</color>
-    <color=#7FDFFF>8</color> <color=#7FDFFF>)</color> <color=#7FDFFF>*</color> <color=#7FDFFF>2</color></font>\nThis
-    ensures the addition happens first.\n\nExample:\n<font=\"JetBrainsMono SDF\"><color=#7FDFFF>a</color>
-    = (<color=#7FDFFF>10</color> <color=#7FDFFF>+</color> <color=#7FDFFF>8</color>)
-    <color=#7FDFFF>*</color> <color=#7FDFFF>2</color></font>\nResult: <color=#7FDFFF>36</color>\n\nThe
-    <font=\"JetBrainsMono SDF\"><color=#7FDFFF>+</color></font> operator can also
-    combine text (string values).\nExample:\n<font=\"JetBrainsMono SDF\"><color=#FF6EC7>\"Hello
-    \"</color> <color=#7FDFFF>+</color> <color=#FF6EC7>\"Robot\"</color></font>"
+    values.\r\n\nCommon arithmetic operators:\r\n<font=\"JetBrainsMono SDF\"><color=#D4D4D4>+
+    </color></font> \u2192 addition\r\n<font=\"JetBrainsMono SDF\"><color=#D4D4D4>-
+    </color></font> \u2192 subtraction\r\n<font=\"JetBrainsMono SDF\"><color=#D4D4D4>*
+    </color></font> \u2192 multiplication\r\n<font=\"JetBrainsMono SDF\"><color=#D4D4D4>/
+    </color></font> \u2192 division\r\n<font=\"JetBrainsMono SDF\"><color=#D4D4D4>%
+    </color></font> \u2192 modulo (remainder)\r\n<font=\"JetBrainsMono SDF\"><color=#D4D4D4>//</color></font>
+    \u2192 floor division\r\n<font=\"JetBrainsMono SDF\"><color=#D4D4D4>**</color></font>
+    \u2192 exponent\r\n\nParentheses can be used to control calculation order: Example:
+    <font=\"JetBrainsMono SDF\"><color=#D4D4D4>(</color><color=#B5CEA8>10</color>
+    <color=#D4D4D4>+</color> <color=#B5CEA8>8</color><color=#D4D4D4>)</color> <color=#D4D4D4>*</color>
+    <color=#B5CEA8>2</color></font>\r\nThis ensures the addition happens first. Result:
+    <font=\"JetBrainsMono SDF\"><color=#B5CEA8>36</color></font>\r\n\nThe <font=\"JetBrainsMono
+    SDF\"><color=#D4D4D4>+</color></font> operator can also combine text (string
+    values). Example: <font=\"JetBrainsMono SDF\"><color=#CE9178>\"Hello \"</color>
+    <color=#D4D4D4>+</color> <color=#CE9178>\"Robot\"</color></font>\nResult: <font=\"JetBrainsMono
+    SDF\"><color=#CE9178>\"Hello Robot\"</color></font>"
   isImageBig: 0

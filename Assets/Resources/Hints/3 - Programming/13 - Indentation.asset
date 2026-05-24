@@ -12,10 +12,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88f6fa2b89436164b8e97b17d82dc9a2, type: 3}
   m_Name: 13 - Indentation
   m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
-  hintId: 
+  hintId: tutorial_indentation
   isUnlockedByDefault: 0
   ignoreLock: 1
-  title: 
+  title: Indentation
   image: {fileID: 0}
-  description: 
+  description: 'Indentation is required for blocks of code.
+
+
+    All code inside
+    an <font="JetBrainsMono SDF"><color=#D291FF>if</color></font> statement must
+    use the same indentation level.
+
+
+    Example:
+
+    <font="JetBrainsMono SDF"><color=#D291FF>if</color>
+    condition:</font>
+
+    <indent=2em><font="JetBrainsMono SDF"><color=#55FF55>mine</color>()</font></indent>
+
+    <indent=2em><font="JetBrainsMono
+    SDF"><color=#55FF55>move</color>()</font></indent>
+
+
+    Incorrect indentation
+    can cause errors or unexpected behavior.'
   isImageBig: 0

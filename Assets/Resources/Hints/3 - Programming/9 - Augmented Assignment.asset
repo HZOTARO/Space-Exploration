@@ -19,15 +19,12 @@ MonoBehaviour:
   image: {fileID: 0}
   description: "Augmented assignment is a shortcut for updating variable values using
     operators.\nIt combines an operation and assignment into one step.\n\nCommon
-    forms:\n<font=\"JetBrainsMono SDF\"><color=#7FDFFF>+=</color></font> \u2192 add
-    and assign\n<font=\"JetBrainsMono SDF\"><color=#7FDFFF>-=</color></font> \u2192
-    subtract and assign\n<font=\"JetBrainsMono SDF\"><color=#7FDFFF>*=</color></font>
-    \u2192 multiply and assign\n<font=\"JetBrainsMono SDF\"><color=#7FDFFF>/=</color></font>
-    \u2192 divide and assign\n<font=\"JetBrainsMono SDF\"><color=#7FDFFF>//=</color></font>
-    \u2192 floor divide and assign\n<font=\"JetBrainsMono SDF\"><color=#7FDFFF>%=</color></font>
-    \u2192 modulo and assign\n<font=\"JetBrainsMono SDF\"><color=#7FDFFF>**=</color></font>
-    \u2192 exponent and assign\n\nExample:\n<font=\"JetBrainsMono SDF\"><color=#7FDFFF>energy</color>
-    = <color=#7FDFFF>10</color></font>\n<font=\"JetBrainsMono SDF\"><color=#7FDFFF>energy</color>
-    += <color=#7FDFFF>5</color></font>\n\nEquivalent form:\n<font=\"JetBrainsMono
-    SDF\"><color=#7FDFFF>energy</color> = <color=#7FDFFF>energy</color> + <color=#7FDFFF>5</color></font>"
+    forms:\n<font=\"JetBrainsMono SDF\">+= </font> \u2192 add and assign\n<font=\"JetBrainsMono
+    SDF\">-= </font> \u2192 subtract and assign\n<font=\"JetBrainsMono SDF\">*= </font>
+    \u2192 multiply and assign\n<font=\"JetBrainsMono SDF\">/= </font> \u2192 divide
+    and assign\n<font=\"JetBrainsMono SDF\">%= </font> \u2192 modulo and assign\n<font=\"JetBrainsMono
+    SDF\">//=</font> \u2192 floor divide and assign\n<font=\"JetBrainsMono SDF\">**=</font>
+    \u2192 exponent and assign\n\nExample:\n<font=\"JetBrainsMono SDF\">energy =
+    <color=#B5CEA8>10</color></font>\n<font=\"JetBrainsMono SDF\">energy += <color=#B5CEA8>5</color></font>\n\nEquivalent
+    form:\n<font=\"JetBrainsMono SDF\">energy = energy + <color=#B5CEA8>5</color></font>"
   isImageBig: 0

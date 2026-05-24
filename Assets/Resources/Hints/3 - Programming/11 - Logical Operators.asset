@@ -17,17 +17,20 @@ MonoBehaviour:
   ignoreLock: 1
   title: Logical Operators
   image: {fileID: 0}
-  description: "Logical operators are used to combine or modify Boolean values.\nThey
-    work with values that are either <color=#E57373>True</color> or <color=#E57373>False</color>.\n\n<font=\"JetBrainsMono
-    SDF\"><color=#7FDFFF>and</color></font> \u2192 returns True if both conditions
-    are True\n<font=\"JetBrainsMono SDF\"><color=#7FDFFF>or</color></font> \u2192
-    returns True if at least one condition is True\n<font=\"JetBrainsMono SDF\"><color=#7FDFFF>not</color></font>
-    \u2192 inverts a Boolean value\n\nExample:\n<font=\"JetBrainsMono SDF\"><color=#7FDFFF>condition</color>
-    = (<color=#55FF55>scan</color>() <color=#7FDFFF>==</color> <color=#FF6EC7>\"WhiteOre\"</color>)
-    <color=#7FDFFF>and</color> (<color=#55FF55>measure</color>() <color=#7FDFFF>></color>
-    <color=#7FDFFF>0</color>)</font>\n\nThis means:\n- The tile must be \"WhiteOre\"\n-
-    AND it must have a valid measurable value\n\nResult:\nIf both conditions are
-    True, then <font=\"JetBrainsMono SDF\"><color=#7FDFFF>condition</color></font>
-    is <color=#E57373>True</color>.  \nOtherwise, <font=\"JetBrainsMono SDF\"><color=#7FDFFF>condition</color></font>
-    is <color=#E57373>False</color>."
+  description: "Logical operators are used to combine or modify Boolean values.\r\nThey
+    work with values that are either <font=\"JetBrainsMono SDF\"><color=#55AAFF>True</color></font>
+    or <font=\"JetBrainsMono SDF\"><color=#55AAFF>False</color></font>.\r\n\n<font=\"JetBrainsMono
+    SDF\"><color=#55AAFF>and</color></font> \u2192 returns <font=\"JetBrainsMono
+    SDF\"><color=#55AAFF>True</color></font> if both conditions are <font=\"JetBrainsMono
+    SDF\"><color=#55AAFF>True</color></font>\r\n<font=\"JetBrainsMono SDF\"><color=#55AAFF>or
+    </color></font> \u2192 returns <font=\"JetBrainsMono SDF\"><color=#55AAFF>True</color></font>
+    if at least one condition is <font=\"JetBrainsMono SDF\"><color=#55AAFF>True</color></font>\r\n<font=\"JetBrainsMono
+    SDF\"><color=#55AAFF>not</color></font> \u2192 inverts a Boolean value\r\n\nExample:\r\n<font=\"JetBrainsMono
+    SDF\">condition = (<color=#55FF55>scan</color>() == <color=#CE9178>\"WhiteOre\"</color>)
+    <color=#55AAFF>and</color> (<color=#55FF55>measure</color>() > <color=#B5CEA8>0</color>)</font>\r\n\nThis
+    means:\r\n<indent=2em>\u2022 The tile must be <font=\"JetBrainsMono SDF\"><color=#CE9178>\"WhiteOre\"</color></font></indent>\r\n<indent=2em>\u2022
+    AND it must have a valid measurable value</indent>\r\n\nResult:\r\nIf both conditions
+    are <font=\"JetBrainsMono SDF\"><color=#55AAFF>True</color></font>, then <font=\"JetBrainsMono
+    SDF\">condition</font> is <font=\"JetBrainsMono SDF\"><color=#55AAFF>True</color></font>.\r\nOtherwise,
+    <font=\"JetBrainsMono SDF\">condition</font> is <font=\"JetBrainsMono SDF\"><color=#55AAFF>False</color></font>."
   isImageBig: 0
