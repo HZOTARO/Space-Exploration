@@ -217,19 +217,34 @@ public class GameManager : MonoBehaviour
 
     public string TranslatePythonError(string rawError)
     {
-        if (!rawError.Contains("Syntax '") || !rawError.Contains("locked")) return rawError;
-
-        int startIndex = rawError.IndexOf("Syntax '") + 8;
-        int endIndex = rawError.IndexOf("'", startIndex);
-
-        if (startIndex >= 8 && endIndex > startIndex)
+        if (rawError.Contains("Syntax '"))
         {
-            string nodeName = rawError.Substring(startIndex, endIndex - startIndex);
+            int startIndex = rawError.IndexOf("Syntax '") + 8;
+            int endIndex = rawError.IndexOf("'", startIndex);
 
-            if (customLevelErrors.ContainsKey(nodeName)) return customLevelErrors[nodeName];
-            if (ErrorDictionary.ErrorTranslations.ContainsKey(nodeName)) return ErrorDictionary.ErrorTranslations[nodeName];
+            if (startIndex >= 8 && endIndex > startIndex)
+            {
+                string nodeName = rawError.Substring(startIndex, endIndex - startIndex);
 
-            return $"The '{nodeName}' syntax is not allowed!";
+                if (customLevelErrors != null && customLevelErrors.ContainsKey(nodeName))
+                    return customLevelErrors[nodeName];
+
+                if (ErrorDictionary.ErrorTranslations.ContainsKey(nodeName))
+                    return ErrorDictionary.ErrorTranslations[nodeName];
+
+                return $"The '{nodeName}' syntax is not allowed!";
+            }
+        }
+
+        if (customLevelErrors != null)
+        {
+            foreach (var kvp in customLevelErrors)
+            {
+                if (rawError.Contains(kvp.Key))
+                {
+                    return kvp.Value;
+                }
+            }
         }
 
         return rawError;
