@@ -17,5 +17,8 @@ MonoBehaviour:
   ignoreLock: 0
   title: Shoot
   image: {fileID: 21300000, guid: 3b79c47b7f0cd3247bcd6a06852da9fd, type: 3}
-  description: 
+  description: "The <font=\"JetBrainsMono SDF\"><color=#33CC66>shoot</color><color=#D4D4D4>()</color></font>
+    command uses the robot\u2019s handcannon to fire in a straight line.\n\nIt can
+    be used to eliminate Cave Monsters.\n\nThe shot travels forward until it hits
+    an Cave Monster or a Wall."
   isImageBig: 0
