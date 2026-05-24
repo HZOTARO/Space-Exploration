@@ -16,6 +16,6 @@ MonoBehaviour:
   isUnlockedByDefault: 0
   ignoreLock: 0
   title: Enhanced Scan
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 36a9e58a46f0b6f48880ebf33709c385, type: 3}
   description: 
   isImageBig: 0

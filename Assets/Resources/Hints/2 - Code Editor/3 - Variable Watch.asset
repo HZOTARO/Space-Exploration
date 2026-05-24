@@ -16,28 +16,24 @@ MonoBehaviour:
   isUnlockedByDefault: 0
   ignoreLock: 1
   title: Variable Watch
-  image: {fileID: 0}
-  description: '<b>Variable Watch</b>
+  image: {fileID: 21300000, guid: 8ffdce728a699d64babe4f03b7e8854c, type: 3}
+  description: 'Variable Watch allows you to monitor the values of variables during
+    program execution.
 
 
-    Variable Watch allows you to monitor
-    the values of variables during program execution.
+    You can toggle the Variable Watch panel using the Variable
+    Watch button.
 
 
-    You can toggle the Variable
-    Watch panel using the Variable Watch button.
+    To configure tracked variables, open the Variable Panel.
+    From there, you can choose which variables should be displayed while the program
+    is running.
 
 
-    To configure tracked variables,
-    open the Variable Panel. From there, you can choose which variables should be
-    displayed while the program is running.
+    The watched values will update during execution, making it
+    useful for debugging, understanding program flow, and tracking how data changes
+    over time.
 
 
-    The watched values will update
-    during execution, making it useful for debugging, understanding program flow,
-    and tracking how data changes over time.
-
-
-    You can track a maximum of 5 variables
-    at the same time.'
+    You can track a maximum of 5 variables at the same time.'
   isImageBig: 0

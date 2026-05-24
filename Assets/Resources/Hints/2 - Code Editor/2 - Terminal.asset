@@ -16,7 +16,7 @@ MonoBehaviour:
   isUnlockedByDefault: 0
   ignoreLock: 1
   title: Terminal
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 00cca87d371c1c14abd198174a5e4ea2, type: 3}
   description: '<color=yellow><b>Print</b></color>
 
     The <font="JetBrainsMono

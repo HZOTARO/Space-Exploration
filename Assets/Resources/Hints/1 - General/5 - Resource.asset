@@ -16,7 +16,7 @@ MonoBehaviour:
   isUnlockedByDefault: 0
   ignoreLock: 1
   title: Resources
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: e454c362c763be748ace4c8a686a9bca, type: 3}
   description: "There are five types of resources that can be collected during exploration.\n\r\n<indent=1em>\u2022
     Mineral resources:</indent>\r\n<indent=2em>- <color=#DDDDDD>White Ore</color></indent>\r\n<indent=2em>-
     <color=#C86BFF>Purple Essence</color></indent>\r\n<indent=2em>- <color=#888888>Black

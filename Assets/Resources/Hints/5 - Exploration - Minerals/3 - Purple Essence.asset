@@ -16,7 +16,7 @@ MonoBehaviour:
   isUnlockedByDefault: 0
   ignoreLock: 0
   title: Purple Essence
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 9b3429272c5854f45b9024cf40a34935, type: 3}
   description: 'Purple Essence is a strange underground substance commonly found
     within Purple Veins.
 

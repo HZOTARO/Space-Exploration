@@ -16,7 +16,7 @@ MonoBehaviour:
   isUnlockedByDefault: 0
   ignoreLock: 1
   title: Materials
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 9d3d0ebb76faa10459ff731032deed57, type: 3}
   description: '<b>Materials</b>
 
 

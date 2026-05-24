@@ -12,8 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88f6fa2b89436164b8e97b17d82dc9a2, type: 3}
   m_Name: 8 - Training 8
   m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
-  hintId: training 8
-  title: training 8
-  hintBlocks: []
+  hintId: tutorial_training_8
   isUnlockedByDefault: 0
   ignoreLock: 1
+  title: Training - While Loop
+  image: {fileID: 0}
+  description: 'Now we will introduce another form of loop. In the previous simulation,
+    we used a <font="JetBrainsMono SDF"><color=#D96DD3>for</color></font> loop. A
+    <font="JetBrainsMono SDF"><color=#D96DD3>for</color></font> loop is usually used
+    when we know exactly how many times an action needs to repeat.
+
+    
+
+    Now
+    we will try using a <font="JetBrainsMono SDF"><color=#D96DD3>while</color></font>
+    loop. A <font="JetBrainsMono SDF"><color=#D96DD3>while</color></font> loop is
+    usually used when we want an action to repeat as long as a <color=yellow>condition</color>
+    remains <font="JetBrainsMono SDF"><color=#55AAFF>True</color></font>.
+
+    
+
+    The
+    goal is the same as the simulation before this, but this time, we do not know
+    exactly where the goal is located! You will need to rely on a condition to tell
+    your program when to stop.'
+  isImageBig: 0

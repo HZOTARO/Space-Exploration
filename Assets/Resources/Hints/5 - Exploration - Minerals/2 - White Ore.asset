@@ -16,7 +16,7 @@ MonoBehaviour:
   isUnlockedByDefault: 0
   ignoreLock: 1
   title: White Ore
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 459406bc49ee2964fb52c559997aa97f, type: 3}
   description: "White Ore is a mineral filled with energy. \nThe robot cannot move
     into a tile occupied by White Ore. Before the robot can pass through the tile
     or collect the resource, the ore must first be mined.\n\nTo break the ore, use

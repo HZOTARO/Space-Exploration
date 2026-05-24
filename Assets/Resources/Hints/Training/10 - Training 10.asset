@@ -12,8 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88f6fa2b89436164b8e97b17d82dc9a2, type: 3}
   m_Name: 10 - Training 10
   m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
-  hintId: training 8
-  title: training 8
-  hintBlocks: []
+  hintId: tutorial_training_10
   isUnlockedByDefault: 0
   ignoreLock: 1
+  title: Training - Handling Multiple Data
+  image: {fileID: 0}
+  description: "We have learned about variables before. A variable is great for storing
+    a single piece of data. \nBut what if we have 100 items, or maybe even 100,000?
+    We could create a new variable for every single item, but that would be highly
+    ineffective! \n\nIn this simulation, we will introduce a new concept called a
+    <color=yellow>list</color>. A list is a powerful data structure capable of storing
+    many pieces of data inside just one single variable. \n\nThe objective of this
+    simulation is to create an empty list and save it in a variable named <font=\"JetBrainsMono
+    SDF\">inventory</font>. Then, you must store all of your collected ore values
+    into the list in order from left to right in one single program run!\n\nTo add
+    items to a list automatically, you can use the <font=\"JetBrainsMono SDF\"><color=#F5F5AB>append</color>()</font>
+    command. This command automatically places the new item at the very end of your
+    <color=yellow>list</color>, keeping everything in the exact order you collected
+    it."
+  isImageBig: 0

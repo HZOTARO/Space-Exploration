@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: UtilityScriptIWrite::HintCollectionSO
   collectionName: Exploration - Mineral
   hints:
-  - {fileID: 11400000, guid: 5ca20419c5cc14140b266c992393e7ab, type: 2}
   - {fileID: 11400000, guid: 16e53092e534d814fb1b9836c2fe41f3, type: 2}
   - {fileID: 11400000, guid: ac4ad61fcc5997e489d183953d652a36, type: 2}
   - {fileID: 11400000, guid: 2b5ffb1eb061a9c44921d055cec35e16, type: 2}

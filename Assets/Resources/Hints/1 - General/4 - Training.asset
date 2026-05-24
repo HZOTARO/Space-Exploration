@@ -16,7 +16,7 @@ MonoBehaviour:
   isUnlockedByDefault: 0
   ignoreLock: 1
   title: Training
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: d97d992f2707b6a42a65a1d5c0482865, type: 3}
   description: 'Training levels are simulations designed to teach programming concepts,
     robot controls, and game mechanics in a controlled environment.
 

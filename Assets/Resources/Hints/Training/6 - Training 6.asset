@@ -12,8 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88f6fa2b89436164b8e97b17d82dc9a2, type: 3}
   m_Name: 6 - Training 6
   m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
-  hintId: training 6
-  title: training 6
-  hintBlocks: []
+  hintId: tutorial_training_6
   isUnlockedByDefault: 0
   ignoreLock: 1
+  title: Training - Match Case
+  image: {fileID: 0}
+  description: "Before, we handled multiple conditions using the <font=\"JetBrainsMono
+    SDF\"><color=#D96DD3>if</color></font> and <font=\"JetBrainsMono SDF\"><color=#D96DD3>else</color></font>
+    statements. However, there is another decision-making statements. \n\nA <font=\"JetBrainsMono
+    SDF\"><color=#D96DD3>match</color></font> statement takes a single value and
+    compares it against a list of possibilities, executing only the specific <font=\"JetBrainsMono
+    SDF\"><color=#D96DD3>case</color></font> that matches perfectly. \n\nThe objective
+    here is similar to before, the environment is still unstable and will generate
+    a random mineral every time!\nAlso, the <font=\"JetBrainsMono SDF\"><color=#D96DD3>if</color></font>
+    keyword has been temporarily banned. \n\nYou must solve this level by using <font=\"JetBrainsMono
+    SDF\"><color=#D96DD3>match</color></font> and <font=\"JetBrainsMono SDF\"><color=#D96DD3>case</color></font>."
+  isImageBig: 0

@@ -16,7 +16,7 @@ MonoBehaviour:
   isUnlockedByDefault: 0
   ignoreLock: 1
   title: Measure
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 85dbc9ce6acb4e6429c83d6222187304, type: 3}
   description: 'The <font="JetBrainsMono SDF"><color=#55FF55>measure</color>()</font>
     command reads the value of a resource tile in front of you.
 

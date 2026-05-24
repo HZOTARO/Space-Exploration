@@ -16,7 +16,7 @@ MonoBehaviour:
   isUnlockedByDefault: 0
   ignoreLock: 1
   title: Puzzle Levels
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 2ec8a0fac1322fb40a9219c83f665f77, type: 3}
   description: '<b>Puzzle Levels</b>
 
 

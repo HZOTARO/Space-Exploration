@@ -16,7 +16,7 @@ MonoBehaviour:
   isUnlockedByDefault: 0
   ignoreLock: 1
   title: Code Editor
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 57abfe9b30582f44da57f509022d286f, type: 3}
   description: "The Code Editor is used to write and execute programs for the robot.\r\n\r\nYou
     can use the <color=yellow>Play</color> button to continuously execute instructions
     from top to bottom until the program finishes or is interrupted.\r\n\nExecution

@@ -16,7 +16,7 @@ MonoBehaviour:
   isUnlockedByDefault: 0
   ignoreLock: 1
   title: Maze Puzzle
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 9517dc5ae319b944aa18c771df4a47b3, type: 3}
   description: '<b>Maze Puzzle</b>
 
 

@@ -16,7 +16,7 @@ MonoBehaviour:
   isUnlockedByDefault: 1
   ignoreLock: 0
   title: The Hub Area
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: b131818f05b6e7c42ae1c9b7cbba874e, type: 3}
   description: 'From the Hub, you can access exploration, upgrades, training, and
     information gathered throughout your journey.
 
@@ -24,4 +24,4 @@ MonoBehaviour:
     Collected resources are brought
     back to the Hub and can be used to unlock new technologies, improve systems,
     and repair the ship.'
-  isImageBig: 1
+  isImageBig: 0

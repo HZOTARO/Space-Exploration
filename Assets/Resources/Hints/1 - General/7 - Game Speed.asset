@@ -16,7 +16,7 @@ MonoBehaviour:
   isUnlockedByDefault: 1
   ignoreLock: 0
   title: Game Speed
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 9a17d0b1a012c9f42b75c996b907360a, type: 3}
   description: '<color=yellow>Game Speed</color> controls the animation speed, making
     robot actions and environmental events play faster or slower.
 

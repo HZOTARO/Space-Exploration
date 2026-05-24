@@ -16,7 +16,7 @@ MonoBehaviour:
   isUnlockedByDefault: 0
   ignoreLock: 1
   title: Upgrade System
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 6cfc6c3eb33f3c448b655009798eed5c, type: 3}
   description: 'You can unlock or improve multiple systems through the Upgrade menu.
     Some upgrades are multi-tiered and can be improved over time, while others are
     one-time unlocks that grant new abilities.

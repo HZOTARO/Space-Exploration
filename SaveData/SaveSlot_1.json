@@ -1,9 +1,9 @@
 {
-    "lastSavedTime": "24-05-2026 17:00",
+    "lastSavedTime": "24-05-2026 18:36",
     "inventory": [],
     "unlockedUpgrades": [],
-    "stepDelay": 0.0,
-    "gameSpeed": 8.0,
+    "stepDelay": 0.20000000298023225,
+    "gameSpeed": 1.0,
     "levelCompleted": [
         "Tutorial 1",
         "Tutorial 2",
@@ -14,7 +14,8 @@
         "Tutorial 7",
         "Tutorial 8",
         "Tutorial 9",
-        "Tutorial 10"
+        "Tutorial 10",
+        "Tutorial 11"
     ],
     "hints": [
         {
@@ -28,47 +29,12 @@
             "isUnlocked": true
         },
         {
-            "id": "tutorial_movement",
+            "id": "tutorial_welcome",
             "hasAppeared": true,
             "isUnlocked": true
         },
         {
-            "id": "tutorial_inventory",
-            "hasAppeared": true,
-            "isUnlocked": true
-        },
-        {
-            "id": "tutorial_training",
-            "hasAppeared": true,
-            "isUnlocked": true
-        },
-        {
-            "id": "tutorial_training_1",
-            "hasAppeared": true,
-            "isUnlocked": true
-        },
-        {
-            "id": "tutorial_instruction",
-            "hasAppeared": true,
-            "isUnlocked": true
-        },
-        {
-            "id": "tutorial_code_editor",
-            "hasAppeared": true,
-            "isUnlocked": true
-        },
-        {
-            "id": "tutorial_syntax",
-            "hasAppeared": true,
-            "isUnlocked": true
-        },
-        {
-            "id": "tutorial_functions",
-            "hasAppeared": true,
-            "isUnlocked": true
-        },
-        {
-            "id": "tutorial_command",
+            "id": "tutorial_hub",
             "hasAppeared": true,
             "isUnlocked": true
         },
@@ -78,27 +44,27 @@
             "isUnlocked": true
         },
         {
-            "id": "tutorial_training_2",
+            "id": "tutorial_training",
             "hasAppeared": true,
             "isUnlocked": true
         },
         {
-            "id": "tutorial_data_types",
+            "id": "tutorial_resources",
             "hasAppeared": true,
             "isUnlocked": true
         },
         {
-            "id": "tutorial_variables",
+            "id": "tutorial_upgrade",
             "hasAppeared": true,
             "isUnlocked": true
         },
         {
-            "id": "tutorial_variable_name",
+            "id": "tutorial_game_speed",
             "hasAppeared": true,
             "isUnlocked": true
         },
         {
-            "id": "tutorial_scan",
+            "id": "tutorial_code_editor",
             "hasAppeared": true,
             "isUnlocked": true
         },
@@ -108,37 +74,17 @@
             "isUnlocked": true
         },
         {
-            "id": "tutorial_training_3",
-            "hasAppeared": true,
-            "isUnlocked": true
-        },
-        {
-            "id": "tutorial_arithmetic_operators",
-            "hasAppeared": true,
-            "isUnlocked": true
-        },
-        {
-            "id": "tutorial_augmented_assignment",
-            "hasAppeared": true,
-            "isUnlocked": true
-        },
-        {
-            "id": "tutorial_measure",
-            "hasAppeared": true,
-            "isUnlocked": true
-        },
-        {
             "id": "tutorial_variable_watch",
             "hasAppeared": true,
             "isUnlocked": true
         },
         {
-            "id": "tutorial_training_4",
+            "id": "tutorial_instruction",
             "hasAppeared": true,
             "isUnlocked": true
         },
         {
-            "id": "tutorial_comparison_operators",
+            "id": "tutorial_syntax",
             "hasAppeared": true,
             "isUnlocked": true
         },
@@ -158,27 +104,12 @@
             "isUnlocked": true
         },
         {
-            "id": "tutorial_white_ore",
-            "hasAppeared": true,
-            "isUnlocked": true
-        },
-        {
-            "id": "tutorial_training_5",
-            "hasAppeared": true,
-            "isUnlocked": true
-        },
-        {
             "id": "tutorial_else",
             "hasAppeared": true,
             "isUnlocked": true
         },
         {
             "id": "tutorial_elif",
-            "hasAppeared": true,
-            "isUnlocked": true
-        },
-        {
-            "id": "training 6",
             "hasAppeared": true,
             "isUnlocked": true
         },
@@ -198,11 +129,6 @@
             "isUnlocked": true
         },
         {
-            "id": "training 7",
-            "hasAppeared": true,
-            "isUnlocked": true
-        },
-        {
             "id": "tutorial_loop",
             "hasAppeared": true,
             "isUnlocked": true
@@ -213,17 +139,12 @@
             "isUnlocked": true
         },
         {
+            "id": "tutorial_functions",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
             "id": "tutorial_range",
-            "hasAppeared": true,
-            "isUnlocked": true
-        },
-        {
-            "id": "tutorial_game_speed",
-            "hasAppeared": true,
-            "isUnlocked": true
-        },
-        {
-            "id": "training 8",
             "hasAppeared": true,
             "isUnlocked": true
         },
@@ -248,7 +169,37 @@
             "isUnlocked": true
         },
         {
-            "id": "tutorial_resources",
+            "id": "tutorial_command",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_data_types",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_variables",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_variable_name",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_arithmetic_operators",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_augmented_assignment",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_comparison_operators",
             "hasAppeared": true,
             "isUnlocked": true
         },
@@ -258,7 +209,127 @@
             "isUnlocked": true
         },
         {
-            "id": "tutorial_upgrade",
+            "id": "tutorial_movement",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_inventory",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_white_ore",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_purple_essence",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_black_ore",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_materials",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_cave_monster",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_puzzle",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_maze_puzzle",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_scan",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_enhanced_scan",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_measure",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_shoot",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_ENDGAME",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_training_1",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_training_10",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_training_11",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_training_2",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_training_3",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_training_4",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_training_5",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_training_6",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_training_7",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_training_8",
+            "hasAppeared": true,
+            "isUnlocked": true
+        },
+        {
+            "id": "tutorial_training_9",
             "hasAppeared": true,
             "isUnlocked": true
         }

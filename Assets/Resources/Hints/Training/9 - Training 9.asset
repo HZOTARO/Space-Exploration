@@ -12,8 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88f6fa2b89436164b8e97b17d82dc9a2, type: 3}
   m_Name: 9 - Training 9
   m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
-  hintId: training 8
-  title: training 8
-  hintBlocks: []
+  hintId: tutorial_training_9
   isUnlockedByDefault: 0
   ignoreLock: 1
+  title: Training - Nested Loop
+  image: {fileID: 0}
+  description: 'Just like <font="JetBrainsMono SDF"><color=#D96DD3>if</color></font>
+    statements, loops can also be placed inside other loops! This is called a <color=yellow>nested
+    loop</color>.
+
+    
+
+    When a loop is nested, the inner loop must finish
+    all of its repetitions before the outer loop can move on to its next step. This
+    makes nested loops perfect for working with 2D coordinates, like scanning rows
+    and columns on a map!
+
+    
+
+    The goal for this level is to traverse every
+    single grid on the map in one program run. You can achieve this by using an outer
+    loop for the rows and an inner loop for the columns.'
+  isImageBig: 0

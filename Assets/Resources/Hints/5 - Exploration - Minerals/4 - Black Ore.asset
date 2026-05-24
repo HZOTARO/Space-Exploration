@@ -16,7 +16,7 @@ MonoBehaviour:
   isUnlockedByDefault: 0
   ignoreLock: 0
   title: Black Ore
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: bb82760e35cfbf84a87ad60e3596b28d, type: 3}
   description: "Black Ore is a dangerous mineral that emits malicious energy and
     must be handled carefully.\n\nBefore mining it, the ore must first be purified
     using <font=\"JetBrainsMono SDF\"><color=#33CC66>purify</color><color=#D4D4D4>()</color></font>.\nAfter
