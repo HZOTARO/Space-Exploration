@@ -13,40 +13,42 @@ MonoBehaviour:
   m_Name: 3 - Inventory
   m_EditorClassIdentifier: UtilityScriptIWrite::HintSO
   hintId: tutorial_inventory
-  isUnlockedByDefault: 1
-  ignoreLock: 0
+  isUnlockedByDefault: 0
+  ignoreLock: 1
   title: Inventory
   image: {fileID: 0}
-  description: '<b>Inventory</b>
+  description: 'During exploration, you carry an <color=yellow>Inventory</color>
+    that stores your collected resources.
+
+    Each collected resource is displayed
+    by its icon and its value.
 
 
-    During exploration, you carry an Inventory
-    that stores collected resources.
+    The Inventory has a limited number of slots,
+    and each resource occupies exactly one slot.
+
+    Collected resources will automatically
+    fill empty slots in order from left to right.
 
 
-    The Inventory has a limited number of
-    slots, and each resource occupies one slot regardless of type.
+    You can throw away a stored
+    resource using the <font="JetBrainsMono SDF"><color=#33CC66>discard</color>(i)</font>
+    command, where <font="JetBrainsMono SDF">i</font> is the index of the slot you
+    want to empty. Just like a list, the inventory index starts from <font="JetBrainsMono
+    SDF"><color=#B5CEA8>0</color></font>.
 
 
-    Collected
-    resources will fill empty slots in order from left to right.
+    Example:
 
+    <indent=1em><font="JetBrainsMono
+    SDF"><color=#6A9955># Discard the very first item in the inventory (Index 0)</color></font></indent>
 
-    Each collected
-    resource will display its value when obtained, allowing you to decide whether
-    it is worth keeping or skipping.
+    <indent=1em><font="JetBrainsMono
+    SDF"><color=#33CC66>discard</color>(<color=#B5CEA8>0</color>)</font></indent>
 
+    
 
-    You can discard a stored resource using
-    discard(i), where i is the slot index you want to remove. The index starts from
-    0 up to inventory size - 1.
-
-
-    There are separate Inventory capacities for
-    Mineral Exploration and Material Exploration. Each can be upgraded independently
-    to increase storage capacity.
-
-
-    Manage your Inventory wisely, as space is
-    limited during deeper expeditions.'
+    Note:
+    There are separate Inventory capacities for Mineral Exploration and Material
+    Exploration. Each can be upgraded independently to increase your maximum capacity!'
   isImageBig: 0

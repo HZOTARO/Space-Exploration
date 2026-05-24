@@ -15,7 +15,20 @@ MonoBehaviour:
   hintId: tutorial_training_11
   isUnlockedByDefault: 0
   ignoreLock: 1
-  title: training 8
+  title: Final Simulation
   image: {fileID: 0}
-  description: 
+  description: 'We are reaching the final simulation! There are no new programming
+    concepts to learn here. Instead, we will put everything you know to the test
+    by simulating a real exploration mission.
+
+
+    Naturally, you want to gather
+    the resources with the highest value, right? The objective of this simulation
+    is to explore the map and collect the White Ores with the highest values among
+    all available ores.
+
+
+    If your inventory is full, you can simply use the <font="JetBrainsMono
+    SDF"><color=#33CC66>discard</color>()</font> command to drop resources that are
+    worth less than the new ore in front of you.'
   isImageBig: 0

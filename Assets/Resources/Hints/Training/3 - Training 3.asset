@@ -15,7 +15,7 @@ MonoBehaviour:
   hintId: tutorial_training_3
   isUnlockedByDefault: 0
   ignoreLock: 1
-  title: Training - Processing Data
+  title: Processing Data
   image: {fileID: 0}
   description: 'Sometimes you need to use calculations to process information from
     the environment. Operators are used to combine or modify values during execution.

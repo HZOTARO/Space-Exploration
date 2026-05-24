@@ -15,7 +15,7 @@ MonoBehaviour:
   hintId: tutorial_training_6
   isUnlockedByDefault: 0
   ignoreLock: 1
-  title: Training - Match Case
+  title: Match Case
   image: {fileID: 0}
   description: "Before, we handled multiple conditions using the <font=\"JetBrainsMono
     SDF\"><color=#D96DD3>if</color></font> and <font=\"JetBrainsMono SDF\"><color=#D96DD3>else</color></font>

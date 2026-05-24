@@ -15,7 +15,7 @@ MonoBehaviour:
   hintId: tutorial_training_10
   isUnlockedByDefault: 0
   ignoreLock: 1
-  title: Training - Handling Multiple Data
+  title: Handling Multiple Data
   image: {fileID: 0}
   description: "We have learned about variables before. A variable is great for storing
     a single piece of data. \nBut what if we have 100 items, or maybe even 100,000?

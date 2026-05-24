@@ -20,20 +20,19 @@ MonoBehaviour:
   description: 'The <font="JetBrainsMono SDF"><color=#33CC66>scan</color>()</font>
     command detects the tile directly in front of the robot.
 
-    <font="JetBrainsMono
-    SDF"><color=#33CC66>scan</color>()</font> is a command that returns a result.
-    The result is a <font="JetBrainsMono SDF"><color=#4FC3F7>str</color></font> (String)
-    value describing what is currently detected.
+    The <font="JetBrainsMono
+    SDF"><color=#33CC66>scan</color>()</font> command returns a result. This result
+    is a <font="JetBrainsMono SDF"><color=#4FC3F7>str</color></font> (String) value
+    describing what is currently detected.
 
 
     Examples of common usage:
 
-    <indent=2em>-
-    Store the result in a variable: <font="JetBrainsMono SDF">tile <color=#D4D4D4>=</color>
-    <color=#33CC66>scan</color>()</font></indent>
+    <indent=1em>-
+    Store the result in a variable: <font="JetBrainsMono SDF">tile = <color=#33CC66>scan</color>()</font></indent>
 
-    <indent=2em>- Print the result
-    directly: <font="JetBrainsMono SDF"><color=#F5F5AB>print</color>(<color=#33CC66>scan</color>())</font></indent>
+    <indent=1em>-
+    Print the result directly: <font="JetBrainsMono SDF"><color=#F5F5AB>print</color>(<color=#33CC66>scan</color>())</font></indent>
 
 
     Using

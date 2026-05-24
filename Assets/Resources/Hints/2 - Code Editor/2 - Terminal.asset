@@ -20,17 +20,15 @@ MonoBehaviour:
   description: '<color=yellow><b>Print</b></color>
 
     The <font="JetBrainsMono
-    SDF"><color=#55FF55>print()</color></font> function is used to display messages
+    SDF"><color=#F5F5AB>print</color>()</font> function is used to display messages
     and values in the Terminal.
 
     It is commonly used to show information during
-    program execution.
+    program execution.Example:
 
+    <indent=1em><font="JetBrainsMono SDF"><color=#F5F5AB>print</color>(<color=#CE9178>"Hello"</color>)</font></indent>
 
-    Example:
-
-    <font="JetBrainsMono SDF"><color=#55FF55>print</color>("Hello")</font>
-
+    
 
     <color=yellow><b>Terminal
     Panel</b></color>

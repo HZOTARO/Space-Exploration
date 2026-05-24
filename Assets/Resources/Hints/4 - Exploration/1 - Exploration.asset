@@ -17,5 +17,13 @@ MonoBehaviour:
   ignoreLock: 1
   title: Exploration
   image: {fileID: 0}
-  description: 
+  description: "<color=yellow>Exploration</color> is used for gathering real resources.
+    There are two types of exploration missions: <color=yellow>Mineral Exploration</color>
+    and <color=yellow>Material Exploration</color>.\n\r\nUnlike the training simulations,
+    your robot\u2019s capabilities during exploration are permanently limited by
+    your current upgrades.\r\r\nTo safely extract and keep your gathered resources,
+    you must return your robot to the starting tile (0,0) and execute the <font=\"JetBrainsMono
+    SDF\"><color=#33CC66>go_back</color>()</font> command.\n\nNote: You can also
+    return to the menu at any time using the Settings button in the top right, but
+    beware-any resources collected during that run will be lost!"
   isImageBig: 0

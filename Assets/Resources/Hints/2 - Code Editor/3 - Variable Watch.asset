@@ -20,20 +20,18 @@ MonoBehaviour:
   description: 'Variable Watch allows you to monitor the values of variables during
     program execution.
 
-
-    You can toggle the Variable Watch panel using the Variable
-    Watch button.
-
-
-    To configure tracked variables, open the Variable Panel.
-    From there, you can choose which variables should be displayed while the program
-    is running.
+    Like terminal, you can toggle the Variable Watch panel
+    using the Variable Watch button.
 
 
-    The watched values will update during execution, making it
-    useful for debugging, understanding program flow, and tracking how data changes
-    over time.
+    To configure tracked variables, open the
+    Variable Panel and enter the variable names you want to display while the program
+    runs.
 
 
-    You can track a maximum of 5 variables at the same time.'
+    The watched values update in real time, making it useful for debugging,
+    understanding program flow, and tracking how data changes over time.
+
+    You
+    can track a maximum of 5 variables at the same time.'
   isImageBig: 0

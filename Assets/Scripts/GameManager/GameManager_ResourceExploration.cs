@@ -62,7 +62,7 @@ public class GameManager_ResourceExploration : GameManager
         else if (targetTile.type == TileType.BlackOre)
         {
             CaveTile_BlackOre ore = targetTile.tileInstance as CaveTile_BlackOre;
-            if (!ore.isMined) player.PerformAction(PlayerAction.Mine, () => { if (ore.Mine()) healthComponent.DamagePlayer(60); });
+            if (!ore.isMined) player.PerformAction(PlayerAction.Mine, () => { if (ore.Mine()) healthComponent.DamagePlayer(50); });
             else Debug.Log("This Black Ore has already been mined.");
         }
         else

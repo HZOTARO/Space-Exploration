@@ -15,7 +15,7 @@ MonoBehaviour:
   hintId: tutorial_training_4
   isUnlockedByDefault: 0
   ignoreLock: 1
-  title: Training - Decision Making
+  title: Decision Making
   image: {fileID: 0}
   description: 'So far, you have learned how to read values using <font="JetBrainsMono
     SDF"><color=#55FF55>scan</color>()</font> and <font="JetBrainsMono SDF"><color=#55FF55>measure</color>()</font>.

@@ -9,6 +9,7 @@ public class GameManager_Puzzle : GameManager
         int levelSize = PlayerPrefs.GetInt("PuzzleSize", 11);
         levelWidth = levelSize;
         levelLength = levelSize;
+        cargoSize = 0;
 
         string puzzleId = PlayerPrefs.GetString("PuzzleID", "Unknown Puzzle");
 

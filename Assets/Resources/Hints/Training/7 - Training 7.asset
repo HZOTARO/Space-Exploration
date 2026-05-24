@@ -15,21 +15,21 @@ MonoBehaviour:
   hintId: tutorial_training_7
   isUnlockedByDefault: 0
   ignoreLock: 1
-  title: Training - Automation
+  title: Automation
   image: {fileID: 0}
   description: 'In previous levels, you may have experienced writing repeating code
     for the same exact action.
 
-    Writing the same instruction multiple times
-    is tedious and makes your program hard to change.
+    Writing the same instruction multiple times is
+    tedious and makes your program hard to change.
 
 
-    In this simulation,
-    we will introduce <color=yellow>looping</color> to automate your instructions
-    so they run multiple times automatically!
+    In this simulation, we will
+    introduce <color=yellow>looping</color> to automate your instructions so they
+    run multiple times automatically!
 
-    The goal of this level is to
-    reach the target by writing only one <font="JetBrainsMono SDF"><color=#33CC66>move_forward</color>()</font>
+    The goal of this level is to reach the
+    target by writing only one <font="JetBrainsMono SDF"><color=#33CC66>move_forward</color>()</font>
     command.
 
 

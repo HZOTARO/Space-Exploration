@@ -373,10 +373,9 @@ MonoBehaviour:
   healthUpgrade: {fileID: 11400000, guid: ae3488b8fd4e60540b9aa5962265df86, type: 2}
   playerGridLoc: {x: 0, y: 0}
   playerFacing: 0
-  availableConsumables: []
   allowedSyntaxNodes: []
   allowedFunctions: []
-  hintCollection: {fileID: 0}
+  hintCollection: {fileID: 11400000, guid: 85a71d1393d2b8a4d907ef45d5b19053, type: 2}
   hintList: []
 --- !u!4 &510958854
 Transform:
@@ -498,9 +497,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1153718634772172209, guid: 653a77f048012334ab9fbf5f9e4e5fa9, type: 3}
+      propertyPath: uiPaddingTop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1153718634772172209, guid: 653a77f048012334ab9fbf5f9e4e5fa9, type: 3}
+      propertyPath: uiPaddingBottom
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 4304442102333526949, guid: 653a77f048012334ab9fbf5f9e4e5fa9, type: 3}
       propertyPath: m_Name
       value: Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 4693871616774978093, guid: 653a77f048012334ab9fbf5f9e4e5fa9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
