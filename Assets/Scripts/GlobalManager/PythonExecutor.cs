@@ -243,8 +243,8 @@ public class PythonExecutor : MonoBehaviour
 
     void Step()
     {
-        if (CanStepCode != null && !CanStepCode.Invoke())
-            return;
+        if (!string.IsNullOrEmpty(currentCode)) return;
+        if (CanStepCode != null && !CanStepCode.Invoke()) return;
 
         using (Py.GIL())
         {

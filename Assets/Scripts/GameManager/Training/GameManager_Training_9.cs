@@ -65,7 +65,10 @@ public class GameManager_Training_9 : GameManager_Training
         if (!ValidateFunctionCallCount("move_forward", 2, false)) return false;
 
         bool result = base.MoveForward();
-        visitedTiles.Add(playerGridLoc);
+        if (!visitedTiles.Contains(playerGridLoc))
+        {
+            visitedTiles.Add(playerGridLoc);
+        }
         if (result && player.markPrefab && tileManager)
         {
             tileManager.InstantiateTileVisual(playerGridLoc.x, playerGridLoc.y, player.markPrefab);
@@ -78,7 +81,10 @@ public class GameManager_Training_9 : GameManager_Training
         if (!ValidateFunctionCallCount("move_backward", 2, false)) return false;
 
         bool result = base.MoveBackward();
-        visitedTiles.Add(playerGridLoc);
+        if (!visitedTiles.Contains(playerGridLoc))
+        {
+            visitedTiles.Add(playerGridLoc);
+        }
         if (result && player.markPrefab && tileManager)
         {
             tileManager.InstantiateTileVisual(playerGridLoc.x, playerGridLoc.y, player.markPrefab);
