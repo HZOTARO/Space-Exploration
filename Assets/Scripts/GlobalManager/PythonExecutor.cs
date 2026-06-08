@@ -229,6 +229,15 @@ public class PythonExecutor : MonoBehaviour
         if (currentCode == null || !String.Equals(currentCode, code))
         {
             currentCode = code;
+
+            if (string.IsNullOrEmpty(currentCode))
+            {
+                OnExecutionFinishedBefore?.Invoke();
+                continuous = false;
+                currentCode = null;
+                OnExecutionFinished?.Invoke();
+            }
+
             using (Py.GIL())
             {
                 GetCachedPyFunction("prepare")(currentCode);
@@ -243,7 +252,6 @@ public class PythonExecutor : MonoBehaviour
 
     void Step()
     {
-        if (!string.IsNullOrEmpty(currentCode)) return;
         if (CanStepCode != null && !CanStepCode.Invoke()) return;
 
         using (Py.GIL())

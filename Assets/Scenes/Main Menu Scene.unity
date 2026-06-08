@@ -256,7 +256,7 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!1001 &802695891
+--- !u!1001 &138561292
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -348,19 +348,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Menu
       objectReference: {fileID: 0}
-    - target: {fileID: 474568438750077106, guid: 116196a2f7f8e574d9633acd5d9b3b82, type: 3}
+    - target: {fileID: 1412224777473242936, guid: 116196a2f7f8e574d9633acd5d9b3b82, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 474568438750077106, guid: 116196a2f7f8e574d9633acd5d9b3b82, type: 3}
+    - target: {fileID: 1412224777473242936, guid: 116196a2f7f8e574d9633acd5d9b3b82, type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 474568438750077106, guid: 116196a2f7f8e574d9633acd5d9b3b82, type: 3}
+    - target: {fileID: 1412224777473242936, guid: 116196a2f7f8e574d9633acd5d9b3b82, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 474568438750077106, guid: 116196a2f7f8e574d9633acd5d9b3b82, type: 3}
+    - target: {fileID: 1412224777473242936, guid: 116196a2f7f8e574d9633acd5d9b3b82, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
@@ -541,5 +541,5 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 105083074}
-  - {fileID: 802695891}
+  - {fileID: 138561292}
   - {fileID: 1364383101}

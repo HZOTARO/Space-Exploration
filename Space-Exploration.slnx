@@ -1,4 +1,4 @@
-﻿<Solution>
+<Solution>
   <Project Path="ScriptIWrite.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
   <Project Path="UtilityScriptIWrite.csproj" />

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 public class GameManager_Training_9 : GameManager_Training
 {
     private List<Vector2Int> visitedTiles = new List<Vector2Int>();
-    private List<BaseTile> markings = new List<BaseTile>();
 
     protected override void RegisterLevelSpecificPythonCommands()
     {
