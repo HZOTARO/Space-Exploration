@@ -232,10 +232,9 @@ public class PythonExecutor : MonoBehaviour
 
             if (string.IsNullOrEmpty(currentCode))
             {
-                OnExecutionFinishedBefore?.Invoke();
                 continuous = false;
                 currentCode = null;
-                OnExecutionFinished?.Invoke();
+                return;
             }
 
             using (Py.GIL())

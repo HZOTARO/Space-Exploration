@@ -160,6 +160,13 @@ public class GameManager_ResourceExploration : GameManager
             Debug.Log("You are facing the edge of the map!");
             return;
         }
+
+        if (cargoComponent && cargoComponent.IsFull())
+        {
+            Debug.Log("Cargo is full. Cannot collect more resources.");
+            return;
+        }
+
         if (targetTile.type == TileType.PurpleEssence)
         {
             CaveTile_PurpleVein vein = targetTile.tileInstance as CaveTile_PurpleVein;
