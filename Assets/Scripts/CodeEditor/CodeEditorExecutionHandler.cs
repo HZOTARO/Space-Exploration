@@ -239,7 +239,7 @@ public class CodeExecutionController : MonoBehaviour
             finalError = ui.gameManager.TranslatePythonError(errorMessage);
         }
 
-        ui.ShowError(line, "Runtime Error: " + finalError);
+        ui.ShowError(line, finalError);
     }
 
     private void OnPythonFinished()

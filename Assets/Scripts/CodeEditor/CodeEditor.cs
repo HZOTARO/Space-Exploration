@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -34,6 +35,7 @@ public class CodeEditor : MonoBehaviour
     public TextMeshProUGUI lineNumbersText;
 
     [Header("Printing")]
+    public ScrollRect terminalScrollRect;
     public TextMeshProUGUI printOutputText;
     public int maxTerminalLines = 30;
     private Queue<string> terminalLines = new Queue<string>();
@@ -190,15 +192,15 @@ public class CodeEditor : MonoBehaviour
             highlightImage.rectTransform.localPosition = highlightPos;
         }
 
-        if (errorPanel != null && errorPanel.gameObject.activeSelf && editorViewport != null)
-        {
-            float rawY = scrollY + currentHighlightCenterY;
-            float halfHeight = errorPanel.rect.height / 2f;
-            float topBound = -halfHeight;
-            float bottomBound = -editorViewport.rect.height + halfHeight;
-            float clampedY = Mathf.Clamp(rawY, Mathf.Min(topBound, bottomBound), topBound);
-            errorPanel.anchoredPosition = new Vector2(errorPanel.anchoredPosition.x, clampedY);
-        }
+        //if (errorPanel != null && errorPanel.gameObject.activeSelf && editorViewport != null)
+        //{
+        //    float rawY = scrollY + currentHighlightCenterY;
+        //    float halfHeight = errorPanel.rect.height / 2f;
+        //    float topBound = -halfHeight;
+        //    float bottomBound = -editorViewport.rect.height + halfHeight;
+        //    float clampedY = Mathf.Clamp(rawY, Mathf.Min(topBound, bottomBound), topBound);
+        //    errorPanel.anchoredPosition = new Vector2(errorPanel.anchoredPosition.x, clampedY);
+        //}
     }
 
     public void TriggerHighlight(int startLogicalLine, int endLogicalLine)
@@ -438,6 +440,18 @@ public class CodeEditor : MonoBehaviour
         }
 
         printOutputText.text = string.Join("\n", terminalLines);
+
+        if (terminalScrollRect != null && gameObject.activeInHierarchy)
+        {
+            StartCoroutine(ScrollToBottom());
+        }
+    }
+
+    private IEnumerator ScrollToBottom()
+    {
+        yield return new WaitForEndOfFrame();
+
+        terminalScrollRect.verticalNormalizedPosition = 0f;
     }
 
     public void ClearTerminal()
