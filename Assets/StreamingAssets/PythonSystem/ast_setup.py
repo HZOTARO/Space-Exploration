@@ -191,19 +191,37 @@ class YieldInserter(ast.NodeTransformer):
     def visit_Call(self, node):
         self.generic_visit(node)
         
+        player_func_name = "Command"
+        if isinstance(node.func, ast.Name):
+            player_func_name = node.func.id
+        elif isinstance(node.func, ast.Attribute):
+            player_func_name = node.func.attr
+
         wrapper = ast.Name(id='__wrap_call__', ctx=ast.Load())
-        new_args = [node.func] + node.args
+
+        name_node = ast.Constant(value=player_func_name)
+        new_args = [name_node, node.func] + node.args
+
         new_call = ast.Call(func=wrapper, args=new_args, keywords=node.keywords)
         
         return ast.YieldFrom(value=new_call)
 
-def __wrap_call__(func, *args, **kwargs):
-    res = func(*args, **kwargs)
+def __wrap_call__(func_name_string, func, *args, **kwargs):
+    try:
+        res = func(*args, **kwargs)
     
-    if isinstance(res, types.GeneratorType):
-        return (yield from res)
+        if isinstance(res, types.GeneratorType):
+            return (yield from res)
         
-    return res
+        return res
+    
+    except TypeError as e:
+        err_msg = str(e)
+        if "No method matches given arguments" in err_msg or "Func`" in err_msg or "Action`" in err_msg:
+            clean_msg = f"'{func_name_string}()' received the wrong number or wrong type of arguments."
+            raise TypeError(clean_msg) from None
+            
+        raise
 
 # |================|
 # | STEP EXECUTION |
@@ -291,7 +309,14 @@ def step():
                 line_no = frame.lineno
                 break
                 
-        return f"RUNTIME_ERROR|{line_no}|{type(e).__name__}: {e}"
+        err_str = str(e)
+        
+        if err_str.startswith("System.Exception: "):
+            err_str = err_str.replace("System.Exception: ", "")
+        elif "TargetInvocationException" in err_str:
+            err_str = "A system command failed to execute."
+                
+        return f"RUNTIME_ERROR|{line_no}|{type(e).__name__}: {err_str}"
 
 def get_variable_value(var_name):
     global __gen__, __player_env__
