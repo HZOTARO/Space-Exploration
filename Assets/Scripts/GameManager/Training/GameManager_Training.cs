@@ -124,7 +124,7 @@ public class GameManager_Training : GameManager
         PrintToDisplay("<color=orange>Error encountered. Resetting position...</color>");
     }
 
-    public void Mine()
+    public virtual void Mine()
     {
         TileObject targetTile = GetTileInFront();
 
@@ -152,7 +152,7 @@ public class GameManager_Training : GameManager
         }
     }
 
-    public void Collect()
+    public virtual void Collect()
     {
         TileObject targetTile = GetTileInFront();
 
@@ -218,7 +218,7 @@ public class GameManager_Training : GameManager
         }
     }
 
-    public void Drill()
+    public virtual void Drill()
     {
         TileObject targetTile = GetTileInFront();
         if (targetTile == null)
@@ -233,7 +233,7 @@ public class GameManager_Training : GameManager
         }
     }
 
-    public void Pump()
+    public virtual void Pump()
     {
         TileObject targetTile = GetTileInFront();
         if (targetTile == null)
@@ -273,7 +273,7 @@ public class GameManager_Training : GameManager
         }
     }
 
-    public void Purify()
+    public virtual void Purify()
     {
         TileObject targetTile = GetTileInFront();
         if (targetTile.type == TileType.BlackOre)
