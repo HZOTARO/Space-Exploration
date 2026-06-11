@@ -407,6 +407,52 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public virtual int MeasureDistance()
+    {
+        Vector2Int currentCheckLoc = GetForwardGridLoc();
+        int distance = 1;
+
+        while (true)
+        {
+            if (currentCheckLoc.y < 0 || currentCheckLoc.y >= tileManager.width || currentCheckLoc.x < 0 || currentCheckLoc.x >= tileManager.length)
+            {
+                Debug.Log($"Player far scanned the tile at distance {distance}: Wall");
+                player.PlayFarScanSequence(distance);
+                return distance - 1;
+            }
+
+            if (activeEnemies != null)
+            {
+                foreach (Enemy enemy in activeEnemies)
+                {
+                    if (!enemy.isDead && enemy.gridLoc == currentCheckLoc)
+                    {
+                        Debug.Log($"Player far scanned the tile at distance {distance}: Enemy");
+                        player.PlayFarScanSequence(distance);
+                        return distance - 1;
+                    }
+                }
+            }
+
+            TileObject targetTile = tileManager.objectsArray[currentCheckLoc.x, currentCheckLoc.y];
+
+            if (targetTile.type != TileType.None && targetTile.type != TileType.Floor && targetTile.type != TileType.EnemyPath)
+            {
+                string tileTypeName = targetTile.type.ToString();
+                Debug.Log($"Player far scanned the tile at distance {distance}: {tileTypeName}");
+                player.PlayFarScanSequence(distance);
+                return distance - 1;
+            }
+
+            if (playerFacing == 0) currentCheckLoc.x++;
+            else if (playerFacing == 1) currentCheckLoc.y++;
+            else if (playerFacing == 2) currentCheckLoc.x--;
+            else if (playerFacing == 3) currentCheckLoc.y--;
+
+            distance++;
+        }
+    }
+
     public int Measure()
     {
         player.PlayMeasureEffect(1);
