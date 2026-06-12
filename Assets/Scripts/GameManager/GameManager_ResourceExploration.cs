@@ -12,10 +12,10 @@ public class GameManager_ResourceExploration : GameManager
             levelWidth = 5 * (upgradeLevel + 1);
             levelLength = 5 * (upgradeLevel + 1);
         }
-        if (cargoSizeUpgrade && cargoComponent)
+        if (cargoSizeUpgrade)
         {
             int upgradeLevel = UpgradeManager.instance.GetUpgradeLevel(cargoSizeUpgrade.id);
-            cargoComponent.cargoSize = 4 + 2 * upgradeLevel;
+            cargoSize = 4 + 2 * upgradeLevel;
         }
     }
     protected override void RegisterLevelSpecificPythonCommands()

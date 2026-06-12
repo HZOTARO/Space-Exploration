@@ -22,10 +22,10 @@ public class GameManager_PartExploration : GameManager
             levelWidth = 10 * (upgradeLevel);
             levelLength = 10 * (upgradeLevel);
         }
-        if (cargoSizeUpgrade && cargoComponent)
+        if (cargoSizeUpgrade)
         {
             int upgradeLevel = UpgradeManager.instance.GetUpgradeLevel(cargoSizeUpgrade.id);
-            cargoComponent.cargoSize = 6 + 2 * upgradeLevel;
+            cargoSize = 6 + 2 * upgradeLevel;
         }
     }
 

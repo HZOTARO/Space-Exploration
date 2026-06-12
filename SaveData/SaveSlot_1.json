@@ -1,5 +1,5 @@
 {
-    "lastSavedTime": "10-06-2026 17:10",
+    "lastSavedTime": "12-06-2026 16:26",
     "inventory": [
         {
             "itemId": "white_ore",
@@ -15,7 +15,7 @@
         },
         {
             "itemId": "part_a",
-            "amount": 446
+            "amount": 421
         },
         {
             "itemId": "part_b",
@@ -73,6 +73,10 @@
         },
         {
             "id": "shoot",
+            "currentLevel": 1
+        },
+        {
+            "id": "partsexploration_inventorysize",
             "currentLevel": 1
         }
     ],

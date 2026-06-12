@@ -6,7 +6,7 @@ public class PlayerCargoComponent : MonoBehaviour
 {
     [Header("Inventory Settings")]
     [Range(1, 15)]
-    public int cargoSize = 6;
+    public int cargoSize = 0;
     public Transform cargoUI;
 
     [HideInInspector]
@@ -43,6 +43,7 @@ public class PlayerCargoComponent : MonoBehaviour
 
         if (template)
         {
+            Debug.Log($"<color=cyan>Setting up Cargo with {cargoSize} slots.</color>");
             RectTransform slotRectTransform = null;
             for (int i = 0; i < cargoSize; i++)
             {
@@ -65,7 +66,7 @@ public class PlayerCargoComponent : MonoBehaviour
                 }
             }
 
-            yield return new WaitForEndOfFrame();
+            //yield return new WaitForEndOfFrame();
 
             //if (slotRectTransform)
             //{
