@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 4304442102333526949}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -48,17 +48,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: CameraScriptIWrite::CameraController
   gridWidth: 25
   gridHeight: 25
-  tileWidth: 2
-  tileLength: 2.5
-  uiPaddingLeft: 0.15
+  tileWidth: 1
+  tileLength: 1
+  mapPadding: 1.5
+  centerWhenZoomedOut: 0
+  uiPaddingLeft: 0
   uiPaddingRight: 0
-  uiPaddingBottom: 0.2
-  uiPaddingTop: 0.2
+  uiPaddingBottom: 0
+  uiPaddingTop: 0
   panSpeed: 50
-  zoomSpeed: 10
-  minZoom: 2
-  maxZoom: 15
+  zoomSpeed: 75
+  minHeight: 4
+  heightPerTile: 1.6
+  maxHeight: 0
   childCamera: {fileID: 7582798019999636468}
+  thirdPersonCamera: {fileID: 0}
 --- !u!1 &6215036819698816613
 GameObject:
   m_ObjectHideFlags: 0
@@ -215,8 +219,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9023771433946303030}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5, y: -0, z: -0, w: 0.8660254}
-  m_LocalPosition: {x: 0, y: 15, z: -15}
+  m_LocalRotation: {x: 0.5, y: 0, z: 0, w: 0.8660254}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -255,8 +259,8 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
-  orthographic: 1
+  field of view: 30
+  orthographic: 0
   orthographic size: 10
   m_Depth: -1
   m_CullingMask:
