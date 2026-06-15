@@ -52,17 +52,20 @@ MonoBehaviour:
   tileLength: 1
   mapPadding: 1.5
   centerWhenZoomedOut: 0
-  uiPaddingLeft: 0
+  uiPaddingLeft: 0.05
   uiPaddingRight: 0
-  uiPaddingBottom: 0
-  uiPaddingTop: 0
+  uiPaddingBottom: 0.1
+  uiPaddingTop: 0.1
   panSpeed: 50
   zoomSpeed: 75
   minHeight: 4
   heightPerTile: 1.6
   maxHeight: 0
+  toggleCameraButton: {fileID: 0}
   childCamera: {fileID: 7582798019999636468}
   thirdPersonCamera: {fileID: 0}
+  blendDuration: 0.8
+  thirdPersonFOV: 60
 --- !u!1 &6215036819698816613
 GameObject:
   m_ObjectHideFlags: 0
