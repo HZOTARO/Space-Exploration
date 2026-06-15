@@ -30,7 +30,7 @@ public class Enemy : BaseTile
     public GameObject enemyMesh;
 
     [Header("Movement")]
-    public float moveSpeed = 2.5f;
+    public float moveSpeed = 1f;
     private Vector3 targetPosition;
     private bool isMoving = false;
     public bool inAction = false;

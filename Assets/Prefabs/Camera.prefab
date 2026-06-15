@@ -59,11 +59,13 @@ MonoBehaviour:
   panSpeed: 50
   zoomSpeed: 75
   minHeight: 4
+  startingHeight: 10
   heightPerTile: 1.6
   maxHeight: 0
   toggleCameraButton: {fileID: 0}
-  childCamera: {fileID: 7582798019999636468}
+  topDownCamera: {fileID: 7582798019999636468}
   thirdPersonCamera: {fileID: 0}
+  playerRobot: {fileID: 0}
   blendDuration: 0.8
   thirdPersonFOV: 60
 --- !u!1 &6215036819698816613

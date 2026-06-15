@@ -28,6 +28,7 @@ public class CameraController : MonoBehaviour
     [Header("Zoom Settings")]
     public float zoomSpeed = 75f;
     public float minHeight = 4f;
+    public float startingHeight = 10f;
 
     [Tooltip("Multiplier for Max Zoom. 1.8 means a 25x25 grid equals exactly 45 Max Height!")]
     public float heightPerTile = 1.6f;
@@ -35,18 +36,18 @@ public class CameraController : MonoBehaviour
 
     [Header("Camera Switching References")]
     public Button toggleCameraButton;
-    public Camera topDownCamera;       // The only rendering camera
-    public Transform thirdPersonCamera; // We just need the Transform of the 3rd person target!
+    public Camera topDownCamera;
+    public Transform thirdPersonCamera;
+    public Transform playerRobot; // <-- Added this so you can drag your robot here!
 
     [Header("Blend Settings")]
-    public float blendDuration = 0.8f; // How many seconds the transition takes
-    public float thirdPersonFOV = 60f; // Wide FOV for 3rd person
+    public float blendDuration = 0.8f;
+    public float thirdPersonFOV = 60f;
 
     private bool isTopDownActive = true;
     private bool isBlending = false;
     private Coroutine blendCoroutine;
 
-    // To remember where the top-down camera sits relative to the Rig
     private Vector3 topDownLocalPos;
     private Quaternion topDownLocalRot;
     private float topDownFOV;
@@ -67,7 +68,6 @@ public class CameraController : MonoBehaviour
         if (topDownCamera == null) topDownCamera = GetComponentInChildren<Camera>();
         topDownCamera.orthographic = false;
 
-        // Save the Top-Down defaults so we can blend back to them
         topDownLocalPos = topDownCamera.transform.localPosition;
         topDownLocalRot = topDownCamera.transform.localRotation;
         topDownFOV = topDownCamera.fieldOfView;
@@ -75,7 +75,6 @@ public class CameraController : MonoBehaviour
         isTopDownActive = true;
         isBlending = false;
 
-        // Turn off the Camera component on the 3rd person target so we don't render the game twice!
         if (thirdPersonCamera != null)
         {
             Camera tpCam = thirdPersonCamera.GetComponent<Camera>();
@@ -85,30 +84,38 @@ public class CameraController : MonoBehaviour
             if (tpAudio != null) tpAudio.enabled = false;
         }
 
-        // Map Boundaries
         mapMinX = -mapPadding;
         mapMaxX = (gridWidth * tileWidth) + mapPadding;
         mapMinZ = -mapPadding;
         mapMaxZ = (gridHeight * tileLength) + mapPadding;
 
-        // Height Math
         float maxDimension = Mathf.Max(gridWidth * tileWidth, gridHeight * tileLength);
         maxHeight = maxDimension * heightPerTile;
 
-        // Reset Position
+        // --- THE INITIAL POSITION SETUP ---
+        
+        // 1. Set the Rig to your preferred Starting Height
         Vector3 startPos = transform.position;
-        startPos.y = Mathf.Clamp(startPos.y, minHeight, maxHeight);
+        startPos.y = Mathf.Clamp(startingHeight, minHeight, maxHeight); 
         transform.position = startPos;
 
-        ClampPosition();
+        // 2. Decide where to focus on startup
+        if (playerRobot != null)
+        {
+            Vector3 targetGround = new Vector3(playerRobot.position.x, 0f, playerRobot.position.z);
+            FocusOnGroundPosition(targetGround);
+        }
+        else
+        {
+            Vector3 bottomLeftTile = new Vector3(tileWidth / 2f, 0f, tileLength / 2f);
+            FocusOnGroundPosition(bottomLeftTile);
+        }
     }
 
     void LateUpdate()
     {
-        // 1. If we are currently transitioning, halt all input!
         if (isBlending) return;
 
-        // 2. If we are in 3rd Person, lock the camera to the Robot's shoulder and halt map input!
         if (!isTopDownActive && thirdPersonCamera != null)
         {
             topDownCamera.transform.position = thirdPersonCamera.position;
@@ -116,7 +123,6 @@ public class CameraController : MonoBehaviour
             return;
         }
 
-        // 3. Otherwise, do normal Top-Down panning and zooming
         HandleZooming();
         HandlePanning();
         ClampPosition();
@@ -128,7 +134,6 @@ public class CameraController : MonoBehaviour
 
         isTopDownActive = !isTopDownActive;
 
-        // Stop any current transitions and start a new one
         if (blendCoroutine != null) StopCoroutine(blendCoroutine);
         blendCoroutine = StartCoroutine(BlendCameraTransition(isTopDownActive));
     }
@@ -138,7 +143,6 @@ public class CameraController : MonoBehaviour
         isBlending = true;
         float elapsed = 0f;
 
-        // Capture exactly where the camera is right now
         Vector3 startPos = topDownCamera.transform.position;
         Quaternion startRot = topDownCamera.transform.rotation;
         float startFOV = topDownCamera.fieldOfView;
@@ -148,14 +152,11 @@ public class CameraController : MonoBehaviour
         while (elapsed < blendDuration)
         {
             elapsed += Time.deltaTime;
-            // SmoothStep makes the sweep start slow, speed up, and slow down at the end
             float t = Mathf.SmoothStep(0f, 1f, elapsed / blendDuration);
 
-            // Dynamically calculate the target position (in case the robot is moving while we blend!)
             Vector3 targetPos = returningToTopDown ? transform.TransformPoint(topDownLocalPos) : thirdPersonCamera.position;
             Quaternion targetRot = returningToTopDown ? transform.rotation * topDownLocalRot : thirdPersonCamera.rotation;
 
-            // Apply the sweep
             topDownCamera.transform.position = Vector3.Lerp(startPos, targetPos, t);
             topDownCamera.transform.rotation = Quaternion.Slerp(startRot, targetRot, t);
             topDownCamera.fieldOfView = Mathf.Lerp(startFOV, targetFOV, t);
@@ -163,7 +164,6 @@ public class CameraController : MonoBehaviour
             yield return null;
         }
 
-        // Ensure perfect snap at the end of the transition
         if (returningToTopDown)
         {
             topDownCamera.transform.localPosition = topDownLocalPos;
@@ -237,6 +237,24 @@ public class CameraController : MonoBehaviour
                 Vector3 difference = dragOrigin - currentPoint;
                 transform.position += difference;
             }
+        }
+    }
+
+    // --- NEW: Snaps the camera perfectly to a ground position! ---
+    public void FocusOnGroundPosition(Vector3 targetGroundPos)
+    {
+        float activeCenterX = 0.5f + (uiPaddingLeft / 2f) - (uiPaddingRight / 2f);
+        float activeCenterY = 0.5f + (uiPaddingBottom / 2f) - (uiPaddingTop / 2f);
+
+        Ray rCenter = topDownCamera.ViewportPointToRay(new Vector3(activeCenterX, activeCenterY, 0f));
+
+        if (groundPlane.Raycast(rCenter, out float dC))
+        {
+            Vector3 currentLookPos = rCenter.GetPoint(dC);
+            Vector3 shift = targetGroundPos - currentLookPos;
+
+            transform.position += shift;
+            ClampPosition();
         }
     }
 

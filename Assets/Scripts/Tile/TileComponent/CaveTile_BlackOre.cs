@@ -53,7 +53,7 @@ public class CaveTile_BlackOre : ValueTile_Floating
             else
             {
                 value /= 2;
-                if(explosionPrefab) Instantiate(explosionPrefab, transform.position + new Vector3(1, 0, 1.25f), Quaternion.identity);
+                if(explosionPrefab) Instantiate(explosionPrefab, transform.position + new Vector3(0.5f, 0, 0.5f), Quaternion.identity);
                 Debug.Log("Ore exploded");
                 exploded = true;
             }

@@ -25,8 +25,8 @@ public class Player : MonoBehaviour
     public GameObject cannon;
 
     [Header("Movement")]
-    public float moveDistance = 2f;
-    public float baseMoveSpeed = 5f;
+    public float moveDistance = 1f;
+    public float baseMoveSpeed = 2.5f;
     private float moveSpeed = 0f;
 
     private Vector3 targetPosition;
@@ -149,21 +149,22 @@ public class Player : MonoBehaviour
             case Direction.Left:
                 movementVector = -transform.right;
                 moveAnimName = "Walk_Left";
-                moveSpeed = baseMoveSpeed / 1.25f;
+                moveSpeed = baseMoveSpeed;
                 break;
             case Direction.Right:
                 movementVector = transform.right;
                 moveAnimName = "Walk_Right";
-                moveSpeed = baseMoveSpeed / 1.25f;
+                moveSpeed = baseMoveSpeed;
                 break;
         }
 
         if (movementVector != Vector3.zero)
         {
-            movementVector.z *= 1.25f;
             StopAnimationCoroutine();
 
-            targetPosition = transform.position + (movementVector * moveDistance);
+            Vector3 rawTarget = transform.position + (movementVector * moveDistance);
+            targetPosition = new Vector3(Mathf.Round(rawTarget.x), rawTarget.y, Mathf.Round(rawTarget.z));
+
             isMoving = true;
             inAction = true;
 
@@ -294,7 +295,6 @@ public class Player : MonoBehaviour
         if (scanEffect != null)
         {
             Vector3 forwardVector = transform.forward;
-            forwardVector.z *= 1.25f;
 
             Vector3 spawnPos = transform.position + (forwardVector * (moveDistance * distanceInTiles));
             Instantiate(scanEffect, spawnPos, Quaternion.identity);
@@ -306,7 +306,6 @@ public class Player : MonoBehaviour
         if (measureEffect != null)
         {
             Vector3 forwardVector = transform.forward;
-            forwardVector.z *= 1.25f;
 
             Vector3 spawnPos = transform.position + (forwardVector * (moveDistance * distanceInTiles));
             Instantiate(measureEffect, spawnPos, Quaternion.identity);
@@ -336,23 +335,15 @@ public class Player : MonoBehaviour
         if (shootEffect != null)
         {
             Vector3 forwardVector = transform.forward;
-            forwardVector.z *= 1.25f;
             Vector3 spawnPos = transform.position + (forwardVector * (moveDistance * distanceInTiles));
-            spawnPos.y += 0.75f;
+            spawnPos.y += 0.3f;
 
             GameObject spawnedObj = Instantiate(shootEffect, spawnPos, this.transform.rotation);
             ParticleSystemRenderer psRenderer = spawnedObj.GetComponent<ParticleSystemRenderer>();
 
             if (psRenderer != null)
             {
-                if (playerFacing == 1 || playerFacing == 3)
-                {
-                    psRenderer.lengthScale = -2f * distanceInTiles;
-                }
-                else
-                {
-                    psRenderer.lengthScale = -2.5f * distanceInTiles;
-                }
+                psRenderer.lengthScale = -2f * distanceInTiles;
             }
         }
     }
