@@ -58,7 +58,7 @@ MonoBehaviour:
   uiPaddingTop: 0.1
   panSpeed: 50
   zoomSpeed: 75
-  minHeight: 5
+  minHeight: 10
   startingHeight: 10
   heightPerTile: 1.6
   maxHeight: 0

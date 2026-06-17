@@ -162,8 +162,7 @@ public class Player : MonoBehaviour
         {
             StopAnimationCoroutine();
 
-            Vector3 rawTarget = transform.position + (movementVector * moveDistance);
-            targetPosition = new Vector3(Mathf.Round(rawTarget.x), rawTarget.y, Mathf.Round(rawTarget.z));
+            targetPosition = transform.position + (movementVector * moveDistance);
 
             isMoving = true;
             inAction = true;
