@@ -10,9 +10,8 @@ public class GameManager_Training : GameManager
     protected string cachedCleanCode = "";
 
     [Header("UI References")]
-    public Button levelCompletePopup;
-
-    private bool hasFinished = false;
+    public Transform levelCompletePopup;
+    public Button finishLevelButton;
 
     private Vector3 startingPhysicalPos;
     private Quaternion startingPhysicalRot;
@@ -37,7 +36,11 @@ public class GameManager_Training : GameManager
         if (levelCompletePopup != null)
         {
             levelCompletePopup.gameObject.SetActive(false);
-            levelCompletePopup.onClick.AddListener(FinishAndLeaveLevel);
+        }
+
+        if (finishLevelButton != null)
+        {
+            finishLevelButton.gameObject.SetActive(false);
         }
     }
 
@@ -52,44 +55,36 @@ public class GameManager_Training : GameManager
     }
     protected virtual void OnLevelComplete()
     {
-        if (levelCompletePopup != null)
-        {
-            levelCompletePopup.gameObject.SetActive(true);
-        }
-
-        StartCoroutine(AutoFinishTimer());
-    }
-    private IEnumerator AutoFinishTimer()
-    {
-        yield return new WaitForSeconds(5f);
-        FinishAndLeaveLevel();
-    }
-
-    private void FinishAndLeaveLevel()
-    {
-        if (hasFinished) return;
-        hasFinished = true;
-
-        LevelComplete();
-    }
-
-    public override void LevelComplete()
-    {
         if (!SaveManager.saveData.levelCompleted.Contains(PlayerPrefs.GetString("CurrentLevelId")))
         {
             SaveManager.saveData.levelCompleted.Add(PlayerPrefs.GetString("CurrentLevelId"));
             SaveManager.instance.SaveGame(SaveManager.saveSlotInUse);
         }
-
         Debug.Log("<color=green>Training Completed!</color>");
-        LevelManager.instance.OpenScene(LevelType.Hub);
+
+        PythonExecutor.instance.StopRunningCode();
+
+        StartCoroutine(ShowPopupTimer());
+    }
+    private IEnumerator ShowPopupTimer()
+    {
+        yield return new WaitForSeconds(1.5f);
+
+        if (levelCompletePopup != null)
+        {
+            levelCompletePopup.gameObject.SetActive(true);
+        }
+
+        if (finishLevelButton != null)
+        {
+            finishLevelButton.gameObject.SetActive(true);
+        }
     }
 
     protected override void OnDestroy()
     {
         base.OnDestroy();
         if (ObjectiveManager.instance != null) ObjectiveManager.instance.OnAllObjectiveComplete -= OnLevelComplete;
-        if (levelCompletePopup != null) levelCompletePopup.onClick.RemoveListener(FinishAndLeaveLevel);
     }
 
     protected virtual void ResetPlayerToStart()
