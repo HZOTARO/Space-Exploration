@@ -2,6 +2,19 @@
 public class GameManager_Training_4 : GameManager_Training
 {
     // Only mine and collect inside if white ore
+
+    protected override void Start()
+    {
+        base.Start();
+        if (PythonExecutor.instance) PythonExecutor.instance.OnExecutionStarted += PreValidateCode;
+    }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        if (PythonExecutor.instance) PythonExecutor.instance.OnExecutionStarted -= PreValidateCode;
+    }
+
     protected override void RegisterLevelSpecificPythonCommands()
     {
         BindReturn("scan", Scan);
@@ -55,26 +68,35 @@ public class GameManager_Training_4 : GameManager_Training
         cargoSize = 1;
     }
 
+    private void PreValidateCode()
+    {
+        if (PythonExecutor.instance == null || PythonExecutor.instance.currentCode == null) return;
+
+        string code = PythonExecutor.instance.currentCode;
+
+        if (code.Contains("mine()"))
+        {
+            bool isMineValid = PythonExecutor.instance.CheckASTPattern(1, 999, "FuncInsideIfWhiteOre", "mine");
+
+            if (!isMineValid) return;
+        }
+
+        if (code.Contains("collect()"))
+        {
+            bool isCollectValid = PythonExecutor.instance.CheckASTPattern(1, 999, "FuncInsideIfWhiteOre", "collect");
+
+            if (!isCollectValid) return; 
+        }
+    }
+
     public override void Mine()
     {
         if (PythonExecutor.instance != null)
         {
             if (!ValidateFunctionCallCount("mine", 1, true)) return;
-            bool usedInsideIf = PythonExecutor.instance.CheckASTPattern(1, 999, "FuncInsideIfWhiteOre", "mine");
 
-            if (usedInsideIf)
-            {
-                ObjectiveManager.instance.TriggerCustomEvent("MineInsideIf");
-                base.Mine();
-            }
-            else
-            {
-                PrintToDisplay("<color=red>Error: You must use mine() inside an 'if' block checking for 'WhiteOre'!</color>");
-
-                PythonExecutor.instance.StopRunningCode();
-
-                return;
-            }
+            ObjectiveManager.instance.TriggerCustomEvent("MineInsideIf");
+            base.Mine();
         }
         else
         {
@@ -87,20 +109,9 @@ public class GameManager_Training_4 : GameManager_Training
         if (PythonExecutor.instance != null)
         {
             if (!ValidateFunctionCallCount("collect", 1, true)) return;
-            bool usedInsideIf = PythonExecutor.instance.CheckASTPattern(1, 999, "FuncInsideIfWhiteOre", "collect");
 
-            if (usedInsideIf)
-            {
-                ObjectiveManager.instance.TriggerCustomEvent("CollectInsideIf");
-                base.Collect();
-            }
-            else
-            {
-                PrintToDisplay("<color=red>Error: You must use collect() inside an 'if' block checking for 'WhiteOre'!</color>");
-                PythonExecutor.instance.StopRunningCode();
-
-                return;
-            }
+            ObjectiveManager.instance.TriggerCustomEvent("CollectInsideIf");
+            base.Collect();
         }
         else
         {

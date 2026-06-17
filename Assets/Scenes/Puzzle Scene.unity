@@ -176,6 +176,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b385f8dd6d2614418a23eab23de6489, type: 3}
+--- !u!4 &165900014 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7955953769729619003, guid: 9b385f8dd6d2614418a23eab23de6489, type: 3}
+  m_PrefabInstance: {fileID: 165900013}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &182115809
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -224,6 +229,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1153718634772172209, guid: 653a77f048012334ab9fbf5f9e4e5fa9, type: 3}
+      propertyPath: playerRobot
+      value: 
+      objectReference: {fileID: 165900014}
     - target: {fileID: 1153718634772172209, guid: 653a77f048012334ab9fbf5f9e4e5fa9, type: 3}
       propertyPath: uiPaddingBottom
       value: 0
@@ -1488,9 +1497,9 @@ SceneRoots:
   - {fileID: 599578092}
   - {fileID: 1455327351}
   - {fileID: 818802477}
+  - {fileID: 165900013}
   - {fileID: 510958854}
   - {fileID: 1092880952}
   - {fileID: 202872235}
   - {fileID: 1919595715}
   - {fileID: 1130611554}
-  - {fileID: 165900013}

@@ -416,6 +416,20 @@ def check_ast_pattern(source_code, start_line, end_line, pattern, target):
                     elif pattern == "FuncInsideIfWhiteOre":
                         scan_variables = set()
                         
+                        target_line = -1
+                        for n in ast.walk(tree):
+                            if isinstance(n, ast.Call):
+                                if isinstance(n.func, ast.Name) and n.func.id == target:
+                                    target_line = getattr(n, 'lineno', -1)
+                                    break
+                                elif isinstance(n.func, ast.Attribute) and isinstance(n.func.value, ast.Name):
+                                    if f"{n.func.value.id}.{n.func.attr}" == target:
+                                        target_line = getattr(n, 'lineno', -1)
+                                        break
+                        
+                        if target_line == -1:
+                            return "False"
+
                         for n in ast.walk(tree):
                             if isinstance(n, ast.Assign) and isinstance(n.value, ast.Call) and getattr(n.value.func, 'id', '') == "scan":
                                 for target_node in n.targets:
@@ -424,19 +438,40 @@ def check_ast_pattern(source_code, start_line, end_line, pattern, target):
 
                         for n in ast.walk(tree):
                             if isinstance(n, ast.If) and isinstance(n.test, ast.Compare) and len(n.test.ops) == 1 and isinstance(n.test.ops[0], ast.Eq):
-                                left = n.test.left
-                                right = n.test.comparators[0]
                                 
-                                def is_white_ore(x):
-                                    return (isinstance(x, ast.Constant) and x.value == "WhiteOre") or (isinstance(x, ast.Str) and x.s == "WhiteOre")
-                                
-                                def is_scan_ref(x):
-                                    return (isinstance(x, ast.Call) and getattr(x.func, 'id', '') == "scan") or (isinstance(x, ast.Name) and x.id in scan_variables)
-                                
-                                is_valid_conditional = (is_white_ore(left) and is_scan_ref(right)) or (is_white_ore(right) and is_scan_ref(left))
+                                if contains_call(n.body, target):
+                                    left = n.test.left
+                                    right = n.test.comparators[0]
 
-                                if is_valid_conditional and contains_call(n.body, target):
-                                    return "True"
+                                    def get_string_value(x):
+                                        if isinstance(x, ast.Constant) and isinstance(x.value, str): return x.value
+                                        if isinstance(x, ast.Str): return x.s
+                                        return None
+                                        
+                                    def is_scan_ref(x):
+                                        return (isinstance(x, ast.Call) and getattr(x.func, 'id', '') == "scan") or (isinstance(x, ast.Name) and x.id in scan_variables)
+                                        
+                                    left_str = get_string_value(left)
+                                    right_str = get_string_value(right)
+                                        
+                                    scan_is_left = is_scan_ref(left)
+                                    scan_is_right = is_scan_ref(right)
+
+                                    if scan_is_left or scan_is_right:
+                                        compared_str = right_str if scan_is_left else left_str
+                                            
+                                        if compared_str is not None:
+                                            if compared_str == "WhiteOre":
+                                                return "True"
+                                            else:
+                                                line_num = getattr(n, 'lineno', target_line)
+                                                raise ValueError(f"RUNTIME_ERROR|{line_num}|ValueError: Invalid comparison. Expected 'WhiteOre' but got '{compared_str}'.")
+                                    
+                                    elif left_str == "WhiteOre" or right_str == "WhiteOre":
+                                        line_num = getattr(n, 'lineno', target_line)
+                                        raise ValueError(f"RUNTIME_ERROR|{line_num}|You must use 'scan()' to check the object!")
+
+                        raise ValueError(f"RUNTIME_ERROR|{target_line}|You must use {target}() inside an 'if scan() == \"WhiteOre\":' block!")
 
                     elif pattern == "FuncInsideFor":
                         if isinstance(node, ast.For) and contains_call(node.body, target): 
@@ -480,4 +515,7 @@ def check_ast_pattern(source_code, start_line, end_line, pattern, target):
                                 
         return "False"
     except Exception as e:
+        if str(e).startswith("RUNTIME_ERROR"):
+            return str(e)
+            
         return "False"

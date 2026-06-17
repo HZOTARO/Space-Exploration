@@ -431,6 +431,18 @@ __gen__ = None
             {
                 string result = GetCachedPyFunction("check_ast_pattern")(currentCode, startLine, endLine, pattern, target).ToString();
 
+                if (result.StartsWith("RUNTIME_ERROR|"))
+                {
+                    string[] parts = result.Split('|', 3);
+                    int.TryParse(parts[1], out int line);
+                    string msg = parts.Length > 2 ? parts[2] : "Unknown Error";
+
+                    PythonExecutor.instance.StopRunningCode();
+                    OnRuntimeError?.Invoke(line, msg);
+
+                    return false;
+                }
+
                 return result == "True";
             }
             catch (System.Exception e)

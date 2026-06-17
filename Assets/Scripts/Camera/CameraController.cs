@@ -27,7 +27,7 @@ public class CameraController : MonoBehaviour
 
     [Header("Zoom Settings")]
     public float zoomSpeed = 75f;
-    public float minHeight = 4f;
+    public float minHeight = 5f;
     public float startingHeight = 10f;
 
     [Tooltip("Multiplier for Max Zoom. 1.8 means a 25x25 grid equals exactly 45 Max Height!")]
@@ -38,7 +38,7 @@ public class CameraController : MonoBehaviour
     public Button toggleCameraButton;
     public Camera topDownCamera;
     public Transform thirdPersonCamera;
-    public Transform playerRobot; // <-- Added this so you can drag your robot here!
+    public Transform playerRobot;
 
     [Header("Blend Settings")]
     public float blendDuration = 0.8f;
@@ -90,16 +90,12 @@ public class CameraController : MonoBehaviour
         mapMaxZ = (gridHeight * tileLength) + mapPadding;
 
         float maxDimension = Mathf.Max(gridWidth * tileWidth, gridHeight * tileLength);
-        maxHeight = maxDimension * heightPerTile;
+        maxHeight = Mathf.Max(maxDimension * heightPerTile, minHeight);
 
-        // --- THE INITIAL POSITION SETUP ---
-        
-        // 1. Set the Rig to your preferred Starting Height
         Vector3 startPos = transform.position;
         startPos.y = Mathf.Clamp(startingHeight, minHeight, maxHeight); 
         transform.position = startPos;
 
-        // 2. Decide where to focus on startup
         if (playerRobot != null)
         {
             Vector3 targetGround = new Vector3(playerRobot.position.x, 0f, playerRobot.position.z);
@@ -240,7 +236,6 @@ public class CameraController : MonoBehaviour
         }
     }
 
-    // --- NEW: Snaps the camera perfectly to a ground position! ---
     public void FocusOnGroundPosition(Vector3 targetGroundPos)
     {
         float activeCenterX = 0.5f + (uiPaddingLeft / 2f) - (uiPaddingRight / 2f);
