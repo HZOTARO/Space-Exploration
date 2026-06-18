@@ -230,8 +230,9 @@ public class GameManager_PartExploration : GameManager
         }
     }
 
-    public override bool MoveForward()
+    public override void MoveForward()
     {
+        bool hasEnemyInFront = false;
         Vector2Int forwardLoc = GetForwardGridLoc();
 
         if (activeEnemies != null)
@@ -240,16 +241,19 @@ public class GameManager_PartExploration : GameManager
             {
                 if (!enemy.isDead && enemy.gridLoc == forwardLoc)
                 {
-                    return false;
+                    hasEnemyInFront = true;
                 }
             }
         }
 
-        bool result = base.MoveForward();
-        if (result) TriggerEnemyTurns();
-        return result;
+        if (!hasEnemyInFront)
+        {
+            base.MoveForward();
+        }
+
+        TriggerEnemyTurns();
     }
-    public override bool MoveBackward()
+    public override void MoveBackward()
     {
         int targetZ = playerGridLoc.x;
         int targetX = playerGridLoc.y;
@@ -261,20 +265,25 @@ public class GameManager_PartExploration : GameManager
 
         Vector2Int backwardLoc = new Vector2Int(targetZ, targetX);
 
+        bool hasEnemyInBack = false;
+
         if (activeEnemies != null)
         {
             foreach (Enemy enemy in activeEnemies)
             {
                 if (!enemy.isDead && enemy.gridLoc == backwardLoc)
                 {
-                    return false;
+                    hasEnemyInBack = true;
                 }
             }
         }
 
-        bool result = base.MoveBackward();
-        if (result) TriggerEnemyTurns();
-        return result;
+        if (!hasEnemyInBack)
+        {
+            base.MoveBackward();
+        }
+
+        TriggerEnemyTurns();
     }
 
     public override void Wait()

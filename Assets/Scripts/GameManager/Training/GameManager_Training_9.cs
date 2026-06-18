@@ -7,8 +7,7 @@ public class GameManager_Training_9 : GameManager_Training
 
     protected override void RegisterLevelSpecificPythonCommands()
     {
-        BindReturn("move_forward", MoveForward);
-        BindReturn("move_backward", MoveBackward);
+        Bind("move_forward", MoveForward);
         Bind("turn_right", TurnRight);
         Bind("turn_left", TurnLeft);
     }
@@ -59,36 +58,34 @@ public class GameManager_Training_9 : GameManager_Training
         }
     }
 
-    public override bool MoveForward()
+    public override void MoveForward()
     {
-        if (!ValidateFunctionCallCount("move_forward", 2, false)) return false;
+        if (!ValidateFunctionCallCount("move_forward", 2, false)) return;
 
-        bool result = base.MoveForward();
+        base.MoveForward();
         if (!visitedTiles.Contains(playerGridLoc))
         {
             visitedTiles.Add(playerGridLoc);
+            if (player.markPrefab && tileManager)
+            {
+                tileManager.InstantiateTileVisual(playerGridLoc.x, playerGridLoc.y, player.markPrefab);
+            }
         }
-        if (result && player.markPrefab && tileManager)
-        {
-            tileManager.InstantiateTileVisual(playerGridLoc.x, playerGridLoc.y, player.markPrefab);
-        }
-        return result;
     }
 
-    public override bool MoveBackward()
+    public override void MoveBackward()
     {
-        if (!ValidateFunctionCallCount("move_backward", 2, false)) return false;
+        if (!ValidateFunctionCallCount("move_backward", 2, false)) return;
 
-        bool result = base.MoveBackward();
+        base.MoveBackward();
         if (!visitedTiles.Contains(playerGridLoc))
         {
             visitedTiles.Add(playerGridLoc);
+            if (player.markPrefab && tileManager)
+            {
+                tileManager.InstantiateTileVisual(playerGridLoc.x, playerGridLoc.y, player.markPrefab);
+            }
         }
-        if (result && player.markPrefab && tileManager)
-        {
-            tileManager.InstantiateTileVisual(playerGridLoc.x, playerGridLoc.y, player.markPrefab);
-        }
-        return result;
     }
 
     private void CheckGridCompletion()

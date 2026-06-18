@@ -4,8 +4,7 @@ public class GameManager_Training_7 : GameManager_Training
 {
     protected override void RegisterLevelSpecificPythonCommands()
     {
-        BindReturn("move_forward", MoveForward);
-        BindReturn("move_backward", MoveBackward);
+        Bind("move_forward", MoveForward);
         Bind("turn_right", TurnRight);
         Bind("turn_left", TurnLeft);
     }
@@ -53,13 +52,13 @@ public class GameManager_Training_7 : GameManager_Training
         }
     }
 
-    public override bool MoveForward()
+    public override void MoveForward()
     {
-        if (PythonExecutor.instance == null) return false;
+        if (PythonExecutor.instance == null) return;
 
         string currentCode = PythonExecutor.instance.currentCode;
 
-        if (!ValidateFunctionCallCount("move_forward", 1, true)) return false;
+        if (!ValidateFunctionCallCount("move_forward", 1, true)) return;
 
         bool isLoopValid = PythonExecutor.instance.CheckASTPattern(1, 999, "FuncInsideFor", "move_forward");
 
@@ -67,10 +66,10 @@ public class GameManager_Training_7 : GameManager_Training
         {
             PrintToDisplay("<color=red>Action Blocked! You must use a 'for' loop to automate your movement on this level.</color>");
             PythonExecutor.instance.StopRunningCode();
-            return false;
+            return;
         }
 
-        return base.MoveForward();
+        base.MoveForward();
     }
 
     private void CheckPrecisionGoal()

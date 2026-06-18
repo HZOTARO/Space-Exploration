@@ -18,18 +18,16 @@ public class GameManager_Puzzle : GameManager
         if (cargoComponent) cargoComponent.cargoSize = cargoSize;
     }
 
-    public override bool MoveForward()
+    public override void MoveForward()
     {
-        bool result = base.MoveForward();
+        base.MoveForward();
         CheckMazeObjective();
-        return result;
     }
 
-    public override bool MoveBackward()
+    public override void MoveBackward()
     {
-        bool result = base.MoveBackward();
+        base.MoveBackward();
         CheckMazeObjective();
-        return result;
     }
 
     private void CheckMazeObjective()

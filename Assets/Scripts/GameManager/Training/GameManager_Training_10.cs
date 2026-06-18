@@ -5,8 +5,8 @@ public class GameManager_Training_10 : GameManager_Training
     // Append List
     protected override void RegisterLevelSpecificPythonCommands()
     {
-        BindReturn("move_forward", MoveForward);
-        BindReturn("move_backward", MoveBackward);
+        Bind("move_forward", MoveForward);
+        Bind("move_backward", MoveBackward);
         Bind("turn_right", TurnRight);
         Bind("turn_left", TurnLeft);
 

@@ -157,8 +157,8 @@ public class GameManager : MonoBehaviour
 
     protected virtual void RegisterLevelSpecificPythonCommands() 
     {
-        BindReturn("move_forward", MoveForward);
-        BindReturn("move_backward", MoveBackward);
+        Bind("move_forward", MoveForward);
+        Bind("move_backward", MoveBackward);
         Bind("turn_right", TurnRight);
         Bind("turn_left", TurnLeft);
         Bind("wait", Wait);
@@ -296,7 +296,7 @@ public class GameManager : MonoBehaviour
 
     #region ---PLAYER FUNCTIONS---
 
-    public virtual bool MoveForward()
+    public virtual void MoveForward()
     {
         int targetZ = playerGridLoc.x;
         int targetX = playerGridLoc.y;
@@ -306,17 +306,17 @@ public class GameManager : MonoBehaviour
         else if (playerFacing == 2) targetZ--;
         else if (playerFacing == 3) targetX--;
 
-        if (targetX < 0 || targetX >= tileManager.width || targetZ < 0 || targetZ >= tileManager.length) return false;
-        if (!IsTileWalkable(targetZ, targetX)) return false;
+        if (targetX < 0 || targetX >= tileManager.width || targetZ < 0 || targetZ >= tileManager.length) return;
+        if (!IsTileWalkable(targetZ, targetX)) return;
 
         playerGridLoc.x = targetZ;
         playerGridLoc.y = targetX;
 
         player.Move(Direction.Forward);
-        return true;
+        return;
     }
 
-    public virtual bool MoveBackward()
+    public virtual void MoveBackward()
     {
         int targetZ = playerGridLoc.x;
         int targetX = playerGridLoc.y;
@@ -326,14 +326,14 @@ public class GameManager : MonoBehaviour
         else if (playerFacing == 2) targetZ++;
         else if (playerFacing == 3) targetX++;
 
-        if (targetX < 0 || targetX >= tileManager.width || targetZ < 0 || targetZ >= tileManager.length) return false;
-        if (!IsTileWalkable(targetZ, targetX)) return false;
+        if (targetX < 0 || targetX >= tileManager.width || targetZ < 0 || targetZ >= tileManager.length) return;
+        if (!IsTileWalkable(targetZ, targetX)) return;
 
         playerGridLoc.x = targetZ;
         playerGridLoc.y = targetX;
 
         player.Move(Direction.Backward);
-        return true;
+        return;
     }
 
     public void TurnRight()
@@ -556,6 +556,7 @@ public class GameManager : MonoBehaviour
 
         LevelManager.instance.OpenScene(LevelType.Hub);
     }
+
     protected void LevelGameOver()
     {
         if (PythonExecutor.instance != null)
