@@ -4,8 +4,6 @@ public class GameManager_Training_8 : GameManager_Training
 {
     protected override void RegisterLevelSpecificPythonCommands()
     {
-        Bind("move_forward", MoveForward);
-        Bind("move_backward", MoveBackward);
         BindWithArg<string>("turn", Turn);
         BindReturn("scan", Scan);
     }
@@ -38,7 +36,6 @@ public class GameManager_Training_8 : GameManager_Training
         if (PythonExecutor.instance != null)
         {
             PythonExecutor.instance.OnExecutionFinished += CheckPrecisionGoal;
-            PythonExecutor.instance.OnRuntimeError += HandleRuntimeError;
             PythonExecutor.instance.OnExecutionAborted += HandleAbort;
         }
     }
@@ -72,7 +69,6 @@ public class GameManager_Training_8 : GameManager_Training
         if (PythonExecutor.instance != null)
         {
             PythonExecutor.instance.OnExecutionFinished -= CheckPrecisionGoal;
-            PythonExecutor.instance.OnRuntimeError -= HandleRuntimeError;
             PythonExecutor.instance.OnExecutionAborted -= HandleAbort;
         }
     }

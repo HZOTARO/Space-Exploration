@@ -458,9 +458,9 @@ __gen__ = None
             }
         }
     }
-    public void TriggerRuntimeError(string msg)
+    public void TriggerRuntimeError(string msg, bool addLineCountBuffer = false)
     {
-        int lineToReport = currentLine;
+        int lineToReport = currentLine + (addLineCountBuffer ? 1 : 0);
 
         StopRunningCode();
         OnRuntimeError?.Invoke(lineToReport, msg);

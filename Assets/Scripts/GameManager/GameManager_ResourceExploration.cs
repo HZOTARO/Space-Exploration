@@ -26,8 +26,8 @@ public class GameManager_ResourceExploration : GameManager
 
         Bind("mine", Mine);
         Bind("collect", Collect);
-
-        BindWithArg<int, bool>("discard", Discard);
+            
+        BindWithArg<int>("discard", Discard);
 
         if (UpgradeManager.instance)
         {

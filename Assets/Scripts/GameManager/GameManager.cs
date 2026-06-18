@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -41,6 +42,8 @@ public class GameManager : MonoBehaviour
     public HintCollectionSO hintCollection;
     public List<HintSO> hintList;
 
+    protected bool isSequenceRunning = false;
+    public event Action OnSuccessfulMove;
 
     #region ---UNITY LIFECYCLE---
 
@@ -157,8 +160,7 @@ public class GameManager : MonoBehaviour
 
     protected virtual void RegisterLevelSpecificPythonCommands() 
     {
-        Bind("move_forward", MoveForward);
-        Bind("move_backward", MoveBackward);
+        BindWithArgs<string, int>("move", Move);
         BindWithArg<string>("turn", Turn);
         Bind("wait", Wait);
 
@@ -171,8 +173,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public virtual void Wait() { }
-
     protected void Bind(string pyName, Action action)
     {
         if (PythonExecutor.instance != null) PythonExecutor.instance.RegisterPythonFunction(pyName, action);
@@ -184,6 +184,11 @@ public class GameManager : MonoBehaviour
     }
 
     protected void BindWithArg<TArg>(string pyName, Action<TArg> action)
+    {
+        if (PythonExecutor.instance != null) PythonExecutor.instance.RegisterPythonFunction(pyName, action);
+    }
+
+    protected void BindWithArgs<TArg1, TArg2>(string pyName, Action<TArg1, TArg2> action)
     {
         if (PythonExecutor.instance != null) PythonExecutor.instance.RegisterPythonFunction(pyName, action);
     }
@@ -254,7 +259,10 @@ public class GameManager : MonoBehaviour
         return rawError;
     }
 
-    public virtual bool InAction() { return player != null && player.inAction; }
+    public virtual bool InAction()
+    {
+        return (player != null && player.inAction) || isSequenceRunning;
+    }
 
     public TileObject GetCurrentTile()
     {
@@ -286,7 +294,7 @@ public class GameManager : MonoBehaviour
         return null;
     }
 
-    private bool IsTileWalkable(int z, int x)
+    protected bool IsTileWalkable(int z, int x)
     {
         TileObject targetTile = tileManager.objectsArray[z, x];
 
@@ -299,45 +307,80 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region ---PLAYER FUNCTIONS---
-
-    public virtual void MoveForward()
+    public virtual void Move(string directionString, int distance)
     {
-        int targetZ = playerGridLoc.x;
-        int targetX = playerGridLoc.y;
-
-        if (playerFacing == 0) targetZ++;
-        else if (playerFacing == 1) targetX++;
-        else if (playerFacing == 2) targetZ--;
-        else if (playerFacing == 3) targetX--;
-
-        if (targetX < 0 || targetX >= tileManager.width || targetZ < 0 || targetZ >= tileManager.length) return;
-        if (!IsTileWalkable(targetZ, targetX)) return;
-
-        playerGridLoc.x = targetZ;
-        playerGridLoc.y = targetX;
-
-        player.Move(Direction.Forward);
-        return;
+        if (distance <= 0) return;
+        StartCoroutine(MoveRoutine(directionString, distance));
     }
 
-    public virtual void MoveBackward()
+    protected virtual IEnumerator MoveRoutine(string directionString, int distance)
     {
-        int targetZ = playerGridLoc.x;
-        int targetX = playerGridLoc.y;
+        isSequenceRunning = true;
 
-        if (playerFacing == 0) targetZ--;
-        else if (playerFacing == 1) targetX--;
-        else if (playerFacing == 2) targetZ++;
-        else if (playerFacing == 3) targetX++;
+        yield return null;
 
-        if (targetX < 0 || targetX >= tileManager.width || targetZ < 0 || targetZ >= tileManager.length) return;
-        if (!IsTileWalkable(targetZ, targetX)) return;
+        int zModifier = 0;
+        int xModifier = 0;
+        Direction physicalDirection = Direction.Forward;
 
-        playerGridLoc.x = targetZ;
-        playerGridLoc.y = targetX;
+        if (directionString == "forward")
+        {
+            physicalDirection = Direction.Forward;
+            if (playerFacing == 0) zModifier = 1;
+            else if (playerFacing == 1) xModifier = 1;
+            else if (playerFacing == 2) zModifier = -1;
+            else if (playerFacing == 3) xModifier = -1;
+        }
+        else if (directionString == "backward")
+        {
+            physicalDirection = Direction.Backward;
+            if (playerFacing == 0) zModifier = -1;
+            else if (playerFacing == 1) xModifier = -1;
+            else if (playerFacing == 2) zModifier = 1;
+            else if (playerFacing == 3) xModifier = 1;
+        }
+        else
+        {
+            PythonExecutor.instance.TriggerRuntimeError($"Invalid move direction: '{directionString}'. Use 'forward' or 'backward'.");
+            isSequenceRunning = false;
+            yield break;
+        }
 
-        player.Move(Direction.Backward);
-        return;
+        for (int i = 0; i < distance; i++)
+        {
+            int checkZ = playerGridLoc.x + zModifier;
+            int checkX = playerGridLoc.y + xModifier;
+
+            if (checkX < 0 || checkX >= tileManager.width || checkZ < 0 || checkZ >= tileManager.length)
+            {
+                PythonExecutor.instance.TriggerRuntimeError("Error: The robot crashed into the edge of the map.");
+                break;
+            }
+
+            if (!IsTileWalkable(checkZ, checkX))
+            {
+                PythonExecutor.instance.TriggerRuntimeError("Error: The robot crashed into an obstacle.");
+                break;
+            }
+
+            playerGridLoc.x = checkZ;
+            playerGridLoc.y = checkX;
+
+            player.Move(physicalDirection);
+
+            while (player.inAction)
+            {
+                yield return null;
+            }
+
+            OnSuccessfulMove?.Invoke();
+        }
+
+        isSequenceRunning = false;
+    }
+
+    public virtual void Wait()
+    {
     }
 
     public void Turn(string direction)
@@ -354,7 +397,19 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            PythonExecutor.instance.TriggerRuntimeError($"Invalid turn direction: {direction}. Use 'left' or 'right'.");
+            PythonExecutor.instance.TriggerRuntimeError($"Invalid turn direction: {direction}. Use 'left' or 'right'.", true);
+        }
+    }
+
+    public void Discard(int slotIndex)
+    {
+        if (cargoComponent != null && slotIndex >= 0 && slotIndex < cargoComponent.levelCargo.Count)
+        {
+            cargoComponent.DiscardCargo(slotIndex);
+        }
+        else
+        {
+            PythonExecutor.instance.TriggerRuntimeError($"Invalid cargo slot index: {slotIndex}.", true);
         }
     }
 
@@ -589,14 +644,8 @@ public class GameManager : MonoBehaviour
         }
     }
     #endregion
-
-    public bool Discard(int slotIndex)
+    protected void TriggerSuccessfulMoveEvent()
     {
-        if (cargoComponent != null && slotIndex >= 0 && slotIndex < cargoComponent.levelCargo.Count)
-        {
-            cargoComponent.DiscardCargo(slotIndex);
-            return true;
-        }
-        return false;
+        OnSuccessfulMove?.Invoke();
     }
 }

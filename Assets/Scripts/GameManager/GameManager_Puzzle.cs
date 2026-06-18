@@ -2,6 +2,16 @@ using UnityEngine;
 
 public class GameManager_Puzzle : GameManager
 {
+    protected override void Start()
+    {
+        OnSuccessfulMove += CheckMazeObjective;
+        base.Start();
+    }
+    protected override void OnDestroy()
+    {
+        OnSuccessfulMove -= CheckMazeObjective;
+        base.OnDestroy();
+    }
     protected override void StartValuesSetup()
     {
         base.StartValuesSetup();
@@ -16,18 +26,6 @@ public class GameManager_Puzzle : GameManager
         Debug.Log($"<color=cyan>Loaded Puzzle: {puzzleId} ({levelWidth}x{levelLength})</color>");
 
         if (cargoComponent) cargoComponent.cargoSize = cargoSize;
-    }
-
-    public override void MoveForward()
-    {
-        base.MoveForward();
-        CheckMazeObjective();
-    }
-
-    public override void MoveBackward()
-    {
-        base.MoveBackward();
-        CheckMazeObjective();
     }
 
     private void CheckMazeObjective()

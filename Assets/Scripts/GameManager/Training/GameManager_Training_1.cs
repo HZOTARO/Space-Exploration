@@ -1,23 +1,16 @@
 public class GameManager_Training_1 : GameManager_Training
 {
     // Introduction
-    protected override void RegisterLevelSpecificPythonCommands()
+    protected override void Start()
     {
-        Bind("move_forward", MoveForward);
-        Bind("move_backward", MoveBackward);
-        BindWithArg<string>("turn", Turn);
+        base.Start();
+        OnSuccessfulMove += CheckGoal;
     }
 
-    public override void MoveForward()
+    protected override void OnDestroy()
     {
-        base.MoveForward();
-        CheckGoal();
-    }
-
-    public override void MoveBackward()
-    {
-        base.MoveBackward();
-        CheckGoal();
+        base.OnDestroy();
+        OnSuccessfulMove -= CheckGoal;
     }
 
     private void CheckGoal()
@@ -35,14 +28,14 @@ public class GameManager_Training_1 : GameManager_Training
 
         ObjectiveManager.instance.objectives.Add(new LevelObjective()
         {
-            description = "Move the player using move_forward().",
+            description = "Move the player using <color=green>move</color>(direction, distance).",
             type = ObjectiveType.FunctionCall,
-            targetFunctionName = "move_forward"
+            targetFunctionName = "move"
         });
 
         ObjectiveManager.instance.objectives.Add(new LevelObjective()
         {
-            description = "Reach the goal!",
+            description = "Reach the <color=green>goal</color> marked in green!",
             type = ObjectiveType.CustomEvent, 
             customEventId = "ReachedGoal"
         });

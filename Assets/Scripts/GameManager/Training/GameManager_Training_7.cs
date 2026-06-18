@@ -4,7 +4,6 @@ public class GameManager_Training_7 : GameManager_Training
 {
     protected override void RegisterLevelSpecificPythonCommands()
     {
-        Bind("move_forward", MoveForward);
         BindWithArg<string>("turn", Turn);
     }
     protected override void SetLevelAllowedSyntax()
@@ -46,30 +45,29 @@ public class GameManager_Training_7 : GameManager_Training
         if (PythonExecutor.instance != null)
         {
             PythonExecutor.instance.OnExecutionFinished += CheckPrecisionGoal;
-            PythonExecutor.instance.OnRuntimeError += HandleRuntimeError;
             PythonExecutor.instance.OnExecutionAborted += HandleAbort;
         }
     }
 
-    public override void MoveForward()
-    {
-        if (PythonExecutor.instance == null) return;
+    //public override void MoveForward()
+    //{
+    //    if (PythonExecutor.instance == null) return;
 
-        string currentCode = PythonExecutor.instance.currentCode;
+    //    string currentCode = PythonExecutor.instance.currentCode;
 
-        if (!ValidateFunctionCallCount("move_forward", 1, true)) return;
+    //    if (!ValidateFunctionCallCount("move_forward", 1, true)) return;
 
-        bool isLoopValid = PythonExecutor.instance.CheckASTPattern(1, 999, "FuncInsideFor", "move_forward");
+    //    bool isLoopValid = PythonExecutor.instance.CheckASTPattern(1, 999, "FuncInsideFor", "move_forward");
 
-        if (!isLoopValid)
-        {
-            PrintToDisplay("<color=red>Action Blocked! You must use a 'for' loop to automate your movement on this level.</color>");
-            PythonExecutor.instance.StopRunningCode();
-            return;
-        }
+    //    if (!isLoopValid)
+    //    {
+    //        PrintToDisplay("<color=red>Action Blocked! You must use a 'for' loop to automate your movement on this level.</color>");
+    //        PythonExecutor.instance.StopRunningCode();
+    //        return;
+    //    }
 
-        base.MoveForward();
-    }
+    //    base.MoveForward();
+    //}
 
     private void CheckPrecisionGoal()
     {
@@ -98,7 +96,6 @@ public class GameManager_Training_7 : GameManager_Training
         if (PythonExecutor.instance != null)
         {
             PythonExecutor.instance.OnExecutionFinished -= CheckPrecisionGoal;
-            PythonExecutor.instance.OnRuntimeError -= HandleRuntimeError;
             PythonExecutor.instance.OnExecutionAborted -= HandleAbort;
         }
     }

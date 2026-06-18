@@ -5,10 +5,6 @@ public class GameManager_Training_10 : GameManager_Training
     // Append List
     protected override void RegisterLevelSpecificPythonCommands()
     {
-        Bind("move_forward", MoveForward);
-        Bind("move_backward", MoveBackward);
-        BindWithArg<string>("turn", Turn);
-
         Bind("mine", Mine);
         Bind("collect", Collect);
         BindReturn("scan", Scan);
@@ -62,7 +58,6 @@ public class GameManager_Training_10 : GameManager_Training
         {
             PythonExecutor.instance.OnExecutionFinishedBefore += CheckListCompletion;
             PythonExecutor.instance.OnExecutionAborted += HandleAbort;
-            PythonExecutor.instance.OnRuntimeError += HandleRuntimeError;
         }
     }
 
@@ -132,7 +127,6 @@ public class GameManager_Training_10 : GameManager_Training
         {
             PythonExecutor.instance.OnExecutionFinishedBefore -= CheckListCompletion;
             PythonExecutor.instance.OnExecutionAborted -= HandleAbort;
-            PythonExecutor.instance.OnRuntimeError -= HandleRuntimeError;
         }
     }
 }

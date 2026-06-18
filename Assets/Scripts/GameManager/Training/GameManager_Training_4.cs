@@ -2,7 +2,6 @@
 public class GameManager_Training_4 : GameManager_Training
 {
     // Only mine and collect inside if white ore
-
     protected override void Start()
     {
         base.Start();

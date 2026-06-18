@@ -3,7 +3,8 @@ public class GameManager_Training_3 : GameManager_Training
     // Measure both ores and add value
     protected override void RegisterLevelSpecificPythonCommands()
     {
-        BindWithArg<string>("turn", Turn);
+        base.RegisterLevelSpecificPythonCommands();
+        BindReturn("scan", Scan);
         BindReturn("measure", Measure);
     }
 
@@ -15,7 +16,6 @@ public class GameManager_Training_3 : GameManager_Training
         {
             PythonExecutor.instance.OnExecutionFinishedBefore += CheckCalculatedTotal;
             PythonExecutor.instance.OnExecutionAborted += HandleAbort;
-            PythonExecutor.instance.OnRuntimeError += HandleRuntimeError;
         }
     }
 
@@ -32,7 +32,14 @@ public class GameManager_Training_3 : GameManager_Training
 
         ObjectiveManager.instance.objectives.Add(new LevelObjective()
         {
-            description = "Use measure() on both ores and store their sum in a variable named 'total' in a single run.",
+            description = "Use <color=green>measure</color>() to find the value of the tile in front of you.",
+            type = ObjectiveType.FunctionCall,
+            targetFunctionName = "measure"
+        });
+
+        ObjectiveManager.instance.objectives.Add(new LevelObjective()
+        {
+            description = "Calculate the sum of the measured ores and store the result  in a variable named <color=yellow>total</color>. Do it in a single run.",
             type = ObjectiveType.CustomEvent,
             customEventId = "TotalCalculated"
         });
@@ -56,7 +63,7 @@ public class GameManager_Training_3 : GameManager_Training
 
             if (totalStr == "Undefined")
             {
-                PrintToDisplay("<color=red>Error: Variable 'total' was not found! Make sure you named it exactly 'total'.</color>");
+                PrintToDisplay("<color=yellow>Variable 'total' was not found! Make sure you named it exactly 'total'.</color>");
                 ResetPlayerToStart();
             }
             else if (int.TryParse(totalStr, out int playerTotal))
@@ -68,13 +75,13 @@ public class GameManager_Training_3 : GameManager_Training
                 }
                 else
                 {
-                    PrintToDisplay($"<color=red>Incorrect Math! The real total was {tm.expectedTotalValue}, but your 'total' variable was {playerTotal}.</color>");
+                    PrintToDisplay($"<color=yellow>Incorrect value! The real total was {tm.expectedTotalValue}, but your 'total' variable was {playerTotal}.</color>");
                     ResetPlayerToStart();
                 }
             }
             else
             {
-                PrintToDisplay($"<color=red>Error: 'total' is not a valid number!</color>");
+                PrintToDisplay($"<color=yellow>'total' is not a valid number!</color>");
                 ResetPlayerToStart();
             }
         }
@@ -97,7 +104,6 @@ public class GameManager_Training_3 : GameManager_Training
         {
             PythonExecutor.instance.OnExecutionFinishedBefore -= CheckCalculatedTotal;
             PythonExecutor.instance.OnExecutionAborted -= HandleAbort;
-            PythonExecutor.instance.OnRuntimeError -= HandleRuntimeError;
         }
     }
 }

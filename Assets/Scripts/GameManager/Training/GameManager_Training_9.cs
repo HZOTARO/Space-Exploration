@@ -7,7 +7,7 @@ public class GameManager_Training_9 : GameManager_Training
 
     protected override void RegisterLevelSpecificPythonCommands()
     {
-        Bind("move_forward", MoveForward);
+        //Bind("move_forward", MoveForward);
         BindWithArg<string>("turn", Turn);
     }
 
@@ -38,9 +38,7 @@ public class GameManager_Training_9 : GameManager_Training
         if (PythonExecutor.instance != null)
         {
             PythonExecutor.instance.OnExecutionFinished += CheckGridCompletion;
-
             PythonExecutor.instance.OnExecutionAborted += HandleAbort;
-            PythonExecutor.instance.OnRuntimeError += HandleRuntimeError;
         }
 
         ClearVisitedTiles();
@@ -57,35 +55,35 @@ public class GameManager_Training_9 : GameManager_Training
         }
     }
 
-    public override void MoveForward()
-    {
-        if (!ValidateFunctionCallCount("move_forward", 2, false)) return;
+    //public override void MoveForward()
+    //{
+    //    if (!ValidateFunctionCallCount("move_forward", 2, false)) return;
 
-        base.MoveForward();
-        if (!visitedTiles.Contains(playerGridLoc))
-        {
-            visitedTiles.Add(playerGridLoc);
-            if (player.markPrefab && tileManager)
-            {
-                tileManager.InstantiateTileVisual(playerGridLoc.x, playerGridLoc.y, player.markPrefab);
-            }
-        }
-    }
+    //    base.MoveForward();
+    //    if (!visitedTiles.Contains(playerGridLoc))
+    //    {
+    //        visitedTiles.Add(playerGridLoc);
+    //        if (player.markPrefab && tileManager)
+    //        {
+    //            tileManager.InstantiateTileVisual(playerGridLoc.x, playerGridLoc.y, player.markPrefab);
+    //        }
+    //    }
+    //}
 
-    public override void MoveBackward()
-    {
-        if (!ValidateFunctionCallCount("move_backward", 2, false)) return;
+    //public override void MoveBackward()
+    //{
+    //    if (!ValidateFunctionCallCount("move_backward", 2, false)) return;
 
-        base.MoveBackward();
-        if (!visitedTiles.Contains(playerGridLoc))
-        {
-            visitedTiles.Add(playerGridLoc);
-            if (player.markPrefab && tileManager)
-            {
-                tileManager.InstantiateTileVisual(playerGridLoc.x, playerGridLoc.y, player.markPrefab);
-            }
-        }
-    }
+    //    base.MoveBackward();
+    //    if (!visitedTiles.Contains(playerGridLoc))
+    //    {
+    //        visitedTiles.Add(playerGridLoc);
+    //        if (player.markPrefab && tileManager)
+    //        {
+    //            tileManager.InstantiateTileVisual(playerGridLoc.x, playerGridLoc.y, player.markPrefab);
+    //        }
+    //    }
+    //}
 
     private void CheckGridCompletion()
     {
@@ -115,9 +113,7 @@ public class GameManager_Training_9 : GameManager_Training
         if (PythonExecutor.instance != null)
         {
             PythonExecutor.instance.OnExecutionFinished -= CheckGridCompletion;
-
             PythonExecutor.instance.OnExecutionAborted -= HandleAbort;
-            PythonExecutor.instance.OnRuntimeError -= HandleRuntimeError;
         }
     }
 

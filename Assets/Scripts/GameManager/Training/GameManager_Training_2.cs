@@ -27,6 +27,7 @@ public class GameManager_Training_2 : GameManager_Training
 
     protected override void RegisterLevelSpecificPythonCommands()
     {
+        base.RegisterLevelSpecificPythonCommands();
         BindReturn("scan", Scan);
     }
 
@@ -42,7 +43,7 @@ public class GameManager_Training_2 : GameManager_Training
             }
             else
             {
-                PrintToDisplay("You must save scan() to a variable, and then print that exact variable! Try: tile = scan()");
+                PythonExecutor.instance.TriggerRuntimeError("Save scan() to a variable first, then print it! Example: \ntile = scan() \nprint(tile)", true);
             }
         }
     }
@@ -50,16 +51,15 @@ public class GameManager_Training_2 : GameManager_Training
     protected override void SetLevelAllowedSyntax()
     {
         base.SetLevelAllowedSyntax();
-
         allowedSyntaxNodes.AddRange(SyntaxDictionary.Variables);
 
-        allowedSyntaxNodes.Remove("Constant");
-        allowedSyntaxNodes.Remove("Num");
-        allowedSyntaxNodes.Remove("Str");
+        //allowedSyntaxNodes.Remove("Constant");
+        //allowedSyntaxNodes.Remove("Num");
+        //allowedSyntaxNodes.Remove("Str");
 
-        customLevelErrors["Constant"] = "You cannot type numbers or strings directly! Use scan() instead.";
-        customLevelErrors["Num"] = "You cannot type numbers in this level!";
-        customLevelErrors["Str"] = "You cannot type strings directly! Use scan() instead.";
+        //customLevelErrors["Constant"] = "You cannot type numbers or strings directly! Use scan() instead.";
+        //customLevelErrors["Num"] = "You cannot type numbers in this level!";
+        //customLevelErrors["Str"] = "You cannot type strings directly! Use scan() instead.";
     }
 
     protected override void SetLevelObjectives()
@@ -68,14 +68,14 @@ public class GameManager_Training_2 : GameManager_Training
 
         ObjectiveManager.instance.objectives.Add(new LevelObjective()
         {
-            description = "Use scan() to check the tile in front of you.",
+            description = "Use <color=green>scan</color>() to check the tile in front of you.",
             type = ObjectiveType.FunctionCall,
             targetFunctionName = "scan"
         });
 
         ObjectiveManager.instance.objectives.Add(new LevelObjective()
         {
-            description = "Store the result of scan() in a variable and print it using print().",
+            description = "Store the <color=green>scan</color>() result of White Ore in a variable and display it using <color=#F5F5AB>print</color>().",
             type = ObjectiveType.CustomEvent,
             customEventId = "PrintedVariable"
         });

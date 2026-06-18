@@ -6,7 +6,7 @@ public class PlayerHealthComponent : MonoBehaviour
 {
     [Header("Health Settings")]
     public int maxHealth = 100;
-    private int currentHealth;
+    public int currentHealth;
 
     [Header("UI References")]
     public Image healthBar;

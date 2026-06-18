@@ -8,16 +8,13 @@ public class GameManager_Training_11 : GameManager_Training
 
     protected override void RegisterLevelSpecificPythonCommands()
     {
-        Bind("move_forward", MoveForward);
-        Bind("move_backward", MoveBackward);
-        BindWithArg<string>("turn", Turn);
 
         Bind("mine", Mine);
         Bind("collect", Collect);
 
         BindReturn("scan", Scan);
         BindReturn("measure", Measure);
-        BindWithArg<int, bool>("discard", Discard);
+        BindWithArg<int>("discard", Discard);
     }
 
     protected override void SetLevelAllowedSyntax()
@@ -72,7 +69,6 @@ public class GameManager_Training_11 : GameManager_Training
         {
             PythonExecutor.instance.OnExecutionFinishedBefore += CheckInventoryTotal;
             PythonExecutor.instance.OnExecutionAborted += HandleAbort;
-            PythonExecutor.instance.OnRuntimeError += HandleRuntimeError;
         }
     }
 
@@ -138,7 +134,6 @@ public class GameManager_Training_11 : GameManager_Training
         {
             PythonExecutor.instance.OnExecutionFinishedBefore -= CheckInventoryTotal;
             PythonExecutor.instance.OnExecutionAborted -= HandleAbort;
-            PythonExecutor.instance.OnRuntimeError -= HandleRuntimeError;
         }
     }
 }

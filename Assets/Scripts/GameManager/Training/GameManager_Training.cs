@@ -18,6 +18,9 @@ public class GameManager_Training : GameManager
 
     protected override void RegisterLevelSpecificPythonCommands()
     {
+        BindWithArgs<string, int>("move", Move);
+        BindWithArg<string>("turn", Turn);
+        Bind("wait", Wait);
     }
 
     protected override void Start()
@@ -106,17 +109,13 @@ public class GameManager_Training : GameManager
                 cargoComponent.DiscardCargo(i);
             }
         }
+
+        PrintToDisplay("<color=orange>Failed to complete in one run, resetting...</color>");
     }
 
     protected virtual void HandleAbort()
     {
-        PrintToDisplay("<color=orange>Program Aborted. Resetting position...</color>");
         ResetPlayerToStart();
-    }
-
-    protected virtual void HandleRuntimeError(int line, string message)
-    {
-        PrintToDisplay("<color=orange>Error encountered. Resetting position...</color>");
     }
 
     public virtual void Mine()
@@ -305,7 +304,7 @@ public class GameManager_Training : GameManager
         if (!isValid)
         {
             string conditionText = exactMatch ? $"exactly {targetCount}" : $"a maximum of {targetCount}";
-            PrintToDisplay($"<color=red>Constraint Failed! You are only allowed to write {functionName}() {conditionText} time(s)!</color>");
+            PrintToDisplay($"<color=yellow>Constraint Failed! You are only allowed to write {functionName}() {conditionText} time(s)!</color>");
             PythonExecutor.instance.StopRunningCode();
             return false;
         }
