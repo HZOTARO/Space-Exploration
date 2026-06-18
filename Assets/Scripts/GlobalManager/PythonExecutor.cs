@@ -38,6 +38,7 @@ public class PythonExecutor : MonoBehaviour
     [HideInInspector] public string currentCode;
     public bool continuous = false;
     bool lockDelay = false;
+    private int currentLine = 0;
 
     public event Action OnExecutionStarted;
     public event Action OnExecutionFinished;
@@ -183,6 +184,7 @@ public class PythonExecutor : MonoBehaviour
     {
         continuous = false;
         currentCode = null;
+        currentLine = 0;
 
         using (Py.GIL())
         {
@@ -229,6 +231,7 @@ public class PythonExecutor : MonoBehaviour
         if (currentCode == null || !String.Equals(currentCode, code))
         {
             currentCode = code;
+            currentLine = 0;
 
             if (string.IsNullOrEmpty(currentCode))
             {
@@ -276,6 +279,7 @@ public class PythonExecutor : MonoBehaviour
                 OnExecutionFinishedBefore?.Invoke();
                 continuous = false;
                 currentCode = null;
+                currentLine = 0;
                 OnExecutionFinished?.Invoke();
             }
 
@@ -286,11 +290,13 @@ public class PythonExecutor : MonoBehaviour
                     string[] parts = result.Split(',');
                     if (int.TryParse(parts[0], out int startLine) && int.TryParse(parts[1], out int endLine))
                     {
+                        currentLine = startLine;
                         OnLineExecuted?.Invoke(startLine, endLine);
                     }
                 }
                 else if (int.TryParse(result, out int singleLine))
                 {
+                    currentLine = singleLine;
                     OnLineExecuted?.Invoke(singleLine, singleLine);
                 }
             }
@@ -451,5 +457,12 @@ __gen__ = None
                 return false;
             }
         }
+    }
+    public void TriggerRuntimeError(string msg)
+    {
+        int lineToReport = currentLine;
+
+        StopRunningCode();
+        OnRuntimeError?.Invoke(lineToReport, msg);
     }
 }
