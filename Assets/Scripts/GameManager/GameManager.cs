@@ -159,8 +159,7 @@ public class GameManager : MonoBehaviour
     {
         Bind("move_forward", MoveForward);
         Bind("move_backward", MoveBackward);
-        Bind("turn_right", TurnRight);
-        Bind("turn_left", TurnLeft);
+        BindWithArg<string>("turn", Turn);
         Bind("wait", Wait);
 
         if (UpgradeManager.instance)
@@ -182,6 +181,11 @@ public class GameManager : MonoBehaviour
     protected void BindReturn<TResult>(string pyName, Func<TResult> func)
     {
         if (PythonExecutor.instance != null) PythonExecutor.instance.RegisterPythonFunction(pyName, func);
+    }
+
+    protected void BindWithArg<TArg>(string pyName, Action<TArg> action)
+    {
+        if (PythonExecutor.instance != null) PythonExecutor.instance.RegisterPythonFunction(pyName, action);
     }
 
     protected void BindWithArg<TArg, TResult>(string pyName, Func<TArg, TResult> func)
@@ -336,16 +340,22 @@ public class GameManager : MonoBehaviour
         return;
     }
 
-    public void TurnRight()
+    public void Turn(string direction)
     {
-        playerFacing = (playerFacing + 1) % 4;
-        player.Turn(90f);
-    }
-
-    public void TurnLeft()
-    {
-        playerFacing = (playerFacing + 3) % 4;
-        player.Turn(-90f);
+        if (direction == "right")
+        {
+            playerFacing = (playerFacing + 1) % 4;
+            player.Turn(90f);
+        }
+        else if (direction == "left")
+        {
+            playerFacing = (playerFacing + 3) % 4;
+            player.Turn(-90f);
+        }
+        else
+        {
+            PythonExecutor.instance.TriggerRuntimeError($"Invalid turn direction: {direction}. Use 'left' or 'right'.");
+        }
     }
 
     public virtual string Scan()

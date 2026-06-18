@@ -3,8 +3,7 @@ public class GameManager_Training_3 : GameManager_Training
     // Measure both ores and add value
     protected override void RegisterLevelSpecificPythonCommands()
     {
-        Bind("turn_right", TurnRight);
-        Bind("turn_left", TurnLeft);
+        BindWithArg<string>("turn", Turn);
         BindReturn("measure", Measure);
     }
 

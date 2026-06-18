@@ -3,8 +3,7 @@ public class GameManager_Training_6 : GameManager_Training
     protected override void RegisterLevelSpecificPythonCommands()
     {
         BindReturn("scan", Scan);
-        Bind("turn_right", TurnRight);
-        Bind("turn_left", TurnLeft);
+        BindWithArg<string>("turn", Turn);
 
         Bind("mine", Mine);
         Bind("collect", Collect);

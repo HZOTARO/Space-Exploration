@@ -6,8 +6,7 @@ public class GameManager_Training_5 : GameManager_Training
         BindReturn("scan", Scan);
         BindReturn("measure", Measure);
 
-        Bind("turn_right", TurnRight);
-        Bind("turn_left", TurnLeft);
+        BindWithArg<string>("turn", Turn);
 
         Bind("mine", Mine);
         Bind("collect", Collect);

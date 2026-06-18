@@ -10,8 +10,7 @@ public class GameManager_Training_11 : GameManager_Training
     {
         Bind("move_forward", MoveForward);
         Bind("move_backward", MoveBackward);
-        Bind("turn_right", TurnRight);
-        Bind("turn_left", TurnLeft);
+        BindWithArg<string>("turn", Turn);
 
         Bind("mine", Mine);
         Bind("collect", Collect);
