@@ -8,12 +8,11 @@ public class GameManager_Training_11 : GameManager_Training
 
     protected override void RegisterLevelSpecificPythonCommands()
     {
-
-        Bind("mine", Mine);
-        Bind("collect", Collect);
-
+        base.RegisterLevelSpecificPythonCommands();
         BindReturn("scan", Scan);
         BindReturn("measure", Measure);
+        Bind("mine", Mine);
+        Bind("collect", Collect);
         BindWithArg<int>("discard", Discard);
     }
 
@@ -83,6 +82,8 @@ public class GameManager_Training_11 : GameManager_Training
 
     private void CheckInventoryTotal()
     {
+        if (completed) return;
+
         TileManager_Training_11 tm = tileManager as TileManager_Training_11;
         if (tm == null || cargoComponent == null) return;
 
@@ -116,6 +117,8 @@ public class GameManager_Training_11 : GameManager_Training
 
     protected override void ResetPlayerToStart()
     {
+        if (completed) return;
+
         base.ResetPlayerToStart();
 
         if (tileManager != null)

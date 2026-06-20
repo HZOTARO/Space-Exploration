@@ -2,9 +2,9 @@ public class GameManager_Training_6 : GameManager_Training
 {
     protected override void RegisterLevelSpecificPythonCommands()
     {
+        base.RegisterLevelSpecificPythonCommands();
         BindReturn("scan", Scan);
-        BindWithArg<string>("turn", Turn);
-
+        BindReturn("measure", Measure);
         Bind("mine", Mine);
         Bind("collect", Collect);
         Bind("drill", Drill);
@@ -31,7 +31,7 @@ public class GameManager_Training_6 : GameManager_Training
 
         ObjectiveManager.instance.objectives.Add(new LevelObjective()
         {
-            description = "Unstable Environment! Use match/case to handle the random resources and collect them all in a single run.",
+            description = "Unstable Environment!\nUse match/case to collect all resources.\nDo it in a single run.",
             type = ObjectiveType.CustomEvent,
             customEventId = "LevelSolved"
         });
@@ -63,6 +63,8 @@ public class GameManager_Training_6 : GameManager_Training
 
     private void CheckWinCondition()
     {
+        if (completed) return;
+
         if (tileManager.objectsArray[1, 0].type == TileType.Floor &&
             tileManager.objectsArray[0, 1].type == TileType.Floor)
         {
@@ -71,13 +73,15 @@ public class GameManager_Training_6 : GameManager_Training
         }
         else
         {
-            PrintToDisplay("<color=orange>Level failed! Make sure you collect both resources. Watch out for the Black Ore!</color>");
+            PrintToDisplay("<color=orange>Level failed! Make sure you collect both resources.</color>");
             ResetPlayerToStart();
         }
     }
 
     protected override void ResetPlayerToStart()
     {
+        if (completed) return;
+
         base.ResetPlayerToStart();
 
         RandomizeUnstableEnvironment();

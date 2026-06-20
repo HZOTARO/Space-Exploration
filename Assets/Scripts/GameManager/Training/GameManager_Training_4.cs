@@ -16,7 +16,9 @@ public class GameManager_Training_4 : GameManager_Training
 
     protected override void RegisterLevelSpecificPythonCommands()
     {
+        base.RegisterLevelSpecificPythonCommands();
         BindReturn("scan", Scan);
+        BindReturn("measure", Measure);
         Bind("mine", Mine);
         Bind("collect", Collect);
     }

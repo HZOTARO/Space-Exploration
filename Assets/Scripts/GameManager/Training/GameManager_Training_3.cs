@@ -39,7 +39,7 @@ public class GameManager_Training_3 : GameManager_Training
 
         ObjectiveManager.instance.objectives.Add(new LevelObjective()
         {
-            description = "Calculate the sum of the measured ores and store the result  in a variable named <color=yellow>total</color>. Do it in a single run.",
+            description = "Calculate the sum of the measured ores and store the result in a variable named <color=yellow>total</color>.\nDo it in a single run.",
             type = ObjectiveType.CustomEvent,
             customEventId = "TotalCalculated"
         });
@@ -89,6 +89,8 @@ public class GameManager_Training_3 : GameManager_Training
 
     protected override void ResetPlayerToStart()
     {
+        if (completed) return;
+
         base.ResetPlayerToStart();
 
         if (tileManager != null)

@@ -3,11 +3,9 @@ public class GameManager_Training_5 : GameManager_Training
     // Get higher valued mineral
     protected override void RegisterLevelSpecificPythonCommands()
     {
+        base.RegisterLevelSpecificPythonCommands();
         BindReturn("scan", Scan);
         BindReturn("measure", Measure);
-
-        BindWithArg<string>("turn", Turn);
-
         Bind("mine", Mine);
         Bind("collect", Collect);
         Bind("drill", Drill);
@@ -41,7 +39,7 @@ public class GameManager_Training_5 : GameManager_Training
 
         ObjectiveManager.instance.objectives.Add(new LevelObjective()
         {
-            description = "Unstable Environment! Measure both minerals and collect the one with the higher value in a single run!",
+            description = "Unstable Environment!\nMeasure both minerals, compare their values, and collect the one with the higher value.\nDo it in a single run!",
             type = ObjectiveType.CustomEvent,
             customEventId = "LevelSolved"
         });
@@ -100,6 +98,8 @@ public class GameManager_Training_5 : GameManager_Training
 
     protected override void ResetPlayerToStart()
     {
+        if (completed) return;
+
         base.ResetPlayerToStart();
 
         RandomizeUnstableEnvironment();

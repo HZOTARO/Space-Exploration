@@ -5,10 +5,11 @@ public class GameManager_Training_10 : GameManager_Training
     // Append List
     protected override void RegisterLevelSpecificPythonCommands()
     {
-        Bind("mine", Mine);
-        Bind("collect", Collect);
+        base.RegisterLevelSpecificPythonCommands();
         BindReturn("scan", Scan);
         BindReturn("measure", Measure);
+        Bind("mine", Mine);
+        Bind("collect", Collect);
     }
 
     protected override void SetLevelAllowedSyntax()
@@ -63,6 +64,8 @@ public class GameManager_Training_10 : GameManager_Training
 
     private void CheckListCompletion()
     {
+        if (completed) return;
+
         bool createdList = PythonExecutor.instance.CheckASTPattern(1, 999, "AssignList", "inventory");
         if (!createdList)
         {
@@ -99,6 +102,8 @@ public class GameManager_Training_10 : GameManager_Training
 
     protected override void ResetPlayerToStart()
     {
+        if (completed) return;
+
         base.ResetPlayerToStart();
 
         if (tileManager != null)

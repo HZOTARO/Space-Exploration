@@ -16,6 +16,8 @@ public class GameManager_Training : GameManager
     private Vector3 startingPhysicalPos;
     private Quaternion startingPhysicalRot;
 
+    protected bool completed = false;
+
     protected override void RegisterLevelSpecificPythonCommands()
     {
         BindWithArgs<string, int>("move", Move);
@@ -58,12 +60,16 @@ public class GameManager_Training : GameManager
     }
     protected virtual void OnLevelComplete()
     {
+        if (completed) return;
+
         if (!SaveManager.saveData.levelCompleted.Contains(PlayerPrefs.GetString("CurrentLevelId")))
         {
             SaveManager.saveData.levelCompleted.Add(PlayerPrefs.GetString("CurrentLevelId"));
             SaveManager.instance.SaveGame(SaveManager.saveSlotInUse);
         }
         Debug.Log("<color=green>Training Completed!</color>");
+
+        completed = true;
 
         PythonExecutor.instance.StopRunningCode();
 
@@ -92,6 +98,8 @@ public class GameManager_Training : GameManager
 
     protected virtual void ResetPlayerToStart()
     {
+        if (completed) return;
+
         playerGridLoc = Vector2Int.zero;
         playerFacing = 0;
 
@@ -304,11 +312,32 @@ public class GameManager_Training : GameManager
         if (!isValid)
         {
             string conditionText = exactMatch ? $"exactly {targetCount}" : $"a maximum of {targetCount}";
-            PrintToDisplay($"<color=yellow>Constraint Failed! You are only allowed to write {functionName}() {conditionText} time(s)!</color>");
-            PythonExecutor.instance.StopRunningCode();
+            PythonExecutor.instance.TriggerRuntimeError($"Constraint Failed! You are only allowed to write {functionName}() {conditionText} time(s)!", true);
             return false;
         }
 
         return true;
+    }
+
+    protected override void LevelGameOver()
+    {
+        if (PythonExecutor.instance != null)
+        {
+            PythonExecutor.instance.StopRunningCode();
+        }
+
+        if (player)
+        {
+            player.Die(() =>
+            {
+                ResetPlayerToStart();
+                if (healthComponent) healthComponent.Initialize();
+            });
+        }
+        else
+        {
+            ResetPlayerToStart();
+            if (healthComponent) healthComponent.Initialize();
+        }
     }
 }

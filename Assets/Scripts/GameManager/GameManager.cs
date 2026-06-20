@@ -622,7 +622,7 @@ public class GameManager : MonoBehaviour
         LevelManager.instance.OpenScene(LevelType.Hub);
     }
 
-    protected void LevelGameOver()
+    protected virtual void LevelGameOver()
     {
         if (PythonExecutor.instance != null)
         {
