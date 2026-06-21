@@ -18,13 +18,17 @@ MonoBehaviour:
   title: Movement
   image: {fileID: 0}
   description: "Movement commands are used to control the robot\u2019s position and
-    direction during exploration.\r\n\r\nAvailable movement commands:\r\n<indent=1em><font=\"JetBrainsMono
-    SDF\"><color=#33CC66>move_forward</color>()</font> \u2192 Move one tile forward</indent>\r\n<indent=1em><font=\"JetBrainsMono
-    SDF\"><color=#33CC66>move_backward</color>()</font> \u2192 Move one tile backward</indent>\r\n<indent=1em><font=\"JetBrainsMono
-    SDF\"><color=#33CC66>turn_right</color>()</font> \u2192 Rotate the robot to the
-    right</indent>\r\n<indent=1em><font=\"JetBrainsMono SDF\"><color=#33CC66>turn_left</color>()</font>
-    \u2192 Rotate the robot to the left</indent>\r\n<indent=1em><font=\"JetBrainsMono
-    SDF\"><color=#33CC66>wait</color>()</font> \u2192 Do nothing for one turn</indent>\r\n\r\nMost
-    objects and interactions require proper positioning, so careful movement is important
-    while exploring dangerous areas."
+    direction during exploration.\n\nAvailable movement commands:\n<indent=1em><font=\"JetBrainsMono
+    SDF\"><color=#33CC66>move</color>(<color=#CE9178>\"forward\"</color>, <color=#B5CEA8>3</color>)</font>
+    \u2192 Move in the specified direction for the given distance</indent>\n<indent=1em><font=\"JetBrainsMono
+    SDF\"><color=#33CC66>turn</color>(<color=#CE9178>\"right\"</color>)</font> \u2192
+    Rotate the robot to face the specified direction</indent>\n<indent=1em><font=\"JetBrainsMono
+    SDF\"><color=#33CC66>wait</color>()</font> \u2192 Do nothing for one turn</indent>\n\nThe
+    <font=\"JetBrainsMono SDF\"><color=#33CC66>move</color>()</font> command requires
+    two parameters:\n<indent=2em>- A direction represented as text, such as <font=\"JetBrainsMono
+    SDF\"><color=#CE9178>\"forward\"</color></font> or <font=\"JetBrainsMono SDF\"><color=#CE9178>\"backward\"</color></font></indent>\n<indent=2em>-
+    A distance represented as a number, such as <font=\"JetBrainsMono SDF\"><color=#B5CEA8>3</color></font></indent>\n\nThe
+    <font=\"JetBrainsMono SDF\"><color=#33CC66>turn</color>()</font> command requires
+    one parameter:\n<indent=2em>- A direction represented as text, such as <font=\"JetBrainsMono
+    SDF\"><color=#CE9178>\"left\"</color></font> or <font=\"JetBrainsMono SDF\"><color=#CE9178>\"right\"</color></font></indent>"
   isImageBig: 0

@@ -25,7 +25,7 @@ MonoBehaviour:
     Each repetition of a loop is called an <color=yellow>iteration</color>.\n\nExample:\n<indent=1em><font=\"JetBrainsMono
     SDF\">LOOP_STATEMENT: <color=#6A9955># Will be explained later</color></font>\n<indent=3em><font=\"JetBrainsMono
     SDF\"><color=#33CC66>scan</color><color=#D4D4D4>()</color></font>\n<font=\"JetBrainsMono
-    SDF\"><color=#33CC66>move_forward</color><color=#D4D4D4>()</color></font></indent></indent>\nDuring
+    SDF\"><color=#33CC66>move</color>(<color=#CE9178>\"forward\"</color>, <color=#B5CEA8>2</color>)</font></indent></indent>\nDuring
     an iteration, the program may also control the loop using special statements:\n<indent=2em>-
     <font=\"JetBrainsMono SDF\"><color=#D96DD3>continue</color></font> \u2192 Skip
     the remaining instructions in the current iteration and move to the next iteration</indent>\n<indent=2em>-

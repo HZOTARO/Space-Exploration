@@ -25,26 +25,24 @@ MonoBehaviour:
     repeats a fixed number of times, a <font="JetBrainsMono SDF"><color=#D96DD3>while</color></font>
     loop continues running until the condition becomes <font="JetBrainsMono SDF"><color=#55AAFF>False</color></font>.
 
-    
 
     Example:
 
     <indent=1em><font="JetBrainsMono
-    SDF">distance <color=#D4D4D4>=</color> <color=#B5CEA8>3</color></font></indent>
+    SDF">distance <color=#D4D4D4>=</color> <color=#B5CEA8>3</color></font>
 
-    <indent=1em><font="JetBrainsMono
-    SDF"><color=#6A9955># Continue moving while distance is greater than 0</color></font></indent>
+    <font="JetBrainsMono
+    SDF"><color=#6A9955># Continue moving while distance is greater than 0</color></font>
 
-    <indent=1em><font="JetBrainsMono
-    SDF"><color=#D96DD3>while</color> distance <color=#D4D4D4>></color> <color=#B5CEA8>0</color><color=#D4D4D4>:</color></font></indent>
+    <font="JetBrainsMono
+    SDF"><color=#D96DD3>while</color> distance <color=#D4D4D4>></color> <color=#B5CEA8>0</color><color=#D4D4D4>:</color></font>
 
-    <indent=3em><font="JetBrainsMono
-    SDF"><color=#33CC66>move_forward</color><color=#D4D4D4>()</color></font></indent>
+    <indent=2em><font="JetBrainsMono
+    SDF"><color=#33CC66>move</color>(<color=#CE9178>"forward"</color>, <color=#B5CEA8>1</color>)</font>
 
-    <indent=3em><font="JetBrainsMono
-    SDF">distance <color=#D4D4D4>=</color> distance <color=#D4D4D4>-</color> <color=#B5CEA8>1</color></font></indent>
+    <font="JetBrainsMono
+    SDF">distance <color=#D4D4D4>=</color> distance <color=#D4D4D4>-</color> <color=#B5CEA8>1</color></font></indent></indent>
 
-    
 
     The
     loop checks the condition before each iteration.

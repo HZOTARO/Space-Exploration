@@ -24,9 +24,6 @@ MonoBehaviour:
     Examples of command functions:
 
     <indent=2em>-
-    <font="JetBrainsMono SDF"><color=#33CC66>move_forward</color><color=#D4D4D4>()</color></font></indent>
-
-    <indent=2em>-
     <font="JetBrainsMono SDF"><color=#33CC66>collect</color><color=#D4D4D4>()</color></font></indent>
 
     <indent=2em>-

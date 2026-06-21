@@ -25,9 +25,9 @@ MonoBehaviour:
     a program, we can also add comments to explain code.\nComments start with <font=\"JetBrainsMono
     SDF\"><color=#6A9955>#</color></font> and are ignored by the program. Example:\n<indent=1em><font=\"JetBrainsMono
     SDF\"><color=#6A9955># Move the robot forward</color></font>\n<font=\"JetBrainsMono
-    SDF\"><color=#33CC66>move_forward</color><color=#D4D4D4>()</color></font>\n<font=\"JetBrainsMono
+    SDF\"><color=#33CC66>move</color>(<color=#CE9178>\"forward\"</color>, <color=#B5CEA8>1</color>)</font>\n<font=\"JetBrainsMono
     SDF\"><color=#6A9955># Turn left to change direction</color></font>\n<font=\"JetBrainsMono
-    SDF\"><color=#33CC66>turn_left</color><color=#D4D4D4>()</color></font>\n<font=\"JetBrainsMono
+    SDF\"><color=#33CC66>turn</color>(<color=#CE9178>\"left\"</color>)</font>\n<font=\"JetBrainsMono
     SDF\"><color=#6A9955># Collect the item in front</color></font>\n<font=\"JetBrainsMono
     SDF\"><color=#33CC66>collect</color><color=#D4D4D4>()</color></font></indent>"
   isImageBig: 0

@@ -36,13 +36,13 @@ MonoBehaviour:
     SDF"><color=#D96DD3>case</color> <color=#CE9178>"Wall"</color>:</font>
 
     <indent=5em><font="JetBrainsMono
-    SDF"><color=#33CC66>turn_left</color><color=#D4D4D4>()</color></font></indent>
+    SDF"><color=#33CC66>turn</color>(<color=#CE9178>"left"</color>)</font></indent>
 
     <font="JetBrainsMono
     SDF"><color=#D96DD3>case</color> <color=#CE9178>"WhiteOre"</color>:</font>
 
     <indent=5em><font="JetBrainsMono
-    SDF"><color=#33CC66>move_forward</color><color=#D4D4D4>()</color></font></indent>
+    SDF"><color=#33CC66>move</color>(<color=#CE9178>"forward"</color>, <color=#B5CEA8>1</color>)</font></indent>
 
     <font="JetBrainsMono
     SDF"><color=#D96DD3>case</color> _:</font>

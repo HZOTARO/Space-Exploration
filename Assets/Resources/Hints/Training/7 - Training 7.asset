@@ -29,7 +29,7 @@ MonoBehaviour:
     run multiple times automatically!
 
     The goal of this level is to reach the
-    target by writing only one <font="JetBrainsMono SDF"><color=#33CC66>move_forward</color>()</font>
+    target by writing only one <font="JetBrainsMono SDF"><color=#33CC66>move</color>()</font>
     command.
 
 
@@ -39,13 +39,13 @@ MonoBehaviour:
     Instead of writing this:</color></font></indent>
 
     <indent=1em><font="JetBrainsMono
-    SDF"><color=#33CC66>move_forward</color>()</font></indent>
+    SDF"><color=#33CC66>turn</color>(<color=#CE9178>"right"</color>)</font></indent>
 
     <indent=1em><font="JetBrainsMono
-    SDF"><color=#33CC66>move_forward</color>()</font></indent>
+    SDF"><color=#33CC66>turn</color>(<color=#CE9178>"right"</color>)</font></indent>
 
     <indent=1em><font="JetBrainsMono
-    SDF"><color=#33CC66>move_forward</color>()</font></indent>
+    SDF"><color=#33CC66>turn</color>(<color=#CE9178>"right"</color>)</font></indent>
 
     <indent=1em><font="JetBrainsMono
     SDF"><color=#6A9955># You can automate it like this!</color></font></indent>
@@ -54,5 +54,5 @@ MonoBehaviour:
     SDF"><color=#D96DD3>for</color> i <color=#D96DD3>in</color> <color=#F5F5AB>range</color>(<color=#B5CEA8>3</color>):</font></indent>
 
     <indent=3em><font="JetBrainsMono
-    SDF"><color=#33CC66>move_forward</color>()</font></indent>'
+    SDF"><color=#33CC66>turn</color>(<color=#CE9178>"right"</color>)</font></indent>'
   isImageBig: 0

@@ -36,16 +36,16 @@ MonoBehaviour:
     Example:
 
     <indent=1em><font="JetBrainsMono
-    SDF"><color=#6A9955># Move forward 3 times</color></font></indent>
+    SDF"><color=#6A9955># Move 3 times</color></font></indent>
 
     <indent=1em><font="JetBrainsMono
     SDF"><color=#D96DD3>for</color> i <color=#D96DD3>in</color> <color=#F5F5AB>range</color>(<color=#B5CEA8>3</color>)<color=#D4D4D4>:</color></font></indent>
 
     <indent=3em><font="JetBrainsMono
-    SDF"><color=#33CC66>move_forward</color>()</font></indent>
+    SDF"><color=#33CC66>move</color>(<color=#CE9178>"forward"</color>, <color=#B5CEA8>1</color>)</indent>
 
 
-    In this example,
-    <font="JetBrainsMono SDF"><color=#33CC66>move_forward</color>()</font> executes
-    3 times.'
+    In
+    this example, <font="JetBrainsMono SDF"><color=#33CC66>move</color>()</font>
+    executes 3 times.'
   isImageBig: 0
