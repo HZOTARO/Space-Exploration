@@ -409,7 +409,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            PythonExecutor.instance.TriggerRuntimeError($"Invalid cargo slot index: {slotIndex}.", true);
+            PythonExecutor.instance.TriggerRuntimeError($"Invalid inventory slot index: {slotIndex}.", true);
         }
     }
 

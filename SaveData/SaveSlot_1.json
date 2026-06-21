@@ -1,25 +1,25 @@
 {
-    "lastSavedTime": "21-06-2026 20:15",
+    "lastSavedTime": "21-06-2026 20:25",
     "inventory": [
         {
             "itemId": "white_ore",
-            "amount": 2880
+            "amount": 2835
         },
         {
             "itemId": "purple_liquid",
-            "amount": 2425
+            "amount": 2305
         },
         {
             "itemId": "black_ore",
-            "amount": 2900
+            "amount": 2800
         },
         {
             "itemId": "part_a",
-            "amount": 3000
+            "amount": 2970
         },
         {
             "itemId": "part_b",
-            "amount": 3000
+            "amount": 2985
         }
     ],
     "unlockedUpgrades": [
@@ -53,6 +53,22 @@
         },
         {
             "id": "black_ore",
+            "currentLevel": 1
+        },
+        {
+            "id": "far_scan",
+            "currentLevel": 1
+        },
+        {
+            "id": "scan",
+            "currentLevel": 1
+        },
+        {
+            "id": "measure",
+            "currentLevel": 1
+        },
+        {
+            "id": "shoot",
             "currentLevel": 1
         }
     ],
