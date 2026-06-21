@@ -2277,6 +2277,8 @@ MonoBehaviour:
     tilePrefab: {fileID: 9201390410382802886, guid: e05a35313d41f6d49a5a9e90f180edb8, type: 3}
   - type: 9
     tilePrefab: {fileID: 9201390410382802886, guid: 47c2b68f1dbcfd4499f3384d6ed59da5, type: 3}
+  - type: 2
+    tilePrefab: {fileID: 4859144738260387485, guid: d96f59058b0b80a40bcd4aa893bbd79d, type: 3}
   goalX: 100
 --- !u!4 &2022990520
 Transform:

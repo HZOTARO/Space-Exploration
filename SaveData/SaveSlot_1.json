@@ -1,17 +1,17 @@
 {
-    "lastSavedTime": "17-06-2026 15:38",
+    "lastSavedTime": "21-06-2026 20:15",
     "inventory": [
         {
             "itemId": "white_ore",
-            "amount": 3000
+            "amount": 2880
         },
         {
             "itemId": "purple_liquid",
-            "amount": 2500
+            "amount": 2425
         },
         {
             "itemId": "black_ore",
-            "amount": 3000
+            "amount": 2900
         },
         {
             "itemId": "part_a",
@@ -22,7 +22,40 @@
             "amount": 3000
         }
     ],
-    "unlockedUpgrades": [],
+    "unlockedUpgrades": [
+        {
+            "id": "variable",
+            "currentLevel": 1
+        },
+        {
+            "id": "ifelse",
+            "currentLevel": 1
+        },
+        {
+            "id": "loop",
+            "currentLevel": 1
+        },
+        {
+            "id": "list",
+            "currentLevel": 1
+        },
+        {
+            "id": "partsexploration_mapsize",
+            "currentLevel": 1
+        },
+        {
+            "id": "white_ore",
+            "currentLevel": 1
+        },
+        {
+            "id": "purple_liquid",
+            "currentLevel": 1
+        },
+        {
+            "id": "black_ore",
+            "currentLevel": 1
+        }
+    ],
     "stepDelay": 0.20000000298023225,
     "gameSpeed": 1.0,
     "levelCompleted": [
