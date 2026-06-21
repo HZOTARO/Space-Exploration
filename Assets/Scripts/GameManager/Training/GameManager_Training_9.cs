@@ -7,8 +7,11 @@ public class GameManager_Training_9 : GameManager_Training
 
     protected override void RegisterLevelSpecificPythonCommands()
     {
-        //Bind("move_forward", MoveForward);
-        BindWithArg<string>("turn", Turn);
+        base.RegisterLevelSpecificPythonCommands();
+        BindReturn("scan", Scan);
+        BindReturn("measure", Measure);
+        Bind("mine", Mine);
+        Bind("collect", Collect);
     }
 
     protected override void SetLevelAllowedSyntax()
@@ -25,7 +28,7 @@ public class GameManager_Training_9 : GameManager_Training
         base.SetLevelObjectives();
         ObjectiveManager.instance.objectives.Add(new LevelObjective()
         {
-            description = "Traverse every tile on the map in a single run. You may only write 'move_forward()' a maximum of 2 times!",
+            description = "Traverse every tile on the map in a single run.\nYou may only write 'move()' a maximum of 2 times!\nDo it in a single run.",
             type = ObjectiveType.CustomEvent,
             customEventId = "TraversedGrid"
         });
@@ -41,68 +44,59 @@ public class GameManager_Training_9 : GameManager_Training
             PythonExecutor.instance.OnExecutionAborted += HandleAbort;
         }
 
+        OnSuccessfulMove += VisitTile;
+
         ClearVisitedTiles();
     }
 
     private void ClearVisitedTiles()
     {
-        if (tileManager) tileManager.GenerateMap();
         visitedTiles.Clear();
-        visitedTiles.Add(Vector2Int.zero);
-        if (player.markPrefab && tileManager)
+        VisitTile();
+    }
+
+    public override void Move(string directionString, int distance)
+    {
+        if (!ValidateFunctionCallCount("move", 2, false)) return;
+        base.Move(directionString, distance);
+    }
+
+    private void VisitTile()
+    {
+        if (!visitedTiles.Contains(playerGridLoc))
         {
-            tileManager.InstantiateTileVisual(playerGridLoc.x, playerGridLoc.y, player.markPrefab);
+            visitedTiles.Add(playerGridLoc);
+            if (player.markPrefab && tileManager)
+            {
+                tileManager.InstantiateTileVisual(playerGridLoc.x, playerGridLoc.y, player.markPrefab);
+            }
         }
     }
 
-    //public override void MoveForward()
-    //{
-    //    if (!ValidateFunctionCallCount("move_forward", 2, false)) return;
-
-    //    base.MoveForward();
-    //    if (!visitedTiles.Contains(playerGridLoc))
-    //    {
-    //        visitedTiles.Add(playerGridLoc);
-    //        if (player.markPrefab && tileManager)
-    //        {
-    //            tileManager.InstantiateTileVisual(playerGridLoc.x, playerGridLoc.y, player.markPrefab);
-    //        }
-    //    }
-    //}
-
-    //public override void MoveBackward()
-    //{
-    //    if (!ValidateFunctionCallCount("move_backward", 2, false)) return;
-
-    //    base.MoveBackward();
-    //    if (!visitedTiles.Contains(playerGridLoc))
-    //    {
-    //        visitedTiles.Add(playerGridLoc);
-    //        if (player.markPrefab && tileManager)
-    //        {
-    //            tileManager.InstantiateTileVisual(playerGridLoc.x, playerGridLoc.y, player.markPrefab);
-    //        }
-    //    }
-    //}
-
     private void CheckGridCompletion()
     {
+        if (completed) return;
+
         int totalTiles = levelLength * levelWidth;
         if (visitedTiles.Count < totalTiles)
         {
             PrintToDisplay($"<color=red>Incomplete! You only traversed {visitedTiles.Count} out of {totalTiles} tiles.</color>");
             ResetPlayerToStart();
-            ClearVisitedTiles();
             return;
         }
 
         ObjectiveManager.instance.TriggerCustomEvent("TraversedGrid");
-        PrintToDisplay("<color=green>Grid successfully fully traversed efficiently!</color>");
+        PrintToDisplay("<color=green>Grids successfully fully traversed!</color>");
     }
 
     protected override void ResetPlayerToStart()
     {
+        if (completed) return;
+
         base.ResetPlayerToStart();
+
+        if (tileManager != null) tileManager.GenerateMap();
+
         ClearVisitedTiles();
     }
 
@@ -115,6 +109,8 @@ public class GameManager_Training_9 : GameManager_Training
             PythonExecutor.instance.OnExecutionFinished -= CheckGridCompletion;
             PythonExecutor.instance.OnExecutionAborted -= HandleAbort;
         }
+
+        OnSuccessfulMove -= VisitTile;
     }
 
     protected override void StartValuesSetup()

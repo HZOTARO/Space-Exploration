@@ -52,7 +52,7 @@ public class GameManager_Training_11 : GameManager_Training
 
         ObjectiveManager.instance.objectives.Add(new LevelObjective()
         {
-            description = "Measure the ores and collect the most valuable ones along the path in a single run!",
+            description = "Measure the ores and collect the most valuable ones along the path\n. Do it in a single run!",
             type = ObjectiveType.CustomEvent,
             customEventId = "TotalCalculated"
         });

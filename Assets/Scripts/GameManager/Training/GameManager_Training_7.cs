@@ -4,7 +4,11 @@ public class GameManager_Training_7 : GameManager_Training
 {
     protected override void RegisterLevelSpecificPythonCommands()
     {
-        BindWithArg<string>("turn", Turn);
+        base.RegisterLevelSpecificPythonCommands();
+        BindReturn("scan", Scan);
+        BindReturn("measure", Measure);
+        Bind("mine", Mine);
+        Bind("collect", Collect);
     }
     protected override void SetLevelAllowedSyntax()
     {
@@ -32,7 +36,7 @@ public class GameManager_Training_7 : GameManager_Training
 
         ObjectiveManager.instance.objectives.Add(new LevelObjective()
         {
-            description = $"The map is {levelWidth} tiles long.\nThe goal is located on Tile {generatedGoalX + 1}.\nReach it in a single run and writing 'move_forward()' only once in your code!",
+            description = $"The map is {levelWidth} tiles long.\nThe goal is located on Tile {generatedGoalX + 1}.\nWrite 'move()' only once in your code!\nDo it in a single run.",
             type = ObjectiveType.CustomEvent,
             customEventId = "MovedWithLoop"
         });
@@ -49,28 +53,29 @@ public class GameManager_Training_7 : GameManager_Training
         }
     }
 
-    //public override void MoveForward()
-    //{
-    //    if (PythonExecutor.instance == null) return;
+    public override void Move(string directionString, int distance)
+    {
+        if (PythonExecutor.instance == null) return;
 
-    //    string currentCode = PythonExecutor.instance.currentCode;
+        string currentCode = PythonExecutor.instance.currentCode;
 
-    //    if (!ValidateFunctionCallCount("move_forward", 1, true)) return;
+        if (!ValidateFunctionCallCount("move", 1, true)) return;
 
-    //    bool isLoopValid = PythonExecutor.instance.CheckASTPattern(1, 999, "FuncInsideFor", "move_forward");
+        bool isLoopValid = PythonExecutor.instance.CheckASTPattern(1, 999, "FuncInsideFor", "move_forward");
 
-    //    if (!isLoopValid)
-    //    {
-    //        PrintToDisplay("<color=red>Action Blocked! You must use a 'for' loop to automate your movement on this level.</color>");
-    //        PythonExecutor.instance.StopRunningCode();
-    //        return;
-    //    }
+        if (!isLoopValid)
+        {
+            PythonExecutor.instance.TriggerRuntimeError("<color=red>You must use move inside a 'for' loop on this level.</color>", true);
+            return;
+        }
 
-    //    base.MoveForward();
-    //}
+        base.Move(directionString, distance);
+    }
 
     private void CheckPrecisionGoal()
     {
+        if (completed) return;
+
         TileObject finalTile = GetCurrentTile();
 
         if (finalTile != null && finalTile.type == TileType.Goal)
@@ -80,9 +85,18 @@ public class GameManager_Training_7 : GameManager_Training
         }
         else
         {
-            PrintToDisplay("<color=red>Missed! You did not stop precisely on the Goal tile. Resetting position...</color>");
+            PrintToDisplay("<color=red>Missed! You did not stop precisely on the Goal tile.</color>");
             ResetPlayerToStart();
         }
+    }
+
+    protected override void ResetPlayerToStart()
+    {
+        if (completed) return;
+
+        base.ResetPlayerToStart();
+
+        if (tileManager != null) tileManager.GenerateMap();
     }
 
     protected override void StartValuesSetup()

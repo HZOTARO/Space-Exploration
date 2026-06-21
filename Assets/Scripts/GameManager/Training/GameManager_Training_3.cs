@@ -32,14 +32,14 @@ public class GameManager_Training_3 : GameManager_Training
 
         ObjectiveManager.instance.objectives.Add(new LevelObjective()
         {
-            description = "Use <color=green>measure</color>() to find the value of the tile in front of you.",
+            description = "Use measure() to find the value of the tile in front of you.",
             type = ObjectiveType.FunctionCall,
             targetFunctionName = "measure"
         });
 
         ObjectiveManager.instance.objectives.Add(new LevelObjective()
         {
-            description = "Calculate the sum of the measured ores and store the result in a variable named <color=yellow>total</color>.\nDo it in a single run.",
+            description = "Calculate the sum of the measured ores and store the result in a variable named total.\nDo it in a single run.",
             type = ObjectiveType.CustomEvent,
             customEventId = "TotalCalculated"
         });

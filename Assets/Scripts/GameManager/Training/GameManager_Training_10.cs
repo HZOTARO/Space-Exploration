@@ -33,7 +33,7 @@ public class GameManager_Training_10 : GameManager_Training
         base.SetLevelObjectives();
         ObjectiveManager.instance.objectives.Add(new LevelObjective()
         {
-            description = "Create a list named 'inventory' and append the values of all White Ores to it in a single run.",
+            description = "Create a list named 'inventory' and append the values of all White Ores to it.\n Do it in a single run.",
             type = ObjectiveType.CustomEvent,
             customEventId = "ListCompleted"
         });

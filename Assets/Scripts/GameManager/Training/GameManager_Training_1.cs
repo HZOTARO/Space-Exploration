@@ -28,14 +28,14 @@ public class GameManager_Training_1 : GameManager_Training
 
         ObjectiveManager.instance.objectives.Add(new LevelObjective()
         {
-            description = "Move the player using <color=green>move</color>(direction, distance).",
+            description = "Move the player using move(direction, distance).",
             type = ObjectiveType.FunctionCall,
             targetFunctionName = "move"
         });
 
         ObjectiveManager.instance.objectives.Add(new LevelObjective()
         {
-            description = "Reach the <color=green>goal</color> marked in green!",
+            description = "Reach the goal marked in green!",
             type = ObjectiveType.CustomEvent, 
             customEventId = "ReachedGoal"
         });
