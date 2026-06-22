@@ -170,6 +170,7 @@ public class GameManager : MonoBehaviour
             if (UpgradeManager.instance.IsUpgradeUnlocked("far_scan")) BindReturn("enhanced_scan", FarScan);
             if (UpgradeManager.instance.IsUpgradeUnlocked("measure")) BindReturn("measure", Measure);
             if (UpgradeManager.instance.IsUpgradeUnlocked("shoot")) Bind("shoot", Shoot);
+            if (UpgradeManager.instance.IsUpgradeUnlocked("measure_distance")) BindReturn("measure_distance", MeasureDistance);
         }
     }
 
@@ -482,7 +483,7 @@ public class GameManager : MonoBehaviour
             if (currentCheckLoc.y < 0 || currentCheckLoc.y >= tileManager.width || currentCheckLoc.x < 0 || currentCheckLoc.x >= tileManager.length)
             {
                 Debug.Log($"Player far scanned the tile at distance {distance}: Wall");
-                player.PlayFarScanSequence(distance);
+                player.PlayFarScanSequence(distance, false);
                 return distance - 1;
             }
 
@@ -493,7 +494,7 @@ public class GameManager : MonoBehaviour
                     if (!enemy.isDead && enemy.gridLoc == currentCheckLoc)
                     {
                         Debug.Log($"Player far scanned the tile at distance {distance}: Enemy");
-                        player.PlayFarScanSequence(distance);
+                        player.PlayFarScanSequence(distance, false);
                         return distance - 1;
                     }
                 }
@@ -505,7 +506,7 @@ public class GameManager : MonoBehaviour
             {
                 string tileTypeName = targetTile.type.ToString();
                 Debug.Log($"Player far scanned the tile at distance {distance}: {tileTypeName}");
-                player.PlayFarScanSequence(distance);
+                player.PlayFarScanSequence(distance, false);
                 return distance - 1;
             }
 

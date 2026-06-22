@@ -311,18 +311,25 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void PlayFarScanSequence(int maxDistance)
+    public void PlayFarScanSequence(int maxDistance, bool scan = true)
     {
-        StartCoroutine(FarScanSequenceRoutine(maxDistance));
+        StartCoroutine(FarScanSequenceRoutine(maxDistance, scan));
     }
 
-    private IEnumerator FarScanSequenceRoutine(int maxDistance)
+    private IEnumerator FarScanSequenceRoutine(int maxDistance, bool scan = true)
     {
         inAction = true;
 
         for (int i = 1; i <= maxDistance; i++)
         {
-            PlayScanEffect(i);
+            if (scan)
+            {
+                PlayScanEffect(i);
+            }
+            else
+            { 
+                PlayMeasureEffect(i);
+            }
             yield return new WaitForSeconds(0.15f);
         }
 
