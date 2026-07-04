@@ -304,7 +304,7 @@ public class GameManager_Training : GameManager
             lastCheckedRawCode = currentCode;
         }
 
-        string pattern = functionName + @"\s*\(\s*\)";
+        string pattern = @"\b" + functionName + @"\s*\(";
         int actualCount = Regex.Matches(cachedCleanCode, pattern).Count;
 
         bool isValid = exactMatch ? (actualCount == targetCount) : (actualCount <= targetCount);
@@ -312,7 +312,7 @@ public class GameManager_Training : GameManager
         if (!isValid)
         {
             string conditionText = exactMatch ? $"exactly {targetCount}" : $"a maximum of {targetCount}";
-            PythonExecutor.instance.TriggerRuntimeError($"Constraint Failed! You are only allowed to write {functionName}() {conditionText} time(s)!", true);
+            PythonExecutor.instance.TriggerRuntimeError($"Constraint Failed! You are only allowed to write {functionName}() {conditionText} time(s)! You typed {actualCount} times", true);
             return false;
         }
 

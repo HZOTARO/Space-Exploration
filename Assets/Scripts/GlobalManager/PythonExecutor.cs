@@ -443,8 +443,7 @@ __gen__ = None
                     int.TryParse(parts[1], out int line);
                     string msg = parts.Length > 2 ? parts[2] : "Unknown Error";
 
-                    PythonExecutor.instance.StopRunningCode();
-                    OnRuntimeError?.Invoke(line, msg);
+                    TriggerRuntimeError(msg, true);
 
                     return false;
                 }
@@ -458,6 +457,7 @@ __gen__ = None
             }
         }
     }
+
     public void TriggerRuntimeError(string msg, bool addLineCountBuffer = false)
     {
         int lineToReport = currentLine + (addLineCountBuffer ? 1 : 0);

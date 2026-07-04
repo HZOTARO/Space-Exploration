@@ -1,17 +1,17 @@
 {
-    "lastSavedTime": "24-06-2026 15:49",
+    "lastSavedTime": "04-07-2026 15:33",
     "inventory": [
         {
             "itemId": "white_ore",
-            "amount": 3880
+            "amount": 3914
         },
         {
             "itemId": "purple_liquid",
-            "amount": 3900
+            "amount": 3969
         },
         {
             "itemId": "black_ore",
-            "amount": 3000
+            "amount": 3035
         },
         {
             "itemId": "part_a",
@@ -96,8 +96,8 @@
             "currentLevel": 1
         }
     ],
-    "stepDelay": 0.20000000298023225,
-    "gameSpeed": 1.0,
+    "stepDelay": 0.0,
+    "gameSpeed": 8.0,
     "levelCompleted": [
         "Tutorial 1",
         "Tutorial 2",

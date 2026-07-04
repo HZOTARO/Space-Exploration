@@ -61,7 +61,7 @@ public class GameManager_Training_7 : GameManager_Training
 
         if (!ValidateFunctionCallCount("move", 1, true)) return;
 
-        bool isLoopValid = PythonExecutor.instance.CheckASTPattern(1, 999, "FuncInsideFor", "move_forward");
+        bool isLoopValid = PythonExecutor.instance.CheckASTPattern(1, 999, "FuncInsideFor", "move");
 
         if (!isLoopValid)
         {

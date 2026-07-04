@@ -57,6 +57,10 @@ public class GameManager_Training_9 : GameManager_Training
 
     public override void Move(string directionString, int distance)
     {
+        if (PythonExecutor.instance == null) return;
+        
+        string currentCode = PythonExecutor.instance.currentCode;
+
         if (!ValidateFunctionCallCount("move", 2, false)) return;
         base.Move(directionString, distance);
     }
