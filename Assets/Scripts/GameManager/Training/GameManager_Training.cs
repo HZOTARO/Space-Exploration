@@ -278,6 +278,13 @@ public class GameManager_Training : GameManager
     public virtual void Purify()
     {
         TileObject targetTile = GetTileInFront();
+
+        if (targetTile == null)
+        {
+            Debug.Log("You are facing the edge of the map!");
+            return;
+        }
+
         if (targetTile.type == TileType.BlackOre)
         {
             CaveTile_BlackOre ore = targetTile.tileInstance as CaveTile_BlackOre;
